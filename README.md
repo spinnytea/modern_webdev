@@ -27,6 +27,7 @@ VSCode plugins
 ### Dev Tools
 1. Debugger for Chrome
 1. Debugger for Edge
+1. Debugger for Firefox
 1. Debugger for PhantomJS
 1. ESLint
 1. Powershell
