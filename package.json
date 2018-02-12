@@ -45,6 +45,7 @@
     "gulp-clean-css": "^3.9.2",
     "gulp-eslint": "^4.0.2",
     "gulp-less": "^3.4.0",
+    "gulp-requirejs": "^1.1.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-unzip": "^1.0.0",
