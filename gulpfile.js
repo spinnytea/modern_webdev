@@ -1,9 +1,13 @@
 'use strict';
+var amdOptimize = require('gulp-amd-optimizer');
+var concat = require('gulp-concat');
 var del = require('del');
 var eslint = require('gulp-eslint');
 var gulp = require('gulp');
+var gutil = require('gutil');
 var merge = require('merge-stream');
 var path = require('path');
+var uglify = require('gulp-uglify');
 
 
 // build config
@@ -14,16 +18,18 @@ var dist = Object.freeze({
 });
 var resources_static = 'static/**/*';
 var vendor = [
+	[ 'angular', 'node_modules/angular/angular.min.js' ],
 	[ 'bootstrap', 'node_modules/bootstrap/dist/**/*' ],
 	[ 'bootswatch', 'node_modules/bootswatch/*/bootstrap.min.css' ],
 	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
+	[ 'requirejs', 'node_modules/requirejs/require.js' ],
 ];
 
 
 // main builds
 
 // npx gulp build, npx gulp lint
-gulp.task('build', [ 'build:static', 'build:vendor' ]);
+gulp.task('build', [ 'build:static', 'build:vendor', 'build:js' ]);
 gulp.task('lint', [ 'lint:js' ]);
 
 
@@ -35,6 +41,21 @@ gulp.task('lint:js', function () {
 	.pipe(eslint.format())
 	.pipe(eslint.failAfterError());
 });
+
+gulp.task('build:js', function () {
+	return gulp.src('src/site.js', { base: AMD_CONFIG.baseUrl })
+		.pipe(amdOptimize(AMD_CONFIG))
+		.pipe(concat('site.js'))
+		.pipe(uglify())
+		.on('error', gutil.log)
+		.pipe(gulp.dest('dist'));
+});
+var AMD_CONFIG = {
+	baseUrl: 'src',
+	exclude: [
+		'angular',
+	],
+};
 
 gulp.task('build:static', function () {
 	return gulp.src(resources_static)
