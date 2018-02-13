@@ -1,5 +1,5 @@
 Modern WebDev
-================
+=============
 
 TODO
 ----
@@ -8,11 +8,6 @@ TODO
 1. document package.json (what do we do, which packages are involved)
 1. write a gulp plugin (like, a styleguide lint, or a bootstrap markup lint)
 1. write sample project, document which packages are for which parts
-
-Helpful Commands
-----------------
-
-* `npx gulp build`
 
 
 What's in the project
