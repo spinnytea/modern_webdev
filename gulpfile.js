@@ -1,19 +1,19 @@
 'use strict';
-const del = require('del');
-const eslint = require('gulp-eslint');
-const gulp = require('gulp');
-const merge = require('merge-stream');
-const path = require('path');
+var del = require('del');
+var eslint = require('gulp-eslint');
+var gulp = require('gulp');
+var merge = require('merge-stream');
+var path = require('path');
 
 
 // build config
 
-const dist = Object.freeze({
+var dist = Object.freeze({
 	root: 'dist',
 	vendor: 'dist/vendor',
 });
-const resources_static = 'static/**/*';
-const vendor = [
+var resources_static = 'static/**/*';
+var vendor = [
 	[ 'bootstrap', 'node_modules/bootstrap/dist/**/*' ],
 	[ 'bootswatch', 'node_modules/bootswatch/*/bootstrap.min.css' ],
 	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
@@ -30,7 +30,7 @@ gulp.task('lint', [ 'lint:js' ]);
 // build tasks
 
 gulp.task('lint:js', function () {
-	return gulp.src(['*.js', '!node_modules/**'])
+	return gulp.src(['**/*.js', '!node_modules/**', '!dist/**'])
 	.pipe(eslint())
 	.pipe(eslint.format())
 	.pipe(eslint.failAfterError());
@@ -42,7 +42,8 @@ gulp.task('build:static', function () {
 });
 
 gulp.task('build:vendor', function () {
-	return merge(vendor.map(function ([dest, src]) {
+	return merge(vendor.map(function (array) {
+		var dest = array[0], src = array[1];
 		return gulp.src(src).pipe(gulp.dest(path.join(dist.vendor, dest)));
 	}));
 });

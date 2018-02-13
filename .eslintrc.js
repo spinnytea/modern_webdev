@@ -1,11 +1,15 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
     node: true,
-    mocha: true,
   },
-  extends: 'eslint:recommended',
+  plugins: [
+    "requirejs",
+  ],
+  extends: [
+    'eslint:recommended',
+    'plugin:requirejs/recommended',
+  ],
   rules: {
     "no-console": "off",
     "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
