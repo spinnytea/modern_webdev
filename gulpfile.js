@@ -13,8 +13,9 @@ const dist = Object.freeze({
 });
 const resources_static = 'static/**/*';
 const vendor = [
-	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
 	[ 'bootstrap', 'node_modules/bootstrap/dist/**/*' ],
+	[ 'bootswatch', 'node_modules/bootswatch/*/bootstrap.min.css' ],
+	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
 ];
 
 
