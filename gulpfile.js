@@ -7,6 +7,7 @@ var gulp = require('gulp');
 var gutil = require('gutil');
 var merge = require('merge-stream');
 var path = require('path');
+var sourcemap = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 
 
@@ -44,10 +45,12 @@ gulp.task('lint:js', function () {
 
 gulp.task('build:js', function () {
 	return gulp.src('src/site.js', { base: AMD_CONFIG.baseUrl })
+		.pipe(sourcemap.init())
 		.pipe(amdOptimize(AMD_CONFIG))
 		.pipe(concat('site.js'))
 		.pipe(uglify())
 		.on('error', gutil.log)
+		.pipe(sourcemap.write('./'))
 		.pipe(gulp.dest('dist'));
 });
 var AMD_CONFIG = {
