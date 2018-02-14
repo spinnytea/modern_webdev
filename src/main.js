@@ -7,6 +7,7 @@ define([
 		$locationProvider.hashPrefix('');
 		$routeProvider
 			.when('/', { templateUrl: 'site/home.html' })
+			.when('/settings', { templateUrl: 'site/settings.html', controller: 'po_ke_type.site.settings.controller' })
 			.otherwise({ templateUrl: 'oops.html' });
 	}]);
 

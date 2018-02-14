@@ -34,7 +34,7 @@ What's in the project
 <dt>boostrap, bootswatch</dt>
 <dd>boostrap uses semantic markup and styles it</dd>
 <dd>bootswatch is a collection of predefined styles for bootstrap</dd>
-<dt>angular</dt>
+<dt>angular, angular-route</dt>
 </dl>
 
 
