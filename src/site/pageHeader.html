@@ -1,0 +1,24 @@
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#/">Poké Type Calc</a>
+
+			<!-- menu button for XS view -->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-page-header" aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar-collapse-page-header">
+			<ul class="nav navbar-nav">
+				<li data-ng-class="{'active': isActive('/types')}"><a href="#/types">Type Chart</a></li>
+				<li data-ng-class="{'active': isActive('/pokedex')}"><a href="#/pokedex">Pokédex</a></li>
+				<li data-ng-class="{'active': isActive('/team')}"><a href="#/team">Your Team</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li data-ng-class="{'active': isActive('/settings')}"><a href="#/settings">Settings</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>

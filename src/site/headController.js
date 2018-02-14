@@ -1,10 +1,10 @@
 define([], function () {
 	return [
-		'$scope',
+		'$scope', 'po_ke_type.site.defaultTheme',
 		HeadController,
 	];
 
-	function HeadController($scope) {
-		$scope.theme = 'spacelab';
+	function HeadController($scope, defaultTheme) {
+		$scope.theme = defaultTheme;
 	}
 });

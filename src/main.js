@@ -3,7 +3,8 @@ define([
 ], function (site) {
 	var module = angular.module('po_ke_type', [ 'ngRoute', 'templates', site.name ]);
 
-	module.config(['$routeProvider', function ($routeProvider) {
+	module.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+		$locationProvider.hashPrefix('');
 		$routeProvider
 			.when('/', { templateUrl: 'site/home.html' })
 			.otherwise({ templateUrl: 'oops.html' });
