@@ -1,13 +1,13 @@
 define([], function () {
 	return [
-		'po_ke_type.site.defaultTheme',
+		'localStorageService', 'po_ke_type.site.defaultTheme',
 		SettingsFactory,
 	];
 
-	function SettingsFactory(defaultTheme) {
+	function SettingsFactory(localStorageService, defaultTheme) {
 		var settings = {};
 
-		settings.theme = defaultTheme;
+		settings.theme = localStorageService.get('theme') || defaultTheme;
 
 		return settings;
 	}

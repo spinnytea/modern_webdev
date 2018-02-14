@@ -35,6 +35,10 @@ What's in the project
 <dd>boostrap uses semantic markup and styles it</dd>
 <dd>bootswatch is a collection of predefined styles for bootstrap</dd>
 <dt>angular, angular-route</dt>
+<dt>angular-local-storage</dt>
+<dd>not officially by angular</dd>
+<dd>has some nice interactions with local storage, defaults to cookies</dd>
+<dd>just all around nicer to work with than raw local storage</dd>
 </dl>
 
 
