@@ -8,6 +8,7 @@ var gutil = require('gutil');
 var merge = require('merge-stream');
 var path = require('path');
 var sourcemap = require('gulp-sourcemaps');
+var templateCache = require('gulp-angular-templatecache');
 var uglify = require('gulp-uglify');
 
 
@@ -25,6 +26,7 @@ var resources = Object.freeze({
 });
 var vendor = [
 	[ 'angular', 'node_modules/angular/angular.min.js' ],
+	[ 'angular-route', 'node_modules/angular-route/angular-route.min.js' ],
 	[ 'bootstrap', 'node_modules/bootstrap/dist/**/*' ],
 	[ 'bootswatch', 'node_modules/bootswatch/*/bootstrap.min.css' ],
 	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
@@ -35,12 +37,12 @@ var vendor = [
 // main builds
 
 // npx gulp build, npx gulp lint
-gulp.task('build', [ 'build:static', 'build:vendor', 'build:js' ]);
+gulp.task('build', [ 'build:js', 'build:html', 'build:static', 'build:vendor' ]);
 gulp.task('lint', [ 'lint:js' ]);
 gulp.task('buildd', [], function () {
 	gulp.watch(resources.js, ['build:js']);
-	// gulp.watch('src/**/*.html', ['build:html']);
-	// gulp.watch('src/**/*.less', ['build:less']);
+	gulp.watch(resources.html, ['build:html']);
+	// gulp.watch(resources.less, ['build:less']);
 	gulp.watch(resources.static, ['build:static']);
 	gulp.start('build');
 });
@@ -54,7 +56,6 @@ gulp.task('lint:js', function () {
 	.pipe(eslint.format())
 	.pipe(eslint.failAfterError());
 });
-
 gulp.task('build:js', function () {
 	return gulp.src('src/main.js', { base: AMD_CONFIG.baseUrl })
 		.pipe(sourcemap.init())
@@ -68,6 +69,12 @@ gulp.task('build:js', function () {
 var AMD_CONFIG = {
 	baseUrl: 'src',
 };
+
+gulp.task('build:html', function () {
+	return gulp.src(resources.html)
+		.pipe(templateCache({ standalone: true }))
+		.pipe(gulp.dest('dist'));
+});
 
 gulp.task('build:static', function () {
 	return gulp.src(resources.static)
