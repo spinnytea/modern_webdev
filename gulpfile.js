@@ -17,7 +17,12 @@ var dist = Object.freeze({
 	root: 'dist',
 	vendor: 'dist/vendor',
 });
-var resources_static = 'static/**/*';
+var resources = Object.freeze({
+	js: 'src/**/*.js',
+	html: 'src/**/*.html',
+	less: 'src/**/*.less',
+	static: 'static/**/*',
+});
 var vendor = [
 	[ 'angular', 'node_modules/angular/angular.min.js' ],
 	[ 'bootstrap', 'node_modules/bootstrap/dist/**/*' ],
@@ -32,6 +37,13 @@ var vendor = [
 // npx gulp build, npx gulp lint
 gulp.task('build', [ 'build:static', 'build:vendor', 'build:js' ]);
 gulp.task('lint', [ 'lint:js' ]);
+gulp.task('buildd', [], function () {
+	gulp.watch(resources.js, ['build:js']);
+	// gulp.watch('src/**/*.html', ['build:html']);
+	// gulp.watch('src/**/*.less', ['build:less']);
+	gulp.watch(resources.static, ['build:static']);
+	gulp.start('build');
+});
 
 
 // build tasks
@@ -44,10 +56,10 @@ gulp.task('lint:js', function () {
 });
 
 gulp.task('build:js', function () {
-	return gulp.src('src/site.js', { base: AMD_CONFIG.baseUrl })
+	return gulp.src('src/main.js', { base: AMD_CONFIG.baseUrl })
 		.pipe(sourcemap.init())
 		.pipe(amdOptimize(AMD_CONFIG))
-		.pipe(concat('site.js'))
+		.pipe(concat('main.js'))
 		.pipe(uglify())
 		.on('error', gutil.log)
 		.pipe(sourcemap.write('./'))
@@ -55,13 +67,10 @@ gulp.task('build:js', function () {
 });
 var AMD_CONFIG = {
 	baseUrl: 'src',
-	exclude: [
-		'angular',
-	],
 };
 
 gulp.task('build:static', function () {
-	return gulp.src(resources_static)
+	return gulp.src(resources.static)
 		.pipe(gulp.dest(dist.root));
 });
 
