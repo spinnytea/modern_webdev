@@ -1,9 +1,10 @@
 'use strict';
+var gulp = require('gulp');
 var amdOptimize = require('gulp-amd-optimizer');
 var concat = require('gulp-concat');
 var del = require('del');
 var eslint = require('gulp-eslint');
-var gulp = require('gulp');
+var gls = require('gulp-live-server');
 var gutil = require('gutil');
 var merge = require('merge-stream');
 var path = require('path');
@@ -16,6 +17,7 @@ var uglify = require('gulp-uglify');
 
 var dist = Object.freeze({
 	root: 'dist',
+	all: 'dist/**/*',
 	vendor: 'dist/vendor',
 });
 var resources = Object.freeze({
@@ -38,7 +40,7 @@ var vendor = [
 ];
 
 
-// main builds
+// main build targets
 
 // npx gulp build, npx gulp lint
 gulp.task('build', [ 'build:js', 'build:html', 'build:static', 'build:vendor' ]);
@@ -49,6 +51,17 @@ gulp.task('buildd', [], function () {
 	// gulp.watch(resources.less, ['build:less']);
 	gulp.watch(resources.static, ['build:static']);
 	gulp.start('build');
+});
+
+// the whole point of this build is that we serve static files from
+// the only reason we need a server is because we are loading json files
+// the browswer will ONLY load js files, not even html (that's why we have templateCache)
+gulp.task('server', function () {
+	var server = gls.static(dist.root);
+	server.start();
+	gulp.watch(dist.all, function (file) {
+		server.notify.apply(server, [file]);
+	});
 });
 
 

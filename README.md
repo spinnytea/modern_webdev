@@ -24,6 +24,10 @@ What's in the project
 <dt>gulp-amd-optimizer, gulp-uglify, gulp-sourcemaps</dt>
 <dd>we are using requirejs, but requirejs is a ui library</dd>
 <dd>requirejs has some build tools, but they don't integrate naturally with gulp</dd>
+<dt>express, gulp-live-server</dt>
+<dd>express is something you can configure and launch directly from node (e.g. `node server.js`)</dd>
+<dd>gulp-live-server is a gulp wrapper around gulp-express (I guess they renamed it?)</dd>
+<dd>we want this for arbitrary webdev, and will live the target, but hopefully we can convery json to requirejs loading</dd>
 </dl>
 
 ### UI Libraries
