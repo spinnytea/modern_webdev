@@ -64,6 +64,8 @@ gulp.task('server', function () {
 	});
 });
 
+gulp.task('builds', ['buildd', 'server'], function () {});
+
 
 // build tasks
 

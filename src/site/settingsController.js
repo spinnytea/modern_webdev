@@ -1,13 +1,12 @@
-define(['configPlugins', 'json!data/themes.json'], function (config, themejson) {
+define(['configPlugins', 'json!data/themes.json'], function (config, themes) {
 	return [
-		'$scope', 'localStorageService', 'po_ke_type.site.settings', 'po_ke_type.site.themes',
+		'$scope', 'localStorageService', 'po_ke_type.site.settings',
 		SettingsController,
 	];
 
-	function SettingsController($scope, localStorageService, settings, themes) {
+	function SettingsController($scope, localStorageService, settings) {
 		$scope.settings = settings;
 		$scope.themes = themes;
-		console.log(themes, themejson);
 
 		$scope.saveTheme = function () {
 			localStorageService.set('theme', settings.theme);
