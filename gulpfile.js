@@ -88,6 +88,7 @@ gulp.task('build:js', function () {
 var AMD_CONFIG = {
 	baseUrl: 'src',
 	exclude: [
+		'json!data/pokedex.json',
 		'json!data/themes.json',
 	],
 };
