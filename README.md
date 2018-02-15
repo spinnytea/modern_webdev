@@ -11,7 +11,6 @@ TODO
 1. test debugger for chrome
 1. test debugger for phantomjs
 1. remove .eslint globals
-1. configPlugins should be once and global
 
 
 What's in the project

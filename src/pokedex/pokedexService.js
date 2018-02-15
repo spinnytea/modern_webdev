@@ -1,4 +1,4 @@
-define(['configPlugins', 'json!data/pokedex.json', 'json!data/types.json'], function (plugins, pokedex, types) {
+define(['json!data/pokedex.json', 'json!data/types.json'], function (pokedex, types) {
 	return [ PokedexService ];
 
 	function PokedexService() {

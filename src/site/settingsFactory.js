@@ -1,4 +1,4 @@
-define(['configPlugins', 'json!data/themes.json'], function (plugins, themes) {
+define(['json!data/themes.json'], function (themes) {
 	return [
 		'localStorageService', 'po_ke_type.site.defaultTheme',
 		SettingsFactory,
