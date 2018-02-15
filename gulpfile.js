@@ -33,6 +33,7 @@ var vendor = [
 	[ 'bootstrap', 'node_modules/bootstrap/dist/**/*' ],
 	[ 'bootswatch', 'node_modules/bootswatch/*/bootstrap.min.css' ],
 	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
+	[ 'lodash', 'node_modules/lodash/lodash.min.js' ],
 	[ 'requirejs', 'node_modules/requirejs/require.js' ],
 	[ 'requirejs', 'node_modules/requirejs-plugins/src/*' ],
 	[ 'requirejs', 'node_modules/text/text.js' ],
@@ -56,7 +57,7 @@ gulp.task('buildd', [], function () {
 // the whole point of this build is that we serve static files from
 // the only reason we need a server is because we are loading json files
 // the browswer will ONLY load js files, not even html (that's why we have templateCache)
-gulp.task('server', function () {
+gulp.task('server', ['build'], function () {
 	var server = gls.static(dist.root);
 	server.start();
 	gulp.watch(dist.all, function (file) {
@@ -64,18 +65,16 @@ gulp.task('server', function () {
 	});
 });
 
-gulp.task('builds', ['buildd', 'server'], function () {});
-
 
 // build tasks
 
 gulp.task('lint:js', function () {
-	return gulp.src(['**/*.js', '!node_modules/**', '!dist/**'])
+	return gulp.src(resources.src)
 	.pipe(eslint())
 	.pipe(eslint.format())
 	.pipe(eslint.failAfterError());
 });
-gulp.task('build:js', function () {
+gulp.task('build:js', [], function () {
 	return gulp.src('src/main.js', { base: AMD_CONFIG.baseUrl })
 		.pipe(sourcemap.init())
 		.pipe(amdOptimize(AMD_CONFIG))
@@ -88,8 +87,10 @@ gulp.task('build:js', function () {
 var AMD_CONFIG = {
 	baseUrl: 'src',
 	exclude: [
+		'lodash',
 		'json!data/pokedex.json',
 		'json!data/themes.json',
+		'json!data/types.json',
 	],
 };
 

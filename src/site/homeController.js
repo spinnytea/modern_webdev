@@ -7,5 +7,6 @@ define([], function () {
 	function HomeController($scope, settings, pokedexService) {
 		$scope.themeCount = settings.themes.length;
 		$scope.pokedexCount = pokedexService.pokedex.length;
+		$scope.typeCount = _.size(pokedexService.types);
 	}
 });
