@@ -32,6 +32,9 @@ var vendor = [
 	[ 'bootswatch', 'node_modules/bootswatch/*/bootstrap.min.css' ],
 	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
 	[ 'requirejs', 'node_modules/requirejs/require.js' ],
+	[ 'requirejs', 'node_modules/requirejs-plugins/src/*' ],
+	[ 'requirejs', 'node_modules/text/text.js' ],
+	[ 'requirejs', 'node_modules/requirejs-plugins/lib/Markdown.Converter.js' ],
 ];
 
 
@@ -69,6 +72,9 @@ gulp.task('build:js', function () {
 });
 var AMD_CONFIG = {
 	baseUrl: 'src',
+	exclude: [
+		'json!data/themes.json',
+	],
 };
 
 gulp.task('build:html', function () {

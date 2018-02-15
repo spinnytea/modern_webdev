@@ -21,7 +21,7 @@ What's in the project
 <dt>gulp, gulp-*</dt>
 <dd>we kind of need a gulp plugin for everything, that's probably the biggest drawback</dd>
 <dd>need to learn how to write gulp plugins if we are going to do this</dd>
-<dt>amd-optimizer</dt>
+<dt>gulp-amd-optimizer, gulp-uglify, gulp-sourcemaps</dt>
 <dd>we are using requirejs, but requirejs is a ui library</dd>
 <dd>requirejs has some build tools, but they don't integrate naturally with gulp</dd>
 </dl>
@@ -39,6 +39,9 @@ What's in the project
 <dd>not officially by angular</dd>
 <dd>has some nice interactions with local storage, defaults to cookies</dd>
 <dd>just all around nicer to work with than raw local storage</dd>
+<dt>requirejs, requirejs-plugins, requirejs/text</dt>
+<dd>dependency loading</dd>
+<dd>requirejs by default only supports loading js, plugins allow us to load other types of data</dd>
 </dl>
 
 
