@@ -10,6 +10,7 @@ TODO
 1. write sample project, document which packages are for which parts
 1. test debugger for chrome
 1. test debugger for phantomjs
+1. remove .eslint globals
 
 
 What's in the project
@@ -21,9 +22,13 @@ What's in the project
 <dt>gulp, gulp-*</dt>
 <dd>we kind of need a gulp plugin for everything, that's probably the biggest drawback</dd>
 <dd>need to learn how to write gulp plugins if we are going to do this</dd>
-<dt>amd-optimizer</dt>
+<dt>gulp-amd-optimizer, gulp-uglify, gulp-sourcemaps</dt>
 <dd>we are using requirejs, but requirejs is a ui library</dd>
 <dd>requirejs has some build tools, but they don't integrate naturally with gulp</dd>
+<dt>express, gulp-live-server</dt>
+<dd>express is something you can configure and launch directly from node (e.g. `node server.js`)</dd>
+<dd>gulp-live-server is a gulp wrapper around gulp-express (I guess they renamed it?)</dd>
+<dd>we want this for arbitrary webdev, and will live the target, but hopefully we can convery json to requirejs loading</dd>
 </dl>
 
 ### UI Libraries
@@ -39,6 +44,9 @@ What's in the project
 <dd>not officially by angular</dd>
 <dd>has some nice interactions with local storage, defaults to cookies</dd>
 <dd>just all around nicer to work with than raw local storage</dd>
+<dt>requirejs, requirejs-plugins, requirejs/text</dt>
+<dd>dependency loading</dd>
+<dd>requirejs by default only supports loading js, plugins allow us to load other types of data</dd>
 </dl>
 
 

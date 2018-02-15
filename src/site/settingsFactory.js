@@ -1,4 +1,4 @@
-define([], function () {
+define(['json!data/themes.json'], function (themes) {
 	return [
 		'localStorageService', 'po_ke_type.site.defaultTheme',
 		SettingsFactory,
@@ -8,6 +8,7 @@ define([], function () {
 		var settings = {};
 
 		settings.theme = localStorageService.get('theme') || defaultTheme;
+		settings.themes = themes;
 
 		return settings;
 	}

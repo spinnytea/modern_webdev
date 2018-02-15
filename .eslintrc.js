@@ -4,6 +4,7 @@ module.exports = {
   },
   globals: {
     angular: false,
+    _: false,
   },
   plugins: [
     "requirejs",
