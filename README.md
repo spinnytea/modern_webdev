@@ -4,7 +4,6 @@ Modern WebDev
 TODO
 ----
 
-1. document VSCode extensions (why do they do for us)
 1. document package.json (what do we do, which packages are involved)
 1. write a gulp plugin (like, a styleguide lint, or a bootstrap markup lint)
 1. write sample project, document which packages are for which parts
@@ -65,6 +64,9 @@ VSCode plugins
 <dd>always-running eslint</dd>
 <dd>it's part of the build pipeline, but it's nice to have immediate feedback in context</dd>
 <dt>Python</td>
+<dt>Beautify</dt>
+<dt>Java Extension Pack</dt>
+<dt>PowerShell</dt>
 </dl>
 
 ### IDE Tools
