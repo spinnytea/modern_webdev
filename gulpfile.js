@@ -8,6 +8,16 @@ var path = require('path');
 var requirejs = require('requirejs');
 var templateCache = require('gulp-angular-templatecache');
 
+// TODO usage
+// TODO required gulp commnad
+var argv = require('yargs')
+	.option('skipUglify', {
+		alias: 'skipMinify',
+		describe: 'skip source minification',
+		type: 'boolean',
+	})
+	.argv;
+
 
 // build config
 
@@ -81,8 +91,8 @@ var AMD_CONFIG = {
 	baseUrl: 'src',
 	name: 'main',
 	out: 'dist/main.js',
-	optimize: 'uglify2',
-	generateSourceMaps: true,
+	optimize: (argv.skipUglify ? 'none' : 'uglify2'),
+	generateSourceMaps: !argv.skipUglify,
 	paths : {
 		// path expansions
 		data: '../static/data',
