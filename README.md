@@ -11,6 +11,7 @@ TODO
 1. test debugger for chrome
 1. test debugger for phantomjs
 1. remove .eslint globals
+1. amd-optimizer doesn't do relative paths - pull request? wrap rjs since it's blacklisted?
 
 
 What's in the project
