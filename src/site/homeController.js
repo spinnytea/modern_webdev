@@ -1,4 +1,4 @@
-define([], function () {
+define(['lodash'], function (_) {
 	return [
 		'$scope', 'po_ke_type.site.settings', 'po_ke_type.pokedex.pokedexService',
 		HomeController,

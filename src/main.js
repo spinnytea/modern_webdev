@@ -1,6 +1,9 @@
 require.config({
 	paths : {
-		// create alias to plugins (not needed if plugins are on the baseUrl)
+		// vendor deps
+		lodash: 'vendor/lodash/lodash.min',
+
+		// create alias to requirejs plugins
 		async: 'vendor/requirejs/async',
 		font: 'vendor/requirejs/font',
 		goog: 'vendor/requirejs/goog',

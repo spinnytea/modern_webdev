@@ -65,12 +65,12 @@ gulp.task('server', ['build'], function () {
 // build tasks
 
 gulp.task('lint:js', function () {
-	return gulp.src(resources.src)
+	return gulp.src(resources.js)
 	.pipe(eslint())
 	.pipe(eslint.format())
 	.pipe(eslint.failAfterError());
 });
-gulp.task('build:js', [], function (done) {
+gulp.task('build:js', ['lint:js'], function (done) {
 	requirejs.optimize(AMD_CONFIG, function () {
 		done();
 	}, function (err) {
@@ -84,9 +84,13 @@ var AMD_CONFIG = {
 	optimize: 'uglify2',
 	generateSourceMaps: true,
 	paths : {
+		// path expansions
 		data: '../static/data',
 
-		// create alias to plugins (not needed if plugins are on the baseUrl)
+		// vendor deps
+		lodash: '../dist/vendor/lodash/lodash.min',
+
+		// create alias to requirejs plugins
 		async: '../dist/vendor/requirejs/async',
 		font: '../dist/vendor/requirejs/font',
 		goog: '../dist/vendor/requirejs/goog',
@@ -99,6 +103,10 @@ var AMD_CONFIG = {
 		markdownConverter : '../dist/vendor/requirejs/Markdown.Converter',
 	},
 	exclude: [
+		// exclude vendor deps
+		'lodash',
+		// exlcude data files
+		// TODO try to inlcude them again
 		'json!data/pokedex.json',
 		'json!data/themes.json',
 		'json!data/types.json',
