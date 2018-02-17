@@ -70,6 +70,7 @@ VSCode plugins
 <dt>ESLint</dt>
 <dd>always-running eslint</dd>
 <dd>it's part of the build pipeline, but it's nice to have immediate feedback in context</dd>
+<dt>HTMLHint</dt>
 <dt>Python</td>
 <dt>Beautify</dt>
 <dt>Java Extension Pack</dt>

@@ -10,10 +10,10 @@ module.exports = {
 		'plugin:requirejs/recommended',
 	],
 	rules: {
-		"no-console": "off",
 		"brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
 		"comma-dangle": ["error", "always-multiline", { "functions": "never" }],
 		"eqeqeq": ["error", "always"],
+		"no-console": "off",
 		"no-shadow": ["error"],
 		"quotes": ["error", "single", { "avoidEscape": true }],
 		"semi": ["error", "always"],

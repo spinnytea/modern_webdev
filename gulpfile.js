@@ -10,6 +10,7 @@ var eslint = require('gulp-eslint');
 var glob = require('glob');
 var gls = require('gulp-live-server');
 var gutil = require('gutil');
+var htmlhint = require('gulp-htmlhint');
 var less = require('gulp-less');
 var lesshint = require('gulp-lesshint');
 var merge = require('merge-stream');
@@ -61,7 +62,7 @@ var vendor = [
 
 // npx gulp build, npx gulp lint
 gulp.task('build', [ 'build:js', 'build:html', 'build:css', 'build:static', 'build:vendor' ]);
-gulp.task('lint', [ 'lint:js' ]);
+gulp.task('lint', [ 'lint:js', 'lint:html', 'lint:css' ]);
 gulp.task('buildd', [], function () {
 	gulp.watch(resources.js, ['build:js']);
 	gulp.watch(resources.html, ['build:html']);
@@ -85,7 +86,7 @@ gulp.task('server', ['build'], function () {
 // build tasks
 
 gulp.task('lint:js', function () {
-	return gulp.src(resources.js)
+	return gulp.src(['**/*.js', '!node_modules/**/*', '!dist/**/*'])
 	.pipe(eslint())
 	.pipe(eslint.format())
 	.pipe(eslint.failAfterError());
@@ -124,7 +125,13 @@ var AMD_CONFIG = {
 	],
 };
 
-gulp.task('build:html', function () {
+gulp.task('lint:html', function () {
+	return gulp.src(resources.html)
+	.pipe(htmlhint('.htmlhintrc'))
+	.pipe(htmlhint.reporter())
+	.pipe(htmlhint.failOnError());
+});
+gulp.task('build:html', ['lint:html'], function () {
 	return gulp.src(resources.html)
 		.pipe(templateCache({ standalone: true }))
 		.pipe(gulp.dest('dist'));

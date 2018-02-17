@@ -1,5 +1,7 @@
 define([], function () {
-	return [ PageHeaderDirective ];
+	return [
+		PageHeaderDirective,
+	];
 
 	function PageHeaderDirective() {
 		return {
