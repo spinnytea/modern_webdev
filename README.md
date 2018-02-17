@@ -9,7 +9,6 @@ TODO
 1. test debugger for chrome
 1. test debugger for phantomjs
 1. prune unneeded packages
-1. [multiple eslint files](https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy)
 1. html hint
 1. karma
 1. istanbul
@@ -19,6 +18,7 @@ Stretch Goals
 
 1. load vendor libs with requires, not static on page
 1. package data/*.json into a data requirejs lib
+1. remove eslint-plugin-requirejs, why not just use env: amd: true
 
 What's in the project
 ---------------------

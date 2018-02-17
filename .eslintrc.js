@@ -1,13 +1,9 @@
 module.exports = {
 	env: {
-		browser: true,
+		node: true,
 	},
-	plugins: [
-		"requirejs",
-	],
 	extends: [
 		'eslint:recommended',
-		'plugin:requirejs/recommended',
 	],
 	rules: {
 		"array-bracket-spacing": ["error", "never"],
