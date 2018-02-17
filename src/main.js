@@ -9,16 +9,8 @@ define('lodash', function () { return _; }); // eslint-disable-line
 require.config({
 	paths : {
 		// create alias to requirejs plugins
-		async: 'vendor/requirejs/async',
-		font: 'vendor/requirejs/font',
-		goog: 'vendor/requirejs/goog',
-		image: 'vendor/requirejs/image',
 		json: 'vendor/requirejs/json',
-		noext: 'vendor/requirejs/noext',
-		mdown: 'vendor/requirejs/mdown',
-		propertyParser : 'vendor/requirejs/propertyParser',
 		text: 'vendor/requirejs/text',
-		markdownConverter : 'vendor/requirejs/Markdown.Converter',
 	},
 });
 

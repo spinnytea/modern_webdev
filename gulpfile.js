@@ -87,21 +87,13 @@ var AMD_CONFIG = {
 		// path expansions
 		data: '../static/data',
 
-		// vendor deps
+		// we can ignore vendor deps during build
 		angular: 'empty:',
 		lodash: 'empty:',
 
-		// create alias to requirejs plugins
-		async: '../dist/vendor/requirejs/async',
-		font: '../dist/vendor/requirejs/font',
-		goog: '../dist/vendor/requirejs/goog',
-		image: '../dist/vendor/requirejs/image',
-		json: '../dist/vendor/requirejs/json',
-		noext: '../dist/vendor/requirejs/noext',
-		mdown: '../dist/vendor/requirejs/mdown',
-		propertyParser : '../dist/vendor/requirejs/propertyParser',
-		text: '../dist/vendor/requirejs/text',
-		markdownConverter : '../dist/vendor/requirejs/Markdown.Converter',
+		// requirejs needs to have the plugins at build time
+		json: '../node_modules/requirejs-plugins/src/json',
+		text: '../node_modules/text/text',
 	},
 	exclude: [
 		// exlcude data files
