@@ -88,7 +88,8 @@ var AMD_CONFIG = {
 		data: '../static/data',
 
 		// vendor deps
-		lodash: '../dist/vendor/lodash/lodash.min',
+		angular: 'empty:',
+		lodash: 'empty:',
 
 		// create alias to requirejs plugins
 		async: '../dist/vendor/requirejs/async',
@@ -103,8 +104,6 @@ var AMD_CONFIG = {
 		markdownConverter : '../dist/vendor/requirejs/Markdown.Converter',
 	},
 	exclude: [
-		// exclude vendor deps
-		'lodash',
 		// exlcude data files
 		// TODO try to inlcude them again
 		'json!data/pokedex.json',

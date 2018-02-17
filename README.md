@@ -12,6 +12,7 @@ TODO
 1. prune unneeded packages
 1. one requirejs config
 1. move allowable vendor libs to requirejs
+1. [multiple eslint files](https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy)
 
 
 What's in the project

@@ -1,8 +1,13 @@
+// HACK define modules for dependencies loaded on page
+// - requirejs refuses to not load a module
+// - angular needs to be on the page before we start
+// - shim does is a wrapper around modules
+// - exclude does not prevent require from trying to load them
+define('angular', function () { return angular; }); // eslint-disable-line
+define('lodash', function () { return _; }); // eslint-disable-line
+
 require.config({
 	paths : {
-		// vendor deps
-		lodash: 'vendor/lodash/lodash.min',
-
 		// create alias to requirejs plugins
 		async: 'vendor/requirejs/async',
 		font: 'vendor/requirejs/font',
@@ -17,10 +22,12 @@ require.config({
 	},
 });
 
+// eslint-disable-next-line requirejs/no-multiple-define
 define([
+	'angular',
 	'./pokedex/pokedex',
 	'./site/site',
-], function (pokedex, site) {
+], function (angular, pokedex, site) {
 	var module = angular.module('po_ke_type', [
 		pokedex.name,
 		site.name,

@@ -1,10 +1,12 @@
 define([
+	'angular',
 	'./headController',
 	'./homeController',
 	'./pageHeaderDirective',
 	'./settingsController',
 	'./settingsFactory',
 ], function (
+	angular,
 	headController,
 	homeController,
 	pageHeaderDirective,
