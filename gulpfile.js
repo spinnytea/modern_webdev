@@ -27,7 +27,7 @@ var vendor = [
 	[ 'angular', 'node_modules/angular-local-storage/dist/angular-local-storage.min.js' ],
 	[ 'angular', 'node_modules/angular-route/angular-route.min.js' ],
 	[ 'bootstrap', 'node_modules/bootstrap/dist/**/*' ],
-	[ 'bootswatch', 'node_modules/bootswatch/*/bootstrap.min.css' ],
+	[ 'bootstrap', 'node_modules/bootswatch/*/bootstrap.min.css' ],
 	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
 	[ 'lodash', 'node_modules/lodash/lodash.min.js' ],
 	[ 'requirejs', 'node_modules/requirejs/require.js' ],
