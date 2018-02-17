@@ -1,12 +1,32 @@
 'use strict';
 var gulp = require('gulp');
-var del = require('del');
-var eslint = require('gulp-eslint');
-var gls = require('gulp-live-server');
-var merge = require('merge-stream');
 var path = require('path');
 var requirejs = require('requirejs');
+// gulp deps
+var cleanCSS = require('gulp-clean-css');
+var concat = require('gulp-concat');
+var del = require('del');
+var eslint = require('gulp-eslint');
+var glob = require('glob');
+var gls = require('gulp-live-server');
+var gutil = require('gutil');
+var less = require('gulp-less');
+var lesshint = require('gulp-lesshint');
+var merge = require('merge-stream');
+var noop = require('gulp-noop');
+var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
+
+// TODO usage
+// TODO required gulp commnad
+// TODO port
+var argv = require('yargs')
+	.option('skipUglify', {
+		alias: 'skipMinify',
+		describe: 'skip source minification',
+		type: 'boolean',
+	})
+	.argv;
 
 
 // build config
@@ -19,7 +39,7 @@ var dist = Object.freeze({
 var resources = Object.freeze({
 	js: 'src/**/*.js',
 	html: 'src/**/*.html',
-	less: 'src/**/*.less',
+	css: ['src/**/*.less', 'src/**/*.css'],
 	static: 'static/**/*',
 });
 var vendor = [
@@ -32,7 +52,7 @@ var vendor = [
 	[ 'lodash', 'node_modules/lodash/lodash.min.js' ],
 	[ 'requirejs', 'node_modules/requirejs/require.js' ],
 	[ 'requirejs', 'node_modules/requirejs-plugins/src/*' ],
-	[ 'requirejs', 'node_modules/text/text.js' ],
+	[ 'requirejs', 'node_modules/requirejs-text/text.js' ],
 	[ 'requirejs', 'node_modules/requirejs-plugins/lib/Markdown.Converter.js' ],
 ];
 
@@ -40,12 +60,12 @@ var vendor = [
 // main build targets
 
 // npx gulp build, npx gulp lint
-gulp.task('build', [ 'build:js', 'build:html', 'build:static', 'build:vendor' ]);
+gulp.task('build', [ 'build:js', 'build:html', 'build:css', 'build:static', 'build:vendor' ]);
 gulp.task('lint', [ 'lint:js' ]);
 gulp.task('buildd', [], function () {
 	gulp.watch(resources.js, ['build:js']);
 	gulp.watch(resources.html, ['build:html']);
-	// gulp.watch(resources.less, ['build:less']);
+	gulp.watch(resources.css, ['build:css']);
 	gulp.watch(resources.static, ['build:static']);
 	gulp.start('build');
 });
@@ -81,8 +101,8 @@ var AMD_CONFIG = {
 	baseUrl: 'src',
 	name: 'main',
 	out: 'dist/main.js',
-	optimize: 'uglify2',
-	generateSourceMaps: true,
+	optimize: (argv.skipUglify ? 'none' : 'uglify2'),
+	generateSourceMaps: !argv.skipUglify,
 	paths : {
 		// path expansions
 		data: '../static/data',
@@ -93,7 +113,7 @@ var AMD_CONFIG = {
 
 		// requirejs needs to have the plugins at build time
 		json: '../node_modules/requirejs-plugins/src/json',
-		text: '../node_modules/text/text',
+		text: '../node_modules/requirejs-text/text',
 	},
 	exclude: [
 		// exlcude data files
@@ -108,6 +128,32 @@ gulp.task('build:html', function () {
 	return gulp.src(resources.html)
 		.pipe(templateCache({ standalone: true }))
 		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('lint:css', function () {
+	return gulp.src(resources.css)
+		.pipe(lesshint())
+		.pipe(lesshint.reporter('lesshint-reporter-stylish'))
+		.pipe(lesshint.failOnError()); // TODO doesn't actually fail on error
+});
+gulp.task('build:css', ['lint:css'], function () {
+	// TODO default bootstrap theme
+	// collect the list of theme names in bootswatch
+	var themes = glob.sync('node_modules/bootswatch/*/variables.less').map(function (filepath) {
+		return path.basename(path.dirname(filepath));
+	});
+	return merge(themes.map(function (theme) {
+		// pre-concat the variable file to main (in-memory action)
+		return gulp.src(['node_modules/bootswatch/' + theme + '/variables.less', 'src/main.less'])
+			.pipe(concat('main.less'))
+			// compile less
+			.pipe(argv.skipUglify ? noop() : sourcemaps.init())
+			.pipe(less({ paths: resources.less }))
+			.pipe(argv.skipUglify ? noop() : cleanCSS())
+			.on('error', function () { gutil.log(arguments); this.emit('end'); })
+			.pipe(argv.skipUglify ? noop() : sourcemaps.write('.'))
+			.pipe(gulp.dest(path.join(dist.root, 'themes', theme)));
+		}));
 });
 
 gulp.task('build:static', function () {

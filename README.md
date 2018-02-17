@@ -5,7 +5,7 @@ TODO
 ----
 
 1. document package.json (what do we do, which packages are involved)
-1. write sample project, document which packages are for which parts
+1. finish sample project, document which packages are for which parts
 1. test debugger for chrome
 1. test debugger for phantomjs
 1. prune unneeded packages
