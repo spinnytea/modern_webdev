@@ -45,6 +45,7 @@
     "eslint": "^4.16.0",
     "eslint-plugin-requirejs": "^3.1.1",
     "express": "^4.16.2",
+    "glob": "^7.1.2",
     "gulp": "^3.9.1",
     "gulp-angular-templatecache": "^2.2.0",
     "gulp-clean-css": "^3.9.2",
