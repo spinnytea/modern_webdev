@@ -10,6 +10,9 @@ TODO
 1. test debugger for phantomjs
 1. prune unneeded packages
 1. [multiple eslint files](https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy)
+1. html hint
+1. karma
+1. istanbul
 
 Stretch Goals
 -------------
