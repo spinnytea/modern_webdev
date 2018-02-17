@@ -1,6 +1,7 @@
 'use strict';
 var gulp = require('gulp');
 var cleanCSS = require('gulp-clean-css');
+var concat = require('gulp-concat');
 var del = require('del');
 var eslint = require('gulp-eslint');
 var gls = require('gulp-live-server');
@@ -134,14 +135,24 @@ gulp.task('lint:css', function () {
 		.pipe(lesshint.failOnError()); // TODO doesn't actually fail on error
 });
 gulp.task('build:css', ['lint:css'], function () {
-	// TODO build w/ styles
-	return gulp.src('src/main.less')
-		.pipe(argv.skipUglify ? noop() : sourcemaps.init())
-		.pipe(less({ paths: resources.css }))
-		.pipe(argv.skipUglify ? noop() : cleanCSS())
-		.on('error', function () { gutil.log(arguments); this.emit('end'); })
-		.pipe(argv.skipUglify ? noop() : sourcemaps.write('.'))
-		.pipe(gulp.dest(dist.root));
+	var themes = ['cerulean', 'slate']; // TODO all styles
+
+	// NOTE build a stylesheet for each theme
+	// - css has an import statement, but that's for a known file
+	// - we are using a set of files
+	// - import is just a file concat, so we can use gulp to do that
+	// create a virtual file for each theme based on theme/variables + main
+	return merge(themes.map(function (theme) {
+		return gulp.src(['node_modules/bootswatch/' + theme + '/variables.less', 'src/main.less'])
+			.pipe(concat('main.less'))
+			// now run less like normal
+			.pipe(argv.skipUglify ? noop() : sourcemaps.init())
+			.pipe(less({ paths: resources.less }))
+			.pipe(argv.skipUglify ? noop() : cleanCSS())
+			.on('error', function () { gutil.log(arguments); this.emit('end'); })
+			.pipe(argv.skipUglify ? noop() : sourcemaps.write('.'))
+			.pipe(gulp.dest(path.join(dist.root, 'themes', theme)));
+		}));
 });
 
 gulp.task('build:static', function () {
