@@ -18,14 +18,30 @@ var noop = require('gulp-noop');
 var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 
-// TODO usage
 // TODO required gulp commnad
-// TODO port
 var argv = require('yargs')
-	.option('skipUglify', {
-		alias: 'skipMinify',
-		describe: 'skip source minification',
-		type: 'boolean',
+.usage('Usage: npx gulp task [tasks] [options]')
+.option('m', {
+	alias: 'skipUglify',
+	describe: 'skip source minification',
+	type: 'boolean',
+	default: false,
+	group: 'Options:',
+})
+.option('p', {
+		describe: 'dev server port',
+		alias: 'port',
+		type: 'number',
+		default: 3000,
+		group: 'Options:',
+	})
+	.option('h', {
+		alias: 'help',
+		group: 'System:',
+	})
+	.option('v', {
+		alias: 'version',
+		group: 'System:',
 	})
 	.argv;
 
@@ -77,7 +93,7 @@ gulp.task('buildd', [], function () {
 // the only reason we need a server is because we are loading json files
 // the browswer will ONLY load js files, not even html (that's why we have templateCache)
 gulp.task('server', ['build'], function () {
-	var server = gls.static(dist.root);
+	var server = gls.static(dist.root, argv.port);
 	server.start();
 	gulp.watch(dist.all, function (file) {
 		server.notify.apply(server, [file]);
