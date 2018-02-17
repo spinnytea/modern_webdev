@@ -2,10 +2,6 @@ module.exports = {
   env: {
     browser: true,
   },
-  globals: {
-    angular: false,
-    _: false,
-  },
   plugins: [
     "requirejs",
   ],

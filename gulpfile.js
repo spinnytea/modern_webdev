@@ -1,16 +1,12 @@
 'use strict';
 var gulp = require('gulp');
-var amdOptimize = require('gulp-amd-optimizer');
-var concat = require('gulp-concat');
 var del = require('del');
 var eslint = require('gulp-eslint');
 var gls = require('gulp-live-server');
-var gutil = require('gutil');
 var merge = require('merge-stream');
 var path = require('path');
-var sourcemap = require('gulp-sourcemaps');
+var requirejs = require('requirejs');
 var templateCache = require('gulp-angular-templatecache');
-var uglify = require('gulp-uglify');
 
 
 // build config
@@ -31,7 +27,7 @@ var vendor = [
 	[ 'angular', 'node_modules/angular-local-storage/dist/angular-local-storage.min.js' ],
 	[ 'angular', 'node_modules/angular-route/angular-route.min.js' ],
 	[ 'bootstrap', 'node_modules/bootstrap/dist/**/*' ],
-	[ 'bootswatch', 'node_modules/bootswatch/*/bootstrap.min.css' ],
+	[ 'bootstrap', 'node_modules/bootswatch/*/bootstrap.min.css' ],
 	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
 	[ 'lodash', 'node_modules/lodash/lodash.min.js' ],
 	[ 'requirejs', 'node_modules/requirejs/require.js' ],
@@ -69,25 +65,39 @@ gulp.task('server', ['build'], function () {
 // build tasks
 
 gulp.task('lint:js', function () {
-	return gulp.src(resources.src)
+	return gulp.src(resources.js)
 	.pipe(eslint())
 	.pipe(eslint.format())
 	.pipe(eslint.failAfterError());
 });
-gulp.task('build:js', [], function () {
-	return gulp.src('src/main.js', { base: AMD_CONFIG.baseUrl })
-		.pipe(sourcemap.init())
-		.pipe(amdOptimize(AMD_CONFIG))
-		.pipe(concat('main.js'))
-		.pipe(uglify())
-		.on('error', gutil.log)
-		.pipe(sourcemap.write('./'))
-		.pipe(gulp.dest('dist'));
+gulp.task('build:js', ['lint:js'], function (done) {
+	requirejs.optimize(AMD_CONFIG, function () {
+		done();
+	}, function (err) {
+		done(err);
+	});
 });
 var AMD_CONFIG = {
 	baseUrl: 'src',
+	name: 'main',
+	out: 'dist/main.js',
+	optimize: 'uglify2',
+	generateSourceMaps: true,
+	paths : {
+		// path expansions
+		data: '../static/data',
+
+		// we can ignore vendor deps during build
+		angular: 'empty:',
+		lodash: 'empty:',
+
+		// requirejs needs to have the plugins at build time
+		json: '../node_modules/requirejs-plugins/src/json',
+		text: '../node_modules/text/text',
+	},
 	exclude: [
-		'lodash',
+		// exlcude data files
+		// TODO try to inlcude them again
 		'json!data/pokedex.json',
 		'json!data/themes.json',
 		'json!data/types.json',

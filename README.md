@@ -5,13 +5,17 @@ TODO
 ----
 
 1. document package.json (what do we do, which packages are involved)
-1. write a gulp plugin (like, a styleguide lint, or a bootstrap markup lint)
 1. write sample project, document which packages are for which parts
 1. test debugger for chrome
 1. test debugger for phantomjs
-1. remove .eslint globals
-1. amd-optimizer doesn't do relative paths - pull request? wrap rjs since it's blacklisted?
+1. prune unneeded packages
+1. [multiple eslint files](https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy)
 
+Stretch Goals
+-------------
+
+1. load vendor libs with requires, not static on page
+1. package data/*.json into a data requirejs lib
 
 What's in the project
 ---------------------
