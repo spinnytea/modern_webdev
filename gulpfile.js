@@ -1,15 +1,21 @@
 'use strict';
 var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
 var del = require('del');
 var eslint = require('gulp-eslint');
 var gls = require('gulp-live-server');
+var gutil = require('gutil');
+var less = require('gulp-less');
 var merge = require('merge-stream');
+var noop = require('gulp-noop');
 var path = require('path');
 var requirejs = require('requirejs');
+var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 
 // TODO usage
 // TODO required gulp commnad
+// TODO port
 var argv = require('yargs')
 	.option('skipUglify', {
 		alias: 'skipMinify',
@@ -29,7 +35,7 @@ var dist = Object.freeze({
 var resources = Object.freeze({
 	js: 'src/**/*.js',
 	html: 'src/**/*.html',
-	less: 'src/**/*.less',
+	css: ['src/**/*.less', 'src/**/*.css'],
 	static: 'static/**/*',
 });
 var vendor = [
@@ -50,12 +56,12 @@ var vendor = [
 // main build targets
 
 // npx gulp build, npx gulp lint
-gulp.task('build', [ 'build:js', 'build:html', 'build:static', 'build:vendor' ]);
+gulp.task('build', [ 'build:js', 'build:html', 'build:css', 'build:static', 'build:vendor' ]);
 gulp.task('lint', [ 'lint:js' ]);
 gulp.task('buildd', [], function () {
 	gulp.watch(resources.js, ['build:js']);
 	gulp.watch(resources.html, ['build:html']);
-	// gulp.watch(resources.less, ['build:less']);
+	gulp.watch(resources.css, ['build:css']);
 	gulp.watch(resources.static, ['build:static']);
 	gulp.start('build');
 });
@@ -118,6 +124,16 @@ gulp.task('build:html', function () {
 	return gulp.src(resources.html)
 		.pipe(templateCache({ standalone: true }))
 		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('build:css', function () {
+	return gulp.src('src/main.less')
+		.pipe(argv.skipUglify ? noop() : sourcemaps.init())
+		.pipe(less({ paths: resources.css }))
+		.pipe(argv.skipUglify ? noop() : cleanCSS())
+		.on('error', function () { gutil.log(arguments); this.emit('end'); })
+		.pipe(argv.skipUglify ? noop() : sourcemaps.write('.'))
+		.pipe(gulp.dest(dist.root));
 });
 
 gulp.task('build:static', function () {
