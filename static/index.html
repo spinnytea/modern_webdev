@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head ng-controller="po_ke_type.site.head.controller">
+		<title>Pokemon Type Calculator</title>
+		<link rel="shortcut icon" type="image/png" href="images/pokeball.png"/>
+
+		<link rel="stylesheet" ng-href="vendor/bootstrap/{{settings.theme}}/bootstrap.min.css">
+		<link rel="stylesheet" ng-href="themes/{{settings.theme}}/main.css">
+
+		<script src="vendor/lodash/lodash.min.js"></script>
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="vendor/angular/angular.min.js"></script>
+		<script src="vendor/angular/angular-local-storage.min.js"></script>
+		<script src="vendor/angular/angular-route.min.js"></script>
+		<script src="templates.js"></script>
+		<script data-main="main" src="vendor/requirejs/require.js"></script>
+	</head>
+	<body class="container">
+		<div data-page-header></div>
+		<main ng-view></main>
+	</body>
+</html>
