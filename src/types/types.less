@@ -1,25 +1,43 @@
-@import "colors";
-@import "../for";
+@import 'colors';
+@import '../for';
 
-@typelist: normal, fire, water, electric, grass, ice, fighting, poison, ground, flying, psychic, bug, rock, ghost, dragon, dark, steel, fairy;
+@typelist: normal, fire, water, electric, grass, ice, fighting, poison, ground,
+	flying, psychic, bug, rock, ghost, dragon, dark, steel, fairy;
 
 // classes for damage rates
-.rate { color: lightgoldenrodyellow; }
-.rate.rate-0 { background-color: @rate0; }
-.rate.rate-25 { background-color: @rate25; }
-.rate.rate-50 { background-color: @rate50; }
-.rate.rate-200 { background-color: @rate200; }
-.rate.rate-400 { background-color: @rate400; }
+.rate {
+	color: lightgoldenrodyellow;
+}
+
+.rate.rate-0 {
+	background-color: @rate0;
+}
+
+.rate.rate-25 {
+	background-color: @rate25;
+}
+
+.rate.rate-50 {
+	background-color: @rate50;
+}
+
+.rate.rate-200 {
+	background-color: @rate200;
+}
+
+.rate.rate-400 {
+	background-color: @rate400;
+}
 
 
 // mixin for colorizing a single-type
 .type-badge(@typestr) {
-	@type_primary: "@{typestr}_primary";
-	@type_light: "@{typestr}_light";
-	@type_dark: "@{typestr}_dark";
+	@type_primary: '@{typestr}_primary';
+	@type_light: '@{typestr}_light';
+	@type_dark: '@{typestr}_dark';
 
-	border: 1px solid @@type_dark;
 	background: linear-gradient(@@type_light, @@type_primary, @@type_primary);
+	border: 1px solid @@type_dark;
 	color: white;
 
 	//&:hover {
@@ -29,40 +47,38 @@
 
 // mixin for colorizing a dual-type
 .type-badge-2(@typestr1, @typestr2) {
-	@type1_primary: "@{typestr1}_primary";
-	@type1_light: "@{typestr1}_light";
-	@type1_dark: "@{typestr1}_dark";
-	@type2_primary: "@{typestr2}_primary";
-	@type2_light: "@{typestr2}_light";
-	@type2_dark: "@{typestr2}_dark";
-
-	border: 2px solid;
-	border-color: @@type1_dark @@type2_dark @@type2_dark @@type1_dark;
+	@type1_primary: '@{typestr1}_primary';
+	@type1_light: '@{typestr1}_light';
+	@type1_dark: '@{typestr1}_dark';
+	@type2_primary: '@{typestr2}_primary';
+	@type2_light: '@{typestr2}_light';
+	@type2_dark: '@{typestr2}_dark';
 
 	background: linear-gradient(90deg, @@type1_primary, @@type1_primary, @@type2_primary, @@type2_primary);
+	border: 2px solid;
+	border-color: @@type1_dark @@type2_dark @@type2_dark @@type1_dark;
 	color: white;
 }
 
-// construct the 'pill' or 'badge' for a type
-// e.g. ( FIRE )
-// e.g. span.type-label.type-fire
-// e.g. <span class="type-label type-fire"></span>
-span {
-	&.type-label {
-		text-transform: uppercase;
-		display: inline-block;
-		font-size: 0.8em;
-		line-height: 1.4em;
-		width: 6em;
-		height: 1.5em;
-		text-align: center;
-		border-radius: 1em;
-	}
-	&.type-label+.type-label {
+// construct the 'pill' or 'badge' for a type; e.g. ( FIRE );
+.type-label {
+	border-radius: 1em;
+	display: inline-block;
+	font-size: 0.8em;
+	height: 1.5em;
+	line-height: 1.4em;
+	text-align: center;
+	text-transform: uppercase;
+	width: 6em;
+
+	&+.type-label {
 		margin-left: 2px;
 	}
 
-	.for(@typelist); .-each(@name) {
-		&.type-label.type-@{name} { .type-badge(@name); }
+	// e.g. [class=".type-label.type-fire"]
+	.for(@typelist); .-each(@name) { // lesshint-disable-line
+		&.type-@{name} {
+			.type-badge(@name);
+		}
 	}
 }

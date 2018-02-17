@@ -6,6 +6,7 @@ var eslint = require('gulp-eslint');
 var gls = require('gulp-live-server');
 var gutil = require('gutil');
 var less = require('gulp-less');
+var lesshint = require('gulp-lesshint');
 var merge = require('merge-stream');
 var noop = require('gulp-noop');
 var path = require('path');
@@ -126,7 +127,14 @@ gulp.task('build:html', function () {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('build:css', function () {
+gulp.task('lint:css', function () {
+	return gulp.src(resources.css)
+		.pipe(lesshint())
+		.pipe(lesshint.reporter('lesshint-reporter-stylish'))
+		.pipe(lesshint.failOnError()); // TODO doesn't actually fail on error
+});
+gulp.task('build:css', ['lint:css'], function () {
+	// TODO build w/ styles
 	return gulp.src('src/main.less')
 		.pipe(argv.skipUglify ? noop() : sourcemaps.init())
 		.pipe(less({ paths: resources.css }))
