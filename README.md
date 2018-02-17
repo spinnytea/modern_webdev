@@ -10,6 +10,8 @@ TODO
 1. test debugger for phantomjs
 1. remove .eslint globals
 1. prune unneeded packages
+1. one requirejs config
+1. move allowable vendor libs to requirejs
 
 
 What's in the project

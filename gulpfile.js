@@ -1,17 +1,12 @@
 'use strict';
 var gulp = require('gulp');
-var amdOptimize = require('gulp-amd-optimizer');
-var concat = require('gulp-concat');
 var del = require('del');
 var eslint = require('gulp-eslint');
 var gls = require('gulp-live-server');
-var gutil = require('gutil');
 var merge = require('merge-stream');
 var path = require('path');
 var requirejs = require('requirejs');
-var sourcemap = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
-var uglify = require('gulp-uglify');
 
 
 // build config

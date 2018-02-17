@@ -15,8 +15,8 @@ require.config({
 });
 
 define([
-	'pokedex/pokedex',
-	'site/site',
+	'./pokedex/pokedex',
+	'./site/site',
 ], function (pokedex, site) {
 	var module = angular.module('po_ke_type', [
 		pokedex.name,

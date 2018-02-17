@@ -1,5 +1,5 @@
 define([
-	'pokedex/pokedexService',
+	'./pokedexService',
 ], function (pokedexService) {
 	var module = angular.module('po_ke_type.pokedex', []);
 
