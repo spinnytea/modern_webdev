@@ -8,6 +8,7 @@ var gls = require('gulp-live-server');
 var gutil = require('gutil');
 var merge = require('merge-stream');
 var path = require('path');
+var requirejs = require('requirejs');
 var sourcemap = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 var uglify = require('gulp-uglify');
@@ -74,20 +75,35 @@ gulp.task('lint:js', function () {
 	.pipe(eslint.format())
 	.pipe(eslint.failAfterError());
 });
-gulp.task('build:js', [], function () {
-	return gulp.src('src/main.js', { base: AMD_CONFIG.baseUrl })
-		.pipe(sourcemap.init())
-		.pipe(amdOptimize(AMD_CONFIG))
-		.pipe(concat('main.js'))
-		.pipe(uglify())
-		.on('error', gutil.log)
-		.pipe(sourcemap.write('./'))
-		.pipe(gulp.dest('dist'));
+gulp.task('build:js', [], function (done) {
+	requirejs.optimize(AMD_CONFIG, function () {
+		done();
+	}, function (err) {
+		done(err);
+	});
 });
 var AMD_CONFIG = {
 	baseUrl: 'src',
+	name: 'main',
+	out: 'dist/main.js',
+	optimize: 'uglify2',
+	generateSourceMaps: true,
+	paths : {
+		data: '../static/data',
+
+		// create alias to plugins (not needed if plugins are on the baseUrl)
+		async: '../dist/vendor/requirejs/async',
+		font: '../dist/vendor/requirejs/font',
+		goog: '../dist/vendor/requirejs/goog',
+		image: '../dist/vendor/requirejs/image',
+		json: '../dist/vendor/requirejs/json',
+		noext: '../dist/vendor/requirejs/noext',
+		mdown: '../dist/vendor/requirejs/mdown',
+		propertyParser : '../dist/vendor/requirejs/propertyParser',
+		text: '../dist/vendor/requirejs/text',
+		markdownConverter : '../dist/vendor/requirejs/Markdown.Converter',
+	},
 	exclude: [
-		'lodash',
 		'json!data/pokedex.json',
 		'json!data/themes.json',
 		'json!data/types.json',
