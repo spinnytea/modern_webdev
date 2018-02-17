@@ -42,7 +42,7 @@ var vendor = [
 	[ 'lodash', 'node_modules/lodash/lodash.min.js' ],
 	[ 'requirejs', 'node_modules/requirejs/require.js' ],
 	[ 'requirejs', 'node_modules/requirejs-plugins/src/*' ],
-	[ 'requirejs', 'node_modules/text/text.js' ],
+	[ 'requirejs', 'node_modules/requirejs-text/text.js' ],
 	[ 'requirejs', 'node_modules/requirejs-plugins/lib/Markdown.Converter.js' ],
 ];
 
@@ -103,7 +103,7 @@ var AMD_CONFIG = {
 
 		// requirejs needs to have the plugins at build time
 		json: '../node_modules/requirejs-plugins/src/json',
-		text: '../node_modules/text/text',
+		text: '../node_modules/requirejs-text/text',
 	},
 	exclude: [
 		// exlcude data files
