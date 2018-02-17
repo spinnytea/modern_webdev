@@ -10,6 +10,7 @@ module.exports = {
 		'plugin:requirejs/recommended',
 	],
 	rules: {
+		"array-bracket-spacing": ["error", "never"],
 		"brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
 		"comma-dangle": ["error", "always-multiline", { "functions": "never" }],
 		"eqeqeq": ["error", "always"],

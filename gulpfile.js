@@ -44,25 +44,27 @@ var resources = Object.freeze({
 	static: 'static/**/*',
 });
 var vendor = [
-	[ 'angular', 'node_modules/angular/angular.min.js' ],
-	[ 'angular', 'node_modules/angular-local-storage/dist/angular-local-storage.min.js' ],
-	[ 'angular', 'node_modules/angular-route/angular-route.min.js' ],
-	[ 'bootstrap', 'node_modules/bootstrap/dist/**/*' ],
-	[ 'bootstrap', 'node_modules/bootswatch/*/bootstrap.min.css' ],
-	[ 'jquery', 'node_modules/jquery/dist/jquery.min.js' ],
-	[ 'lodash', 'node_modules/lodash/lodash.min.js' ],
-	[ 'requirejs', 'node_modules/requirejs/require.js' ],
-	[ 'requirejs', 'node_modules/requirejs-plugins/src/*' ],
-	[ 'requirejs', 'node_modules/requirejs-text/text.js' ],
-	[ 'requirejs', 'node_modules/requirejs-plugins/lib/Markdown.Converter.js' ],
+	['angular', 'node_modules/angular/angular.min.js'],
+	['angular', 'node_modules/angular-local-storage/dist/angular-local-storage.min.js'],
+	['angular', 'node_modules/angular-route/angular-route.min.js'],
+	['bootstrap', 'node_modules/bootstrap/dist/js/bootstrap.min.js'],
+	['bootstrap', 'node_modules/bootswatch/*/bootstrap.min.css'],
+	['font-awesome/css', 'node_modules/font-awesome/css/*'],
+	['font-awesome/fonts', 'node_modules/font-awesome/fonts/*'],
+	['.', 'node_modules/jquery/dist/jquery.min.js'],
+	['.', 'node_modules/lodash/lodash.min.js'],
+	['requirejs', 'node_modules/requirejs/require.js'],
+	['requirejs', 'node_modules/requirejs-plugins/src/*'],
+	['requirejs', 'node_modules/requirejs-text/text.js'],
+	['requirejs', 'node_modules/requirejs-plugins/lib/Markdown.Converter.js'],
 ];
 
 
 // main build targets
 
 // npx gulp build, npx gulp lint
-gulp.task('build', [ 'build:js', 'build:html', 'build:css', 'build:static', 'build:vendor' ]);
-gulp.task('lint', [ 'lint:js', 'lint:html', 'lint:css' ]);
+gulp.task('build', ['build:js', 'build:html', 'build:css', 'build:static', 'build:vendor']);
+gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
 gulp.task('buildd', [], function () {
 	gulp.watch(resources.js, ['build:js']);
 	gulp.watch(resources.html, ['build:html']);
