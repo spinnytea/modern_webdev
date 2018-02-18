@@ -33,7 +33,7 @@ define([
 		$routeProvider
 			.when('/', { templateUrl: 'site/home.html', controller: 'po_ke_type.site.home.controller' })
 			.when('/settings', { templateUrl: 'site/settings.html', controller: 'po_ke_type.site.settings.controller' })
-			.otherwise({ templateUrl: 'oops.html' });
+			.otherwise({ templateUrl: 'site/oops.html' });
 	}]);
 
 	module.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
