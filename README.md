@@ -8,10 +8,9 @@ TODO
 1. finish sample project, document which packages are for which parts
 1. test debugger for chrome
 1. test debugger for phantomjs
-1. prune unneeded packages
-1. html hint
-1. karma
+1. karma/jasmine
 1. istanbul
+1. sync vscode extensions
 
 Stretch Goals
 -------------
@@ -19,6 +18,7 @@ Stretch Goals
 1. load vendor libs with requires, not static on page
 1. package data/*.json into a data requirejs lib
 1. remove eslint-plugin-requirejs, why not just use env: amd: true
+1. prune node packages
 
 What's in the project
 ---------------------
