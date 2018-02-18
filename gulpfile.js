@@ -20,15 +20,22 @@ var templateCache = require('gulp-angular-templatecache');
 
 // TODO required gulp commnad
 var argv = require('yargs')
-.usage('Usage: npx gulp task [tasks] [options]')
-.option('m', {
-	alias: 'skipUglify',
-	describe: 'skip source minification',
-	type: 'boolean',
-	default: false,
-	group: 'Options:',
-})
-.option('p', {
+	.usage('Usage: npx gulp task [tasks] [options]')
+	.command('clean', 'remove dist')
+	.command('lint', 'run all lint commands')
+	.command('build', 'run all build commands')
+	.command('buildd', 'continuous full build, rebuild when files change')
+	.command('server', 'build and start dev server')
+	.example('npx gulp buildd server', 'start continuous build and dev server')
+	.example('npx gulp clean:vendor', 'just clean vendor while tinkering with deployment')
+	.option('m', {
+		describe: 'skip source minification',
+		alias: 'skipUglify',
+		type: 'boolean',
+		default: false,
+		group: 'Options:',
+	})
+	.option('p', {
 		describe: 'dev server port',
 		alias: 'port',
 		type: 'number',
@@ -43,6 +50,7 @@ var argv = require('yargs')
 		alias: 'version',
 		group: 'System:',
 	})
+	.demandCommand(1, 'You need to specify at least one gulp task.')
 	.argv;
 
 
@@ -78,10 +86,12 @@ var vendor = [
 
 // main build targets
 
-// npx gulp build, npx gulp lint
 gulp.task('build', ['build:js', 'build:html', 'build:css', 'build:static', 'build:vendor']);
 gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
-gulp.task('buildd', [], function () {
+
+// continuous build
+// this doesn't have dependencies so it still runs even with lint failures at start
+gulp.task('buildd', function () {
 	gulp.watch(resources.js, ['build:js']);
 	gulp.watch(resources.html, ['build:html']);
 	gulp.watch(resources.css, ['build:css']);
