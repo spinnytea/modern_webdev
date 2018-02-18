@@ -7,7 +7,7 @@ define('angular', function () { return angular; }); // eslint-disable-line
 define('lodash', function () { return _; }); // eslint-disable-line
 
 require.config({
-	paths : {
+	paths: {
 		// create alias to requirejs plugins
 		json: 'vendor/requirejs/json',
 		text: 'vendor/requirejs/text',
@@ -43,6 +43,9 @@ define([
 			.setPrefix('po_ke_type')
 			.setNotify(false, true); // setItem: false, removeItem: true
 	}]);
+
+	module.constant('po_ke_type.defaults.theme', 'spacelab');
+	module.constant('po_ke_type.defaults.preferredTypeChart', 'squares');
 
 	angular.bootstrap(document, ['po_ke_type']);
 	return module;

@@ -135,7 +135,7 @@ var AMD_CONFIG = {
 	out: 'dist/main.js',
 	optimize: (argv.skipUglify ? 'none' : 'uglify2'),
 	generateSourceMaps: !argv.skipUglify,
-	paths : {
+	paths: {
 		// path expansions
 		data: '../static/data',
 

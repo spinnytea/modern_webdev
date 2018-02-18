@@ -1,6 +1,15 @@
-<h2>UI Settings</h2>
 <form>
-	<label for="theme">Theme</label>
-	<select class="form-control" id="theme" ng-model="settings.theme"
-		ng-options="t for t in settings.themes" ng-change="saveTheme()"></select>
+	<div class="form-group">
+		<label for="theme">Theme</label>
+		<select class="form-control" id="theme" name="theme"
+				ng-model="settings.theme" ng-change="save.theme()"
+				ng-options="t for t in settings.themes"></select>
+	</div>
+
+	<div>
+		<label for="preferredTypeChart">Preferred Type Chart</label>
+		<select class="form-control" id="preferredTypeChart" name="preferredTypeChart"
+				ng-model="settings.preferredTypeChart" ng-change="save.preferredTypeChart()"
+				ng-options="t.id as t.display for t in settings.preferredTypeCharts"></select>
+	</div>
 </form>
