@@ -72,7 +72,9 @@ var vendor = [
 	['angular', 'node_modules/angular-local-storage/dist/angular-local-storage.min.js'],
 	['angular', 'node_modules/angular-route/angular-route.min.js'],
 	['bootstrap', 'node_modules/bootstrap/dist/js/bootstrap.min.js'],
+	['bootstrap/fonts', 'node_modules/bootstrap/dist/fonts/*'],
 	['bootstrap', 'node_modules/bootswatch/*/bootstrap.min.css'],
+	['bootstrap/default', 'node_modules/bootstrap/dist/css/bootstrap.min.css'],
 	['font-awesome/css', 'node_modules/font-awesome/css/*'],
 	['font-awesome/fonts', 'node_modules/font-awesome/fonts/*'],
 	['.', 'node_modules/jquery/dist/jquery.min.js'],
@@ -171,25 +173,33 @@ gulp.task('lint:css', function () {
 		.pipe(lesshint.reporter('lesshint-reporter-stylish'))
 		.pipe(lesshint.failOnError()); // TODO doesn't actually fail on error
 });
-gulp.task('build:css', ['lint:css'], function () {
-	// TODO default bootstrap theme
+function doCssBuild(stream, theme) {
+	return stream
+		.pipe(argv.skipUglify ? noop() : sourcemaps.init())
+		.pipe(less({ paths: resources.less }))
+		.pipe(argv.skipUglify ? noop() : cleanCSS())
+		.on('error', function () { gutil.log(arguments); this.emit('end'); })
+		.pipe(argv.skipUglify ? noop() : sourcemaps.write('.'))
+		.pipe(gulp.dest(path.join(dist.root, 'themes', theme)));
+}
+gulp.task('build:css:bootstrap', ['lint:css'], function () {
+	var stream = gulp.src(['node_modules/bootstrap/less/variables.less', 'src/main.less'])
+		.pipe(concat('main.less'));
+	return doCssBuild(stream, 'default');
+});
+gulp.task('build:css:bootswatch', ['lint:css'], function () {
 	// collect the list of theme names in bootswatch
 	var themes = glob.sync('node_modules/bootswatch/*/variables.less').map(function (filepath) {
 		return path.basename(path.dirname(filepath));
 	});
 	return merge(themes.map(function (theme) {
 		// pre-concat the variable file to main (in-memory action)
-		return gulp.src(['node_modules/bootswatch/' + theme + '/variables.less', 'src/main.less'])
-			.pipe(concat('main.less'))
-			// compile less
-			.pipe(argv.skipUglify ? noop() : sourcemaps.init())
-			.pipe(less({ paths: resources.less }))
-			.pipe(argv.skipUglify ? noop() : cleanCSS())
-			.on('error', function () { gutil.log(arguments); this.emit('end'); })
-			.pipe(argv.skipUglify ? noop() : sourcemaps.write('.'))
-			.pipe(gulp.dest(path.join(dist.root, 'themes', theme)));
-		}));
+		var stream = gulp.src(['node_modules/bootswatch/' + theme + '/variables.less', 'src/main.less'])
+			.pipe(concat('main.less'));
+		return doCssBuild(stream, theme);
+	}));
 });
+gulp.task('build:css', ['build:css:bootstrap', 'build:css:bootswatch'], function () {});
 
 gulp.task('build:static', function () {
 	return gulp.src(resources.static)
