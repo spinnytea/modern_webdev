@@ -19,11 +19,13 @@ define([
 	'angular',
 	'./pokedex/pokedex',
 	'./site/site',
+	'./types/types',
 	'./utils',
-], function (angular, pokedex, site, utils) {
+], function (angular, pokedex, site, types, utils) {
 	var module = angular.module('po_ke_type', [
 		pokedex.name,
 		site.name,
+		types.name,
 		utils.name,
 		'templates',
 		'LocalStorageModule',
@@ -34,6 +36,7 @@ define([
 		$locationProvider.hashPrefix('');
 		$routeProvider
 			.when('/', { templateUrl: 'site/home.html', controller: 'po_ke_type.site.home.controller' })
+			.when('/types', { templateUrl: 'types/types.html', controller: 'po_ke_type.types.controller' })
 			.when('/settings', { templateUrl: 'site/settings.html', controller: 'po_ke_type.site.settings.controller' })
 			.otherwise({ templateUrl: 'site/oops.html' });
 	}]);

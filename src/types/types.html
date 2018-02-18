@@ -1,0 +1,5 @@
+<h1 ng-bind="chartName"></h1>
+
+<div ng-include="'types/matrix.html'" data-ng-if="whichChart==='matrix'"></div>
+<div ng-include="'types/inline.html'" data-ng-if="whichChart==='inline'"></div>
+<div ng-include="'types/squares.html'" data-ng-if="whichChart==='squares'"></div>

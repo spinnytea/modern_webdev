@@ -31,7 +31,7 @@ define(['json!data/themes.json'], function (themes) {
 
 		settings.themes = themes;
 
-		settings.preferredTypeCharts = [
+		settings.availableTypeCharts = [
 			{ id: 'squares', display: 'Squares' },
 			{ id: 'matrix', display: 'Matrix' },
 			{ id: 'inline', display: 'Inline' },

@@ -1,12 +1,13 @@
 define(['angular', 'lodash'], function (angular, _) {
 	var module = angular.module('po_ke_type.utils', []);
 
-	module.factory('$exceptionHandler', function () {
-		return function UncaughtExceptionHandler(exception, cause) {
-			if(cause) { exception.message += ' (caused by "' + cause + '")'; }
-			throw exception;
-		};
-	});
+	// TODO why doesn't this work? TEST import module name as controller dependency
+	// module.factory('$exceptionHandler', function () {
+	// 	return function UncaughtExceptionHandler(exception, cause) {
+	// 		if(cause) { exception.message += ' (caused by "' + cause + '")'; }
+	// 		throw exception;
+	// 	};
+	// });
 
 	module.factory('bindKeys', ['$hotkey', function ($hotkey) {
 		return function BindKeys($scope, keys) {

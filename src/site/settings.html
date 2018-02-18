@@ -10,7 +10,7 @@
 			<label for="preferredTypeChart">Preferred Type Chart</label>
 			<select class="form-control" id="preferredTypeChart" name="preferredTypeChart"
 					ng-model="settings.preferredTypeChart" ng-change="save('preferredTypeChart')"
-					ng-options="t.id as t.display for t in settings.preferredTypeCharts"></select>
+					ng-options="t.id as t.display for t in settings.availableTypeCharts"></select>
 	</div>
 
 	<div class="form-group">
