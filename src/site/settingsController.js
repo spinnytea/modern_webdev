@@ -10,5 +10,9 @@ define([], function () {
 		$scope.save = function (name) {
 			localStorageService.set(name, settings[name]);
 		};
+
+		$scope.clearLocalStorage = function () {
+      return localStorageService.clearAll();
+		};
 	}
 });
