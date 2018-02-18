@@ -19,10 +19,12 @@ define([
 	'angular',
 	'./pokedex/pokedex',
 	'./site/site',
-], function (angular, pokedex, site) {
+	'./utils',
+], function (angular, pokedex, site, utils) {
 	var module = angular.module('po_ke_type', [
 		pokedex.name,
 		site.name,
+		utils.name,
 		'templates',
 		'LocalStorageModule',
 		'ngRoute',
