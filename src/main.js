@@ -46,6 +46,8 @@ define([
 
 	module.constant('po_ke_type.defaults.theme', 'spacelab');
 	module.constant('po_ke_type.defaults.preferredTypeChart', 'squares');
+	module.constant('po_ke_type.defaults.dexGen', '6');
+	module.constant('po_ke_type.defaults.colorfulCards', false);
 
 	angular.bootstrap(document, ['po_ke_type']);
 	return module;

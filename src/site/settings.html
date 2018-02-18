@@ -2,14 +2,28 @@
 	<div class="form-group">
 		<label for="theme">Theme</label>
 		<select class="form-control" id="theme" name="theme"
-				ng-model="settings.theme" ng-change="save.theme()"
+				ng-model="settings.theme" ng-change="save('theme')"
 				ng-options="t for t in settings.themes"></select>
 	</div>
 
-	<div>
-		<label for="preferredTypeChart">Preferred Type Chart</label>
-		<select class="form-control" id="preferredTypeChart" name="preferredTypeChart"
-				ng-model="settings.preferredTypeChart" ng-change="save.preferredTypeChart()"
-				ng-options="t.id as t.display for t in settings.preferredTypeCharts"></select>
+	<div class="form-group">
+			<label for="preferredTypeChart">Preferred Type Chart</label>
+			<select class="form-control" id="preferredTypeChart" name="preferredTypeChart"
+					ng-model="settings.preferredTypeChart" ng-change="save('preferredTypeChart')"
+					ng-options="t.id as t.display for t in settings.preferredTypeCharts"></select>
 	</div>
+
+	<div class="form-group">
+			<label for="dexGen">Pokédex Generation</label>
+			<select class="form-control" id="dexGen" name="dexGen"
+					ng-model="settings.dexGen" ng-change="save('dexGen')"
+					ng-options="t.id as t.display for t in settings.pokedexGenerations"></select>
+	</div>
+
+	<div class="form-group">
+		<label for="colorfulCards">Colorful Cards</label>
+		<select class="form-control" id="colorfulCards" name="colorfulCards"
+				ng-model="settings.colorfulCards" ng-change="save('colorfulCards')"
+				ng-options="(item?'Colorful':'Simple Colors') for item in [false, true]"></select>
+		</div>
 </form>
