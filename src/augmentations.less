@@ -39,15 +39,28 @@ th.min-width, td.min-width { // lesshint-disable-line
 
 /* add a separator .navbar-right */
 .collapse.in {
-	// TODO non-inverse version
 	.navbar-nav {
-		border-bottom: 1px solid darken(@navbar-inverse-bg, 10%);
 		margin-bottom: 0;
 	}
 
 	.navbar-right {
-		border-top: 1px solid lighten(@navbar-inverse-bg, 10%);
 		margin-bottom: 0;
 		margin-top: 0;
+	}
+}
+
+.navbar-default .collapse.in {
+	.navbar-right {
+		border-top: 1px solid @navbar-default-border;
+	}
+}
+
+.navbar-inverse .collapse.in {
+	.navbar-nav {
+		border-bottom: 1px solid darken(@navbar-inverse-bg, 10%);
+	}
+
+	.navbar-right {
+		border-top: 1px solid lighten(@navbar-inverse-bg, 10%);
 	}
 }
