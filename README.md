@@ -86,5 +86,6 @@ VSCode plugins
 <dd>we can dream</dd>
 <dd>our project may use different scm, but side projects and the like may use git</dd>
 <dt>Nord</dt>
+<dt>Rainbow Brackets</dt>
 <dt>Rainbow CSV</dt>
 </dl>
