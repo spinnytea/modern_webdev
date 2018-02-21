@@ -1,0 +1,27 @@
+@import '../types/types';
+@import 'pokemonCard';
+@import 'pokemonPill';
+
+.team-search-results {
+	.btn.pull-left {
+		// the button needs to align a little better
+		margin-top: 3px;
+	}
+
+	.btn.pull-left+[pokemon-pill] {
+		// we want the button to be the left of the pill
+		margin-left: 3em;
+	}
+}
+
+.pki {
+	// 32x32 is the default position for when we don't have a matching pkmn class
+	// basically, it shows a blank square
+	// we should edit the stylesheet so there is a 404 icon
+	background: 32px 32px url('../../images/pokemon_sprite_sheet.png');
+
+	display: inline-block;
+	height: 32px;
+	vertical-align: middle;
+	width: 32px;
+}

@@ -1,0 +1,26 @@
+@import 'types/type-macros';
+
+.colorful {
+	a {
+		color: white;
+	}
+
+	.text-muted {
+		color: #cccccc;
+	}
+
+	.for(@typelist); .-each(@name1) { // lesshint-disable-line
+
+		// do the style for when there is only 1 type
+		&.@{name1} {
+			.type-badge-2(@name1, @name1);
+		}
+
+		// do the style for when there are 2 types
+		.for(@typelist); .-each(@name2) { // lesshint-disable-line
+			&.@{name1}-@{name2} {
+				.type-badge-2(@name1, @name2);
+			}
+		}
+	}
+}

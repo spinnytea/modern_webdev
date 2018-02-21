@@ -1,6 +1,6 @@
 {
   "name": "modern_webdev",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "modern libraries for web development",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "bootstrap-tour": "^0.12.0",
     "bootswatch": "^3.0.0",
     "debug": "^3.1.0",
-    "fontawesome": "^4.7.2",
+    "font-awesome": "^4.7.0",
     "fuzzysearch-js": "^0.2.0",
     "jquery": "^3.3.1",
     "lodash": "^4.17.4",
@@ -51,6 +51,7 @@
     "gulp-clean-css": "^3.9.2",
     "gulp-concat": "^2.6.1",
     "gulp-eslint": "^4.0.2",
+    "gulp-htmlhint": "^2.1.0",
     "gulp-less": "^3.4.0",
     "gulp-lesshint": "^4.1.0",
     "gulp-live-server": "0.0.31",

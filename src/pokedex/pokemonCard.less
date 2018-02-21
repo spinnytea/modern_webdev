@@ -1,0 +1,23 @@
+.row .pokemon-card {
+	// the space between columns is 30px
+	// so let's make it the same space between the rows
+	margin-bottom: 30px;
+}
+
+.pokemon-card {
+	border: 1px solid @panel-default-border;
+	border-radius: 1em;
+	padding: 1em;
+	position: relative;
+
+	h2 {
+		font-size: 1.5em;
+		margin-top: 0;
+	}
+
+	.remove-button {
+		position: absolute;
+		right: 1em;
+		top: 1em;
+	}
+}

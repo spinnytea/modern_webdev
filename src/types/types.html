@@ -1,0 +1,10 @@
+<h1>
+	<span ng-bind="chartName"></span>
+	<small ng-repeat="t in availableTypeCharts" ng-hide="t.id===whichChart">
+			<a href="#/types" ng-click="pickChart(t.id)" ng-bind="t.display"></a>
+	</small>
+</h1>
+
+<div ng-include="'types/matrix.html'" ng-if="whichChart==='matrix'"></div>
+<div ng-include="'types/inline.html'" ng-if="whichChart==='inline'"></div>
+<div ng-include="'types/squares.html'" ng-if="whichChart==='squares'"></div>

@@ -1,0 +1,89 @@
+.row [type-square] {
+	// the space between columns is 30px
+	// so let's make it the same space between the rows
+	margin-bottom: 30px;
+}
+
+[type-square] {
+	@line-height: 1.2em;
+	@dmg-opacity: 60%;
+
+	font-size: 1em;
+	height: 10.25 * @line-height;
+	line-height: @line-height;
+	position: relative;
+
+	header {
+		margin-bottom: 0.3em;
+	}
+
+	&>.type-label {
+		font-size: 2.05em;
+		left: -2.25em;
+		position: absolute;
+		top: 2.25em;
+		transform: rotate(270deg);
+	}
+
+	/* wrapper around the damage sections so they can be more easily sized */
+	.dmg-block {
+		bottom: 0;
+		left: 3.5em;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	.dmg-to-200,
+	.dmg-to-50,
+	.dmg-from-50,
+	.dmg-from-200 {
+		border-radius: 1em;
+		height: 5 * @line-height;
+		padding: 0.25em;
+		position: absolute;
+		text-align: center;
+		width: 49%;
+	}
+
+	.dmg-to-200   { top: 0;	left: 0; } // lesshint-disable-line
+	.dmg-to-50    { bottom: 0; left: 0; } // lesshint-disable-line
+	.dmg-from-50  { top: 0;	right: 0; } // lesshint-disable-line
+	.dmg-from-200 { bottom: 0; right: 0; } // lesshint-disable-line
+
+	// good colors
+	.dmg-to-200,
+	.dmg-from-50 {
+		background: repeating-linear-gradient(150deg, fade(@rate200, @dmg-opacity), fade(@rate400, @dmg-opacity) 5%, fade(@rate200, @dmg-opacity) 8%);
+		border: 1px solid @rate400;
+	}
+
+	// bad colors
+	.dmg-to-50,
+	.dmg-from-200 {
+		background: repeating-linear-gradient(150deg, fade(@rate50, @dmg-opacity), fade(@rate25, @dmg-opacity) 5%, fade(@rate50, @dmg-opacity) 8%);
+		border: 1px solid @rate25;
+	}
+
+	.type-list {
+		font-size: 0.7em;
+		line-height: 1.2em;
+
+		.type-label {
+			width: 3.5em;
+		}
+	}
+
+	.immune {
+		background-color: fade(@rate0, 80%);
+		border: 1px solid @rate0;
+		border-bottom-left-radius: 1.25em;
+		border-bottom-right-radius: 1.25em;
+		bottom: 0;
+		color: white;
+		left: 0;
+		margin-bottom: -1px;
+		position: absolute;
+		width: 100%;
+	}
+}

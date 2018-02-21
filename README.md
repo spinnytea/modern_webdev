@@ -8,14 +8,18 @@ TODO
 1. finish sample project, document which packages are for which parts
 1. test debugger for chrome
 1. test debugger for phantomjs
-1. prune unneeded packages
-1. [multiple eslint files](https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy)
+1. review pokedex module (pokemon / team), it was all copypasta
+1. karma/jasmine
+1. istanbul
+1. sync vscode extensions
 
 Stretch Goals
 -------------
 
 1. load vendor libs with requires, not static on page
 1. package data/*.json into a data requirejs lib
+1. remove eslint-plugin-requirejs, why not just use env: amd: true
+1. prune node packages
 
 What's in the project
 ---------------------
@@ -67,6 +71,7 @@ VSCode plugins
 <dt>ESLint</dt>
 <dd>always-running eslint</dd>
 <dd>it's part of the build pipeline, but it's nice to have immediate feedback in context</dd>
+<dt>HTMLHint</dt>
 <dt>Python</td>
 <dt>Beautify</dt>
 <dt>Java Extension Pack</dt>
@@ -82,5 +87,6 @@ VSCode plugins
 <dd>we can dream</dd>
 <dd>our project may use different scm, but side projects and the like may use git</dd>
 <dt>Nord</dt>
+<dt>Rainbow Brackets</dt>
 <dt>Rainbow CSV</dt>
 </dl>

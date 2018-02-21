@@ -1,0 +1,13 @@
+<table class="type-chart matrix table-hover">
+	<thead><tr>
+		<th></th>
+		<th ng-repeat="def in types.list" class="type-{{def}}" ng-bind="text[def].title" title="{{text[def].name}}"></th>
+	</tr></thead>
+	<tbody><tr ng-repeat="atk in types.list">
+		<th class="type-{{atk}}" ng-bind="text[atk].title" title="{{text[atk].name}}"></th>
+		<td ng-repeat="def in types.list"
+			class="rate {{types.chart[atk][def] | rateStyle}}"
+			title="{{text[atk].name}} -> {{text[def].name}}"
+			ng-bind="types.chart[atk][def] | rateDisplay"></td>
+</tr></tbody>
+</table>

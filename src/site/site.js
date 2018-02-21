@@ -15,7 +15,6 @@ define([
 ) {
 	var module = angular.module('po_ke_type.site', []);
 
-	module.constant('po_ke_type.site.defaultTheme', 'spacelab');
 	module.controller('po_ke_type.site.head.controller', headController);
 	module.controller('po_ke_type.site.home.controller', homeController);
 	module.directive('pageHeader', pageHeaderDirective);

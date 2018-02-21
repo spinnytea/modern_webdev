@@ -1,0 +1,22 @@
+[pokemon-pill] {
+	border: 2px solid @panel-default-border;
+	border-bottom-right-radius: 2em;
+	border-top-left-radius: 2em;
+	padding: 0.5em;
+	position: relative;
+
+	.label {
+		border-top-left-radius: 1em;
+	}
+
+	.type-label {
+		font-size: 0.6em;
+		position: absolute;
+		right: 1.5em;
+		top: 0.25em;
+
+		&+.type-label {
+			top: 2.25em;
+		}
+	}
+}

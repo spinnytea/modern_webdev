@@ -1,0 +1,35 @@
+<h2>Weakness</h2>
+<table class="type-chart inline table-hover">
+	<thead><tr>
+		<th><span class="label rate rate-50">2x</span> Damage From</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th><span class="label rate rate-200">2x</span> Damage To</th>
+	</tr></thead>
+	<tbody><tr ng-repeat="center in types.list">
+		<td><span ng-repeat="left in types.list" class="type-label type-{{left}}" ng-bind="left" data-ng-if="types.chart[left][center] > 1"></span></td>
+		<td><i class="fa fa-fw fa-long-arrow-right"></i></td>
+		<td><span class="type-label type-{{center}}" ng-bind="center"></span></td>
+		<td><i class="fa fa-fw fa-long-arrow-right"></i></td>
+		<td><span ng-repeat="right in types.list" class="type-label type-{{right}}" ng-bind="right" data-ng-if="types.chart[center][right] > 1"></span></td>
+	</tr></tbody>
+</table>
+
+<h2>Resistance</h2>
+<table class="type-chart inline table-hover">
+	<thead><tr>
+		<th><span class="label rate rate-200">less</span> Damage From</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th><span class="label rate rate-50">less</span> Damage To</th>
+	</tr></thead>
+	<tbody><tr ng-repeat="center in types.list">
+		<td><span ng-repeat="left in types.list" class="type-label type-{{left}}" ng-bind="left" data-ng-if="types.chart[left][center] < 1"></span></td>
+		<td><i class="fa fa-fw fa-long-arrow-right"></i></td>
+		<td><span class="type-label type-{{center}}" ng-bind="center"></span></td>
+		<td><i class="fa fa-fw fa-long-arrow-right"></i></td>
+		<td><span ng-repeat="right in types.list" class="type-label type-{{right}}" ng-bind="right" data-ng-if="types.chart[center][right] < 1"></span></td>
+	</tr></tbody>
+</table>

@@ -7,8 +7,12 @@ define([], function () {
 	function SettingsController($scope, localStorageService, settings) {
 		$scope.settings = settings;
 
-		$scope.saveTheme = function () {
-			localStorageService.set('theme', settings.theme);
+		$scope.save = function (name) {
+			localStorageService.set(name, settings[name]);
+		};
+
+		$scope.clearLocalStorage = function () {
+      return localStorageService.clearAll();
 		};
 	}
 });

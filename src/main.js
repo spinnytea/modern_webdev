@@ -7,7 +7,7 @@ define('angular', function () { return angular; }); // eslint-disable-line
 define('lodash', function () { return _; }); // eslint-disable-line
 
 require.config({
-	paths : {
+	paths: {
 		// create alias to requirejs plugins
 		json: 'vendor/requirejs/json',
 		text: 'vendor/requirejs/text',
@@ -19,10 +19,14 @@ define([
 	'angular',
 	'./pokedex/pokedex',
 	'./site/site',
-], function (angular, pokedex, site) {
+	'./types/types',
+	'./utils',
+], function (angular, pokedex, site, types, utils) {
 	var module = angular.module('po_ke_type', [
 		pokedex.name,
 		site.name,
+		types.name,
+		utils.name,
 		'templates',
 		'LocalStorageModule',
 		'ngRoute',
@@ -32,8 +36,12 @@ define([
 		$locationProvider.hashPrefix('');
 		$routeProvider
 			.when('/', { templateUrl: 'site/home.html', controller: 'po_ke_type.site.home.controller' })
+			.when('/types', { templateUrl: 'types/types.html', controller: 'po_ke_type.types.controller' })
+			.when('/pokedex', { templateUrl: 'pokedex/pokedex.html', controller: 'po_ke_type.pokedex.controller' })
+			.when('/pokedex/:name/:specialname?', { templateUrl: 'pokedex/pokemon.html', controller: 'po_ke_type.pokedex.pokemon.controller' })
+			.when('/team', { templateUrl: 'pokedex/team.html', controller: 'po_ke_type.pokedex.team.controller' })
 			.when('/settings', { templateUrl: 'site/settings.html', controller: 'po_ke_type.site.settings.controller' })
-			.otherwise({ templateUrl: 'oops.html' });
+			.otherwise({ templateUrl: 'site/oops.html' });
 	}]);
 
 	module.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
@@ -41,6 +49,11 @@ define([
 			.setPrefix('po_ke_type')
 			.setNotify(false, true); // setItem: false, removeItem: true
 	}]);
+
+	module.constant('po_ke_type.defaults.theme', 'spacelab');
+	module.constant('po_ke_type.defaults.preferredTypeChart', 'squares');
+	module.constant('po_ke_type.defaults.dexGen', '6');
+	module.constant('po_ke_type.defaults.colorfulCards', false);
 
 	angular.bootstrap(document, ['po_ke_type']);
 	return module;
