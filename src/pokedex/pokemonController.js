@@ -1,10 +1,10 @@
 define(['lodash'], function (_) {
 	return [
-		'$scope', '$routeParams', 'po_ke_type.pokedex.factory', 'po_ke_type.types.factory', 'po_ke_type.pokedex.team.factory',
+		'$scope', '$routeParams', 'po_ke_type.pokedex.factory', 'po_ke_type.pokedex.team.factory',
 		PokemonController,
 	];
 
-	function PokemonController($scope, $routeParams, pokedex, types, team) {
+	function PokemonController($scope, $routeParams, pokedex, team) {
 		var name = ($routeParams.name || '').toLowerCase();
 		var specialname = (decodeURI($routeParams.specialname || '')).toLowerCase();
 		// show evolutions? no, not unless we can get a source that's super succinct
@@ -17,23 +17,13 @@ define(['lodash'], function (_) {
 
 		// when MON is attacking
 		$scope.attacking = team.map(function (m) {
-			var rate = calculateMaxDamageRate($scope.mon, m, types.chart);
+			var rate = pokedex.calculateMaxDamageRate($scope.mon, m);
 			return _.assign({ rate: rate }, m);
 		});
 		// when MON is defending
 		$scope.defending = team.map(function (m) {
-			var rate = calculateMaxDamageRate(m, $scope.mon, types.chart);
+			var rate = pokedex.calculateMaxDamageRate(m, $scope.mon);
 			return _.assign({ rate: rate }, m);
 		});
-	}
-
-	// TODO move this into pokedex.factory
-	function calculateMaxDamageRate(atk, def, chart) {
-		return atk.types.reduce(function (max, atk_type) {
-			var rate = def.types.reduce(function (r, def_type) {
-				return r * chart[atk_type][def_type];
-			}, 1);
-			return Math.max(max, rate);
-		}, 0);
 	}
 });
