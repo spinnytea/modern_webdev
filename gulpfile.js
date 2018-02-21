@@ -174,19 +174,19 @@ gulp.task('lint:css', function () {
 		.pipe(lesshint.reporter('lesshint-reporter-stylish'))
 		.pipe(lesshint.failOnError()); // TODO doesn't actually fail on error
 });
-function doCssBuild(stream, theme) {
+function doCssBuild(stream) {
 	return stream
 		.pipe(argv.skipUglify ? noop() : sourcemaps.init())
 		.pipe(less({ paths: resources.less }))
 		.pipe(argv.skipUglify ? noop() : cleanCSS())
 		.on('error', function () { gutil.log(arguments); this.emit('end'); })
-		.pipe(argv.skipUglify ? noop() : sourcemaps.write('.'))
-		.pipe(gulp.dest(path.join(dist.root, 'themes', theme)));
+		.pipe(argv.skipUglify ? noop() : sourcemaps.write('.'));
 }
 gulp.task('build:css:bootstrap', ['lint:css'], function () {
 	var stream = gulp.src(['node_modules/bootstrap/less/variables.less', 'src/main.less'])
 		.pipe(concat('main.less'));
-	return doCssBuild(stream, 'default');
+	return doCssBuild(stream)
+		.pipe(gulp.dest(path.join(dist.root, 'themes', 'default')));
 });
 gulp.task('build:css:bootswatch', ['lint:css'], function () {
 	// collect the list of theme names in bootswatch
@@ -197,10 +197,16 @@ gulp.task('build:css:bootswatch', ['lint:css'], function () {
 		// pre-concat the variable file to main (in-memory action)
 		var stream = gulp.src(['node_modules/bootswatch/' + theme + '/variables.less', 'src/main.less'])
 			.pipe(concat('main.less'));
-		return doCssBuild(stream, theme);
+		return doCssBuild(stream)
+			.pipe(gulp.dest(path.join(dist.root, 'themes', theme)));
 	}));
 });
-gulp.task('build:css', ['build:css:bootstrap', 'build:css:bootswatch'], function () {});
+gulp.task('build:css:colorful', function () {
+	var stream = gulp.src('src/colorful-types.less');
+	return doCssBuild(stream)
+		.pipe(gulp.dest(dist.root));
+});
+gulp.task('build:css', ['build:css:bootstrap', 'build:css:bootswatch', 'build:css:colorful'], function () {});
 
 gulp.task('build:static', function () {
 	return gulp.src(resources.static)

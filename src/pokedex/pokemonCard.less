@@ -1,5 +1,3 @@
-/* TODO style based on theme */
-
 .row .pokemon-card {
 	// the space between columns is 30px
 	// so let's make it the same space between the rows
@@ -7,7 +5,7 @@
 }
 
 .pokemon-card {
-	border: 1px solid lightgrey;
+	border: 1px solid @panel-default-border;
 	border-radius: 1em;
 	padding: 1em;
 	position: relative;
@@ -21,30 +19,5 @@
 		position: absolute;
 		right: 1em;
 		top: 1em;
-	}
-
-	&.colorful {
-		a {
-			color: white;
-		}
-
-		.text-muted {
-			color: #cccccc;
-		}
-
-		.for(@typelist); .-each(@name1) { // lesshint-disable-line
-
-			// do the style for when there is only 1 type
-			&.@{name1} {
-				.type-badge-2(@name1, @name1);
-			}
-
-			// do the style for when there are 2 types
-			.for(@typelist); .-each(@name2) { // lesshint-disable-line
-				&.@{name1}-@{name2} {
-					.type-badge-2(@name1, @name2);
-				}
-			}
-		}
 	}
 }

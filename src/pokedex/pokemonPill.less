@@ -1,7 +1,5 @@
-/* TODO style based on theme */
-
 [pokemon-pill] {
-	border: 2px solid lightgrey;
+	border: 2px solid @panel-default-border;
 	border-bottom-right-radius: 2em;
 	border-top-left-radius: 2em;
 	padding: 0.5em;
@@ -19,31 +17,6 @@
 
 		&+.type-label {
 			top: 2.25em;
-		}
-	}
-
-	&.colorful { // lesshint qualifyingElement: false
-		a {
-			color: white;
-		}
-
-		.text-muted {
-			color: #cccccc;
-		}
-
-		.for(@typelist); .-each(@name1) { // lesshint-disable-line
-
-			// do the style for when there is only 1 type
-			&.@{name1} {
-				.type-badge-2(@name1, @name1);
-			}
-
-			// do the style for when there are 2 types
-			.for(@typelist); .-each(@name2) { // lesshint-disable-line
-				&.@{name1}-@{name2} {
-					.type-badge-2(@name1, @name2);
-				}
-			}
 		}
 	}
 }
