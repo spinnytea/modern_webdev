@@ -110,7 +110,7 @@ gulp.task('server', ['build'], function () {
 	server.start();
 	gulp.watch(dist.all, function (file) {
 		server.notify.apply(server, [file]);
-	});
+	}).on('error', function () { gutil.log(arguments); this.emit('end'); });
 });
 
 
