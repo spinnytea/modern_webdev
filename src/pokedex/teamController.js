@@ -42,7 +42,6 @@ define(['lodash'], function (_) {
 			getFilteredList().forEach($scope.removeFromTeam);
 		}
 
-		// TODO key events are being consumed by input box
 		bindKeys($scope, {
 			'enter': addAll,
 			'esc': removeAll,

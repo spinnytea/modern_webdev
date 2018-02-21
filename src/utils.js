@@ -1,5 +1,6 @@
 define(['angular', 'lodash'], function (angular, _) {
 	var module = angular.module('po_ke_type.utils', [
+		'ngRoute',
 		'cfp.hotkeys',
 	]);
 
@@ -17,6 +18,7 @@ define(['angular', 'lodash'], function (angular, _) {
 			_.forEach(keys, function (fn, key) {
 				bound.add({
 					combo: key,
+					allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
 					callback: fn,
 				});
 			});
