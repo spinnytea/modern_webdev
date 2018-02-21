@@ -14,6 +14,7 @@ define(['lodash'], function (_) {
 			return mon.name.toLowerCase() === name && mon.specialname.toLowerCase() === specialname;
 		});
 		// TODO if ! mon, do something better than inline oops
+		if(!$scope.mon) return;
 
 		// when MON is attacking
 		$scope.attacking = team.map(function (m) {
