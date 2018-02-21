@@ -1,11 +1,13 @@
 define([
 	'angular',
 	'lodash',
+	'./squareDirective',
 	'./typesController',
 	'./typesFactory',
-], function (angular, _, typesController, typesFactory) {
+], function (angular, _, squareDirective, typesController, typesFactory) {
 	var module = angular.module('po_ke_type.types', []);
 
+	module.directive('typeSquare', squareDirective);
 	module.controller('po_ke_type.types.controller', typesController);
 	module.factory('po_ke_type.types.factory', typesFactory);
 

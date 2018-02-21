@@ -6,18 +6,9 @@ define(['lodash'], function (_) {
 
 	function TypesController($scope, settings, types) {
 		pickChart(settings.preferredTypeChart);
-		$scope.types = types;
 		$scope.availableTypeCharts = settings.availableTypeCharts;
-
-		// prep text labels for type charts
-		// XXX does this need to be in a central place?
-		$scope.text = types.list.reduce(function (ret, type) {
-			ret[type] = {
-				name: _.capitalize(type),
-				title: _.toUpper(type.substr(0,3)),
-			};
-			return ret;
-		}, {});
+		$scope.types = types;
+		$scope.text = types.text;
 
 		$scope.pickChart = pickChart;
 		function pickChart(typeChart) {
