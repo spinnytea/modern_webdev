@@ -1,6 +1,6 @@
 <div class="{{colorfulCards?'colorful':''}} {{mon.typeStyle}}">
 	<span class="label label-default" ng-bind="mon.number | padNumber: 3"></span>
-	<a ng-href="{{getUrl(mon)}}" ng-bind="mon.name"></a>
+	<a ng-href="{{mon.linkLocal}}" ng-bind="mon.name"></a>
 	<small ng-if="mon.specialname">(<span ng-bind="mon.specialname"></span>)</small>
 
 	<span ng-repeat="type in mon.types" class="type-label type-{{type}}" ng-bind="type"></span>

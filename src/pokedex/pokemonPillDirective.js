@@ -13,8 +13,5 @@ define([], function () {
 
 	function PokemonPillController($scope, localStorageService) {
 		$scope.colorfulCards = localStorageService.get('colorfulCards');
-		$scope.getUrl = function (mon) {
-			return '#/pokedex/' + mon.name + (mon.specialname?('/'+encodeURI(mon.specialname)):'');
-		};
 	}
 });
