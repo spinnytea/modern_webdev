@@ -1,4 +1,4 @@
-define(['lodash', 'json!data/types.json'], function (_, typeChart) {
+define(['lodash', 'json!data/types.json'], function (_, typesJson) {
 	return [
 		TypesFactory,
 	];
@@ -8,10 +8,10 @@ define(['lodash', 'json!data/types.json'], function (_, typeChart) {
 
 		// raw weakness and resistance
 		// types.chart[attacker][defender] = multiplier
-		types.chart = typeChart;
+		types.chart = typesJson;
 
 		// just the list of types
-		types.list = Object.keys(typeChart);
+		types.list = Object.keys(typesJson);
 
 		// text strings for each type
 		types.text = types.list.reduce(function (ret, type) {
