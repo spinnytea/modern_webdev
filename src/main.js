@@ -37,6 +37,7 @@ define([
 		$routeProvider
 			.when('/', { templateUrl: 'site/home.html', controller: 'po_ke_type.site.home.controller' })
 			.when('/types', { templateUrl: 'types/types.html', controller: 'po_ke_type.types.controller' })
+			.when('/pokedex', { templateUrl: 'pokedex/pokedex.html', controller: 'po_ke_type.pokedex.controller' })
 			.when('/team', { templateUrl: 'pokedex/team.html', controller: 'po_ke_type.pokedex.team.controller' })
 			.when('/settings', { templateUrl: 'site/settings.html', controller: 'po_ke_type.site.settings.controller' })
 			.otherwise({ templateUrl: 'site/oops.html' });

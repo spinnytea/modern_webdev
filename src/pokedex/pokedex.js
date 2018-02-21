@@ -1,6 +1,7 @@
 define([
 	'angular',
 	'./dexGenFilter',
+	'./pokedexController',
 	'./pokedexFactory',
 	'./pokedexService',
 	'./pokemonPillDirective',
@@ -8,6 +9,7 @@ define([
 	'./teamFactory',
 ], function (angular,
 		dexGenFilter,
+		pokedexController,
 		pokedexFactory,
 		pokedexService,
 		pokemonPillDirective,
@@ -16,6 +18,7 @@ define([
 	var module = angular.module('po_ke_type.pokedex', []);
 
 	module.filter('dexGen', dexGenFilter);
+	module.controller('po_ke_type.pokedex.controller', pokedexController);
 	module.factory('po_ke_type.pokedex.factory', pokedexFactory);
 	module.service('po_ke_type.pokedex.pokedexService', pokedexService);
 	module.directive('pokemonPill', pokemonPillDirective);
