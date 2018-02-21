@@ -1,29 +1,29 @@
 <div>
-    <span class="type-label type-{{type}}" ng-bind="type"></span>
+	<span class="type-label type-{{type}}" ng-bind="type"></span>
 
-    <div class="dmg-block">
-    <div class="dmg-to-200">
-        <header><span class="label rate rate-200" ng-bind="2 | rateDisplay"></span> Damage To</header>
-        <div class="type-list"><span ng-repeat="t in dmgTo200" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
-    </div>
+	<div class="dmg-block">
+	<div class="dmg-to-200">
+		<header><span class="label rate rate-200" ng-bind="2 | rateDisplay"></span> Damage To</header>
+		<div class="type-list"><span ng-repeat="t in dmgTo200" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
+	</div>
 
-    <div class="dmg-to-50">
-        <header><span class="label rate rate-50" ng-bind="0.5 | rateDisplay"></span> Damage To</header>
-        <div class="type-list"><span ng-repeat="t in dmgTo50" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
+	<div class="dmg-to-50">
+		<header><span class="label rate rate-50" ng-bind="0.5 | rateDisplay"></span> Damage To</header>
+		<div class="type-list"><span ng-repeat="t in dmgTo50" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
 
-        <div class="type-list immune" ng-if="dmgTo0.length">Can't Damage <span ng-repeat="t in dmgTo0" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
-    </div>
+		<div class="type-list immune" ng-if="dmgTo0.length">Can't Damage <span ng-repeat="t in dmgTo0" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
+	</div>
 
-    <div class="dmg-from-50">
-        <header><span class="label rate rate-200" ng-bind="0.5 | rateDisplay"></span> Damage From</header>
-        <div class="type-list"><span ng-repeat="t in dmgFrom50" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
+	<div class="dmg-from-50">
+		<header><span class="label rate rate-200" ng-bind="0.5 | rateDisplay"></span> Damage From</header>
+		<div class="type-list"><span ng-repeat="t in dmgFrom50" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
 
-        <div class="type-list immune" ng-if="dmgFrom0.length">Immune To <span ng-repeat="t in dmgFrom0" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
-    </div>
+		<div class="type-list immune" ng-if="dmgFrom0.length">Immune To <span ng-repeat="t in dmgFrom0" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
+	</div>
 
-    <div class="dmg-from-200">
-        <header><span class="label rate rate-50" ng-bind="2 | rateDisplay"></span> Damage From</header>
-        <div class="type-list"><span ng-repeat="t in dmgFrom200" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
-    </div>
-    </div>
+	<div class="dmg-from-200">
+		<header><span class="label rate rate-50" ng-bind="2 | rateDisplay"></span> Damage From</header>
+		<div class="type-list"><span ng-repeat="t in dmgFrom200" class="type-label type-{{t}}" ng-bind="text[t].title" title="{{text[t].name}}"></span></div>
+	</div>
+	</div>
 </div>

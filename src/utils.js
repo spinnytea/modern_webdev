@@ -1,5 +1,8 @@
 define(['angular', 'lodash'], function (angular, _) {
-	var module = angular.module('po_ke_type.utils', []);
+	var module = angular.module('po_ke_type.utils', [
+		'ngRoute',
+		'cfp.hotkeys',
+	]);
 
 	// TODO why doesn't this work? TEST import module name as controller dependency
 	// module.factory('$exceptionHandler', function () {
@@ -9,11 +12,15 @@ define(['angular', 'lodash'], function (angular, _) {
 	// 	};
 	// });
 
-	module.factory('bindKeys', ['$hotkey', function ($hotkey) {
+	module.factory('bindKeys', ['hotkeys', function (hotkeys) {
 		return function BindKeys($scope, keys) {
-			_.forEach(keys, function (fn, key) { $hotkey.bind(key, fn); });
-			$scope.$on('$destroy', function () {
-				_.forEach(keys, function (fn, key) { $hotkey.unbind(key, fn); });
+			var bound = hotkeys.bindTo($scope);
+			_.forEach(keys, function (fn, key) {
+				bound.add({
+					combo: key,
+					allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+					callback: fn,
+				});
 			});
 		};
 	}]);

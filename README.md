@@ -8,6 +8,7 @@ TODO
 1. finish sample project, document which packages are for which parts
 1. test debugger for chrome
 1. test debugger for phantomjs
+1. review pokedex module (pokemon / team), it was all copypasta
 1. karma/jasmine
 1. istanbul
 1. sync vscode extensions
