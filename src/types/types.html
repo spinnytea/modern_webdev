@@ -1,8 +1,8 @@
 <h1>
 	<span ng-bind="chartName"></span>
-	<small ng-hide="whichChart==='matrix'"><a href="#/types" ng-click="pickChart('matrix')">Matrix</a></small>
-	<small ng-hide="whichChart==='inline'"><a href="#/types" ng-click="pickChart('inline')">Inline</a></small>
-	<small ng-hide="whichChart==='squares'"><a href="#/types" ng-click="pickChart('squares')">Squares</a></small>
+	<small ng-repeat="t in availableTypeCharts" ng-hide="t.id===whichChart">
+			<a href="#/types" ng-click="pickChart(t.id)" ng-bind="t.display"></a>
+	</small>
 </h1>
 
 <div ng-include="'types/matrix.html'" ng-if="whichChart==='matrix'"></div>

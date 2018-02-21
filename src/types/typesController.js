@@ -7,6 +7,7 @@ define(['lodash'], function (_) {
 	function TypesController($scope, settings, types) {
 		pickChart(settings.preferredTypeChart);
 		$scope.types = types;
+		$scope.availableTypeCharts = settings.availableTypeCharts;
 
 		// prep text labels for type charts
 		// XXX does this need to be in a central place?
