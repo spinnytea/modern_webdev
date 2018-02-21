@@ -1,18 +1,16 @@
-<div loading="loading">
-	<form class="input-group">
-		<input class="form-control" id="filter" name="filter" ng-model="nested.filter" />
-		<div class="input-group-addon minimal">
-				<label class="radio-inline"><input type="radio" name="limit" id="limit20" value="20" ng-model="nested.limit"> 20</label>
-				<label class="radio-inline"><input type="radio" name="limit" id="limit50" value="50" ng-model="nested.limit"> 50</label>
-				<label class="radio-inline"><input type="radio" name="limit" id="limitAll" ng-value="dex.length" ng-model="nested.limit"> All</label>
-		</div>
-	</form>
-
-	<br>
-
-	<div class="row">
-		<p class="col-sm-6 col-md-4" ng-repeat="mon in dex | dexGen | filterAll: nested.filter | orderBy: '-number' | limitTo: nested.limit">
-				<i pokemon-pill="mon"></i>
-		</p>
+<form class="input-group">
+	<input class="form-control" id="filter" name="filter" ng-model="nested.filter" />
+	<div class="input-group-addon minimal">
+			<label class="radio-inline"><input type="radio" name="limit" id="limit20" value="20" ng-model="nested.limit"> 20</label>
+			<label class="radio-inline"><input type="radio" name="limit" id="limit50" value="50" ng-model="nested.limit"> 50</label>
+			<label class="radio-inline"><input type="radio" name="limit" id="limitAll" ng-value="dex.length" ng-model="nested.limit"> All</label>
 	</div>
+</form>
+
+<br>
+
+<div class="row">
+	<p class="col-sm-6 col-md-4" ng-repeat="mon in dex | dexGen | filterAll: nested.filter | orderBy: '-number' | limitTo: nested.limit">
+			<i pokemon-pill="mon"></i>
+	</p>
 </div>
