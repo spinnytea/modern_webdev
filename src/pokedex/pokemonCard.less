@@ -1,50 +1,50 @@
 /* TODO style based on theme */
 
 .row .pokemon-card {
-  // the space between columns is 30px
-  // so let's make it the same space between the rows
-  margin-bottom: 30px;
+	// the space between columns is 30px
+	// so let's make it the same space between the rows
+	margin-bottom: 30px;
 }
 
 .pokemon-card {
 	border: 1px solid lightgrey;
-  border-radius: 1em;
-  padding: 1em;
-  position: relative;
+	border-radius: 1em;
+	padding: 1em;
+	position: relative;
 
-  h2 {
-    font-size: 1.5em;
-    margin-top: 0;
-  }
+	h2 {
+		font-size: 1.5em;
+		margin-top: 0;
+	}
 
-  .remove-button {
-    position: absolute;
-    right: 1em;
-    top: 1em;
-  }
+	.remove-button {
+		position: absolute;
+		right: 1em;
+		top: 1em;
+	}
 
-  &.colorful {
+	&.colorful {
 		a {
 			color: white;
 		}
 
-    .text-muted {
+		.text-muted {
 			color: #cccccc;
 		}
 
 		.for(@typelist); .-each(@name1) { // lesshint-disable-line
 
 			// do the style for when there is only 1 type
-      &.@{name1} {
+			&.@{name1} {
 				.type-badge-2(@name1, @name1);
 			}
 
 			// do the style for when there are 2 types
-      .for(@typelist); .-each(@name2) { // lesshint-disable-line
-        &.@{name1}-@{name2} {
+			.for(@typelist); .-each(@name2) { // lesshint-disable-line
+				&.@{name1}-@{name2} {
 					.type-badge-2(@name1, @name2);
 				}
-      }
-    }
-  }
+			}
+		}
+	}
 }

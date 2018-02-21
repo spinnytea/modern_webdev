@@ -1,20 +1,20 @@
 /* TODO style based on theme */
 
 [pokemon-pill] {
-  border: 2px solid lightgrey;
+	border: 2px solid lightgrey;
 	border-bottom-right-radius: 2em;
-  border-top-left-radius: 2em;
-  padding: 0.5em;
-  position: relative;
+	border-top-left-radius: 2em;
+	padding: 0.5em;
+	position: relative;
 
-  .label {
+	.label {
 		border-top-left-radius: 1em;
 	}
 
-  .type-label {
-    font-size: 0.6em;
-    position: absolute;
-    right: 1.5em;
+	.type-label {
+		font-size: 0.6em;
+		position: absolute;
+		right: 1.5em;
 		top: 0.25em;
 
 		&+.type-label {
@@ -22,12 +22,12 @@
 		}
 	}
 
-  &.colorful { // lesshint qualifyingElement: false
+	&.colorful { // lesshint qualifyingElement: false
 		a {
 			color: white;
 		}
 
-    .text-muted {
+		.text-muted {
 			color: #cccccc;
 		}
 
@@ -39,11 +39,11 @@
 			}
 
 			// do the style for when there are 2 types
-      .for(@typelist); .-each(@name2) { // lesshint-disable-line
-        &.@{name1}-@{name2} {
+			.for(@typelist); .-each(@name2) { // lesshint-disable-line
+				&.@{name1}-@{name2} {
 					.type-badge-2(@name1, @name2);
 				}
-      }
-    }
-  }
+			}
+		}
+	}
 }
