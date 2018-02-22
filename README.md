@@ -11,7 +11,9 @@ TODO
 1. review pokedex module (pokemon / team), it was all copypasta
 1. karma/jasmine
 1. istanbul
-1. sync vscode extensions
+1. bootstrap tour
+1. ngAnimate the dex two searches
+1. zip dist
 
 Stretch Goals
 -------------

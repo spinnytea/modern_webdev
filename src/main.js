@@ -29,7 +29,9 @@ define([
 		utils.name,
 		'templates',
 		'LocalStorageModule',
+		'ngAnimate',
 		'ngRoute',
+		'ngSanitize',
 	]);
 
 	module.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {

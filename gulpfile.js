@@ -69,9 +69,11 @@ var resources = Object.freeze({
 });
 var vendor = [
 	['angular', 'node_modules/angular/angular.min.js'],
+	['angular', 'node_modules/angular-animate/angular-animate.min.js'],
 	['angular', 'node_modules/angular-local-storage/dist/angular-local-storage.min.js'],
 	['angular', 'node_modules/angular-hotkeys/build/*.min.*'],
 	['angular', 'node_modules/angular-route/angular-route.min.js'],
+	['angular', 'node_modules/angular-sanitize/angular-sanitize.min.js'],
 	['bootstrap', 'node_modules/bootstrap/dist/js/bootstrap.min.js'],
 	['bootstrap/fonts', 'node_modules/bootstrap/dist/fonts/*'],
 	['bootstrap', 'node_modules/bootswatch/*/bootstrap.min.css'],
