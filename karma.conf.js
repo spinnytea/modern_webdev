@@ -27,9 +27,14 @@ module.exports = function (config) {
     files: [
       'test/test-main.js',
       { pattern: 'src/**/*.js', included: false },
+      { pattern: 'static/**/*', included: false },
       { pattern: 'test/**/*.spec.js', included: false },
+
       { pattern: 'node_modules/angular/angular.js', included: false },
       { pattern: 'node_modules/angular-mocks/angular-mocks.js', included: false },
+      { pattern: 'node_modules/lodash/lodash.js', included: false },
+      { pattern: 'node_modules/requirejs-plugins/src/*', included: false },
+      { pattern: 'node_modules/requirejs-text/text.js', included: false },
     ],
 
 

@@ -24,11 +24,17 @@ require.config({
   paths: {
     'angular': 'node_modules/angular/angular',
     'angular-mocks': 'node_modules/angular-mocks/angular-mocks',
+    'lodash': 'node_modules/lodash/lodash',
+
+		data: 'static/data',
+		json: 'node_modules/requirejs-plugins/src/json',
+		text: 'node_modules/requirejs-text/text',
   },
 
   shim: {
     'angular': { exports: 'angular' },
     'angular-mocks': { deps: ['angular'], exports: 'angular.mock' },
+    'lodash': { exports: '_' },
   },
 
   // we have to kickoff jasmine, as it is asynchronous
