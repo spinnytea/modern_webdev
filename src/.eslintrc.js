@@ -9,6 +9,4 @@ module.exports = {
 	extends: [
 		'plugin:requirejs/recommended',
 	],
-	rules: {
-	},
 };

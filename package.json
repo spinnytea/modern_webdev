@@ -62,8 +62,16 @@
     "gulp-unzip": "^1.0.0",
     "gulp-zip": "^4.1.0",
     "gutil": "^1.6.4",
-    "istanbul": "^0.4.5",
-    "jasmine": "^2.9.0",
+    "jasmine-core": "^2.99.1",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.1",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-nyan-reporter": "^0.2.5",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-requirejs": "^1.1.0",
     "merge-stream": "^1.0.1",
     "yargs": "^11.0.0"
   }
