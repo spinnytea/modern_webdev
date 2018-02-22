@@ -28,6 +28,8 @@ module.exports = function (config) {
       'test/test-main.js',
       { pattern: 'src/**/*.js', included: false },
       { pattern: 'test/**/*.spec.js', included: false },
+      { pattern: 'node_modules/angular/angular.js', included: false },
+      { pattern: 'node_modules/angular-mocks/angular-mocks.js', included: false },
     ],
 
 
