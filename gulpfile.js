@@ -225,10 +225,14 @@ gulp.task('build:vendor', function () {
 
 // clean up workspace
 
-gulp.task('clean', function () {
+gulp.task('clean', ['clean:coverage'], function () {
 	return del(dist.root);
 });
 
 gulp.task('clean:vendor', function () {
 	return del(dist.vendor);
+});
+
+gulp.task('clean:coverage', function () {
+	return del('coverage');
 });
