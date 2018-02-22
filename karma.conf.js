@@ -15,6 +15,7 @@ module.exports = function (config) {
 
     plugins: [
       'karma-chrome-launcher',
+      'karma-coverage',
       'karma-jasmine',
       'karma-phantomjs-launcher',
       'karma-nyan-reporter',
@@ -24,9 +25,9 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test-main.js',
+      'test/test-main.js',
       { pattern: 'src/**/*.js', included: false },
-      { pattern: 'test/**/*Spec.js', included: false },
+      { pattern: 'test/**/*.spec.js', included: false },
     ],
 
 
@@ -38,13 +39,18 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'src/**/*.js': ['coverage'],
+    },
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/',
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['nyan'],
+    reporters: ['nyan', 'coverage'],
 
 
     // web server port
