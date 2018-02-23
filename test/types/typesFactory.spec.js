@@ -1,7 +1,7 @@
 define([
 	'angular',
 	'lodash',
-	'src/types/types',
+	'src/types/typesModule',
 	'angular-mocks',
 ], function (
 	angular,

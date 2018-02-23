@@ -17,16 +17,16 @@ require.config({
 // eslint-disable-next-line requirejs/no-multiple-define
 define([
 	'angular',
-	'./pokedex/pokedex',
-	'./site/site',
-	'./types/types',
-	'./utils',
-], function (angular, pokedex, site, types, utils) {
+	'./pokedex/pokedexModule',
+	'./site/siteModule',
+	'./types/typesModule',
+	'./utilsModule',
+], function (angular, pokedexModule, siteModule, typesModule, utilsModule) {
 	var module = angular.module('po_ke_type', [
-		pokedex.name,
-		site.name,
-		types.name,
-		utils.name,
+		pokedexModule.name,
+		siteModule.name,
+		typesModule.name,
+		utilsModule.name,
 		'templates',
 		'LocalStorageModule',
 		'ngAnimate',
