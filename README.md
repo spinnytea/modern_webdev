@@ -12,7 +12,6 @@ TODO
 1. bootstrap tour
 1. ngAnimate the dex two searches
 1. zip dist
-1. npm script targets (test, build)
 
 Stretch Goals
 -------------
