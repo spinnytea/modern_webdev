@@ -52,9 +52,9 @@ var options = {
     { pattern: 'node_modules/requirejs-text/text.js', included: false },
   ],
 
-
   // list of files / patterns to exclude
   exclude: [
+    'src/main.js',
   ],
 
 
