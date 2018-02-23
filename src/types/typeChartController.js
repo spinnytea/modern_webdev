@@ -1,6 +1,6 @@
 define(['lodash'], function (_) {
 	return [
-		'$scope', 'po_ke_type.site.settings', 'po_ke_type.types.factory',
+		'$scope', 'po_ke_type.site.settings.factory', 'po_ke_type.types.factory',
 		TypeChartController,
 	];
 

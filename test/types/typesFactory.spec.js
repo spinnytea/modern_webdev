@@ -48,7 +48,7 @@ define([
 
 		describe('text', function () {
 			it('transform all types', function () {
-				expect(_.keys(types.text)).toEqual(types.list);
+				expect(Object.keys(types.text)).toEqual(types.list);
 			});
 
 			it('spot check transform', function () {
