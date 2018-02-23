@@ -14,7 +14,15 @@ define([
 		}]));
 
 		it('init', function () {
+			// NOTE if this list changes, stub a test for the new one
+			// - you don't need to implement the test, but at least stub it out
 			expect(Object.keys(types)).toEqual(['chart', 'list', 'text']);
 		});
+
+		it('chart');
+
+		it('list');
+
+		it('text');
 	}); // end po_ke_type.types.factory
 });

@@ -9,8 +9,6 @@ TODO
 1. test debugger for chrome
 1. test debugger for phantomjs
 1. review pokedex module (pokemon / team), it was all copypasta
-1. karma/jasmine
-1. istanbul
 1. bootstrap tour
 1. ngAnimate the dex two searches
 1. zip dist
@@ -41,6 +39,9 @@ What's in the project
 <dd>express is something you can configure and launch directly from node (e.g. `node server.js`)</dd>
 <dd>gulp-live-server is a gulp wrapper around gulp-express (I guess they renamed it?)</dd>
 <dd>we want this for arbitrary webdev, and will live the target, but hopefully we can convery json to requirejs loading</dd>
+<dt>karma, karma-*</dt>
+<dd>test runner, runs js in actual browser</dd>
+<dd>plugins for coverage, multiple browsers, requirejs, jasmine</dd>
 </dl>
 
 ### UI Libraries

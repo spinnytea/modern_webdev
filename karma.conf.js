@@ -9,6 +9,12 @@ var argv = require('yargs')
     type: 'boolean',
     default: false,
   })
+  .option('w', {
+    describe: 'autoWatch; run in continuous mode',
+    alias: 'autoWatch',
+    type: 'boolean',
+    default: false,
+  })
   .argv;
 
 var options = {
@@ -25,6 +31,7 @@ var options = {
     'karma-chrome-launcher',
     'karma-coverage',
     'karma-jasmine',
+    'karma-junit-reporter',
     'karma-phantomjs-launcher',
     'karma-nyan-reporter',
     'karma-requirejs',
@@ -56,16 +63,24 @@ var options = {
   preprocessors: {
     'src/**/*.js': ['coverage'],
   },
+
+  // karma-coverage configuration
   coverageReporter: {
     type: 'html',
     dir: 'coverage/',
+    includeAllSources: true,
   },
 
 
   // test results reporter to use
   // possible values: 'dots', 'progress'
   // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-  reporters: ['nyan'],
+  reporters: ['nyan', 'junit'],
+
+  // karma-junit-reporter configuration
+  junitReporter: {
+    outputDir: 'coverage',
+  },
 
 
   // web server port
@@ -83,11 +98,11 @@ var options = {
 
 
   // enable / disable watching file and executing tests whenever any file changes
-  autoWatch: true,
+  autoWatch: false,
 
   // Continuous Integration mode
   // if true, Karma captures browsers, runs the tests and exits
-  singleRun: false,
+  singleRun: true,
 
   // Concurrency level
   // how many browser should be started simultaneous
@@ -99,6 +114,10 @@ if(argv.coverage) {
   options.autoWatch = false;
   options.singleRun = true;
   options.reporters.push('coverage');
+}
+if(argv.autoWatch) {
+  options.autoWatch = true;
+  options.singleRun = false;
 }
 
 module.exports = function (config) {

@@ -18,7 +18,6 @@ var noop = require('gulp-noop');
 var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 
-// TODO required gulp commnad
 var argv = require('yargs')
 	.usage('Usage: npx gulp task [tasks] [options]')
 	.command('clean', 'remove dist')
@@ -225,7 +224,9 @@ gulp.task('build:vendor', function () {
 
 // clean up workspace
 
-gulp.task('clean', ['clean:coverage'], function () {
+gulp.task('clean', ['clean:dist', 'clean:coverage'], function () {});
+
+gulp.task('clean:dist', function () {
 	return del(dist.root);
 });
 
