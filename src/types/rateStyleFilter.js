@@ -3,7 +3,7 @@ define(['lodash'], function (_) {
 
 	function RateStyleFilter() {
 		return function rateStyle(input, inverse) {
-			if(!_.isNumber(input)) return '';
+			if(!_.isNumber(input) || isNaN(input)) return '';
 
 			if(inverse === true || inverse === 'inv' || inverse === 'inverse') {
 				if(input !== 0) input = 1/input;

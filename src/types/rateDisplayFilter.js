@@ -3,7 +3,7 @@ define(['lodash'], function (_) {
 
 	function RateDisplayFilter() {
 		return function rateDisplay(input) {
-			if(!_.isNumber(input)) return '';
+			if(!_.isNumber(input) || isNaN(input)) return '';
 
 			switch(input) {
 				case 1: return ''; // don't display 1s

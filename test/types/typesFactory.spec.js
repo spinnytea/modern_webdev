@@ -3,12 +3,8 @@ define([
 	'lodash',
 	'src/types/typesModule',
 	'angular-mocks',
-], function (
-	angular,
-	_,
-	typesModule
-) {
-	return describe('po_ke_type.types.factory', function () {
+], function (angular, _, typesModule) {
+	return describe('Types Factory', function () {
 		var types;
 		beforeEach(angular.mock.module(typesModule.name));
 		beforeEach(angular.mock.inject(['po_ke_type.types.factory', function (_types_) {
@@ -63,5 +59,5 @@ define([
 				expect(types.text.ghost).toEqual({ name: 'Ghost', title: 'GHO' });
 			});
 		}); // end text
-	}); // end po_ke_type.types.factory
+	}); // end Types Factory
 });
