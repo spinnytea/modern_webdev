@@ -118,7 +118,7 @@ gulp.task('server', ['build'], function () {
 // build tasks
 
 gulp.task('lint:js', function () {
-	return gulp.src(['**/*.js', '!node_modules/**/*', '!dist/**/*'])
+	return gulp.src(['**/*.js', '!node_modules/**/*', '!dist/**/*', '!coverage/**/*'])
 	.pipe(eslint())
 	.pipe(eslint.format())
 	.pipe(eslint.failAfterError());
