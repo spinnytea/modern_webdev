@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp server",
     "build": "gulp build",
-    "test": "karma start"
+    "test": "karma start -c"
   },
   "repository": {
     "type": "git",
