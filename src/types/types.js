@@ -1,40 +1,19 @@
 define([
 	'angular',
 	'lodash',
+	'./rateDisplayFilter',
+	'./rateStyleFilter',
 	'./squareDirective',
-	'./typesController',
+	'./typeChartController',
 	'./typesFactory',
-], function (angular, _, squareDirective, typesController, typesFactory) {
+], function (angular, _, rateDisplayFilter, rateStyleFilter, squareDirective, typeChartController, typesFactory) {
 	var module = angular.module('po_ke_type.types', []);
 
+	module.filter('rateDisplay', rateDisplayFilter);
+	module.filter('rateStyle', rateStyleFilter);
 	module.directive('typeSquare', squareDirective);
-	module.controller('po_ke_type.types.controller', typesController);
+	module.controller('po_ke_type.types.chart.controller', typeChartController);
 	module.factory('po_ke_type.types.factory', typesFactory);
-
-	module.filter('rateDisplay', function () {
-		return function rateDisplay(input) {
-			if(!_.isNumber(input)) return '';
-
-			switch(input) {
-				case 1: return ''; // don't display 1s
-				case 0.5: return '½'; // fancy
-				case 0.25: return '¼'; // fancy
-				default: return input; // expected 0, 2, 4
-			}
-		};
-	});
-
-	module.filter('rateStyle', function () {
-		return function rateStyle(input, inverse) {
-			if(!_.isNumber(input)) return '';
-
-			if(inverse === true || inverse === 'inv' || inverse === 'inverse') {
-				if(input !== 0) input = 1/input;
-			}
-
-			return 'rate-' + input*100;
-		};
-	});
 
 	return module;
 });

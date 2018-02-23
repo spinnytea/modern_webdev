@@ -115,6 +115,7 @@ if(argv.coverage) {
   options.singleRun = true;
   options.reporters.push('coverage');
 }
+// NOTE autoWatch is set afterwards, so we can use `-cw` to coverage and watch
 if(argv.autoWatch) {
   options.autoWatch = true;
   options.singleRun = false;

@@ -5,7 +5,7 @@ define([], function () {
 	return ['localStorageService', DexGenFilter];
 
 	function DexGenFilter(localStorageService) {
-		return function DexGenFilterImpl(array) {
+		return function dexGen(array) {
 			if(!array) return [];
 			var gen = +(localStorageService.get('dexGen') || '6');
 			var maxNum = MAX_NUM[gen];
