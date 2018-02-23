@@ -1,5 +1,15 @@
-define([], function () {
-	return [SquareDirective];
+define(['angular'], function (angular) {
+	var squareDirectiveMod = angular.module('po_ke_type.types.square.directive', []);
+
+	squareDirectiveMod.directive('typeSquare', [SquareDirective]);
+
+	// XXX ? po_ke_type.types.square.directive.controller
+	squareDirectiveMod.controller('po_ke_type.types.square.controller', [
+		'$scope', 'po_ke_type.types.factory',
+		SquareController,
+	]);
+
+	return squareDirectiveMod;
 
 	function SquareDirective() {
 		return {
@@ -7,7 +17,7 @@ define([], function () {
 			replace: true,
 			scope: { type: '=typeSquare' },
 			templateUrl: 'types/squareDirective.html',
-			controller: ['$scope', 'po_ke_type.types.factory', SquareController],
+			controller: 'po_ke_type.types.square.controller',
 		};
 	}
 

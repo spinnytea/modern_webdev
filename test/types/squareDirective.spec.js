@@ -1,17 +1,15 @@
 define([
 	'angular',
-	'lodash',
 	'src/types/typesModule',
-	'src/types/squareDirective',
 	'angular-mocks',
-], function (angular, _, typesModule, squareDirective) {
+], function (angular, typesModule) {
 	return describe('Square Directive', function () {
 		beforeEach(angular.mock.module(typesModule.name));
 
 		describe('controller', function () {
 			var $scope = { type: 'ground' };
 			beforeEach(angular.mock.inject(['$controller', function ($controller) {
-				$controller(_.last(squareDirective)().controller, {
+				$controller('po_ke_type.types.square.controller', {
 					'$scope': $scope,
 				});
 			}]));
@@ -29,6 +27,6 @@ define([
 			});
 		}); // end controller
 
-		it('template');
+		it('template'); // end template
 	}); // end Square Directive
 });

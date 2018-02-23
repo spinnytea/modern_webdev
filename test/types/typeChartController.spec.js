@@ -22,22 +22,26 @@ define([
 			});
 		}]));
 
-		it('init', function () {
-			expect($scope.whichChart).toBe('chart1');
-			expect($scope.chartName).toBe('Chart 1');
-			expect($scope.availableTypeCharts).toBe(settingsFactory.availableTypeCharts);
-			expect(Object.keys($scope)).toContain('types');
-			expect(Object.keys($scope)).toContain('text');
-		});
+		describe('controller', function () {
+			it('init', function () {
+				expect($scope.whichChart).toBe('chart1');
+				expect($scope.chartName).toBe('Chart 1');
+				expect($scope.availableTypeCharts).toBe(settingsFactory.availableTypeCharts);
+				expect(Object.keys($scope)).toContain('types');
+				expect(Object.keys($scope)).toContain('text');
+			});
 
-		it('pickChart', function () {
-			expect($scope.whichChart).toBe('chart1');
-			expect($scope.chartName).toBe('Chart 1');
+			it('pickChart', function () {
+				expect($scope.whichChart).toBe('chart1');
+				expect($scope.chartName).toBe('Chart 1');
 
-			$scope.pickChart('chart2');
+				$scope.pickChart('chart2');
 
-			expect($scope.whichChart).toBe('chart2');
-			expect($scope.chartName).toBe('Chart 2');
-		});
+				expect($scope.whichChart).toBe('chart2');
+				expect($scope.chartName).toBe('Chart 2');
+			});
+		}); // end controller
+
+		it('template'); // end template
 	}); // end Type Chart Controller
 });
