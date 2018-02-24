@@ -13,6 +13,7 @@ TODO
 1. ngAnimate the dex two searches
 1. zip dist
 1. refactor all directives
+1. tests with html
 
 Stretch Goals
 -------------
