@@ -5,14 +5,15 @@ define([
 	'angular-mocks',
 ], function (angular, _, typesModule) {
 	return describe('Type Chart Controller', function () {
-		var settingsFactory = {
-			preferredTypeChart: 'chart1',
-			availableTypeCharts: [
-				{ id: 'chart1', display: 'Chart 1' },
-				{ id: 'chart2', display: 'Chart 2' },
-			],
-		};
+		var settingsFactory;
 		beforeEach(angular.mock.module(typesModule.name, function ($provide) {
+			settingsFactory = {
+				preferredTypeChart: 'chart1',
+				availableTypeCharts: [
+					{ id: 'chart1', display: 'Chart 1' },
+					{ id: 'chart2', display: 'Chart 2' },
+				],
+			};
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
 		}));
 

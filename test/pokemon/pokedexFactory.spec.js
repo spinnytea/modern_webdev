@@ -5,9 +5,9 @@ define([
 	'angular-mocks',
 ], function (angular, _, pokedexModule) {
 	return describe('Pokedex Factory', function () {
-		var pokedex;
-		var typesFactory = { chart: undefined };
+		var pokedex, typesFactory;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
+			typesFactory = { chart: undefined };
 			$provide.value('po_ke_type.types.factory', typesFactory);
 		}));
 		beforeEach(angular.mock.inject(['po_ke_type.pokedex.factory', function (_pokedex_) {

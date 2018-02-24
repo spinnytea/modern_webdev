@@ -4,8 +4,9 @@ define([
 	'angular-mocks',
 ], function (angular, pokedexModule) {
 	return describe('Pokedex Controller', function () {
-		var pokedexFactory = { list: ['1234'] };
+		var pokedexFactory;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
+			pokedexFactory = { list: ['1234'] };
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
 		}));
 

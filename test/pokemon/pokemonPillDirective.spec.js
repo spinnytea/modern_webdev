@@ -4,8 +4,9 @@ define([
 	'angular-mocks',
 ], function (angular, pokedexModule) {
 	return describe('Pokemon Pill Directive', function () {
-		var localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
+		var localStorageService;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
+			localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
 			$provide.value('localStorageService', localStorageService);
 		}));
 

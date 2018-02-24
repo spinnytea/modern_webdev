@@ -7,16 +7,11 @@ define([
 	return describe('Team Controller', function () {
 		var MON_1 = { name: 'Mon 1' };
 		var MON_2 = 'Mon 2';
-		var localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
-		var pokedexFactory = { list: ['asdf'] };
-		var teamFactory;
-		beforeEach(function () {
-			// HACK why does this init ned to be in it's own function?
-			// - why can't it be in the angular.mock.module block?
-			// - shouldn't the beforeEach's be executed in order?
-			teamFactory = [MON_1];
-		});
+		var localStorageService, pokedexFactory, teamFactory;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
+			localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
+			pokedexFactory = { list: ['asdf'] };
+			teamFactory = [MON_1];
 			$provide.value('localStorageService', localStorageService);
 			$provide.value('bindKeys', bindKeys);
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);

@@ -5,12 +5,12 @@ define([
 	'angular-mocks',
 ], function (angular, _, pokedexModule) {
 	return describe('Dex Gen Filter', function () {
-		var dexGen;
-		var localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
+		var dexGen, localStorageService;
 		var array = _.fill(new Array(750), null).map(function (v, idx) {
 			return { number: idx+1 };
 		});
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
+			localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
 			$provide.value('localStorageService', localStorageService);
 		}));
 		beforeEach(angular.mock.inject(['$filter', function ($filter) {
