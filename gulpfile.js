@@ -1,5 +1,6 @@
 'use strict';
 var gulp = require('gulp');
+var Server = require('karma').Server;
 var path = require('path');
 var requirejs = require('requirejs');
 // gulp deps
@@ -27,26 +28,40 @@ var argv = require('yargs')
 	.command('server', 'build and start dev server')
 	.example('npx gulp buildd server', 'start continuous build and dev server')
 	.example('npx gulp clean:vendor', 'just clean vendor while tinkering with deployment')
-	.option('m', {
+	.option('skipUglify', {
 		describe: 'skip source minification',
-		alias: 'skipUglify',
+		alias: 'm',
 		type: 'boolean',
 		default: false,
-		group: 'Options:',
+		group: 'Build:',
 	})
-	.option('p', {
+	.option('port', {
 		describe: 'dev server port',
-		alias: 'port',
+		alias: 'p',
 		type: 'number',
 		default: 3000,
-		group: 'Options:',
+		group: 'Build:',
 	})
-	.option('h', {
-		alias: 'help',
+	.option('coverage', {
+		describe: 'run coverage report',
+		alias: 'c',
+		type: 'boolean',
+		default: false,
+		group: 'Test:',
+	})
+	.option('autoWatch', {
+		describe: 'autoWatch; run in continuous mode',
+		alias: 'w',
+		type: 'boolean',
+		default: false,
+		group: 'Test:',
+	})
+	.option('help', {
+		alias: 'h',
 		group: 'System:',
 	})
-	.option('v', {
-		alias: 'version',
+	.option('version', {
+		alias: 'v',
 		group: 'System:',
 	})
 	.demandCommand(1, 'You need to specify at least one gulp task.')
@@ -220,6 +235,27 @@ gulp.task('build:vendor', function () {
 		return gulp.src(src).pipe(gulp.dest(path.join(dist.vendor, dest)));
 	}));
 });
+
+
+// test
+
+ gulp.task('test', function (done) {
+	var options = {
+		configFile: __dirname + '/karma.conf.js',
+	};
+	if(argv.coverage) {
+		options.autoWatch = false;
+		options.singleRun = true;
+		options.reporters = ['nyan', 'coverage', 'junit'];
+	}
+	// NOTE autoWatch is set afterwards, so we can use `-cw` to coverage and watch
+	if(argv.autoWatch) {
+		options.autoWatch = true;
+		options.singleRun = false;
+	}
+
+	new Server(options, done).start();
+ });
 
 
 // clean up workspace

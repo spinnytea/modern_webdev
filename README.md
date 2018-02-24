@@ -21,7 +21,6 @@ Stretch Goals
 1. package data/*.json into a data requirejs lib
 1. remove eslint-plugin-requirejs, why not just use env: amd: true
 1. prune node packages
-1. look for other html linters
 1. split utilsModule into multiple files
 1. try karma-jasmine-html-reporter
 
