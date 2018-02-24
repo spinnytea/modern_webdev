@@ -4,9 +4,10 @@
   "description": "modern libraries for web development",
   "main": "index.js",
   "scripts": {
-    "start": "gulp server",
     "build": "gulp build",
-    "test": "gulp test -c"
+    "clean": "gulp clean",
+    "start": "gulp server",
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
