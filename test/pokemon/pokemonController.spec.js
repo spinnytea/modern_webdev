@@ -10,7 +10,10 @@ define([
 			// HACK why does this init ned to be in it's own function?
 			// - why can't it be in the angular.mock.module block?
 			// - shouldn't the beforeEach's be executed in order?
-			pokedexFactory = { list: [] };
+			pokedexFactory = {
+				list: [],
+				calculateMaxDamageRate: jasmine.createSpy('calculateMaxDamageRate').and.returnValue(1),
+			};
 			teamFactory = [];
 		});
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
@@ -88,15 +91,66 @@ define([
 			}); // end awkward params
 
 			it('invalid mon', function () {
+				pokedexFactory.list.push({ name: 'Is a Mon' });
 				$routeParams.name = 'Not a Mon';
 				initController();
 				expect($scope.mon).toBe(undefined);
 				expect(Object.keys($scope)).toEqual(['mon']);
 			});
 
-			it('attacking');
+			it('valid mon', function () {
+				var MON = { name: 'Mon' };
+				pokedexFactory.list.push(MON);
+				$routeParams.name = MON.name;
+				initController();
+				expect($scope.mon).toBe(MON);
+				expect(Object.keys($scope)).toEqual(['mon', 'attacking', 'defending']);
+			});
 
-			it('defending');
+			describe('attacking and defending', function () {
+				var MON = { name: 'Mon' };
+				var TEAM_1 = { name: 'Team 1' };
+				var TEAM_2 = { name: 'Team 2' };
+				beforeEach(function () {
+					pokedexFactory.list.push(MON);
+					$routeParams.name = MON.name;
+					teamFactory.push(TEAM_1);
+					teamFactory.push(TEAM_2);
+					initController();
+					expect(Object.keys($scope)).toContain('attacking');
+					expect(Object.keys($scope)).toContain('defending');
+				});
+
+				it('attacking', function () {
+					expect(pokedexFactory.calculateMaxDamageRate).toHaveBeenCalledWith(MON, TEAM_1);
+					expect(pokedexFactory.calculateMaxDamageRate).toHaveBeenCalledWith(MON, TEAM_2);
+					expect($scope.attacking).not.toContain(MON);
+					expect($scope.attacking).not.toContain(TEAM_1);
+					expect($scope.attacking).not.toContain(TEAM_2);
+					expect($scope.attacking).toEqual([{
+						rate: 1,
+						name: 'Team 1',
+					}, {
+						rate: 1,
+						name: 'Team 2',
+					}]);
+				});
+
+				it('defending', function () {
+					expect(pokedexFactory.calculateMaxDamageRate).toHaveBeenCalledWith(TEAM_1, MON);
+					expect(pokedexFactory.calculateMaxDamageRate).toHaveBeenCalledWith(TEAM_2, MON);
+					expect($scope.defending).not.toContain(MON);
+					expect($scope.defending).not.toContain(TEAM_1);
+					expect($scope.defending).not.toContain(TEAM_2);
+					expect($scope.defending).toEqual([{
+						rate: 1,
+						name: 'Team 1',
+					}, {
+						rate: 1,
+						name: 'Team 2',
+					}]);
+				});
+			}); // end attacking and defending
 		}); // end controller
 
 		it('template'); // end template
