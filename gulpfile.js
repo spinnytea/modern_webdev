@@ -241,7 +241,7 @@ gulp.task('build:vendor', function () {
 
  gulp.task('test', function (done) {
 	var options = {
-		configFile: __dirname + '/karma.conf.js',
+		configFile: __dirname + '/test/karma.conf.js',
 	};
 	if(argv.coverage) {
 		options.autoWatch = false;
