@@ -13,6 +13,7 @@ define(['angular', 'lodash'], function (angular, _) {
 	// });
 
 	utilsModule.factory('bindKeys', ['hotkeys', function (hotkeys) {
+		// XXX allow fn to be a string and use $scope[fn]?
 		return function BindKeys($scope, keys) {
 			var bound = hotkeys.bindTo($scope);
 			_.forEach(keys, function (fn, key) {
