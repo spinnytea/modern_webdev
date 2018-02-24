@@ -31,6 +31,7 @@ var options = {
     'karma-chrome-launcher',
     'karma-coverage',
     'karma-jasmine',
+    'karma-jasmine-diff-reporter',
     'karma-junit-reporter',
     'karma-phantomjs-launcher',
     'karma-nyan-reporter',
@@ -76,6 +77,10 @@ var options = {
   // possible values: 'dots', 'progress'
   // available reporters: https://npmjs.org/browse/keyword/karma-reporter
   reporters: ['nyan', 'junit'],
+  // jasmine-diff looks aweful and doesn't play nice with nyan
+  // but sometimes the output is tricky, and the diff is dead useful
+  // it's just a tool that needs to be used as-needed; it's not good for use all the time
+  // reporters: ['jasmine-diff'],
 
   // karma-junit-reporter configuration
   junitReporter: {

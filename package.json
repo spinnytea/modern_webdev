@@ -72,6 +72,7 @@
     "karma-firefox-launcher": "^1.1.0",
     "karma-ie-launcher": "^1.0.0",
     "karma-jasmine": "^1.1.1",
+    "karma-jasmine-diff-reporter": "^1.1.1",
     "karma-junit-reporter": "^1.2.0",
     "karma-nyan-reporter": "^0.2.5",
     "karma-phantomjs-launcher": "^1.0.4",
