@@ -3,8 +3,7 @@ define(['angular'], function (angular) {
 
 	squareDirectiveMod.directive('typeSquare', [SquareDirective]);
 
-	// XXX ? po_ke_type.types.square.directive.controller
-	squareDirectiveMod.controller('po_ke_type.types.square.controller', [
+	squareDirectiveMod.controller('po_ke_type.types.square.directive.controller', [
 		'$scope', 'po_ke_type.types.factory',
 		SquareController,
 	]);
@@ -17,7 +16,7 @@ define(['angular'], function (angular) {
 			replace: true,
 			scope: { type: '=typeSquare' },
 			templateUrl: 'types/squareDirective.html',
-			controller: 'po_ke_type.types.square.controller',
+			controller: 'po_ke_type.types.square.directive.controller',
 		};
 	}
 

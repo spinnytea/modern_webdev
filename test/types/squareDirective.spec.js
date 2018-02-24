@@ -9,7 +9,7 @@ define([
 		describe('controller', function () {
 			var $scope = { type: 'ground' };
 			beforeEach(angular.mock.inject(['$controller', function ($controller) {
-				$controller('po_ke_type.types.square.controller', {
+				$controller('po_ke_type.types.square.directive.controller', {
 					'$scope': $scope,
 				});
 			}]));
