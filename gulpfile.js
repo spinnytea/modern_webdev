@@ -20,9 +20,10 @@ var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 
 var argv = require('yargs')
-	.usage('Usage: npx gulp task [tasks] [options]')
+	.usage('Usage: npx gulp [tasks] [options]')
 	.command('clean', 'remove dist')
-	.command('lint', 'run all lint commands')
+	.command('lint', 'run all linters')
+	.command('test', 'run karma')
 	.command('build', 'run all build commands')
 	.command('buildd', 'continuous full build, rebuild when files change')
 	.command('server', 'build and start dev server')
@@ -43,14 +44,14 @@ var argv = require('yargs')
 		group: 'Build:',
 	})
 	.option('coverage', {
-		describe: 'run coverage report',
+		describe: 'enable coverage report',
 		alias: 'c',
 		type: 'boolean',
 		default: false,
 		group: 'Test:',
 	})
-	.option('autoWatch', {
-		describe: 'autoWatch; run in continuous mode',
+	.option('watch', {
+		describe: 'continuous mode, re-run when files change',
 		alias: 'w',
 		type: 'boolean',
 		default: false,
@@ -110,6 +111,7 @@ gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
 
 // continuous build
 // this doesn't have dependencies so it still runs even with lint failures at start
+// TODO can we make this work with `build -w` instead of `buildd`?
 gulp.task('buildd', function () {
 	gulp.watch(resources.js, ['build:js']);
 	gulp.watch(resources.html, ['build:html']);
@@ -243,13 +245,12 @@ gulp.task('test', function (done) {
 	var options = {
 		configFile: __dirname + '/test/karma.conf.js',
 	};
+
 	if(argv.coverage) {
-		options.autoWatch = false;
-		options.singleRun = true;
 		options.reporters = ['nyan', 'coverage', 'junit'];
 	}
-	// NOTE autoWatch is set afterwards, so we can use `-cw` to coverage and watch
-	if(argv.autoWatch) {
+
+	if(argv.watch) {
 		options.autoWatch = true;
 		options.singleRun = false;
 	}
