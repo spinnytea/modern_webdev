@@ -95,4 +95,5 @@ VSCode plugins
 <dt>Nord</dt>
 <dt>Rainbow Brackets</dt>
 <dt>Rainbow CSV</dt>
+<dt>Intellisense for CSSS in HTML</dt>
 </dl>

@@ -1,4 +1,4 @@
-define([], function () {
+define(['lodash'], function (_) {
 		// (gen 1 is position 1)
 		var MAX_NUM = [0, 151, 251, 386, 494, 649, 721];
 
@@ -6,7 +6,7 @@ define([], function () {
 
 	function DexGenFilter(localStorageService) {
 		return function dexGen(array) {
-			if(!array) return [];
+			if(!_.isArray(array)) return [];
 			var gen = +(localStorageService.get('dexGen') || '6');
 			var maxNum = MAX_NUM[gen];
 			return array.filter(function (mon) {
