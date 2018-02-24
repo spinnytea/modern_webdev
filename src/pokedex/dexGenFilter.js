@@ -1,6 +1,6 @@
 define(['lodash'], function (_) {
-		// (gen 1 is position 1)
-		var MAX_NUM = [0, 151, 251, 386, 494, 649, 721];
+	// (gen 1 is position 1)
+	var MAX_NUM = [0, 151, 251, 386, 494, 649, 721];
 
 	return ['localStorageService', DexGenFilter];
 

@@ -12,7 +12,7 @@ define([], function () {
 		};
 
 		$scope.clearLocalStorage = function () {
-      return localStorageService.clearAll();
+			return localStorageService.clearAll();
 		};
 	}
 });

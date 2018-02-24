@@ -8,15 +8,17 @@ define([
 	'./pokemonPillDirective',
 	'./teamController',
 	'./teamFactory',
-], function (angular,
-		bulbapediaDirective,
-		dexGenFilter,
-		pokedexController,
-		pokedexFactory,
-		pokemonController,
-		pokemonPillDirective,
-		teamController,
-		teamFactory) {
+], function (
+	angular,
+	bulbapediaDirective,
+	dexGenFilter,
+	pokedexController,
+	pokedexFactory,
+	pokemonController,
+	pokemonPillDirective,
+	teamController,
+	teamFactory
+) {
 	var pokedexModule = angular.module('po_ke_type.pokedex', []);
 
 	pokedexModule.directive('bulbapedia', bulbapediaDirective);

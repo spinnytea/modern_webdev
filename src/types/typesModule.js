@@ -6,7 +6,15 @@ define([
 	'./squareDirective',
 	'./typeChartController',
 	'./typesFactory',
-], function (angular, _, rateDisplayFilter, rateStyleFilter, squareDirective, typeChartController, typesFactory) {
+], function (
+	angular,
+	_,
+	rateDisplayFilter,
+	rateStyleFilter,
+	squareDirective,
+	typeChartController,
+	typesFactory
+) {
 	var typesModule = angular.module('po_ke_type.types', [
 		squareDirective.name,
 	]);

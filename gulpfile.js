@@ -134,9 +134,9 @@ gulp.task('server', ['build'], function () {
 
 gulp.task('lint:js', function () {
 	return gulp.src(['**/*.js', '!node_modules/**/*', '!dist/**/*', '!coverage/**/*'])
-	.pipe(eslint())
-	.pipe(eslint.format())
-	.pipe(eslint.failAfterError());
+		.pipe(eslint())
+		.pipe(eslint.format())
+		.pipe(eslint.failAfterError());
 });
 gulp.task('build:js', ['lint:js'], function (done) {
 	requirejs.optimize(AMD_CONFIG, function () {
@@ -174,9 +174,9 @@ var AMD_CONFIG = {
 
 gulp.task('lint:html', function () {
 	return gulp.src(resources.html)
-	.pipe(htmlhint('.htmlhintrc'))
-	.pipe(htmlhint.reporter())
-	.pipe(htmlhint.failOnError());
+		.pipe(htmlhint('.htmlhintrc'))
+		.pipe(htmlhint.reporter())
+		.pipe(htmlhint.failOnError());
 });
 gulp.task('build:html', ['lint:html'], function () {
 	return gulp.src(resources.html)
@@ -239,7 +239,7 @@ gulp.task('build:vendor', function () {
 
 // test
 
- gulp.task('test', function (done) {
+gulp.task('test', function (done) {
 	var options = {
 		configFile: __dirname + '/test/karma.conf.js',
 	};
@@ -255,7 +255,7 @@ gulp.task('build:vendor', function () {
 	}
 
 	new Server(options, done).start();
- });
+});
 
 
 // clean up workspace
