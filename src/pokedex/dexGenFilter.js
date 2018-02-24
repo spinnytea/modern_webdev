@@ -11,7 +11,7 @@ define(['lodash'], function (_) {
 			var maxNum = MAX_NUM[gen];
 			return array.filter(function (mon) {
 				// filter out mega evolutions unless we are Gen VI forward
-				if(gen < 6 && mon.specialname.indexOf('Mega') === 0) return false;
+				if(gen < 6 && _.startsWith(mon.specialname, 'Mega')) return false;
 				return mon.number <= maxNum;
 			});
 		};

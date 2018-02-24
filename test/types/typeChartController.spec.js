@@ -5,7 +5,6 @@ define([
 	'angular-mocks',
 ], function (angular, _, typesModule) {
 	return describe('Type Chart Controller', function () {
-		var $scope;
 		var settingsFactory = {
 			preferredTypeChart: 'chart1',
 			availableTypeCharts: [
@@ -13,16 +12,19 @@ define([
 				{ id: 'chart2', display: 'Chart 2' },
 			],
 		};
-		beforeEach(angular.mock.module(typesModule.name));
-		beforeEach(angular.mock.inject(['$controller', function ($controller) {
-			$scope = {};
-			$controller('po_ke_type.types.chart.controller', {
-				'$scope': $scope,
-				'po_ke_type.site.settings.factory': settingsFactory,
-			});
-		}]));
+		beforeEach(angular.mock.module(typesModule.name, function ($provide) {
+			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
+		}));
 
 		describe('controller', function () {
+			var $scope;
+			beforeEach(angular.mock.inject(['$controller', function ($controller) {
+				$scope = {};
+				$controller('po_ke_type.types.chart.controller', {
+					'$scope': $scope,
+				});
+			}]));
+
 			it('init', function () {
 				expect($scope.whichChart).toBe('chart1');
 				expect($scope.chartName).toBe('Chart 1');

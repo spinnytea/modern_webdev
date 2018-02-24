@@ -8,7 +8,7 @@ define([
 		var dexGen;
 		var localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
 		var array = _.fill(new Array(750), null).map(function (v, idx) {
-			return { number: idx+1, specialname: [] };
+			return { number: idx+1 };
 		});
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			$provide.value('localStorageService', localStorageService);
