@@ -8,6 +8,7 @@ TODO
 1. review documentation
 1. zip dist
     1. package data/*.json into a data requirejs lib
+    1. this is meant to be unpacked and opened from the filesystem (not hosted)
 1. iterate on ui
     1. bootstrap tour
     1. ngAnimate the dex two searches
@@ -28,7 +29,12 @@ Stretch Goals
     1. what isn't being used, make a demo
     1. what do we need but doesn't have a demo
     1. what do we not need
+    1. what isn't included here that we need to pull in
 1. split utilsModule into multiple files
+1. TODO build theme directly into main.less
+    * @import "bootstrap/less/bootstrap.less";
+    * @import "bootswatch/theme/variables.less";
+    * @import "bootswatch/theme/bootswatch.less";
 
 What's in the project
 ---------------------

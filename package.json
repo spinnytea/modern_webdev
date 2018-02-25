@@ -25,6 +25,7 @@
     "angular-local-storage": "^0.7.1",
     "angular-route": "^1.6.0",
     "angular-sanitize": "^1.6.0",
+    "angular-ui-bootstrap": "^2.5.6",
     "bluebird": "^3.5.1",
     "bootstrap": "^3.0.0",
     "bootstrap-tour": "^0.12.0",
