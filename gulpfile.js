@@ -1,9 +1,11 @@
 'use strict';
+var colors = require('ansi-colors');
 var gulp = require('gulp');
 var Server = require('karma').Server;
 var path = require('path');
 var requirejs = require('requirejs');
 // gulp deps
+var bootlint = require('gulp-bootlint');
 var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var del = require('del');
@@ -78,7 +80,7 @@ var dist = Object.freeze({
 });
 var resources = Object.freeze({
 	js: 'src/**/*.js',
-	html: 'src/**/*.html',
+	html: ['src/**/*.html', 'static/index.html'],
 	css: ['src/**/*.less', 'src/**/*.css'],
 	static: 'static/**/*',
 });
@@ -178,7 +180,21 @@ gulp.task('lint:html', function () {
 	return gulp.src(resources.html)
 		.pipe(htmlhint('.htmlhintrc'))
 		.pipe(htmlhint.reporter())
-		.pipe(htmlhint.failOnError());
+		.pipe(htmlhint.failOnError())
+		.pipe(bootlint({
+			stoponerror: true,
+			disabledIds: ['W001', 'W002', 'W003', 'W005', 'E001', 'E003'],
+			reportFn: function (file, lint, isError, isWarning, errorLocation) {
+				var message = [colors.bold((isError) ? colors.red('[ERROR]') : colors.yellow('[WARN] '))];
+				message.push(file.path);
+				if (errorLocation) {
+					message.push('(line:' + (errorLocation.line + 1) + ', col:' + (errorLocation.column + 1) + ')');
+				}
+				message.push(colors.inverse(' ' + lint.id + ' '));
+				message.push(lint.message);
+				console.log(message.join(' '));
+			},
+		}));
 });
 gulp.task('build:html', ['lint:html'], function () {
 	return gulp.src(resources.html)

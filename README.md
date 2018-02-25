@@ -7,19 +7,27 @@ TODO
 1. karma + html
 1. review documentation
 1. zip dist
+    1. package data/*.json into a data requirejs lib
 1. iterate on ui
     1. bootstrap tour
     1. ngAnimate the dex two searches
-    1. filter icon in search bar
+    1. filter icon in search bar (show in settings)
+    1. settings to show team
+    1. styleguide linter?
+1. clean up gulp file
+    1. build scripts?
+    1. file paths used throughout, not defined at top
 
 Stretch Goals
 -------------
 
 1. review pokedex module (pokemon / team), it was all copypasta
-1. load vendor libs with requires, not static on page
-1. package data/*.json into a data requirejs lib
+1. load vendor libs with requires, not static on page (the hard part is angular)
 1. remove eslint-plugin-requirejs, why not just use env: amd: true
 1. prune node packages
+    1. what isn't being used, make a demo
+    1. what do we need but doesn't have a demo
+    1. what do we not need
 1. split utilsModule into multiple files
 
 What's in the project
