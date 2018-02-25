@@ -1,5 +1,14 @@
-define([], function () {
-	return [PokemonPillDirective];
+define(['angular'], function (angular) {
+	var pokemonPillMod = angular.module('po_ke_type.types.pokemonPill.directive', []);
+
+	pokemonPillMod.directive('pokemonPill', [PokemonPillDirective]);
+
+	pokemonPillMod.controller('po_ke_type.types.pokemonPill.directive.controller', [
+		'$scope', 'localStorageService',
+		PokemonPillController,
+	]);
+
+	return pokemonPillMod;
 
 	function PokemonPillDirective() {
 		return {
@@ -7,7 +16,7 @@ define([], function () {
 			replace: true,
 			scope: { mon: '=pokemonPill' },
 			templateUrl: 'pokedex/pokemonPillDirective.html',
-			controller: ['$scope', 'localStorageService', PokemonPillController],
+			controller: 'po_ke_type.types.pokemonPill.directive.controller',
 		};
 	}
 

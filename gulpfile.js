@@ -1,5 +1,6 @@
 'use strict';
 var gulp = require('gulp');
+var Server = require('karma').Server;
 var path = require('path');
 var requirejs = require('requirejs');
 // gulp deps
@@ -18,36 +19,50 @@ var noop = require('gulp-noop');
 var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 
-// TODO required gulp commnad
 var argv = require('yargs')
-	.usage('Usage: npx gulp task [tasks] [options]')
+	.usage('Usage: npx gulp [tasks] [options]')
 	.command('clean', 'remove dist')
-	.command('lint', 'run all lint commands')
+	.command('lint', 'run all linters')
+	.command('test', 'run karma')
 	.command('build', 'run all build commands')
 	.command('buildd', 'continuous full build, rebuild when files change')
 	.command('server', 'build and start dev server')
 	.example('npx gulp buildd server', 'start continuous build and dev server')
 	.example('npx gulp clean:vendor', 'just clean vendor while tinkering with deployment')
-	.option('m', {
+	.option('skipUglify', {
 		describe: 'skip source minification',
-		alias: 'skipUglify',
+		alias: 'm',
 		type: 'boolean',
 		default: false,
-		group: 'Options:',
+		group: 'Build:',
 	})
-	.option('p', {
+	.option('port', {
 		describe: 'dev server port',
-		alias: 'port',
+		alias: 'p',
 		type: 'number',
 		default: 3000,
-		group: 'Options:',
+		group: 'Build:',
 	})
-	.option('h', {
-		alias: 'help',
+	.option('coverage', {
+		describe: 'enable coverage report',
+		alias: 'c',
+		type: 'boolean',
+		default: false,
+		group: 'Test:',
+	})
+	.option('watch', {
+		describe: 'continuous mode, re-run when files change',
+		alias: 'w',
+		type: 'boolean',
+		default: false,
+		group: 'Test:',
+	})
+	.option('help', {
+		alias: 'h',
 		group: 'System:',
 	})
-	.option('v', {
-		alias: 'version',
+	.option('version', {
+		alias: 'v',
 		group: 'System:',
 	})
 	.demandCommand(1, 'You need to specify at least one gulp task.')
@@ -69,9 +84,11 @@ var resources = Object.freeze({
 });
 var vendor = [
 	['angular', 'node_modules/angular/angular.min.js'],
+	['angular', 'node_modules/angular-animate/angular-animate.min.js'],
 	['angular', 'node_modules/angular-local-storage/dist/angular-local-storage.min.js'],
 	['angular', 'node_modules/angular-hotkeys/build/*.min.*'],
 	['angular', 'node_modules/angular-route/angular-route.min.js'],
+	['angular', 'node_modules/angular-sanitize/angular-sanitize.min.js'],
 	['bootstrap', 'node_modules/bootstrap/dist/js/bootstrap.min.js'],
 	['bootstrap/fonts', 'node_modules/bootstrap/dist/fonts/*'],
 	['bootstrap', 'node_modules/bootswatch/*/bootstrap.min.css'],
@@ -94,6 +111,7 @@ gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
 
 // continuous build
 // this doesn't have dependencies so it still runs even with lint failures at start
+// TODO can we make this work with `build -w` instead of `buildd`?
 gulp.task('buildd', function () {
 	gulp.watch(resources.js, ['build:js']);
 	gulp.watch(resources.html, ['build:html']);
@@ -117,10 +135,10 @@ gulp.task('server', ['build'], function () {
 // build tasks
 
 gulp.task('lint:js', function () {
-	return gulp.src(['**/*.js', '!node_modules/**/*', '!dist/**/*'])
-	.pipe(eslint())
-	.pipe(eslint.format())
-	.pipe(eslint.failAfterError());
+	return gulp.src(['**/*.js', '!node_modules/**/*', '!dist/**/*', '!coverage/**/*'])
+		.pipe(eslint())
+		.pipe(eslint.format())
+		.pipe(eslint.failAfterError());
 });
 gulp.task('build:js', ['lint:js'], function (done) {
 	requirejs.optimize(AMD_CONFIG, function () {
@@ -158,9 +176,9 @@ var AMD_CONFIG = {
 
 gulp.task('lint:html', function () {
 	return gulp.src(resources.html)
-	.pipe(htmlhint('.htmlhintrc'))
-	.pipe(htmlhint.reporter())
-	.pipe(htmlhint.failOnError());
+		.pipe(htmlhint('.htmlhintrc'))
+		.pipe(htmlhint.reporter())
+		.pipe(htmlhint.failOnError());
 });
 gulp.task('build:html', ['lint:html'], function () {
 	return gulp.src(resources.html)
@@ -221,12 +239,38 @@ gulp.task('build:vendor', function () {
 });
 
 
+// test
+
+gulp.task('test', function (done) {
+	var options = {
+		configFile: __dirname + '/test/karma.conf.js',
+	};
+
+	if(argv.coverage) {
+		options.reporters = ['nyan', 'coverage', 'junit'];
+	}
+
+	if(argv.watch) {
+		options.autoWatch = true;
+		options.singleRun = false;
+	}
+
+	new Server(options, done).start();
+});
+
+
 // clean up workspace
 
-gulp.task('clean', function () {
+gulp.task('clean', ['clean:dist', 'clean:coverage'], function () {});
+
+gulp.task('clean:dist', function () {
 	return del(dist.root);
 });
 
 gulp.task('clean:vendor', function () {
 	return del(dist.vendor);
+});
+
+gulp.task('clean:coverage', function () {
+	return del('coverage');
 });

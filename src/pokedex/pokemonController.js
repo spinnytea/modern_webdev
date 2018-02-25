@@ -4,16 +4,14 @@ define(['lodash'], function (_) {
 		PokemonController,
 	];
 
+	// XXX show evolutions? no, not unless we can get a source that's super succinct
+	// XXX attack types? no, this gets complicated very quickly
 	function PokemonController($scope, $routeParams, pokedex, team) {
-		var name = ($routeParams.name || '').toLowerCase();
-		var specialname = (decodeURI($routeParams.specialname || '')).toLowerCase();
-		// show evolutions? no, not unless we can get a source that's super succinct
-		// attack types? no, this gets complicated very quickly
-
+		var name = _.toLower($routeParams.name);
+		var specialname = _.toLower(decodeURI($routeParams.specialname || ''));
 		$scope.mon = _.find(pokedex.list, function (mon) {
-			return mon.name.toLowerCase() === name && mon.specialname.toLowerCase() === specialname;
+			return _.toLower(mon.name) === name && _.toLower(mon.specialname) === specialname;
 		});
-		// TODO if ! mon, do something better than inline oops
 		if(!$scope.mon) return;
 
 		// when MON is attacking

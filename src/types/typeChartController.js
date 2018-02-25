@@ -1,10 +1,10 @@
 define(['lodash'], function (_) {
 	return [
-		'$scope', 'po_ke_type.site.settings', 'po_ke_type.types.factory',
-		TypesController,
+		'$scope', 'po_ke_type.site.settings.factory', 'po_ke_type.types.factory',
+		TypeChartController,
 	];
 
-	function TypesController($scope, settings, types) {
+	function TypeChartController($scope, settings, types) {
 		pickChart(settings.preferredTypeChart);
 		$scope.availableTypeCharts = settings.availableTypeCharts;
 		$scope.types = types;

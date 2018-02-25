@@ -17,26 +17,28 @@ require.config({
 // eslint-disable-next-line requirejs/no-multiple-define
 define([
 	'angular',
-	'./pokedex/pokedex',
-	'./site/site',
-	'./types/types',
-	'./utils',
-], function (angular, pokedex, site, types, utils) {
+	'./pokedex/pokedexModule',
+	'./site/siteModule',
+	'./types/typesModule',
+	'./utils/utilsModule',
+], function (angular, pokedexModule, siteModule, typesModule, utilsModule) {
 	var module = angular.module('po_ke_type', [
-		pokedex.name,
-		site.name,
-		types.name,
-		utils.name,
+		pokedexModule.name,
+		siteModule.name,
+		typesModule.name,
+		utilsModule.name,
 		'templates',
 		'LocalStorageModule',
+		'ngAnimate',
 		'ngRoute',
+		'ngSanitize',
 	]);
 
 	module.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 		$locationProvider.hashPrefix('');
 		$routeProvider
 			.when('/', { templateUrl: 'site/home.html', controller: 'po_ke_type.site.home.controller' })
-			.when('/types', { templateUrl: 'types/types.html', controller: 'po_ke_type.types.controller' })
+			.when('/types', { templateUrl: 'types/types.html', controller: 'po_ke_type.types.chart.controller' })
 			.when('/pokedex', { templateUrl: 'pokedex/pokedex.html', controller: 'po_ke_type.pokedex.controller' })
 			.when('/pokedex/:name/:specialname?', { templateUrl: 'pokedex/pokemon.html', controller: 'po_ke_type.pokedex.pokemon.controller' })
 			.when('/team', { templateUrl: 'pokedex/team.html', controller: 'po_ke_type.pokedex.team.controller' })

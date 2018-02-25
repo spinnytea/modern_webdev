@@ -1,5 +1,5 @@
 define(['angular', 'lodash'], function (angular, _) {
-	var module = angular.module('po_ke_type.utils', [
+	var utilsModule = angular.module('po_ke_type.utils', [
 		'ngRoute',
 		'cfp.hotkeys',
 	]);
@@ -12,7 +12,8 @@ define(['angular', 'lodash'], function (angular, _) {
 	// 	};
 	// });
 
-	module.factory('bindKeys', ['hotkeys', function (hotkeys) {
+	utilsModule.factory('bindKeys', ['hotkeys', function (hotkeys) {
+		// XXX allow fn to be a string and use $scope[fn]?
 		return function BindKeys($scope, keys) {
 			var bound = hotkeys.bindTo($scope);
 			_.forEach(keys, function (fn, key) {
@@ -25,7 +26,7 @@ define(['angular', 'lodash'], function (angular, _) {
 		};
 	}]);
 
-	module.directive('btn', [function () {
+	utilsModule.directive('btn', [function () {
 		return {
 			restrict: 'C',
 			link: function BtnDisabledTitleLink($scope, elem, attr) {
@@ -39,7 +40,7 @@ define(['angular', 'lodash'], function (angular, _) {
 		};
 	}]);
 
-	module.filter('padNumber', function () {
+	utilsModule.filter('padNumber', function () {
 		return function (input, length) {
 			input = +input;
 			length = +length;
@@ -54,7 +55,7 @@ define(['angular', 'lodash'], function (angular, _) {
 		};
 	});
 
-	module.filter('filterAll', ['$filter', function ($filter) {
+	utilsModule.filter('filterAll', ['$filter', function ($filter) {
 		$filter = $filter('filter');
 		return function FilterAll(array, query) {
 			if(!_.isString(query)) return array;
@@ -69,7 +70,7 @@ define(['angular', 'lodash'], function (angular, _) {
 		};
 	}]);
 
-	module.directive('areYouSure', ['$q', function ($q) {
+	utilsModule.directive('areYouSure', ['$q', function ($q) {
 		return {
 			restrict: 'A',
 			replace: true,
@@ -112,5 +113,5 @@ define(['angular', 'lodash'], function (angular, _) {
 		}
 	}]);
 
-	return module;
+	return utilsModule;
 });

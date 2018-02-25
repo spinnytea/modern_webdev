@@ -29,7 +29,7 @@ define(['lodash'], function (_) {
 
 			// check for exact matches (there aren't many)
 			var filter = $scope.nested.filter.toLowerCase();
-			var exactList = list.filter(function (mon) { return mon.name.toLowerCase() === filter; });
+			var exactList = list.filter(function (mon) { return _.toLower(mon.name) === filter; });
 			if(exactList.length) return exactList;
 
 			// if no exact matches, then return the full list

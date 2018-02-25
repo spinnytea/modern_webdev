@@ -1,6 +1,6 @@
 define([], function () {
 	return [
-		'$scope', 'po_ke_type.site.settings',
+		'$scope', 'po_ke_type.site.settings.factory',
 		HeadController,
 	];
 
