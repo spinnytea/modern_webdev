@@ -4,9 +4,7 @@ Modern WebDev
 TODO
 ----
 
-1. test debugger for chrome (vscode)
-1. test debugger for phantomjs (vscode)
-1. tests with html
+1. karma + html
 1. review documentation
 1. zip dist
 1. iterate on ui
@@ -70,7 +68,7 @@ VSCode plugins
 ### Dev Tools
 
 <dl>
-<dt>Debugger for Chrome, Debugger for Edge, Debugger for Firefox, Debugger for PhantomJS</dt>
+<dt>Debugger for Chrome, Debugger for Edge, Debugger for Firefox</dt>
 <dd>VSCode integration with browsers</dd>
 <dd>PhantomJS is always a contentious point, but if we can make first-pass testing quicker, then it's worthwhile</dd>
 <dd>There isn't an debugger for</dd>
