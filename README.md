@@ -4,24 +4,25 @@ Modern WebDev
 TODO
 ----
 
-1. document package.json (what do we do, which packages are involved)
-1. finish sample project, document which packages are for which parts
-1. test debugger for chrome
-1. test debugger for phantomjs
-1. review pokedex module (pokemon / team), it was all copypasta
-1. karma/jasmine
-1. istanbul
-1. bootstrap tour
-1. ngAnimate the dex two searches
+1. test debugger for chrome (vscode)
+1. test debugger for phantomjs (vscode)
+1. tests with html
+1. review documentation
 1. zip dist
+1. iterate on ui
+    1. bootstrap tour
+    1. ngAnimate the dex two searches
+    1. filter icon in search bar
 
 Stretch Goals
 -------------
 
+1. review pokedex module (pokemon / team), it was all copypasta
 1. load vendor libs with requires, not static on page
 1. package data/*.json into a data requirejs lib
 1. remove eslint-plugin-requirejs, why not just use env: amd: true
 1. prune node packages
+1. split utilsModule into multiple files
 
 What's in the project
 ---------------------
@@ -39,6 +40,9 @@ What's in the project
 <dd>express is something you can configure and launch directly from node (e.g. `node server.js`)</dd>
 <dd>gulp-live-server is a gulp wrapper around gulp-express (I guess they renamed it?)</dd>
 <dd>we want this for arbitrary webdev, and will live the target, but hopefully we can convery json to requirejs loading</dd>
+<dt>karma, karma-*</dt>
+<dd>test runner, runs js in actual browser</dd>
+<dd>plugins for coverage, multiple browsers, requirejs, jasmine</dd>
 </dl>
 
 ### UI Libraries
@@ -91,4 +95,5 @@ VSCode plugins
 <dt>Nord</dt>
 <dt>Rainbow Brackets</dt>
 <dt>Rainbow CSV</dt>
+<dt>Intellisense for CSSS in HTML</dt>
 </dl>

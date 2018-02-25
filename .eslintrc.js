@@ -11,6 +11,10 @@ module.exports = {
 		"comma-dangle": ["error", "always-multiline", { "functions": "never" }],
 		"computed-property-spacing": ["error", "never"],
 		"eqeqeq": ["error", "always"],
+		"indent": ["error", "tab", {
+			"SwitchCase": 1,
+			"FunctionDeclaration": { "parameters": 2 },
+		}],
 		"key-spacing": ["error", {
 			"beforeColon": false,
 			"afterColon": true,

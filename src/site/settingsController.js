@@ -1,6 +1,6 @@
 define([], function () {
 	return [
-		'$scope', 'localStorageService', 'po_ke_type.site.settings',
+		'$scope', 'localStorageService', 'po_ke_type.site.settings.factory',
 		SettingsController,
 	];
 
@@ -12,7 +12,7 @@ define([], function () {
 		};
 
 		$scope.clearLocalStorage = function () {
-      return localStorageService.clearAll();
+			return localStorageService.clearAll();
 		};
 	}
 });

@@ -21,22 +21,22 @@ define(['lodash'], function (_) {
 		}
 
 		// watch for changes in the list
-    $rootScope.$watch(function () { return team.length; }, function () {
-      if(team.length) {
-        localStorageService.set(STORAGE_KEY, team.map(function (mon) {
-          return _.pick(mon, 'name', 'specialname');
-        }));
+		$rootScope.$watch(function () { return team.length; }, function () {
+			if(team.length) {
+				localStorageService.set(STORAGE_KEY, team.map(function (mon) {
+					return _.pick(mon, 'name', 'specialname');
+				}));
 			}
 			else {
-        localStorageService.remove(STORAGE_KEY);
-      }
+				localStorageService.remove(STORAGE_KEY);
+			}
 		});
 
 		// watch for the list to be removed from local storage
-    $rootScope.$on('LocalStorageModule.notification.removeitem', function (event, args) {
-      if(args.key === STORAGE_KEY) {
-        team.splice(0);
-      }
+		$rootScope.$on('LocalStorageModule.notification.removeitem', function (event, args) {
+			if(args.key === STORAGE_KEY) {
+				team.splice(0);
+			}
 		});
 
 		return team;

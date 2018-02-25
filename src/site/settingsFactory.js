@@ -6,7 +6,7 @@ define(['json!data/themes.json'], function (themes) {
 	];
 
 	function SettingsFactory($rootScope, localStorageService,
-		defaultTheme, defaultPreferredTypeChart, defaultDexGen, defaultColorfulCards) {
+			defaultTheme, defaultPreferredTypeChart, defaultDexGen, defaultColorfulCards) {
 		var settings = {};
 
 		// index default values
