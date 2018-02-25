@@ -4,25 +4,25 @@ Modern WebDev
 TODO
 ----
 
-1. document package.json (what do we do, which packages are involved)
-1. finish sample project, document which packages are for which parts
-1. test debugger for chrome
-1. test debugger for phantomjs
-1. review pokedex module (pokemon / team), it was all copypasta
-1. bootstrap tour
-1. ngAnimate the dex two searches
-1. zip dist
+1. test debugger for chrome (vscode)
+1. test debugger for phantomjs (vscode)
 1. tests with html
+1. review documentation
+1. zip dist
+1. iterate on ui
+    1. bootstrap tour
+    1. ngAnimate the dex two searches
+    1. filter icon in search bar
 
 Stretch Goals
 -------------
 
+1. review pokedex module (pokemon / team), it was all copypasta
 1. load vendor libs with requires, not static on page
 1. package data/*.json into a data requirejs lib
 1. remove eslint-plugin-requirejs, why not just use env: amd: true
 1. prune node packages
 1. split utilsModule into multiple files
-1. try karma-jasmine-html-reporter
 
 What's in the project
 ---------------------
