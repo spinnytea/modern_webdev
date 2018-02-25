@@ -1,5 +1,9 @@
-define([], function () {
-	return [BulbapediaDirective];
+define(['angular'], function (angular) {
+	var bulbapediaMod = angular.module('po_ke_type.pokedex.bulbapedia.directive', []);
+
+	bulbapediaMod.directive('bulbapedia', [BulbapediaDirective]);
+
+	return bulbapediaMod;
 
 	function BulbapediaDirective() {
 		return {

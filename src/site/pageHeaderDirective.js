@@ -1,17 +1,21 @@
-define([], function () {
-	return [
-		PageHeaderDirective,
-	];
+define(['angular'], function (angular) {
+	var pageHeaderDirectiveMod = angular.module('po_ke_type.site.pageHeader.directive', []);
+
+	pageHeaderDirectiveMod.directive('pageHeader', [PageHeaderDirective]);
+
+	pageHeaderDirectiveMod.controller('po_ke_type.site.pageHeader.directive.controller', [
+		'$scope', '$location',
+		PageHeaderController,
+	]);
+
+	return pageHeaderDirectiveMod;
 
 	function PageHeaderDirective() {
 		return {
 			restrict: 'A',
 			scope: true,
-			templateUrl: 'site/pageHeader.html',
-			controller: [
-				'$scope', '$location',
-				PageHeaderController,
-			],
+			templateUrl: 'site/pageHeaderDirective.html',
+			controller: 'po_ke_type.site.pageHeader.directive.controller',
 		};
 	}
 
