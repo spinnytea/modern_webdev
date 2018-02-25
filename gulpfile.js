@@ -29,11 +29,11 @@ var argv = require('yargs')
 	.command('server', 'build and start dev server')
 	.example('npx gulp buildd server', 'start continuous build and dev server')
 	.example('npx gulp clean:vendor', 'just clean vendor while tinkering with deployment')
-	.option('skipUglify', {
-		describe: 'skip source minification',
+	.option('minify', {
+		describe: 'minify source and produce source maps',
 		alias: 'm',
 		type: 'boolean',
-		default: false,
+		default: true,
 		group: 'Build:',
 	})
 	.option('port', {
@@ -151,8 +151,8 @@ var AMD_CONFIG = {
 	baseUrl: 'src',
 	name: 'main',
 	out: 'dist/main.js',
-	optimize: (argv.skipUglify ? 'none' : 'uglify2'),
-	generateSourceMaps: !argv.skipUglify,
+	optimize: (argv.minify ? 'uglify2' : 'none'),
+	generateSourceMaps: !!argv.minify,
 	paths: {
 		// path expansions
 		data: '../static/data',
@@ -194,11 +194,11 @@ gulp.task('lint:css', function () {
 });
 function doCssBuild(stream) {
 	return stream
-		.pipe(argv.skipUglify ? noop() : sourcemaps.init())
+		.pipe(argv.minify ? sourcemaps.init() : noop())
 		.pipe(less({ paths: resources.less }))
-		.pipe(argv.skipUglify ? noop() : cleanCSS())
+		.pipe(argv.minify ? cleanCSS() : noop())
 		.on('error', function () { gutil.log(arguments); this.emit('end'); })
-		.pipe(argv.skipUglify ? noop() : sourcemaps.write('.'));
+		.pipe(argv.minify ? sourcemaps.write('.') : noop());
 }
 gulp.task('build:css:bootstrap', ['lint:css'], function () {
 	var stream = gulp.src(['node_modules/bootstrap/less/variables.less', 'src/main.less'])
