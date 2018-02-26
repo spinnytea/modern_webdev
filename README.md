@@ -148,7 +148,7 @@ VSCode plugins
 <dd>colors columns for csv files, makes it easier to see like-columns</dd>
 <dd>debugging csvs usually require opening in excel, this helps aleviate that need</dd>
 
-<dt>Intellisense for CSS in HTML</dt>
+<dt>IntelliSense for CSS class names in HTML</dt>
 <dd>intellisense is always good</dd>
 
 <dt>vscode-language-todo</dt>
