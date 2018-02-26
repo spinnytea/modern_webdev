@@ -22,7 +22,7 @@ define([
 
 		it('init', function () {
 			// NOTE if this list changes, stub a test for the new one
-			// - you don't need to implement the test, but at least stub it out
+			// - you don't need to implement the test immediately, but at least stub it out
 			expect(Object.keys(settings).sort()).toEqual([
 				'availableTypeCharts',
 				'colorfulCards',

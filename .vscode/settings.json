@@ -10,5 +10,11 @@
 		"**/node_modules/**": true,
 		"dist/**": true,
 		"coverage/**": true,
-	}
+	},
+
+	// extension config
+	"vscode-language-todo.regex": "(//|#|<!--|;|/*)\\s*(TODO|FIXME|XXX|IDEA|HACK|NOTE|REVIEW|BUG|TEST|QUESTION|TEMP|OPTIMIZE)\\b",
+	"vscode-language-todo.globs": [
+		"!package-lock.json",
+	],
 }

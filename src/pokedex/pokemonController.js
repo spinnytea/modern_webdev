@@ -4,8 +4,10 @@ define(['lodash'], function (_) {
 		PokemonController,
 	];
 
-	// XXX show evolutions? no, not unless we can get a source that's super succinct
-	// XXX attack types? no, this gets complicated very quickly
+	// IDEA show evolutions?
+	// - no, not unless we can get a source that's super succinct
+	// IDEA attack types?
+	// - no, this gets complicated very quickly
 	function PokemonController($scope, $routeParams, pokedex, team) {
 		var name = _.toLower($routeParams.name);
 		var specialname = _.toLower(decodeURI($routeParams.specialname || ''));

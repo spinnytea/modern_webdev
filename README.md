@@ -1,8 +1,8 @@
 Modern WebDev
 =============
 
-TODO
-----
+Current Goals
+-------------
 
 1. karma + html
 1. review documentation
@@ -31,7 +31,7 @@ Stretch Goals
     1. what do we not need
     1. what isn't included here that we need to pull in
 1. split utilsModule into multiple files
-1. TODO build theme directly into main.less
+1. build theme directly into main.less
     * @import "bootstrap/less/bootstrap.less";
     * @import "bootswatch/theme/variables.less";
     * @import "bootswatch/theme/bootswatch.less";
@@ -151,4 +151,8 @@ VSCode plugins
 
 <dt>Intellisense for CSS in HTML</dt>
 <dd>intellisense is always good</dd>
+
+<dt>vscode-language-todo</dt>
+<dd>vscode doesn't parse task tags, so we need an extension</dd>
+<dd>this is the best one i could find, the UI isn't perfect, but it has the functionality</dd>
 </dl>

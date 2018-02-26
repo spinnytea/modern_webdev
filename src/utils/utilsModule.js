@@ -4,7 +4,7 @@ define(['angular', 'lodash'], function (angular, _) {
 		'cfp.hotkeys',
 	]);
 
-	// TODO why doesn't this work? TEST import module name as controller dependency
+	// TEST exception handler doesn't; to reproduce: import module name as controller dependency
 	// module.factory('$exceptionHandler', function () {
 	// 	return function UncaughtExceptionHandler(exception, cause) {
 	// 		if(cause) { exception.message += ' (caused by "' + cause + '")'; }
@@ -13,7 +13,7 @@ define(['angular', 'lodash'], function (angular, _) {
 	// });
 
 	utilsModule.factory('bindKeys', ['hotkeys', function (hotkeys) {
-		// XXX allow fn to be a string and use $scope[fn]?
+		// XXX allow fn to be a string and use $scope[fn]
 		return function BindKeys($scope, keys) {
 			var bound = hotkeys.bindTo($scope);
 			_.forEach(keys, function (fn, key) {

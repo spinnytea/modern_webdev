@@ -169,7 +169,6 @@ var AMD_CONFIG = {
 	},
 	exclude: [
 		// exlcude data files
-		// TODO try to inlcude them again
 		'json!data/pokedex.json',
 		'json!data/themes.json',
 		'json!data/types.json',
