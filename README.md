@@ -17,6 +17,7 @@ Current Goals
 1. clean up gulp file
     1. build scripts?
     1. file paths used throughout, not defined at top
+1. test in IE - doesn't support function names (need to detect user agent)
 
 Stretch Goals
 -------------
