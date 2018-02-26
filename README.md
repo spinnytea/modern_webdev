@@ -10,7 +10,6 @@ Current Goals
     1. package data/*.json into a data requirejs lib
     1. this is meant to be unpacked and opened from the filesystem (not hosted)
 1. iterate on ui
-    1. bootstrap tour
     1. ngAnimate the dex two searches
     1. filter icon in search bar (show in settings)
     1. settings to show team

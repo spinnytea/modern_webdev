@@ -95,6 +95,8 @@ var vendor = [
 	['bootstrap/fonts', 'node_modules/bootstrap/dist/fonts/*'],
 	['bootstrap', 'node_modules/bootswatch/*/bootstrap.min.css'],
 	['bootstrap/default', 'node_modules/bootstrap/dist/css/bootstrap.min.css'],
+	['bootstrap', 'node_modules/bootstrap-tour/build/js/bootstrap-tour.min.js'],
+	['bootstrap', 'node_modules/bootstrap-tour/build/css/bootstrap-tour.min.css'],
 	['font-awesome/css', 'node_modules/font-awesome/css/*'],
 	['font-awesome/fonts', 'node_modules/font-awesome/fonts/*'],
 	['.', 'node_modules/jquery/dist/jquery.min.js'],

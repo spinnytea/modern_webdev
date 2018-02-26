@@ -1,8 +1,18 @@
-define(['angular', 'lodash'], function (angular, _) {
+define([
+	'angular',
+	'lodash',
+	'./toursFactory',
+], function (
+	angular,
+	_,
+	toursFactory
+) {
 	var utilsModule = angular.module('po_ke_type.utils', [
 		'ngRoute',
 		'cfp.hotkeys',
 	]);
+
+	utilsModule.factory('po_ke_type.utils.tours.factory', toursFactory);
 
 	// TEST exception handler doesn't; to reproduce: import module name as controller dependency
 	// module.factory('$exceptionHandler', function () {
