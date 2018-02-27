@@ -123,6 +123,8 @@ VSCode plugins
 <dd>this is just a precaution in case there are issues</dd>
 
 <dt>Java Extension Pack</dt>
+<dd>more java lanaguage support</dd>
+<dd>This includes plugins: Debugger for Java, Java Test Runner, Maven for Java</dd>
 
 <dt>PowerShell</dt>
 </dl>
