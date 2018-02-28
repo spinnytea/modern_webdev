@@ -1,10 +1,12 @@
 define([
 	'angular',
 	'lodash',
+	'./browserVersionFactory',
 	'./toursFactory',
 ], function (
 	angular,
 	_,
+	browserVersionFactory,
 	toursFactory
 ) {
 	var utilsModule = angular.module('po_ke_type.utils', [
@@ -12,6 +14,7 @@ define([
 		'cfp.hotkeys',
 	]);
 
+	utilsModule.factory('po_ke_type.utils.browserVersion.factory', browserVersionFactory);
 	utilsModule.factory('po_ke_type.utils.tours.factory', toursFactory);
 
 	// TEST exception handler doesn't; to reproduce: import module name as controller dependency
