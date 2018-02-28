@@ -4,18 +4,17 @@ define([
 	'angular-mocks',
 ], function (angular, siteModule) {
 	return describe('Home Controller', function () {
-		var teamFactory, pokedexFactory, settingsFactory, typesFactory, toursFactory;
+		var teamFactory, pokedexFactory, settingsFactory, typesFactory;
+		beforeEach(angular.mock.module('setup.js'));
 		beforeEach(angular.mock.module(siteModule.name, function ($provide) {
 			teamFactory = [0];
 			pokedexFactory = { list: [0, 1] };
 			settingsFactory = { themes: [0, 1, 2] };
 			typesFactory = { list: [0, 1, 2, 3] };
-			toursFactory = { register: angular.noop };
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
 			$provide.value('po_ke_type.pokedex.team.factory', teamFactory);
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
 			$provide.value('po_ke_type.types.factory', typesFactory);
-			$provide.value('po_ke_type.utils.tours.factory', toursFactory);
 		}));
 
 		describe('controller', function () {

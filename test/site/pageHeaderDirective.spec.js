@@ -5,6 +5,7 @@ define([
 ], function (angular, siteModule) {
 	return describe('Page Header Directive', function () {
 		var $location;
+		beforeEach(angular.mock.module('setup.js'));
 		beforeEach(angular.mock.module(siteModule.name, function ($provide) {
 			$location = jasmine.createSpyObj('$location', ['path']);
 			$location.path.and.returnValue('/types');

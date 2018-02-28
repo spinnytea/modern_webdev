@@ -6,6 +6,7 @@ define([
 	return describe('Settings Factory', function () {
 		var settings, $rootScope;
 		var localStorageService;
+		beforeEach(angular.mock.module('setup.js'));
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
 			$provide.value('localStorageService', localStorageService);
