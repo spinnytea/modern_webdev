@@ -3,13 +3,16 @@ define([
 	'lodash',
 	'./browserVersionFactory',
 	'./toursFactory',
+	'./tourStartDirective',
 ], function (
 	angular,
 	_,
 	browserVersionFactory,
-	toursFactory
+	toursFactory,
+	tourStartDirective
 ) {
 	var utilsModule = angular.module('po_ke_type.utils', [
+		tourStartDirective.name,
 		'ngRoute',
 		'cfp.hotkeys',
 	]);
