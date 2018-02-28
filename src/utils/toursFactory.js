@@ -25,6 +25,7 @@ define(['lodash', 'Tour'], function (_, Tour) {
 				steps: config.steps.map(function (s) {
 					if(!_.isString(s.element)) throw new Error('each step must have an element');
 					if(!_.isString(s.content)) throw new Error('each step must have content');
+					s.element += '.tour-element';
 					s.title = config.title;
 					return s;
 				}),

@@ -14,6 +14,13 @@ define([], function () {
 			}, {
 				element: '[ng-bind="pokedexCount"]',
 				content: 'At least we got them all',
+			}, {
+				element: '[ng-bind="typeCount"]',
+				content: 'Check out this stat',
+			}, {
+				element: 'h1 span:contains(Data Sources)',
+				content: 'Does this mean I\'m a great artist? Because of that thing about stealing...',
+				placement: 'top',
 			}],
 		});
 	}
