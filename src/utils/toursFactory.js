@@ -20,8 +20,11 @@ define(['lodash', 'Tour'], function (_, Tour) {
 			if(!_.isString(config.name) || !/^[\w\d-]+$/.test(config.name)) throw new Error('config must be alphanumeric');
 			if(!_.isArray(config.steps) || !config.steps.length) throw new Error('tours must have at least one step');
 
+			// TODO check for path consistency (all must have path or no)
 			registeredTours[config.name] = new Tour({
 				name: config.name,
+				backdrop: false,
+				keyboard: true,
 				steps: config.steps.map(function (s) {
 					if(!_.isString(s.element)) throw new Error('each step must have an element');
 					if(!_.isString(s.content)) throw new Error('each step must have content');
@@ -42,8 +45,8 @@ define(['lodash', 'Tour'], function (_, Tour) {
 		tours.start = function (name) {
 			var tour = registeredTours[name];
 			if(tour) {
-				if(tour.ended()) tour.restart();
-				else tour.start(true);
+				if(!tour.ended()) tour.end();
+				tour.restart();
 			}
 		};
 

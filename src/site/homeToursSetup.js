@@ -23,5 +23,34 @@ define([], function () {
 				placement: 'top',
 			}],
 		});
+
+		tours.register({
+			name: 'explainThemes',
+			title: 'UI Themes',
+			steps: [{
+				element: '[ng-bind="themeCount"]',
+				content: 'There are a bunch of different themes to choose from.',
+				orphan: true,
+				// path: '#/',
+			}, {
+				element: '.navbar-right li:contains("Settings")',
+				content: 'You can change your theme from the <b>Settings</b> page.',
+				placement: 'left',
+				orphan: true,
+				// path: '#/',
+			}, {
+				element: '#theme',
+				content: 'All the available themes are listed here.',
+				placement: 'top',
+				orphan: true,
+				// path: '#/settings',
+			}, {
+				element: '#colorfulCards',
+				content: 'Just for good measure, here is another step.',
+				placement: 'top',
+				orphan: true,
+				// path: '#/settings',
+			}],
+		});
 	}
 });
