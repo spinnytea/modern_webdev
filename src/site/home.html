@@ -5,12 +5,13 @@
 </p>
 
 <h1>App Data</h1>
-<p><span class="badge tour-element" ng-bind="themeCount"></span> UI Themes <i tour-start="explainThemes"></i></p>
-<p><span class="badge tour-element" ng-bind="pokedexCount"></span> Pokémon in Pokédex <i tour-start="explainPokedex"></i></p>
-<p><span class="badge tour-element" ng-bind="typeCount"></span> Pokémon Types</p>
+<p><span class="badge" ng-bind="themeCount"></span> UI Themes <i tour-start="explainThemes"></i></p>
+<p><span class="badge" ng-bind="pokedexCount"></span> Pokémon in Pokédex <i tour-start="explainPokedex"></i></p>
+<p><span class="badge" ng-bind="typeCount"></span> Pokémon Types</p>
 <p><i ng-repeat="m in team" class="pki {{m.iconClass}}" title="{{m.name}}"></i></p>
 
-<h1><span class="tour-element">Data Sources</span></h1>
+<!-- NOTE the span inside the Data Sources is to help focus the bootstrap-tour popover -->
+<h1><span>Data Sources</span></h1>
 <h2>Copied From</h2>
 <p><a target="sources" href="https://spinnytea.bitbucket.io/po_ke_type">https://spinnytea.bitbucket.io/po_ke_type</a></p>
 <h2>Original Sources</h2>

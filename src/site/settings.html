@@ -1,7 +1,7 @@
 <form>
 	<div class="form-group">
 		<label for="theme">Theme</label>
-		<select class="form-control tour-element" id="theme" name="theme"
+		<select class="form-control" id="theme" name="theme"
 				ng-model="settings.theme"
 				ng-options="t for t in settings.themes"></select>
 	</div>
@@ -29,7 +29,7 @@
 
 	<div class="form-group">
 		<label for="colorfulCards">Colorful Cards</label>
-		<select class="form-control tour-element" id="colorfulCards" name="colorfulCards"
+		<select class="form-control" id="colorfulCards" name="colorfulCards"
 				ng-model="settings.colorfulCards"
 				ng-options="(item?'Colorful':'Simple Colors') for item in [false, true]"></select>
 	</div>
