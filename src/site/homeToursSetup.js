@@ -43,7 +43,7 @@ define([], function () {
 				path: '/#/settings',
 			}, {
 				element: '#colorfulCards',
-				content: 'Just for good measure, here is another step.',
+				content: 'Colorful cards is sort of related to themes.',
 				placement: 'top',
 				path: '/#/settings',
 			}],

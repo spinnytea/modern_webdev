@@ -21,7 +21,7 @@ define([
 
 			it('init', function () {
 				expect($scope.dex).toBe(pokedexFactory.list);
-				expect($scope.nested.limit).toBe(20);
+				expect($scope.nested.limit).toBe(18);
 			});
 		}); // end controller
 
