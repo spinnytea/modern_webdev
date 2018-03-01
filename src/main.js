@@ -4,6 +4,7 @@
 // - shim does is a wrapper around modules
 // - exclude does not prevent require from trying to load them
 define('angular', function () { return angular; }); // eslint-disable-line
+define('jquery', function () { return $; }); // eslint-disable-line
 define('lodash', function () { return _; }); // eslint-disable-line
 define('Tour', function () { return Tour; }); // eslint-disable-line
 

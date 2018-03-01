@@ -1,9 +1,12 @@
-define(['lodash', 'Tour'], function (_, Tour) {
+define(['jquery', 'lodash', 'Tour'], function ($, _, Tour) {
 	var registeredTours = {};
 
-	return [ToursFactory];
+	return [
+		'$rootScope',
+		ToursFactory,
+	];
 
-	function ToursFactory() {
+	function ToursFactory($rootScope) {
 		var tours = {};
 
 		/**
@@ -20,7 +23,11 @@ define(['lodash', 'Tour'], function (_, Tour) {
 			if(!_.isString(config.name) || !/^[\w\d-]+$/.test(config.name)) throw new Error('config must be alphanumeric');
 			if(!_.isArray(config.steps) || !config.steps.length) throw new Error('tours must have at least one step');
 
-			// TODO check for path consistency (all must have path or no)
+			// check for path consistency (all must have path or no)
+			var stepsUsePath = config.steps[0].hasOwnProperty('path');
+			var allStepsUseOrDontUsePath = _.every(config.steps, function (step) { return step.hasOwnProperty('path') === stepsUsePath; });
+			if(!allStepsUseOrDontUsePath) throw new Error('either no steps can use path, or all steps use path, there isn\'t an in between');
+
 			registeredTours[config.name] = new Tour({
 				name: config.name,
 				backdrop: false,
@@ -49,6 +56,12 @@ define(['lodash', 'Tour'], function (_, Tour) {
 				tour.restart();
 			}
 		};
+
+		// HACK bootstrap-tour blows up on route change because the new element isn't on the page
+		$rootScope.$on('$routeChangeSuccess', function () {
+			var toursActive = _.some(registeredTours, function (tour) { return !tour.ended(); });
+			if(toursActive) $(window).resize();
+		});
 
 		return tours;
 	}

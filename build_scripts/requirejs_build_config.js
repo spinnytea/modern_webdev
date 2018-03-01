@@ -17,6 +17,7 @@ module.exports = function (minify) {
 
 			// we can ignore vendor deps during build
 			angular: 'empty:',
+			jquery: 'empty:',
 			lodash: 'empty:',
 
 			// requirejs needs to have the plugins at build time
