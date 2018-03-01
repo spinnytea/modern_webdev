@@ -32,22 +32,22 @@ define([], function () {
 			name: 'explainThemes',
 			title: 'UI Themes',
 			steps: [{
-				path: '/#/',
+				path: '/',
 				element: '[ng-bind="themeCount"]',
 				placement: 'right',
 				content: 'There are a bunch of different themes to choose from.',
 			}, {
-				path: '/#/',
+				path: '/',
 				element: '.navbar-right li:contains("Settings")',
 				placement: 'left',
 				content: 'You can change your theme from the <b>Settings</b> page.',
 			}, {
-				path: '/#/settings',
+				path: '/settings',
 				element: '#theme',
 				placement: 'bottom',
 				content: 'All the available themes are listed here.',
 			}, {
-				path: '/#/settings',
+				path: '/settings',
 				element: '#colorfulCards',
 				placement: 'top',
 				content: 'You can also change the pokemon cards to have a background color based on their types.',
@@ -59,28 +59,38 @@ define([], function () {
 			name: 'explainPokedex',
 			title: 'The Pokédex',
 			steps: [{
-				path: '/#/',
+				path: '/',
 				element: '[ng-bind="pokedexCount"]',
 				placement: 'right',
 				content: 'There are sooo many pokémon.',
 			}, {
-				path: '/#/',
+				path: '/',
 				element: '.navbar-nav li:contains("Pokédex")',
 				placement: 'bottom',
 				content: 'You can search through the whole list from the <b>Pokédex</b> page.',
 			}, {
-				path: '/#/pokedex',
+				path: '/pokedex',
 				element: '#filter',
 				placement: 'bottom',
 				content: 'This part should be self explanatory. Just type in a string and it will start filter. ' +
 					'It will even filter on <b>type</b>, and <b>multiple strings</b>.',
 			}, {
-				path: '/#/pokedex',
+				path: '/pokedex',
 				element: '.input-group-addon.minimal',
 				placement: 'left',
 				content: "Changing the number of results isn't very useful in practice, " +
-					"it's better to search for something more specific." +
-					'This was mostly just a tech demo.',
+						"it's better to search for something more specific." +
+						'This was mostly just a tech demo.',
+			}, {
+				path: '/pokedex',
+				element: '[pokemon-pill]:nth(0) a',
+				placement: 'bottom',
+				content: 'You can go to the specific pokmeon with a link in the results.',
+			}, {
+				path: '/pokedex/Bulbasaur',
+				element: 'header:contains(Defending)',
+				placement: 'top',
+				content: 'You can see how a specific pokemon with fair against your team.',
 			}],
 		});
 

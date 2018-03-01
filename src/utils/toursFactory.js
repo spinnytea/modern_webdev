@@ -28,16 +28,20 @@ define(['jquery', 'lodash', 'Tour'], function ($, _, Tour) {
 			var allStepsUseOrDontUsePath = _.every(config.steps, function (step) { return step.hasOwnProperty('path') === stepsUsePath; });
 			if(!allStepsUseOrDontUsePath) throw new Error('either no steps can use path, or all steps use path, there isn\'t an in between');
 
+			if(stepsUsePath && _.some(config.steps, function (step) { return _.startsWith(step.path, '#') || _.startsWith(step.path, '/#'); }))
+				throw new Error('no need to prefix paths with a hash, we will do that');
+
 			registeredTours[config.name] = new Tour({
 				name: config.name,
 				backdrop: false,
 				keyboard: true,
-				steps: config.steps.map(function (s) {
-					if(!_.isString(s.element)) throw new Error('each step must have an element');
-					if(!_.isString(s.content)) throw new Error('each step must have content');
-					if(!_.isString(s.placement)) throw new Error('each step must have placement');
-					s.title = config.title;
-					return s;
+				steps: config.steps.map(function (step) {
+					if(!_.isString(step.element)) throw new Error('each step must have an element');
+					if(!_.isString(step.content)) throw new Error('each step must have content');
+					if(!_.isString(step.placement)) throw new Error('each step must have placement');
+					step.title = config.title;
+					if(stepsUsePath) step.path = '/#' + step.path;
+					return step;
 				}),
 			});
 			registeredTours[config.name].init();
