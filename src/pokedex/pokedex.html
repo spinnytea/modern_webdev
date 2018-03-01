@@ -1,6 +1,6 @@
 <form>
 	<div class="input-group">
-		<input type="text" class="form-control" id="filter" name="filter" ng-model="nested.filter" />
+		<input type="text" class="form-control" id="filter" name="filter" ng-model="nested.filter" ng-change="updateFilter()" />
 		<div class="input-group-addon minimal">
 				<label class="radio-inline"><input type="radio" name="limit" id="limit18" ng-value="18" ng-model="nested.limit"> 18</label>
 				<label class="radio-inline"><input type="radio" name="limit" id="limit60" ng-value="60" ng-model="nested.limit"> 60</label>

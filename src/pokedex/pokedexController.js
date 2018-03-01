@@ -1,16 +1,21 @@
 define([], function () {
 	return [
-		'$scope', 'po_ke_type.pokedex.factory', 'po_ke_type.site.settings.factory',
+		'$scope', 'localStorageService', 'po_ke_type.pokedex.factory', 'po_ke_type.site.settings.factory',
 		PokedexController,
 	];
 
-	// TODO save filter string in local storage
-	function PokedexController($scope, pokedex, settings) {
+	function PokedexController($scope, localStorageService, pokedex, settings) {
 		$scope.dex = pokedex.list;
 		$scope.nested = {
-			filter: '',
+			filter: settings.pokedexFilter,
 			limit: 18,
 			orderBy: settings.pokedexOrderBy,
+		};
+
+		// OPTIMIZE there's got to be a better way to keep settings in sync with local storage
+		$scope.updateFilter = function () {
+			settings.pokedexFilter = $scope.nested.filter;
+			localStorageService.set('pokedexFilter', settings.pokedexFilter);
 		};
 	}
 });

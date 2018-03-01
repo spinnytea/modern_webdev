@@ -7,7 +7,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="pokedexOrderBy">Pokédex Generation</label>
+		<label for="pokedexOrderBy">Pokédex Order</label>
 		<select class="form-control" id="pokedexOrderBy" name="pokedexOrderBy"
 				ng-model="settings.pokedexOrderBy" ng-change="save('pokedexOrderBy')"
 				ng-options="t.id as t.display for t in settings.pokedexSortOrders"></select>
