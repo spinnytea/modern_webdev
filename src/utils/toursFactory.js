@@ -36,7 +36,7 @@ define(['jquery', 'lodash', 'Tour'], function ($, _, Tour) {
 					if(!_.isString(s.element)) throw new Error('each step must have an element');
 					if(!_.isString(s.content)) throw new Error('each step must have content');
 					if(!_.isString(s.placement)) throw new Error('each step must have placement');
-					s.element += '.tour-element';
+					s.element += '.tour-element'; // TODO remove .tour-element
 					s.title = config.title;
 					return s;
 				}),
