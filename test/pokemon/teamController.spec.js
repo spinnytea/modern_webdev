@@ -7,15 +7,15 @@ define([
 	return describe('Team Controller', function () {
 		var MON_1 = { name: 'Mon 1' };
 		var MON_2 = 'Mon 2';
-		var localStorageService, pokedexFactory, teamFactory;
+		var pokedexFactory, teamFactory, settingsFactory;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
-			localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
 			pokedexFactory = { list: ['asdf'] };
 			teamFactory = [MON_1];
-			$provide.value('localStorageService', localStorageService);
+			settingsFactory = {};
 			$provide.value('bindKeys', bindKeys);
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
 			$provide.value('po_ke_type.pokedex.team.factory', teamFactory);
+			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
 		}));
 
 		describe('controller', function () {
@@ -28,7 +28,7 @@ define([
 			}]));
 
 			it('init', function () {
-				expect(Object.keys($scope)).toContain('colorfulCards');
+				expect($scope.settings).toBe(settingsFactory);
 				expect($scope.dex).toBe(pokedexFactory.list);
 				expect($scope.team).toBe(teamFactory);
 			});

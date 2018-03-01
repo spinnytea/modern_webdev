@@ -4,10 +4,10 @@ define([
 	'angular-mocks',
 ], function (angular, pokedexModule) {
 	return describe('Pokemon Pill Directive', function () {
-		var localStorageService;
+		var settingsFactory;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
-			localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
-			$provide.value('localStorageService', localStorageService);
+			settingsFactory = {};
+			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
 		}));
 
 		describe('controller', function () {
@@ -20,7 +20,7 @@ define([
 			}]));
 
 			it('init', function () {
-				expect(Object.keys($scope)).toEqual(['colorfulCards']);
+				expect(Object.keys($scope)).toEqual(['settings']);
 			});
 		}); // end controller
 

@@ -12,7 +12,7 @@ define(['json!data/themes.json'], function (themes) {
 			settings[name] = localStorageService.get(name) || defaults[name];
 			$rootScope.$on('$destroy', $rootScope.$watch(function () { return settings[name]; }, function () {
 				if(settings[name] === defaults[name]) {
-					localStorageService.set(name);
+					localStorageService.remove(name);
 				}
 				else {
 					localStorageService.set(name, settings[name]);

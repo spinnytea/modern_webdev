@@ -4,10 +4,12 @@ define([
 	'angular-mocks',
 ], function (angular, pokedexModule) {
 	return describe('Pokedex Controller', function () {
-		var pokedexFactory;
+		var pokedexFactory, settingsFactory;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			pokedexFactory = { list: ['1234'] };
+			settingsFactory = {};
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
+			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
 		}));
 
 		describe('controller', function () {
@@ -22,6 +24,7 @@ define([
 			it('init', function () {
 				expect($scope.dex).toBe(pokedexFactory.list);
 				expect($scope.nested.limit).toBe(18);
+				expect($scope.settings).toBe(settingsFactory);
 			});
 		}); // end controller
 

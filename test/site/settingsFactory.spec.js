@@ -8,13 +8,15 @@ define([
 		var localStorageService;
 		beforeEach(angular.mock.module('setup.js'));
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
-			localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
+			localStorageService = jasmine.createSpyObj('localStorageService', ['get', 'set', 'remove']);
 			$provide.value('localStorageService', localStorageService);
 
-			$provide.constant('po_ke_type.defaults.theme', 'spacelab');
-			$provide.constant('po_ke_type.defaults.preferredTypeChart', 'squares');
-			$provide.constant('po_ke_type.defaults.dexGen', '6');
-			$provide.constant('po_ke_type.defaults.colorfulCards', false);
+			$provide.constant('po_ke_type.site.settings.defaults', {
+				colorfulCards: false,
+				dexGen: 6,
+				theme: 'spacelab',
+				preferredTypeChart: 'squares',
+			});
 		}));
 		beforeEach(angular.mock.inject(['po_ke_type.site.settings.factory', '$rootScope', function (_settings_, _$rootScope_) {
 			settings = _settings_;
@@ -29,6 +31,7 @@ define([
 				'colorfulCards',
 				'dexGen',
 				'pokedexGenerations',
+				'pokedexSortOrders',
 				'preferredTypeChart',
 				'theme',
 				'themes',
@@ -36,7 +39,7 @@ define([
 
 			expect(settings.theme).toBe('spacelab');
 			expect(settings.preferredTypeChart).toBe('squares');
-			expect(settings.dexGen).toBe('6');
+			expect(settings.dexGen).toBe(6);
 			expect(settings.colorfulCards).toBe(false);
 
 			expect(localStorageService.get).toHaveBeenCalledTimes(4);
@@ -63,6 +66,9 @@ define([
 				dexGen: 2,
 				colorfulCards: false,
 			}));
+			expect(localStorageService.remove).not.toHaveBeenCalledWith('theme');
+			expect(localStorageService.remove).not.toHaveBeenCalledWith('dexGen');
+			expect(localStorageService.set).toHaveBeenCalledWith('dexGen', 2);
 
 			// delete
 			$rootScope.$broadcast('LocalStorageModule.notification.removeitem', { key: 'theme' });
@@ -73,6 +79,8 @@ define([
 				dexGen: 2,
 				colorfulCards: false,
 			}));
+			expect(localStorageService.remove).toHaveBeenCalledWith('theme');
+			expect(localStorageService.remove).not.toHaveBeenCalledWith('dexGen');
 		});
 	}); // end Settings Factory
 });

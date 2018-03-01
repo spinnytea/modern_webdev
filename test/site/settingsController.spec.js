@@ -7,8 +7,8 @@ define([
 		var localStorageService, settingsFactory;
 		beforeEach(angular.mock.module('setup.js'));
 		beforeEach(angular.mock.module(siteModule.name, function ($provide) {
-			localStorageService = jasmine.createSpyObj('localStorageService', ['get', 'set', 'clearAll']);
-			settingsFactory = { saveKey: 'saveValue' };
+			localStorageService = jasmine.createSpyObj('localStorageService', ['clearAll']);
+			settingsFactory = {};
 			$provide.value('localStorageService', localStorageService);
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
 		}));
@@ -24,15 +24,7 @@ define([
 
 			it('init', function () {
 				expect($scope.settings).toBe(settingsFactory);
-				expect(Object.keys($scope)).toEqual(['settings', 'save', 'clearLocalStorage']);
-			});
-
-			it('save', function () {
-				expect(localStorageService.set).not.toHaveBeenCalled();
-
-				$scope.save('saveKey');
-
-				expect(localStorageService.set).toHaveBeenCalledWith('saveKey', 'saveValue');
+				expect(Object.keys($scope)).toEqual(['settings', 'clearLocalStorage']);
 			});
 
 			it('clearLocalStorage', function () {
