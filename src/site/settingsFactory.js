@@ -1,21 +1,11 @@
 define(['json!data/themes.json'], function (themes) {
 	return [
-		'$rootScope', 'localStorageService',
-		'po_ke_type.defaults.theme', 'po_ke_type.defaults.preferredTypeChart', 'po_ke_type.defaults.dexGen', 'po_ke_type.defaults.colorfulCards',
+		'$rootScope', 'localStorageService', 'po_ke_type.site.settings.defaults',
 		SettingsFactory,
 	];
 
-	function SettingsFactory($rootScope, localStorageService,
-			defaultTheme, defaultPreferredTypeChart, defaultDexGen, defaultColorfulCards) {
+	function SettingsFactory($rootScope, localStorageService, defaults) {
 		var settings = {};
-
-		// index default values
-		var defaults = {
-			theme: defaultTheme,
-			preferredTypeChart: defaultPreferredTypeChart,
-			dexGen: defaultDexGen,
-			colorfulCards: defaultColorfulCards,
-		};
 
 		// init values on settings
 		Object.keys(defaults).forEach(function (name) {
@@ -38,12 +28,19 @@ define(['json!data/themes.json'], function (themes) {
 		];
 
 		settings.pokedexGenerations = [
-			{ id: '1', display: 'Gen I' },
-			{ id: '2', display: 'Gen II' },
-			{ id: '3', display: 'Gen III' },
-			{ id: '4', display: 'Gen IV' },
-			{ id: '5', display: 'Gen V' },
-			{ id: '6', display: 'Gen VI' },
+			{ id: 1, display: 'Gen I' },
+			{ id: 2, display: 'Gen II' },
+			{ id: 3, display: 'Gen III' },
+			{ id: 4, display: 'Gen IV' },
+			{ id: 5, display: 'Gen V' },
+			{ id: 6, display: 'Gen VI' },
+		];
+
+		settings.pokedexSortOrders = [
+			{ id: 'name', display: 'Name (asc)' },
+			{ id: '-name', display: 'Name (desc)' },
+			{ id: 'number', display: 'Number (asc)' },
+			{ id: '-number', display: 'Number (desc)' },
 		];
 
 		return settings;

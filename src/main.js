@@ -54,10 +54,14 @@ define([
 			.setNotify(false, true); // setItem: false, removeItem: true
 	}]);
 
-	module.constant('po_ke_type.defaults.theme', 'spacelab');
-	module.constant('po_ke_type.defaults.preferredTypeChart', 'squares');
-	module.constant('po_ke_type.defaults.dexGen', '6');
-	module.constant('po_ke_type.defaults.colorfulCards', false);
+	module.constant('po_ke_type.site.settings.defaults', Object.freeze({
+		colorfulCards: false,
+		dexGen: 6,
+		pokedexFilter: '',
+		pokedexOrderBy: 'number',
+		preferredTypeChart: 'squares',
+		theme: 'spacelab',
+	}));
 
 	angular.bootstrap(document, ['po_ke_type']);
 	return module;

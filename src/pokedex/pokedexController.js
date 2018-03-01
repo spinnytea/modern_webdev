@@ -1,13 +1,16 @@
 define([], function () {
 	return [
-		'$scope', 'po_ke_type.pokedex.factory',
+		'$scope', 'po_ke_type.pokedex.factory', 'po_ke_type.site.settings.factory',
 		PokedexController,
 	];
 
 	// TODO save filter string in local storage
-	// TODO sort order
-	function PokedexController($scope, pokedex) {
+	function PokedexController($scope, pokedex, settings) {
 		$scope.dex = pokedex.list;
-		$scope.nested = { filter: '', limit: 18 };
+		$scope.nested = {
+			filter: '',
+			limit: 18,
+			orderBy: settings.pokedexOrderBy,
+		};
 	}
 });

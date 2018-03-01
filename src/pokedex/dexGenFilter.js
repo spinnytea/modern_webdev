@@ -7,7 +7,7 @@ define(['lodash'], function (_) {
 	function DexGenFilter(localStorageService) {
 		return function dexGen(array) {
 			if(!_.isArray(array)) return [];
-			var gen = +(localStorageService.get('dexGen') || '6');
+			var gen = +(localStorageService.get('dexGen') || 6);
 			var maxNum = MAX_NUM[gen];
 			return array.filter(function (mon) {
 				// filter out mega evolutions unless we are Gen VI forward

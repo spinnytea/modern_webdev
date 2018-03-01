@@ -13,7 +13,7 @@
 
 <section>
 	<div class="row">
-		<p class="col-sm-6 col-md-4" ng-repeat="mon in dex | dexGen | filterAll: nested.filter | orderBy: '-number' | limitTo: nested.limit">
+		<p class="col-sm-6 col-md-4" ng-repeat="mon in dex | dexGen | filterAll: nested.filter | orderBy: nested.orderBy | limitTo: nested.limit">
 				<i pokemon-pill="mon"></i>
 		</p>
 	</div>

@@ -36,7 +36,7 @@
 	</form>
 
 	<div class="row team-search-results" ng-if="showList()">
-		<p class="col-sm-6 col-md-4" ng-repeat="mon in nested.filteredDex=(dex | dexGen | filterAll: nested.filter | orderBy: '-number')">
+		<p class="col-sm-6 col-md-4" ng-repeat="mon in nested.filteredDex=(dex | dexGen | filterAll: nested.filter | orderBy: nested.orderBy)">
 			<button type="button" class="pull-left btn btn-sm btn-default" ng-click="addToTeam(mon)" ng-disabled="isInTeam(mon)">
 				<i class="fa" ng-class="isInTeam(mon)?'fa-heart-o':'fa-heart'"></i>
 			</button>
