@@ -4,7 +4,7 @@ define(['angular'], function (angular) {
 	pokemonPillMod.directive('pokemonPill', [PokemonPillDirective]);
 
 	pokemonPillMod.controller('po_ke_type.types.pokemonPill.directive.controller', [
-		'$scope', 'localStorageService',
+		'$scope', 'po_ke_type.site.settings.factory',
 		PokemonPillController,
 	]);
 
@@ -20,7 +20,7 @@ define(['angular'], function (angular) {
 		};
 	}
 
-	function PokemonPillController($scope, localStorageService) {
-		$scope.colorfulCards = localStorageService.get('colorfulCards');
+	function PokemonPillController($scope, settings) {
+		$scope.settings = settings;
 	}
 });

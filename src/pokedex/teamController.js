@@ -1,14 +1,14 @@
 define(['lodash'], function (_) {
 	return [
-		'$scope', 'localStorageService', 'bindKeys',
+		'$scope', 'bindKeys',
 		'po_ke_type.pokedex.factory', 'po_ke_type.pokedex.team.factory', 'po_ke_type.site.settings.factory',
 		TeamController,
 	];
 
-	function TeamController($scope, localStorageService, bindKeys,
+	function TeamController($scope, bindKeys,
 			pokedex, team, settings) {
-		$scope.colorfulCards = localStorageService.get('colorfulCards');
-		$scope.nested = { filter: '', filteredDex: undefined, orderBy: settings.pokedexOrderBy };
+		$scope.settings = settings;
+		$scope.nested = { filter: '', filteredDex: undefined };
 		$scope.showList = function () { return $scope.nested.filter.length > 1; };
 		$scope.dex = pokedex.list;
 		$scope.team = team;

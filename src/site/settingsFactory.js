@@ -10,6 +10,14 @@ define(['json!data/themes.json'], function (themes) {
 		// init values on settings
 		Object.keys(defaults).forEach(function (name) {
 			settings[name] = localStorageService.get(name) || defaults[name];
+			$rootScope.$on('$destroy', $rootScope.$watch(function () { return settings[name]; }, function () {
+				if(settings[name] === defaults[name]) {
+					localStorageService.set(name);
+				}
+				else {
+					localStorageService.set(name, settings[name]);
+				}
+			}));
 		});
 
 		// if the values are removed from local storage, then reset them to the defaults
