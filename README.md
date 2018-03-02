@@ -35,6 +35,7 @@ Stretch Goals
     * @import "bootstrap/less/bootstrap.less";
     * @import "bootswatch/theme/variables.less";
     * @import "bootswatch/theme/bootswatch.less";
+1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
 
 What's in the project
 ---------------------

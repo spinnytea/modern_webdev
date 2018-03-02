@@ -36,9 +36,15 @@ define(['jquery', 'lodash', 'Tour'], function ($, _, Tour) {
 				backdrop: false,
 				keyboard: true,
 				steps: config.steps.map(function (step) {
-					if(!_.isString(step.element)) throw new Error('each step must have an element');
+					if(step.orphan) {
+						if(step.element) throw new Error("orphaned steps don't need an element");
+						if(step.placement) throw new Error("orphaned steps don't need an element");
+					}
+					else {
+						if(!_.isString(step.element)) throw new Error('each step must have an element');
+						if(!_.isString(step.placement)) throw new Error('each step must have placement');
+					}
 					if(!_.isString(step.content)) throw new Error('each step must have content');
-					if(!_.isString(step.placement)) throw new Error('each step must have placement');
 					step.title = config.title;
 					if(stepsUsePath) step.path = '/#' + step.path;
 					return step;

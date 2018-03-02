@@ -6,7 +6,7 @@
 	<small ng-bind="mon.specialname"></small>
 	<small><i bulbapedia="mon"></i></small>
 </h1>
-<div class="row"><div class="col-sm-6" ng-repeat="type in mon.types"><span type-square="type"></span></div></div>
+<div id="typeSquares" class="row"><div class="col-sm-6" ng-repeat="type in mon.types"><span type-square="type"></span></div></div>
 
 <section>
 	<header><h2>Defending <small>When these pokemon deal damage to <span ng-bind="mon.name"></span></small></h2></header>

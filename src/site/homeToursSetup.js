@@ -11,15 +11,15 @@ define([], function () {
 			steps: [{
 				element: '[ng-bind="themeCount"]',
 				placement: 'right',
-				content: 'Well... this is awkard',
+				content: 'Well... this is awkard<br>Erm...<br>I mean...<br>Hello, Tour!',
 			}, {
 				element: '[ng-bind="pokedexCount"]',
 				placement: 'right',
-				content: 'At least we got them all',
+				content: 'At least we got them all!',
 			}, {
 				element: '[ng-bind="typeCount"]',
 				placement: 'right',
-				content: 'Check out this stat',
+				content: 'Check out this stat.',
 			}, {
 				element: 'h1 span:contains(Data Sources)',
 				placement: 'top',
@@ -50,11 +50,10 @@ define([], function () {
 				path: '/settings',
 				element: '#colorfulCards',
 				placement: 'top',
-				content: 'You can also change the pokemon cards to have a background color based on their types.',
+				content: 'You can also change the Pokémon cards to have a background color based on their types.',
 			}],
 		});
 
-		// TODO finish explainPokedex
 		tours.register({
 			name: 'explainPokedex',
 			title: 'The Pokédex',
@@ -90,11 +89,41 @@ define([], function () {
 				path: '/pokedex/Bulbasaur',
 				element: 'header:contains(Defending)',
 				placement: 'top',
-				content: 'You can see how a specific pokemon with fair against your team.',
+				content: 'You can see how a specific Pokémon with fair against your team.',
 			}],
 		});
 
-		// TODO type tour
+		tours.register({
+			name: 'explainTypes',
+			title: 'Weaknesses and Resistances',
+			steps: [{
+				path: '/',
+				element: '[ng-bind="typeCount"]',
+				placement: 'right',
+				content: 'The type system is central to the purpose of this tool. ' +
+					'We check your team against other Pokémon to see if they have a type advantage.',
+			}, {
+				path: '/',
+				element: '.navbar-nav li:contains("Type Chart")',
+				placement: 'bottom',
+				content: 'You can review the weaknesses and resistances for yourself from the <b>Type Chart</b> page.',
+			}, {
+				path: '/types',
+				orphan: true,
+				content: 'Your preferred type chart is always displayed first.',
+			}, {
+				path: '/types',
+				element: 'h1 small:visible:nth(0)',
+				placement: 'bottom',
+				content: 'You can still see the other type charts if some things are easier to reference.',
+			}, {
+				path: '/pokedex/Bulbasaur',
+				element: '#typeSquares',
+				placement: 'bottom',
+				content: 'That said, the Pokémon page always uses type Squares.',
+			}],
+		});
+
 		// TODO team tour
 	}
 });
