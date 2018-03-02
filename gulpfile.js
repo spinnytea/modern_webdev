@@ -237,9 +237,6 @@ gulp.task('build:vendor:solarized', function () {
 	}));
 });
 
-// 		['bootstrap', 'node_modules/bootstrap-solarized-theme/dist/css/solarized-*-theme.min.css'],
-
-
 
 // test
 

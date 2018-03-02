@@ -66,6 +66,7 @@ module.exports = function (config) {
 			includeAllSources: true,
 		},
 
+		// ng-html2js configuration
 		ngHtml2JsPreprocessor: {
 			stripPrefix: 'src/',
 			moduleName: 'html2js',
