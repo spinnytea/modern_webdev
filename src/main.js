@@ -59,7 +59,7 @@ define([
 		dexGen: 6,
 		pokedexFilter: '',
 		pokedexOrderBy: 'number',
-		preferredTypeChart: 'squares',
+		preferredTypeChart: 'matrix',
 		theme: 'spacelab',
 	}));
 

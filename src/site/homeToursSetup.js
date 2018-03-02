@@ -49,7 +49,7 @@ define([], function () {
 			}, {
 				path: '/settings',
 				element: '#colorfulCards',
-				placement: 'top',
+				placement: 'bottom',
 				content: 'You can also change the Pokémon cards to have a background color based on their types.',
 			}],
 		});
@@ -81,10 +81,22 @@ define([], function () {
 						"it's better to search for something more specific." +
 						'This was mostly just a tech demo.',
 			}, {
+				path: '/settings',
+				element: '#dexGen',
+				placement: 'top',
+				content: 'If you are playing one of the older games, you can ' +
+					'narrow the list from the settings by picking a specific generation.',
+			}, {
+				path: '/settings',
+				element: '#pokedexOrderBy',
+				placement: 'top',
+				content: "Just because each Pokémon has a number, doesn't mean the results need be in that order.",
+			}, {
 				path: '/pokedex',
 				element: '[pokemon-pill]:nth(0) a',
 				placement: 'bottom',
-				content: 'You can go to the specific pokmeon with a link in the results.',
+				content: 'Once you have found the specific Pokémon you are looking for, ' +
+					'you can go to the specific pokmeon with a link in the results.',
 			}, {
 				path: '/pokedex/Bulbasaur',
 				element: 'header:contains(Defending)',
@@ -116,6 +128,11 @@ define([], function () {
 				element: 'h1 small:visible:nth(0)',
 				placement: 'bottom',
 				content: 'You can still see the other type charts if some things are easier to reference.',
+			}, {
+				path: '/settings',
+				element: '#preferredTypeChart',
+				placement: 'top',
+				content: 'You can change which type chart is displayed from the settings page.',
 			}, {
 				path: '/pokedex/Bulbasaur',
 				element: '#typeSquares',
