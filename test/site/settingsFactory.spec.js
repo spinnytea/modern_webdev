@@ -48,7 +48,7 @@ define([
 			expect(localStorageService.get).toHaveBeenCalledWith('dexGen');
 			expect(localStorageService.get).toHaveBeenCalledWith('colorfulCards');
 
-			expect(settings.themes.length).toBe(17);
+			expect(settings.themes.length).toBe(19);
 			expect(settings.availableTypeCharts.length).toBe(3);
 			expect(settings.pokedexGenerations.length).toBe(6);
 		});

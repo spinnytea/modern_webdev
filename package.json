@@ -83,6 +83,7 @@
     "karma-nyan-reporter": "^0.2.5",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-requirejs": "^1.1.0",
+    "less-plugin-functions": "^0.0.2",
     "less-plugin-sass2less": "^1.2.0",
     "merge-stream": "^1.0.1",
     "yargs": "^11.0.0"
