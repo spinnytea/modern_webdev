@@ -9,7 +9,7 @@ module.exports = function (config) {
 
 		// frameworks to use
 		// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-		frameworks: ['jasmine', 'requirejs'],
+		frameworks: ['jasmine', 'jasmine-jquery', 'requirejs'],
 
 		// plugins to use
 		plugins: [
@@ -19,7 +19,9 @@ module.exports = function (config) {
 			'karma-ie-launcher',
 			'karma-jasmine',
 			'karma-jasmine-diff-reporter',
+			'@metahub/karma-jasmine-jquery',
 			'karma-junit-reporter',
+			'karma-ng-html2js-preprocessor',
 			'karma-phantomjs-launcher',
 			'karma-nyan-reporter',
 			'karma-requirejs',
@@ -34,11 +36,14 @@ module.exports = function (config) {
 			{ pattern: 'static/**/*', included: false },
 			{ pattern: 'test/**/*.js', included: false },
 
-			{ pattern: 'node_modules/angular/angular.js', included: false },
+			{ pattern: 'node_modules/jquery/dist/jquery.js', included: true },
+			{ pattern: 'node_modules/angular/angular.js', included: true },
 			{ pattern: 'node_modules/angular-mocks/angular-mocks.js', included: false },
 			{ pattern: 'node_modules/lodash/lodash.js', included: false },
 			{ pattern: 'node_modules/requirejs-plugins/src/*', included: false },
 			{ pattern: 'node_modules/requirejs-text/text.js', included: false },
+
+			'src/**/*.html',
 		],
 
 		// list of files / patterns to exclude
@@ -51,6 +56,7 @@ module.exports = function (config) {
 		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 		preprocessors: {
 			'src/**/*.js': ['coverage'],
+			'src/**/*.html': ['ng-html2js'],
 		},
 
 		// karma-coverage configuration
@@ -58,6 +64,11 @@ module.exports = function (config) {
 			type: 'html',
 			dir: 'coverage/',
 			includeAllSources: true,
+		},
+
+		ngHtml2JsPreprocessor: {
+			stripPrefix: 'src/',
+			moduleName: 'html2js',
 		},
 
 

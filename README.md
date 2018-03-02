@@ -4,7 +4,9 @@ Modern WebDev
 Current Goals
 -------------
 
-1. karma + html
+1. finish testing html
+    1. karma loads angular twice ... side effect of configuring html2js
+    1. can we clean up the module setup? or does it matter?
 1. review documentation
 1. zip dist
     1. package data/*.json into a data requirejs lib
