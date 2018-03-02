@@ -18,6 +18,8 @@ var less = require('gulp-less');
 var lesshint = require('gulp-lesshint');
 var merge = require('merge-stream');
 var noop = require('gulp-noop');
+var rename = require('gulp-rename');
+var scss2less = require('gulp-scss2less');
 var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
 
@@ -195,20 +197,48 @@ gulp.task('build:css:colorful', function () {
 	return doCssBuild(stream)
 		.pipe(gulp.dest(dist.root));
 });
-gulp.task('build:css', ['build:css:bootstrap', 'build:css:bootswatch', 'build:css:colorful'], function () {});
+gulp.task('build:css:solarized', ['lint:css'], function () {
+	// collect the list of theme names in bootswatch
+	var themes = ['dark', 'light'];
+	return merge(themes.map(function (theme) {
+		// convert scss variables to less
+		// pre-concat the variable file to main (in-memory action)
+		var stream = merge([
+			gulp.src([
+				'node_modules/bootstrap-solarized-theme/sass/_solarized-palette.scss',
+				'node_modules/bootstrap-solarized-theme/sass/_variables-'+theme+'.scss',
+			]).pipe(scss2less()),
+			gulp.src('src/main.less'),
+		]).pipe(concat('main.less'));
+		return doCssBuild(stream)
+			.pipe(gulp.dest(path.join(dist.root, 'themes', 'solarized-'+theme)));
+	}));
+});
+gulp.task('build:css', ['build:css:bootstrap', 'build:css:bootswatch', 'build:css:colorful', 'build:css:solarized'], function () {});
 
 gulp.task('build:static', function () {
 	return gulp.src(resources.static)
 		.pipe(gulp.dest(dist.root));
 });
 
-gulp.task('build:vendor', function () {
+gulp.task('build:vendor', ['build:vendor:solarized'], function () {
 	var vendorList = require('./build_scripts/vendor_dist_list')();
 	return merge(vendorList.map(function (array) {
 		var dest = array[0], src = array[1];
 		return gulp.src(src).pipe(gulp.dest(path.join(dist.vendor, dest)));
 	}));
 });
+gulp.task('build:vendor:solarized', function () {
+	var themes = ['dark', 'light'];
+	return merge(themes.map(function (theme) {
+		return gulp.src('node_modules/bootstrap-solarized-theme/dist/css/solarized-'+theme+'-theme.min.css')
+			.pipe(rename('bootstrap.min.css'))
+			.pipe(gulp.dest(path.join(dist.vendor, 'bootstrap', 'solarized-'+theme)));
+	}));
+});
+
+// 		['bootstrap', 'node_modules/bootstrap-solarized-theme/dist/css/solarized-*-theme.min.css'],
+
 
 
 // test

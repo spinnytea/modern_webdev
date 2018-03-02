@@ -28,6 +28,7 @@
     "angular-ui-bootstrap": "^2.5.6",
     "bluebird": "^3.5.1",
     "bootstrap": "^3.0.0",
+    "bootstrap-solarized-theme": "^1.0.3",
     "bootstrap-tour": "^0.12.0",
     "bootswatch": "^3.0.0",
     "debug": "^3.1.0",
@@ -64,6 +65,7 @@
     "gulp-live-server": "0.0.31",
     "gulp-noop": "^1.0.0",
     "gulp-rename": "^1.2.2",
+    "gulp-scss2less": "^1.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-unzip": "^1.0.0",
@@ -81,6 +83,7 @@
     "karma-nyan-reporter": "^0.2.5",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-requirejs": "^1.1.0",
+    "less-plugin-sass2less": "^1.2.0",
     "merge-stream": "^1.0.1",
     "yargs": "^11.0.0"
   }
