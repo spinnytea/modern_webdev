@@ -10,6 +10,8 @@ setupModule.value('po_ke_type.utils.tours.factory', {
 	start: angular.noop,
 });
 // all of our tests will need these modules available
+angular.module('ngRoute', []);
+angular.module('cfp.hotkeys', []);
 beforeEach(angular.mock.module('setup.js'));
 beforeEach(angular.mock.module('html2js'));
 

@@ -1,12 +1,12 @@
-define(['jquery', 'lodash', 'Tour'], function ($, _, Tour) {
+define(['jquery', 'lodash'], function ($, _) {
 	var registeredTours = {};
 
 	return [
-		'$rootScope',
+		'$rootScope', 'Tour',
 		ToursFactory,
 	];
 
-	function ToursFactory($rootScope) {
+	function ToursFactory($rootScope, Tour) {
 		var tours = {};
 
 		/**
@@ -31,6 +31,8 @@ define(['jquery', 'lodash', 'Tour'], function ($, _, Tour) {
 			if(stepsUsePath && _.some(config.steps, function (step) { return _.startsWith(step.path, '#') || _.startsWith(step.path, '/#'); }))
 				throw new Error('no need to prefix paths with a hash, we will do that');
 
+			// BUG Uncaught TypeError: Cannot read property 'backdrop' of undefined
+			// BUG Uncaught TypeError: Cannot read property 'onNext' of undefined
 			registeredTours[config.name] = new Tour({
 				name: config.name,
 				backdrop: false,

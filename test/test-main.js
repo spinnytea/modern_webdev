@@ -15,9 +15,11 @@ Object.keys(window.__karma__.files).forEach(function (file) {
 });
 
 // normal shims don't work, requirejs tries to fetch them anyway
+// path of empty: isn't working either, tries to fetch empty:.js
 define('jquery', function () { return $; }); // eslint-disable-line
 define('angular', ['jquery'], function () { return angular; }); // eslint-disable-line
 define('angular-mocks', ['angular'], function () { return angular.mocks; }); // eslint-disable-line
+define('Tour', function () { return null; }); // eslint-disable-line
 
 require.config({
 	// Karma serves files under /base, which is the basePath from your config file

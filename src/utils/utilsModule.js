@@ -1,6 +1,7 @@
 define([
 	'angular',
 	'lodash',
+	'Tour',
 	'./areYouSureDirective',
 	'./bindKeysFactory',
 	'./browserVersionFactory',
@@ -12,6 +13,7 @@ define([
 ], function (
 	angular,
 	_,
+	Tour,
 	areYouSureDirective,
 	bindKeysFactory,
 	browserVersionFactory,
@@ -29,6 +31,7 @@ define([
 		'cfp.hotkeys',
 	]);
 
+	utilsModule.constant('Tour', Tour); // shim requirejs dep into angular dep (enables testing)
 	utilsModule.factory('bindKeys', bindKeysFactory);
 	utilsModule.factory('po_ke_type.utils.browserVersion.factory', browserVersionFactory);
 	utilsModule.filter('filterAll', filterAllFilter);
