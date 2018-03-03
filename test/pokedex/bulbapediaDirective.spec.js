@@ -1,7 +1,7 @@
 define([
 	'angular',
 	'src/pokedex/pokedexModule',
-	'test/pokemon/pokedexFactory.mock',
+	'test/pokedex/pokedexFactory.mock',
 	'angular-mocks',
 ], function (angular, pokedexModule, pokedexFactoryMock) {
 	return describe('Bulbapedia Directive', function () {
