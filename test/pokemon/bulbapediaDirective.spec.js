@@ -1,31 +1,28 @@
 define([
 	'angular',
 	'src/pokedex/pokedexModule',
+	'test/pokemon/pokedexFactory.mock',
 	'angular-mocks',
-], function (angular, pokedexModule) {
+], function (angular, pokedexModule, pokedexFactoryMock) {
 	return describe('Bulbapedia Directive', function () {
 		beforeEach(angular.mock.module(pokedexModule.name));
 
-		it('controller'); // end controller
-
 		describe('template', function () {
-			var $rootScope, $compile;
-			var element;
-			beforeEach(angular.mock.inject(function (_$compile_, _$rootScope_){
+			var $scope, element;
+			beforeEach(angular.mock.inject(function ($compile, $rootScope){
 				// The injector unwraps the underscores (_) from around the parameter names when matching
-				$compile = _$compile_;
-				$rootScope = _$rootScope_;
-				element = $compile('<i bulbapedia="thingy"></i>')($rootScope);
+				$scope = $rootScope;
+				element = $compile('<i bulbapedia="mon"></i>')($scope);
+				$scope.mon = pokedexFactoryMock.list.Bulbasaur;
 			}));
 
 			it('spot check values', function () {
-				$rootScope.thingy = { name: 'Thing' };
-				$rootScope.$digest();
-				expect(element.attr('href')).toBe('http://bulbapedia.bulbagarden.net/wiki/Thing_(Pok%C3%A9mon)');
+				$scope.$digest();
+				expect(element.attr('href')).toBe('http://bulbapedia.bulbagarden.net/wiki/Bulbasaur_(Pok%C3%A9mon)');
 
-				$rootScope.thingy = { name: 'Foo' };
-				$rootScope.$digest();
-				expect(element.attr('href')).toBe('http://bulbapedia.bulbagarden.net/wiki/Foo_(Pok%C3%A9mon)');
+				$scope.mon = pokedexFactoryMock.list.Charmander;
+				$scope.$digest();
+				expect(element.attr('href')).toBe('http://bulbapedia.bulbagarden.net/wiki/Charmander_(Pok%C3%A9mon)');
 			});
 		}); // end template
 	}); // end Bulbapedia Directive
