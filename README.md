@@ -30,7 +30,6 @@ Stretch Goals
     1. what do we need but doesn't have a demo
     1. what do we not need
     1. what isn't included here that we need to pull in
-1. split utilsModule into multiple files
 1. build theme directly into main.less
     * @import "bootstrap/less/bootstrap.less";
     * @import "bootswatch/theme/variables.less";

@@ -107,6 +107,7 @@ gulp.task('buildd', function () {
 // the whole point of this build is that we serve static files from
 // the only reason we need a server is because we are loading json files
 // the browswer will ONLY load js files, not even html (that's why we have templateCache)
+// TODO server crashes when html is invalid (attr without value)
 gulp.task('server', ['build'], function () {
 	var server = gls.static(dist.root, argv.port);
 	server.start();
