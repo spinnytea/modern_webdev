@@ -5,7 +5,6 @@ define([
 ], function (angular, siteModule) {
 	return describe('Home Controller', function () {
 		var teamFactory, pokedexFactory, settingsFactory, typesFactory;
-		beforeEach(angular.mock.module('setup.js'));
 		beforeEach(angular.mock.module(siteModule.name, function ($provide) {
 			teamFactory = [0];
 			pokedexFactory = { list: [0, 1] };

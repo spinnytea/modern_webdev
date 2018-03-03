@@ -5,13 +5,11 @@ define([
 ], function (angular, pokedexModule) {
 	return describe('Pokemon Pill Directive', function () {
 		var settingsFactory;
-		beforeEach(function () {
+		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			settingsFactory = { colorfulCards: true };
-			var module = angular.module('pokemonPillDirective.spec.js', ['html2js', pokedexModule.name]);
-			module.value('po_ke_type.site.settings.factory', settingsFactory);
-			module.filter('padNumber', function () { return function (i) { return i; }; });
-			angular.mock.module('pokemonPillDirective.spec.js');
-		});
+			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
+			$provide.value('padNumberFilter', function (i) { return i; });
+		}));
 
 		describe('controller', function () {
 			var $scope;

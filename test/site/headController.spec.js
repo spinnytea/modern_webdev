@@ -5,7 +5,6 @@ define([
 ], function (angular, siteModule) {
 	return describe('Head Controller', function () {
 		var settingsFactory;
-		beforeEach(angular.mock.module('setup.js'));
 		beforeEach(angular.mock.module(siteModule.name, function ($provide) {
 			settingsFactory = {};
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);

@@ -30,20 +30,27 @@ module.exports = function (config) {
 
 		// list of files / patterns to load in the browser
 		files: [
+			// load jquery/angular first
+			'node_modules/jquery/dist/jquery.js',
+			'node_modules/angular/angular.js',
+			'node_modules/angular-mocks/angular-mocks.js',
+
+			// bootstrap the tests
 			'test/setup.js',
 			'test/test-main.js',
+
+			// let angular know about our code
+			// requirejs will pull in our js/json files
 			{ pattern: 'src/**/*.js', included: false },
 			{ pattern: 'static/**/*', included: false },
 			{ pattern: 'test/**/*.js', included: false },
+			// html files will run through html2js and are needed up front
+			{ pattern: 'src/**/*.html', included: true },
 
-			{ pattern: 'node_modules/jquery/dist/jquery.js', included: true },
-			{ pattern: 'node_modules/angular/angular.js', included: true },
-			{ pattern: 'node_modules/angular-mocks/angular-mocks.js', included: false },
+			// vendor dependencies we'll get through requirejs
 			{ pattern: 'node_modules/lodash/lodash.js', included: false },
 			{ pattern: 'node_modules/requirejs-plugins/src/*', included: false },
 			{ pattern: 'node_modules/requirejs-text/text.js', included: false },
-
-			'src/**/*.html',
 		],
 
 		// list of files / patterns to exclude

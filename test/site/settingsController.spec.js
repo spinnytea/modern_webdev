@@ -5,7 +5,6 @@ define([
 ], function (angular, siteModule) {
 	return describe('Settings Controller', function () {
 		var localStorageService, settingsFactory;
-		beforeEach(angular.mock.module('setup.js'));
 		beforeEach(angular.mock.module(siteModule.name, function ($provide) {
 			localStorageService = jasmine.createSpyObj('localStorageService', ['clearAll']);
 			settingsFactory = {};
