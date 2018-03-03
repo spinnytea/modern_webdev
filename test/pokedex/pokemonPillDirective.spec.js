@@ -1,14 +1,16 @@
 define([
 	'angular',
+	'lodash',
 	'src/pokedex/pokedexModule',
+	'test/pokedex/pokedexFactory.mock',
 	'angular-mocks',
-], function (angular, pokedexModule) {
+], function (angular, _, pokedexModule, podekexFactoryMock) {
 	return describe('Pokemon Pill Directive', function () {
 		var settingsFactory;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			settingsFactory = { colorfulCards: true };
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
-			$provide.value('padNumberFilter', function (i) { return i; });
+			$provide.value('padNumberFilter', _.identity);
 		}));
 
 		describe('controller', function () {
@@ -28,37 +30,31 @@ define([
 		describe('template', function () {
 			var element;
 			beforeEach(angular.mock.inject(['$compile', '$rootScope', function ($compile, $rootScope) {
-				$rootScope.thingy = {
-					number: 'A',
-					name: 'Thing',
-					specialname: 'Thinger',
-					typeStyle: 'test1-test2',
-					types: ['test1', 'test2'],
-				};
-				element = $compile('<i pokemon-pill="thingy"></i>')($rootScope);
+				$rootScope.mon = podekexFactoryMock.list.Pumpkaboo;
+				element = $compile('<i pokemon-pill="mon"></i>')($rootScope);
 				$rootScope.$digest();
 			}]));
 
 			it('classes', function () {
 				expect(element).toHaveClass('colorful');
-				expect(element).toHaveClass('test1-test2');
+				expect(element).toHaveClass('ghost-grass');
 			});
 
 			it('number', function () {
-				expect(element.find('span.label')).toHaveText('A');
+				expect(element.find('span.label')).toHaveText('710');
 			});
 
 			it('name', function () {
-				expect(element.find('> a')).toHaveText('Thing');
+				expect(element.find('> a')).toHaveText('Pumpkaboo');
 			});
 
 			it('specialname', function () {
-				expect(element.find('> small')).toHaveText('(Thinger)');
+				expect(element.find('> small')).toHaveText('(Small Size)');
 			});
 
 			it('types', function () {
-				expect(element).toContainElement('.type-label.type-test1:contains("test1")');
-				expect(element).toContainElement('.type-label.type-test2:contains("test2")');
+				expect(element).toContainElement('.type-label.type-ghost:contains("ghost")');
+				expect(element).toContainElement('.type-label.type-grass:contains("grass")');
 			});
 		}); // end template
 	}); // end Pokemon Pill Directive

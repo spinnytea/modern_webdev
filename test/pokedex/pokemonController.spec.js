@@ -187,12 +187,38 @@ define([
 				]);
 			});
 
-			it('not oops', function () {
-				expect(element).not.toContainElement('[ng-include="\'site/oops.html\'"]');
+			it('oops', function () {
+				var oops = '[ng-include="\'site/oops.html\'"]';
+
+				// setup scope to be valid
+				expect(element).not.toContainElement(oops);
+
+				// make sure oops is used if it's not valid
+				$scope.mon = undefined;
+				$scope.$digest();
+				expect(element).toContainElement(oops);
 			});
 
 			it('heading', function () {
 				expect(element).toContainElement('h1');
+			});
+
+			it('type squares', function () {
+				expect(element.find('[type-square]')).toHaveLength(2);
+				expect(element.find('[type-square]:nth(0)').scope().type).toBe('grass');
+				expect(element.find('[type-square]:nth(1)').scope().type).toBe('poison');
+			});
+
+			it('defending', function () {
+				var section = element.find('section > header:contains(Defending) + div');
+				expect(section).toContainElement('[title="Charmander"].pki.n4');
+				expect(section).toContainElement('[title="Squirtle"].pki.n7');
+			});
+
+			it('attacking', function () {
+				var section = element.find('section > header:contains(Attacking) + div');
+				expect(section).toContainElement('[title="Charmander"].pki.n4');
+				expect(section).toContainElement('[title="Squirtle"].pki.n7');
 			});
 		}); // end template
 	}); // end Pokemon Controller

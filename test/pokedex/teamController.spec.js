@@ -1,24 +1,34 @@
 define([
 	'angular',
+	'lodash',
 	'src/pokedex/pokedexModule',
+	'test/pokedex/pokedexFactory.mock',
 	'test/utils/bindKeys.mock',
 	'angular-mocks',
-], function (angular, pokedexModule, bindKeys) {
+], function (angular, _, pokedexModule, pokedexFactoryMock, bindKeys) {
 	return describe('Team Controller', function () {
-		var MON_1 = { name: 'Mon 1' };
-		var MON_2 = 'Mon 2';
 		var pokedexFactory, teamFactory, settingsFactory;
-		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
-			pokedexFactory = { list: ['asdf'] };
-			teamFactory = [MON_1];
+		beforeEach(function () {
+			pokedexFactory = { list: [] };
+			teamFactory = [];
 			settingsFactory = {};
+		});
+		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			$provide.value('bindKeys', bindKeys);
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
 			$provide.value('po_ke_type.pokedex.team.factory', teamFactory);
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
+			$provide.value('padNumberFilter', _.identity);
 		}));
 
 		describe('controller', function () {
+			var MON_1 = { name: 'Mon 1' };
+			var MON_2 = 'Mon 2';
+			beforeEach(function () {
+				pokedexFactory.list.push(['asdf']);
+				teamFactory.push(MON_1);
+			});
+
 			var $scope;
 			beforeEach(angular.mock.inject(['$controller', function ($controller) {
 				$scope = {};
@@ -95,6 +105,35 @@ define([
 			}); // end getFilteredList
 		}); // end controller
 
-		it('template'); // end template
+		describe('template', function () {
+			var $scope, element;
+			beforeEach(angular.mock.inject(function ($compile, $controller, $templateCache, $rootScope) {
+				teamFactory.push(_.clone(pokedexFactoryMock.list.Bulbasaur));
+				$scope = $rootScope.$new();
+				$controller('po_ke_type.pokedex.team.controller', {
+					'$scope': $scope,
+				});
+				element = $compile($templateCache.get('pokedex/team.html'))($scope);
+				$scope.$digest();
+			}));
+
+			it('init', function () {
+				expect($scope.team).toEqual([
+					jasmine.objectContaining({ name: 'Bulbasaur' }),
+				]);
+			});
+
+			it('pokemon-card', function () {
+				expect(element.find('.pokemon-card')).toHaveLength(1);
+				expect(element.find('.pokemon-card header')).toContainText('Bulbasaur');
+				expect(element.find('.pokemon-card')).toContainElement('.pki.n1');
+				expect(element.find('.pokemon-card')).toContainElement('.type-grass');
+				expect(element.find('.pokemon-card')).toContainElement('.type-poison');
+			});
+
+			it('filter to add to team', function () {
+				expect(element).toContainElement('#filter');
+			});
+		}); // end template
 	}); // end Team Controller
 });
