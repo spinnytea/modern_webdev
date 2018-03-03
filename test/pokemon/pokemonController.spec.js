@@ -1,24 +1,30 @@
 define([
 	'angular',
+	'lodash',
 	'src/pokedex/pokedexModule',
+	'test/pokemon/pokedexFactory.mock',
 	'angular-mocks',
-], function (angular, pokedexModule) {
+], function (angular, _, pokedexModule, pokedexFactoryMock) {
 	return describe('Pokemon Controller', function () {
-		var pokedexFactory;
-		var teamFactory;
+		var pokedexFactory, teamFactory, settingsFactory;
 		beforeEach(function () {
-			// HACK why does this init ned to be in it's own function?
+			// HACK why does this init need to be in it's own function?
 			// - why can't it be in the angular.mock.module block?
 			// - shouldn't the beforeEach's be executed in order?
+			// - does the provide section run later?
 			pokedexFactory = {
 				list: [],
 				calculateMaxDamageRate: jasmine.createSpy('calculateMaxDamageRate').and.returnValue(1),
 			};
 			teamFactory = [];
+			settingsFactory = {};
 		});
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
 			$provide.value('po_ke_type.pokedex.team.factory', teamFactory);
+			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
+			$provide.value('rateStyleFilter', _.identity);
+			$provide.value('rateDisplayFilter', _.identity);
 		}));
 
 		describe('controller', function () {
@@ -153,6 +159,41 @@ define([
 			}); // end attacking and defending
 		}); // end controller
 
-		it('template'); // end template
+		describe('template', function () {
+			var $scope, element;
+			beforeEach(angular.mock.inject(function ($compile, $controller, $templateCache, $rootScope) {
+				pokedexFactory.list.push(pokedexFactoryMock.list.Bulbasaur);
+				teamFactory.push(pokedexFactoryMock.list.Charmander);
+				teamFactory.push(pokedexFactoryMock.list.Squirtle);
+				$scope = $rootScope.$new();
+				$controller('po_ke_type.pokedex.pokemon.controller', {
+					'$scope': $scope,
+					'$routeParams': { name: 'Bulbasaur' },
+				});
+				// TODO why do we have to wrap the templateCache in a div, but we don't need to for pokedex.html?
+				element = $compile('<div>' + $templateCache.get('pokedex/pokemon.html') + '</div>')($scope);
+				$scope.$digest();
+			}));
+
+			it('init', function () {
+				expect($scope.mon).toBe(pokedexFactoryMock.list.Bulbasaur);
+				expect($scope.attacking).toEqual([
+					jasmine.objectContaining({ name: 'Charmander', rate: 1 }),
+					jasmine.objectContaining({ name: 'Squirtle', rate: 1 }),
+				]);
+				expect($scope.defending).toEqual([
+					jasmine.objectContaining({ name: 'Charmander', rate: 1 }),
+					jasmine.objectContaining({ name: 'Squirtle', rate: 1 }),
+				]);
+			});
+
+			it('not oops', function () {
+				expect(element).not.toContainElement('[ng-include="\'site/oops.html\'"]');
+			});
+
+			it('heading', function () {
+				expect(element).toContainElement('h1');
+			});
+		}); // end template
 	}); // end Pokemon Controller
 });
