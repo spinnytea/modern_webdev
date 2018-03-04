@@ -4,37 +4,40 @@ Modern WebDev
 Current Goals
 -------------
 
-1. finish testing html
-1. review documentation
+1. skipped tests that are new in kind
 1. zip dist
     1. package data/*.json into a data requirejs lib
     1. this is meant to be unpacked and opened from the filesystem (not hosted)
+1. clean up gulp file
+    1. build scripts?
+    1. file paths used throughout, not defined at top
+1. review documentation
 1. iterate on ui
     1. ngAnimate the dex two searches
     1. filter icon in search bar (show in settings)
     1. settings to show team
     1. styleguide linter?
-1. clean up gulp file
-    1. build scripts?
-    1. file paths used throughout, not defined at top
 1. test in IE - doesn't support function names (need to detect user agent)
-
-Stretch Goals
--------------
-
-1. review pokedex module (pokemon / team), it was all copypasta
-1. load vendor libs with requires, not static on page (the hard part is angular)
-1. remove eslint-plugin-requirejs, why not just use env: amd: true
-1. prune node packages
+1. review code TODOs for high priority tasks
+1. review node packages
     1. what isn't being used, make a demo
     1. what do we need but doesn't have a demo
     1. what do we not need
     1. what isn't included here that we need to pull in
+1. review documentation (again)
+
+Stretch Goals
+-------------
+
+1. load vendor libs with requires, not static on page (the hard part is angular)
+1. remove eslint-plugin-requirejs, why not just use env: amd: true
 1. build theme directly into main.less
     * @import "bootstrap/less/bootstrap.less";
     * @import "bootswatch/theme/variables.less";
     * @import "bootswatch/theme/bootswatch.less";
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
+1. finish skipped tests
+1. finish code TODOs
 
 What's in the project
 ---------------------
