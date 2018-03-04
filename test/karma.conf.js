@@ -25,6 +25,7 @@ module.exports = function (config) {
 			'karma-phantomjs-launcher',
 			'karma-nyan-reporter',
 			'karma-requirejs',
+			'karma-spec-reporter',
 		],
 
 
@@ -84,14 +85,32 @@ module.exports = function (config) {
 		// possible values: 'dots', 'progress'
 		// available reporters: https://npmjs.org/browse/keyword/karma-reporter
 		reporters: ['nyan'],
+
+		// karma-jasmine-diff-reporter doesn't require configuration
+		// reporters: ['jasmine-diff'],
 		// jasmine-diff looks aweful and doesn't play nice with nyan
 		// but sometimes the output is tricky, and the diff is dead useful
 		// it's just a tool that needs to be used as-needed; it's not good for use all the time
-		// reporters: ['jasmine-diff'],
 
 		// karma-junit-reporter configuration
+		// reporters: ['coverage'],
 		junitReporter: {
 			outputDir: 'coverage',
+		},
+
+		// karma-spec-reporter configuration
+		// reporters: ['spec'],
+		// it's a nice looking output and useful when you want to see a summary of all the test
+		// we have junit as one of the coverage reporters (i.e. npx gulp test -c) which is typically more useful
+		// however, this is really useful for printing out which tests are skipped (i.e. npx gulp test --skipped)
+		specReporter: {
+			maxLogLines: 5,             // limit number of lines logged per test
+			suppressErrorSummary: true, // do not print error summary
+			suppressFailed: false,      // do not print information about failed tests
+			suppressPassed: false,      // do not print information about passed tests
+			suppressSkipped: true,      // do not print information about skipped tests
+			showSpecTiming: false,      // print the time elapsed for each spec
+			failFast: true,             // test would finish with error when a first fail occurs.
 		},
 
 

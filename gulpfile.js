@@ -54,6 +54,13 @@ var argv = require('yargs')
 		default: false,
 		group: 'Test:',
 	})
+	.option('skipped', {
+		describe: 'print out only skipped tests',
+		type: 'boolean',
+		default: false,
+		group: 'Test:',
+		// TODO conflicts with --coverage, --watch
+	})
 	.option('watch', {
 		describe: 'continuous mode, re-run when files change',
 		alias: 'w',
@@ -248,6 +255,17 @@ gulp.task('test', function (done) {
 
 	if(argv.coverage) {
 		options.reporters = ['nyan', 'coverage', 'junit'];
+	}
+
+	if(argv.skipped) {
+		options.reporters = ['spec'];
+		options.specReporter = {
+			suppressErrorSummary: true,
+			suppressFailed: true,
+			suppressPassed: true,
+			suppressSkipped: false,
+			failFast: true,
+		};
 	}
 
 	if(argv.watch) {
