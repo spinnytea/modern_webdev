@@ -43,7 +43,7 @@ define([
 
 				it('with path', function () {
 					tours.register({
-						name: 'specTourWithoutPath',
+						name: 'specTourWithPath',
 						steps: [{
 							path: '/one',
 							element: '#elem1',
@@ -60,7 +60,7 @@ define([
 
 				it('orphan', function () {
 					tours.register({
-						name: 'specTourWithoutPath',
+						name: 'specTourOrhanDemo',
 						steps: [{
 							orphan: true,
 							content: 'Content 1',
@@ -183,11 +183,36 @@ define([
 		}); // end register
 
 		describe('start', function () {
-			it('not a tour');
+			beforeEach(function () {
+				tours.register({
+					name: 'specTourStart',
+					steps: [{
+						element: '#elem1',
+						placement: 'top',
+						content: 'Content 1',
+					}, {
+						element: '#elem2',
+						placement: 'top',
+						content: 'Content 2',
+					}],
+				});
+			});
 
-			it('not started');
+			it('not a tour', function () {
+				expect(Tour.restart).not.toHaveBeenCalled();
 
-			it('not ended');
+				tours.start('notATour');
+
+				expect(Tour.restart).not.toHaveBeenCalled();
+			});
+
+			it('is a tour', function () {
+				expect(Tour.restart).not.toHaveBeenCalled();
+
+				tours.start('specTourStart');
+
+				expect(Tour.restart).toHaveBeenCalled();
+			});
 		}); // end start
 	}); // end Tours Factory
 });

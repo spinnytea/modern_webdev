@@ -69,12 +69,14 @@ define(['jquery', 'lodash'], function ($, _) {
 		tours.start = function (name) {
 			var tour = registeredTours[name];
 			if(tour) {
+				/* istanbul ignore if */
 				if(!tour.ended()) tour.end();
 				tour.restart();
 			}
 		};
 
 		// HACK bootstrap-tour blows up on route change because the new element isn't on the page
+		/* istanbul ignore next */
 		$rootScope.$on('$routeChangeSuccess', function () {
 			var toursActive = _.some(registeredTours, function (tour) { return !tour.ended(); });
 			if(toursActive) $(window).resize();

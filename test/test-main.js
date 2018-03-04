@@ -21,7 +21,8 @@ define('angular', ['jquery'], function () { return angular; }); // eslint-disabl
 define('angular-mocks', ['angular'], function () { return angular.mocks; }); // eslint-disable-line
 define('Tour', ['lodash'], function (_) {
 	// one set of spies for the whole test
-	var spies = jasmine.createSpyObj('Tour', ['constructorSpy', 'init']);
+	var spies = jasmine.createSpyObj('Tour', ['constructorSpy', 'ended', 'init', 'restart']);
+	spies.ended.and.returnValue(true);
 
 	_.assign(Tour, spies); // make them global to the 'class'
 	function Tour() {
