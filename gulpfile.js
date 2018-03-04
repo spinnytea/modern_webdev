@@ -258,6 +258,7 @@ gulp.task('test', function (done) {
 	}
 
 	if(argv.skipped) {
+		options.browsers = ['PhantomJS'];
 		options.reporters = ['spec'];
 		options.specReporter = {
 			suppressErrorSummary: true,

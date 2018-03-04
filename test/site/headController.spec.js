@@ -23,7 +23,5 @@ define([
 				expect($scope.settings).toBe(settingsFactory);
 			});
 		}); // end controller
-
-		it('template'); // end template
 	}); // end Head Controller
 });

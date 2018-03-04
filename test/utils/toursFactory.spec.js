@@ -72,9 +72,50 @@ define([
 				});
 
 				describe('overwrite title', function () {
-					it('as undefined');
+					it('as undefined', function () {
+						var config = {
+							name: 'specTourOverwriteTitleUndefined',
+							steps: [{
+								element: '#elem1',
+								placement: 'top',
+								title: 'Title 1',
+								content: 'Content 1',
+							}, {
+								element: '#elem2',
+								placement: 'top',
+								title: 'Title 2',
+								content: 'Content 2',
+							}],
+						};
+						tours.register(config);
 
-					it('as string');
+						expect(config.title).toBe(undefined);
+						expect(config.steps[0].title).toBe(undefined);
+						expect(config.steps[1].title).toBe(undefined);
+					});
+
+					it('as string', function () {
+						var config = {
+							name: 'specTourOverwriteTitleString',
+							title: 'Config Title',
+							steps: [{
+								element: '#elem1',
+								placement: 'top',
+								title: 'Title 1',
+								content: 'Content 1',
+							}, {
+								element: '#elem2',
+								placement: 'top',
+								title: 'Title 2',
+								content: 'Content 2',
+							}],
+						};
+						tours.register(config);
+
+						expect(config.title).toBe('Config Title');
+						expect(config.steps[0].title).toBe('Config Title');
+						expect(config.steps[1].title).toBe('Config Title');
+					});
 				});
 			}); // end valid
 
