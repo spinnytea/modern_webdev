@@ -20,16 +20,16 @@ define(['jquery', 'lodash'], function ($, _) {
 		 */
 		tours.register = function (config) {
 			if(!_.isObject(config)) throw new Error('config must be present');
-			if(!_.isString(config.name) || !/^[\w\d-]+$/.test(config.name)) throw new Error('config must be alphanumeric');
-			if(!_.isArray(config.steps) || !config.steps.length) throw new Error('tours must have at least one step');
+			if(!_.isString(config.name)) throw new Error('tours must have a name');
+			if(!/^[\w\d-]+$/.test(config.name)) throw new Error('tour names must be alphanumeric');
+			if(config.title !== undefined && !_.isString(config.title)) throw new Error('tour titles must be a string');
+			if(!_.isArray(config.steps)) throw new Error('tours must have steps');
+			if(!config.steps.length) throw new Error('tours must have at least one step');
 
 			// check for path consistency (all must have path or no)
 			var stepsUsePath = config.steps[0].hasOwnProperty('path');
 			var allStepsUseOrDontUsePath = _.every(config.steps, function (step) { return step.hasOwnProperty('path') === stepsUsePath; });
 			if(!allStepsUseOrDontUsePath) throw new Error('either no steps can use path, or all steps use path, there isn\'t an in between');
-
-			if(stepsUsePath && _.some(config.steps, function (step) { return _.startsWith(step.path, '#') || _.startsWith(step.path, '/#'); }))
-				throw new Error('no need to prefix paths with a hash, we will do that');
 
 			// BUG Uncaught TypeError: Cannot read property 'backdrop' of undefined
 			// BUG Uncaught TypeError: Cannot read property 'onNext' of undefined
@@ -38,13 +38,18 @@ define(['jquery', 'lodash'], function ($, _) {
 				backdrop: false,
 				keyboard: true,
 				steps: config.steps.map(function (step) {
+					if(stepsUsePath) {
+						if(_.startsWith(step.path, '#')) throw new Error('no need to prefix paths with #, that is automatic');
+						if(_.startsWith(step.path, '/#')) throw new Error('no need to prefix paths with /#, that is automatic');
+					}
 					if(step.orphan) {
 						if(step.element) throw new Error("orphaned steps don't need an element");
-						if(step.placement) throw new Error("orphaned steps don't need an element");
+						if(step.placement) throw new Error("orphaned steps don't need a placement");
 					}
 					else {
 						if(!_.isString(step.element)) throw new Error('each step must have an element');
-						if(!_.isString(step.placement)) throw new Error('each step must have placement');
+						if(!_.isString(step.placement)) throw new Error('each step must have a placement');
+						if(!_.includes(['top', 'right', 'bottom', 'left'], step.placement)) throw new Error('incorrect placement');
 					}
 					if(!_.isString(step.content)) throw new Error('each step must have content');
 					step.title = config.title;

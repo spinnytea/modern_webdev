@@ -19,7 +19,24 @@ Object.keys(window.__karma__.files).forEach(function (file) {
 define('jquery', function () { return $; }); // eslint-disable-line
 define('angular', ['jquery'], function () { return angular; }); // eslint-disable-line
 define('angular-mocks', ['angular'], function () { return angular.mocks; }); // eslint-disable-line
-define('Tour', function () { return null; }); // eslint-disable-line
+define('Tour', ['lodash'], function (_) {
+	// one set of spies for the whole test
+	var spies = jasmine.createSpyObj('Tour', ['constructorSpy', 'init']);
+
+	_.assign(Tour, spies); // make them global to the 'class'
+	function Tour() {
+		spies.constructorSpy.apply(this, arguments);
+		_.assign(this, spies); // attach them to each object
+	}
+
+	afterEach(function () {
+		_.forEach(spies, function (s) {
+			s.calls.reset();
+		});
+	});
+
+	return Tour;
+}); // eslint-disable-line
 
 require.config({
 	// Karma serves files under /base, which is the basePath from your config file
