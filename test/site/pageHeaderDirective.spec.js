@@ -13,11 +13,11 @@ define([
 
 		describe('controller', function () {
 			var $scope = {};
-			beforeEach(angular.mock.inject(['$controller', function ($controller) {
+			beforeEach(angular.mock.inject(function ($controller) {
 				$controller('po_ke_type.site.pageHeader.directive.controller', {
 					'$scope': $scope,
 				});
-			}]));
+			}));
 
 			it('isActive', function () {
 				expect($scope.isActive('/types')).toBe(true);
@@ -28,8 +28,7 @@ define([
 		describe('template', function () {
 			var $scope, element;
 			beforeEach(angular.mock.inject(function ($compile, $rootScope){
-				// The injector unwraps the underscores (_) from around the parameter names when matching
-				$scope = $rootScope;
+				$scope = $rootScope.$new();
 				element = $compile('<div page-header=""></div>')($scope);
 				$scope.$digest();
 			}));

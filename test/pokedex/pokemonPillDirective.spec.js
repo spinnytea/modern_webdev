@@ -15,15 +15,17 @@ define([
 
 		describe('controller', function () {
 			var $scope;
-			beforeEach(angular.mock.inject(['$controller', function ($controller) {
+			beforeEach(angular.mock.inject(function ($controller) {
 				$scope = {};
 				$controller('po_ke_type.types.pokemonPill.directive.controller', {
 					'$scope': $scope,
 				});
-			}]));
+			}));
 
+			// NOTE if this list changes, stub a test for the new one
+			// - you don't need to implement the test immediately, but at least stub it out
 			it('init', function () {
-				expect(Object.keys($scope)).toEqual(['settings']);
+				expect(Object.keys($scope).sort()).toEqual(['settings']);
 			});
 		}); // end controller
 

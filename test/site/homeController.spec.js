@@ -18,12 +18,12 @@ define([
 
 		describe('controller', function () {
 			var $scope;
-			beforeEach(angular.mock.inject(['$controller', function ($controller) {
+			beforeEach(angular.mock.inject(function ($controller) {
 				$scope = {};
 				$controller('po_ke_type.site.home.controller', {
 					'$scope': $scope,
 				});
-			}]));
+			}));
 
 			it('init', function () {
 				expect($scope.themeCount).toBe(3);

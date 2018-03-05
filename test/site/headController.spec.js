@@ -12,12 +12,12 @@ define([
 
 		describe('controller', function () {
 			var $scope;
-			beforeEach(angular.mock.inject(['$controller', function ($controller) {
+			beforeEach(angular.mock.inject(function ($controller) {
 				$scope = {};
 				$controller('po_ke_type.site.head.controller', {
 					'$scope': $scope,
 				});
-			}]));
+			}));
 
 			it('init', function () {
 				expect($scope.settings).toBe(settingsFactory);

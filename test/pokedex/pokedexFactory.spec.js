@@ -17,7 +17,7 @@ define([
 		it('init', function () {
 			// NOTE if this list changes, stub a test for the new one
 			// - you don't need to implement the test immediately, but at least stub it out
-			expect(Object.keys(pokedex)).toEqual(['list', 'calculateMaxDamageRate']);
+			expect(Object.keys(pokedex).sort()).toEqual(['calculateMaxDamageRate', 'list']);
 		});
 
 		describe('list', function () {

@@ -8,11 +8,11 @@ define([
 
 		describe('controller', function () {
 			var $scope = { type: 'ground' };
-			beforeEach(angular.mock.inject(['$controller', function ($controller) {
+			beforeEach(angular.mock.inject(function ($controller) {
 				$controller('po_ke_type.types.square.directive.controller', {
 					'$scope': $scope,
 				});
-			}]));
+			}));
 
 			it('dmgTo', function () {
 				expect($scope.dmgTo200).toEqual(['fire', 'electric', 'poison', 'rock', 'steel']);

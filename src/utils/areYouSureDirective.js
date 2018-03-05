@@ -25,7 +25,7 @@ define(['angular'], function (angular) {
 	function AreYouSureController($scope, $q, $timeout) {
 		// step 1: idle
 		// step 2: are you sure?
-		// step 3: do the thing
+		// step 3: working (doing the thing)
 		// step 4: done
 		// step 5: error
 		$scope.step = 1;

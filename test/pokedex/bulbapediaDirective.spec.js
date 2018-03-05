@@ -10,8 +10,7 @@ define([
 		describe('template', function () {
 			var $scope, element;
 			beforeEach(angular.mock.inject(function ($compile, $rootScope){
-				// The injector unwraps the underscores (_) from around the parameter names when matching
-				$scope = $rootScope;
+				$scope = $rootScope.$new();
 				element = $compile('<i bulbapedia="mon"></i>')($scope);
 				$scope.mon = pokedexFactoryMock.list.Bulbasaur;
 			}));

@@ -34,12 +34,12 @@ define([
 				$routeParams = {};
 			});
 			function initController() {
-				angular.mock.inject(['$controller', function ($controller) {
+				angular.mock.inject(function ($controller) {
 					$controller('po_ke_type.pokedex.pokemon.controller', {
 						'$scope': $scope,
 						'$routeParams': $routeParams,
 					});
-				}]);
+				});
 			}
 
 			describe('awkward params', function () {

@@ -14,7 +14,7 @@ define([
 		it('init', function () {
 			// NOTE if this list changes, stub a test for the new one
 			// - you don't need to implement the test immediately, but at least stub it out
-			expect(Object.keys(types)).toEqual(['chart', 'list', 'text']);
+			expect(Object.keys(types).sort()).toEqual(['chart', 'list', 'text']);
 		});
 
 		describe('chart', function () {
