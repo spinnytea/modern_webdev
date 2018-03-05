@@ -9,7 +9,7 @@ define([
 
 		describe('template', function () {
 			var $scope, element;
-			beforeEach(angular.mock.inject(function ($compile, $rootScope){
+			beforeEach(angular.mock.inject(function ($compile, $rootScope) {
 				$scope = $rootScope.$new();
 				element = $compile('<i bulbapedia="mon"></i>')($scope);
 				$scope.mon = pokedexFactoryMock.list.Bulbasaur;

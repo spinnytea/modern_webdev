@@ -27,7 +27,7 @@ define([
 
 		describe('template', function () {
 			var $scope, element;
-			beforeEach(angular.mock.inject(function ($compile, $rootScope){
+			beforeEach(angular.mock.inject(function ($compile, $rootScope) {
 				$scope = $rootScope.$new();
 				element = $compile('<div page-header=""></div>')($scope);
 				$scope.$digest();

@@ -42,7 +42,7 @@ define([
 
 		describe('template', function () {
 			var element;
-			beforeEach(angular.mock.inject(function ($compile, $controller, $templateCache){
+			beforeEach(angular.mock.inject(function ($compile, $controller, $templateCache) {
 				element = $compile($templateCache.get('pokedex/pokedex.html'))($scope);
 				$scope.$digest();
 			}));

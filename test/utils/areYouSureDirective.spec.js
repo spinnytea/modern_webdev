@@ -107,7 +107,7 @@ define([
 
 		describe('template', function () {
 			var $scope, element, $q;
-			beforeEach(angular.mock.inject(function ($compile, $rootScope, _$q_){
+			beforeEach(angular.mock.inject(function ($compile, $rootScope, _$q_) {
 				$q = _$q_;
 				$scope = $rootScope.$new();
 				$scope.doTheThing = jasmine.createSpy('doTheThing');
