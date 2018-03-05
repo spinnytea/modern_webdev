@@ -34,7 +34,5 @@ define([
 				expect(localStorageService.clearAll).toHaveBeenCalled();
 			});
 		}); // end controller
-
-		it('template'); // end template
 	}); // end Settings Controller
 });

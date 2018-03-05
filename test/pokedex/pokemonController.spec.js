@@ -170,7 +170,7 @@ define([
 					'$scope': $scope,
 					'$routeParams': { name: 'Bulbasaur' },
 				});
-				// TODO why do we have to wrap the templateCache in a div, but we don't need to for pokedex.html?
+				// HACK why do we have to wrap the templateCache in a div, but we don't need to for pokedex.html?
 				element = $compile('<div>' + $templateCache.get('pokedex/pokemon.html') + '</div>')($scope);
 				$scope.$digest();
 			}));

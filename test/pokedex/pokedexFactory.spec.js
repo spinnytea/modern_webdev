@@ -57,6 +57,35 @@ define([
 			});
 		}); // end list
 
-		it('calculateMaxDamageRate'); // end calculateMaxDamageRate
+		describe('calculateMaxDamageRate', function () {
+			describe('rock, paper, scissor', function () {
+				function check(atk, def, result) {
+					expect(pokedex.calculateMaxDamageRate({ types: atk }, { types: def })).toBe(result);
+				}
+				beforeEach(function () {
+					typesFactory.chart = {
+						rock: { rock: 1, paper: 0.5, scissor: 2 },
+						paper: { rock: 2, paper: 1, scissor: 0.5 },
+						scissor: { rock: 0.5, paper: 2, scissor: 1 },
+					};
+				});
+
+				it('sanity check', function () {
+					check(['rock'], ['rock'], 1);
+					check(['rock'], ['paper'], 0.5);
+					check(['rock'], ['scissor'], 2);
+				});
+
+				it('defending type has multiplicative effect', function () {
+					check(['rock'], ['paper', 'paper'], 0.25);
+					check(['rock'], ['scissor', 'scissor'], 4);
+				});
+
+				it('attacking type looks for best outcome', function () {
+					check(['rock', 'rock'], ['paper'], 0.5);
+					check(['rock', 'scissor'], ['paper'], 2);
+				});
+			}); // end rock, paper, scissor
+		}); // end calculateMaxDamageRate
 	}); // end Pokedex Factory
 });
