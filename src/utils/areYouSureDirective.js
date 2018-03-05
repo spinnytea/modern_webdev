@@ -4,7 +4,7 @@ define(['angular'], function (angular) {
 	areYouSureMod.directive('areYouSure', [AreYouSureDirective]);
 
 	areYouSureMod.controller('po_ke_type.utils.areYouSure.directive.controller', [
-		'$scope', '$q',
+		'$scope', '$q', '$timeout',
 		AreYouSureController,
 	]);
 
@@ -15,15 +15,25 @@ define(['angular'], function (angular) {
 			restrict: 'A',
 			replace: true,
 			transclude: true,
+			// if possible, the callback should return a promise
 			scope: { callback: '@areYouSure' },
 			templateUrl: 'utils/areYouSureDirective.html',
 			controller: 'po_ke_type.utils.areYouSure.directive.controller',
 		};
 	}
 
-	function AreYouSureController($scope, $q) {
+	function AreYouSureController($scope, $q, $timeout) {
+		// step 1: idle
+		// step 2: are you sure?
+		// step 3: do the thing
+		// step 4: done
+		// step 5: error
 		$scope.step = 1;
+
+		// go back to start (can't reset if currently doing the thing)
 		$scope.reset = function () { if($scope.step !== 3) $scope.step = 1; };
+
+		// call to advance forward
 		$scope.theCheck = function () {
 			if($scope.step === 1) {
 				$scope.step = 2;
@@ -31,7 +41,8 @@ define(['angular'], function (angular) {
 			else if($scope.step === 2) {
 				$scope.step = 3;
 				// promisify the callback
-				$q.resolve().then(function () {
+				// use timeout in case callback is long and blocking
+				$timeout(function () {
 					try {
 						return $scope.$parent.$eval($scope.callback);
 					}
