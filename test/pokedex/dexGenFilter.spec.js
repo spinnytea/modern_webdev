@@ -6,9 +6,8 @@ define([
 ], function (angular, _, pokedexModule) {
 	return describe('Dex Gen Filter', function () {
 		var dexGen, settingsFactory;
-		var array = _.fill(new Array(750), null).map(function (v, idx) {
-			return { number: idx+1 };
-		});
+		var array = [];
+		while(array.length < 750) array.push({ number: array.length+1 });
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			settingsFactory = { dexGen: 6 };
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);

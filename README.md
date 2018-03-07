@@ -4,7 +4,6 @@ Modern WebDev
 Current Goals
 -------------
 
-1. skipped tests that are new in kind
 1. zip dist
     1. package data/*.json into a data requirejs lib
     1. this is meant to be unpacked and opened from the filesystem (not hosted)

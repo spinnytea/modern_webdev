@@ -3,10 +3,11 @@ define(['lodash'], function (_) {
 
 	function PadNumberFilter() {
 		return function padNumber(input, length) {
+			if(!(_.isNumber(input) || _.isString(input))) return input;
+			if(!(_.isNumber(length) || _.isString(length))) return input;
+			if(isNaN(+input) || isNaN(+length)) return input;
 			input = +input;
 			length = +length;
-			if(!_.isNumber(input) || !_.isNumber(length))
-				return input;
 
 			input = ''+input;
 			while(input.length < length)
