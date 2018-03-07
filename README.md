@@ -29,14 +29,14 @@ Stretch Goals
 -------------
 
 1. load vendor libs with requires, not static on page (the hard part is angular)
-1. remove eslint-plugin-requirejs, why not just use env: amd: true
 1. build theme directly into main.less
     * @import "bootstrap/less/bootstrap.less";
     * @import "bootswatch/theme/variables.less";
     * @import "bootswatch/theme/bootswatch.less";
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
-1. finish skipped tests
+1. finish skipped tests & 100% coverage
 1. finish code TODOs
+1. review eslint-plugin-requirejs config
 
 What's in the project
 ---------------------
