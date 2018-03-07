@@ -2,6 +2,7 @@
 var colors = require('ansi-colors');
 var gulp = require('gulp');
 var Server = require('karma').Server;
+var opn = require('opn');
 var path = require('path');
 var requirejs = require('requirejs');
 // gulp deps
@@ -121,6 +122,7 @@ gulp.task('server', ['build'], function () {
 	gulp.watch(dist.all, function (file) {
 		server.notify.apply(server, [file]);
 	}).on('error', function () { gutil.log(arguments); this.emit('end'); });
+	opn('http://localhost:' + argv.port);
 });
 
 
