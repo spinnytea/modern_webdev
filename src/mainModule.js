@@ -23,6 +23,7 @@ define([
 	'./site/siteModule',
 	'./types/typesModule',
 	'./utils/utilsModule',
+	'./dataModule',
 ], function (angular, pokedexModule, siteModule, typesModule, utilsModule) {
 	var module = angular.module('po_ke_type', [
 		pokedexModule.name,

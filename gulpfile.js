@@ -135,7 +135,7 @@ gulp.task('lint:js', function () {
 		.pipe(eslint.failAfterError());
 });
 gulp.task('build:js', ['lint:js'], function (done) {
-	var amdConfig = require('./build_scripts/requirejs_build_config')(argv.minify);
+	var amdConfig = require('./build_scripts/requirejs_src_config')(argv.minify);
 	requirejs.optimize(amdConfig, function () {
 		done();
 	}, function (err) {
