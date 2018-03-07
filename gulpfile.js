@@ -134,7 +134,7 @@ gulp.task('lint:js', function () {
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
 });
-gulp.task('build:js', ['lint:js'], function (done) {
+gulp.task('build:js:src', ['lint:js'], function (done) {
 	var amdConfig = require('./build_scripts/requirejs_src_config')(argv.minify);
 	requirejs.optimize(amdConfig, function () {
 		done();
@@ -142,6 +142,15 @@ gulp.task('build:js', ['lint:js'], function (done) {
 		done(err);
 	});
 });
+gulp.task('build:js:data', ['lint:js'], function (done) {
+	var amdConfig = require('./build_scripts/requirejs_data_config')();
+	requirejs.optimize(amdConfig, function () {
+		done();
+	}, function (err) {
+		done(err);
+	});
+});
+gulp.task('build:js', ['build:js:src', 'build:js:data'], function () {});
 
 gulp.task('lint:html', function () {
 	return gulp.src(resources.html)

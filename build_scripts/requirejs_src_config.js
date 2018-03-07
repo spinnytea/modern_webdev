@@ -25,6 +25,7 @@ module.exports = function (minify) {
 			text: '../node_modules/requirejs-text/text',
 		},
 		exclude: [
+			'./dataModule',
 			// exlcude data files
 			'json!data/pokedex.json',
 			'json!data/themes.json',
