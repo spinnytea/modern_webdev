@@ -28,17 +28,27 @@ var zip = require('gulp-zip');
 
 // config
 
-var dist = Object.freeze({
+var dist = {
 	root: 'dist',
 	all: 'dist/**/*',
 	vendor: 'dist/vendor',
-});
-var resources = Object.freeze({
+
+	file: {
+		less: 'main.less',
+		zip: 'dist.zip',
+	},
+};
+var resources = {
 	js: 'src/**/*.js',
 	html: ['src/**/*.html', 'static/index.html'],
 	css: ['src/**/*.less', 'src/**/*.css'],
 	static: 'static/**/*',
-});
+	workspace_js: ['**/*.js', '!node_modules/**/*', '!dist/**/*', '!coverage/**/*'],
+
+	file: {
+		less: 'src/main.less',
+	},
+};
 
 var argv = require('yargs')
 	.usage('Usage: npx gulp [tasks] [options]')
@@ -59,6 +69,7 @@ var argv = require('yargs')
 		default: false,
 		group: 'Test:',
 	})
+	// TODO --fail-on-error for linters, disable when server
 	.option('minify', {
 		describe: 'minify source and produce source maps',
 		alias: 'm',
@@ -122,20 +133,20 @@ gulp.task('server', ['build'], function () {
 });
 
 gulp.task('package', ['build', 'test'], function () {
-	gulp.src('dist/**/*')
-		.pipe(zip('dist.zip'))
+	gulp.src(dist.all)
+		.pipe(zip(dist.file.zip))
 		.pipe(gulp.dest('.'));
 });
 gulp.task('unpackage', ['clean'], function () {
-	gulp.src('dist.zip')
+	gulp.src(dist.file.zip)
 		.pipe(unzip())
-		.pipe(gulp.dest('./dist'));
+		.pipe(gulp.dest(dist.root));
 });
 
 // build/lint tasks
 
 gulp.task('lint:js', function () {
-	return gulp.src(['**/*.js', '!node_modules/**/*', '!dist/**/*', '!coverage/**/*'])
+	return gulp.src(resources.workspace_js)
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
@@ -181,7 +192,7 @@ gulp.task('lint:html', function () {
 gulp.task('build:html', ['lint:html'], function () {
 	return gulp.src(resources.html)
 		.pipe(templateCache({ standalone: true }))
-		.pipe(gulp.dest('dist'));
+		.pipe(gulp.dest(dist.root));
 });
 
 gulp.task('lint:css', function () {
@@ -199,8 +210,8 @@ function doCssBuild(stream) {
 		.pipe(argv.minify ? sourcemaps.write('.') : noop());
 }
 gulp.task('build:css:bootstrap', ['lint:css'], function () {
-	var stream = gulp.src(['node_modules/bootstrap/less/variables.less', 'src/main.less'])
-		.pipe(concat('main.less'));
+	var stream = gulp.src(['node_modules/bootstrap/less/variables.less', resources.file.less])
+		.pipe(concat(dist.file.less));
 	return doCssBuild(stream)
 		.pipe(gulp.dest(path.join(dist.root, 'themes', 'default')));
 });
@@ -211,8 +222,8 @@ gulp.task('build:css:bootswatch', ['lint:css'], function () {
 	});
 	return merge(themes.map(function (theme) {
 		// pre-concat the variable file to main (in-memory action)
-		var stream = gulp.src(['node_modules/bootswatch/' + theme + '/variables.less', 'src/main.less'])
-			.pipe(concat('main.less'));
+		var stream = gulp.src(['node_modules/bootswatch/' + theme + '/variables.less', resources.file.less])
+			.pipe(concat(dist.file.less));
 		return doCssBuild(stream)
 			.pipe(gulp.dest(path.join(dist.root, 'themes', theme)));
 	}));
@@ -233,8 +244,8 @@ gulp.task('build:css:solarized', ['lint:css'], function () {
 				'node_modules/bootstrap-solarized-theme/sass/_solarized-palette.scss',
 				'node_modules/bootstrap-solarized-theme/sass/_variables-'+theme+'.scss',
 			]).pipe(scss2less()),
-			gulp.src('src/main.less'),
-		]).pipe(concat('main.less'));
+			gulp.src(resources.file.less),
+		]).pipe(concat(dist.file.less));
 		return doCssBuild(stream)
 			.pipe(gulp.dest(path.join(dist.root, 'themes', 'solarized-'+theme)));
 	}));
@@ -266,7 +277,7 @@ gulp.task('build:vendor:solarized', function () {
 
 gulp.task('test', function (done) {
 	var options = {
-		configFile: __dirname + '/test/karma.conf.js',
+		configFile: path.join(__dirname, 'test', 'karma.conf.js'),
 	};
 
 	if(argv.coverage) {
