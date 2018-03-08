@@ -1,14 +1,14 @@
 'use strict';
 
 /**
- * @param {*} minify should we minify the result
- *	@returns sthe requirejs config object that we use during build:js
+ * @param minify {Boolean}: should we minify the result
+ *	@returns the requirejs config object that we use during build:js
  */
 module.exports = function (minify) {
 	return {
 		baseUrl: 'src',
-		name: 'main',
-		out: 'dist/main.js',
+		name: 'mainModule',
+		out: 'dist/mainModule.js',
 		optimize: (minify ? 'uglify2' : 'none'),
 		generateSourceMaps: !!minify,
 		paths: {
@@ -25,6 +25,7 @@ module.exports = function (minify) {
 			text: '../node_modules/requirejs-text/text',
 		},
 		exclude: [
+			'./dataModule',
 			// exlcude data files
 			'json!data/pokedex.json',
 			'json!data/themes.json',

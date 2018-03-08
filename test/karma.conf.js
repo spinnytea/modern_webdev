@@ -56,7 +56,7 @@ module.exports = function (config) {
 
 		// list of files / patterns to exclude
 		exclude: [
-			'src/main.js',
+			'src/mainModule.js',
 		],
 
 

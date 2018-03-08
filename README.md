@@ -4,9 +4,6 @@ Modern WebDev
 Current Goals
 -------------
 
-1. zip dist
-    1. package data/*.json into a data requirejs lib
-    1. this is meant to be unpacked and opened from the filesystem (not hosted)
 1. clean up gulp file
     1. build scripts?
     1. file paths used throughout, not defined at top
@@ -28,6 +25,7 @@ Current Goals
 Stretch Goals
 -------------
 
+1. build each *Module.js in it's own minified file
 1. load vendor libs with requires, not static on page (the hard part is angular)
 1. build theme directly into main.less
     * @import "bootstrap/less/bootstrap.less";
