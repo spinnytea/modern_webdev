@@ -1,10 +1,11 @@
 Modern WebDev
 =============
 
+This isn't a perfect example of modern web ui development, but given that there are so many different tools and frameworks, what is? This is one setup for developing a web ui application at the end of ES5, before HTML5 and ES6 become widespread.
+
 Current Goals
 -------------
 
-1. review documentation
 1. iterate on ui
     1. ngAnimate the dex two searches
     1. filter icon in search bar (show in settings)
@@ -22,12 +23,19 @@ Current Goals
 Stretch Goals
 -------------
 
-1. build each *Module.js in it's own minified file
-1. load vendor libs with requires, not static on page (the hard part is angular)
+1. build each *Module.js in it's own minified file - requirejs modules?
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
 1. finish skipped tests & 100% coverage
+1. load vendor libs with requirejs, not static on page (the hard part is angular)
 1. finish code TODOs
-1. review eslint-plugin-requirejs config
+1. lint reporters
+    1. eslint
+    1. lesshint
+    1. htmlhint
+1. lint config
+    1. eslint-plugin-requirejs
+    1. lesshint
+    1. bootlint
 
 What's in the project
 ---------------------
@@ -35,22 +43,26 @@ What's in the project
 ### Build Pipeline
 
 <dl>
-<dt>gulp, gulp-*</dt>
+<dt>gulp, gulp-*, ansi-colors</dt>
 <dd>we kind of need a gulp plugin for everything, that's probably the biggest drawback</dd>
-<dd>need to learn how to write gulp plugins if we are going to do this</dd>
+<dd>that said, with the power of the internet, we have all the plugins we could want</dd>
+<dd>and writing new plugins isn't difficult</dd>
 
-<dt>gulp-amd-optimizer, gulp-uglify, gulp-sourcemaps</dt>
-<dd>we are using requirejs, but requirejs is a ui library</dd>
-<dd>requirejs has some build tools, but they don't integrate naturally with gulp</dd>
+<dt>requirejd</dt>
+<dd>we are using require to package our javascript files</dd>
 
 <dt>eslint</dt>
 <dd>javascript linter, vscode plugin can use --fix option on save</dd>
 
-<dt>lesshint</dt>
+<dt>lesshint, less, cleanCSS, scss2less, sourcemaps</dt>
 <dd>less/css linter</dd>
+<dd>less compiler -> css</dd>
+<dd>css minification</dd>
 
-<dt>htmlhint, bootlint</dt>
+<dt>htmlhint, bootlint, angular-templatecache</dt>
 <dd>html linter</dd>
+<dd>bootstrap styleguide</dd>
+<dd>minify html into js for angular (allows loading html partials from filesystem)</dd>
 
 <dt>express, gulp-live-server</dt>
 <dd>express is something you can configure and launch directly from node (e.g. `node server.js`)</dd>
@@ -62,25 +74,44 @@ What's in the project
 <dd>plugins for coverage, multiple browsers, requirejs, jasmine</dd>
 </dl>
 
+<dt>general utils</dt>
+<dd>del - cleaning temp files</dd>
+<dd>opn - open files/folders, launch browser at url</dd>
+<dd>yargs - command line option parsing and help output</dd>
+
 ### UI Libraries
 
 <dl>
-<dt>jquery</dt>
-<dd>jquery is at the heart of everything in the ui</dd>
-
-<dt>boostrap, bootswatch</dt>
-<dd>boostrap uses semantic markup and styles it</dd>
-<dd>bootswatch is a collection of predefined styles for bootstrap</dd>
-
-<dt>angular, angular-route</dt>
+<dt>angular, angular-*</dt>
+<dd>we are using angular as our ui library</dd>
 
 <dt>angular-local-storage</dt>
-<dd>not officially by angular</dd>
+<dd>angular plugin</dd>
 <dd>has some nice interactions with local storage, defaults to cookies</dd>
 <dd>just all around nicer to work with than raw local storage</dd>
 
 <dt>angular-hotkeys</dt>
+<dd>angular plugin</dd>
 <dd>easy keyboard shortcuts</dd>
+
+<dt>boostrap, bootswatch, bootstrap-solarized-theme</dt>
+<dd>css reset, default styles</dd>
+<dd>boostrap uses semantic markup and styles it</dd>
+<dd>bootswatch is a collection of predefined styles for bootstrap</dd>
+<dd>bootstrap-solarized-theme is a custom variables file for bootstrap</dd>
+
+<dt>bootstrap-tour</dt>
+<dd>guided tour baked into the ui</dd>
+
+<dt>font-awesome</dt>
+<dd>extensive set of standard ui icons</dd>
+
+<dt>jquery</dt>
+<dd>jquery is at the heart of everything in the ui (angular, bootstrap, requirejs)</dd>
+
+<dt>lodash</dt>
+<dd>brings functional programming to javascript</dd>
+<dd>helpers and accelorators for common array/object/string functions that are not part of standard javascript</dd>
 
 <dt>requirejs, requirejs-plugins, requirejs/text</dt>
 <dd>dependency loading</dd>

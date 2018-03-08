@@ -1,5 +1,6 @@
 'use strict';
 var colors = require('ansi-colors');
+var del = require('del');
 var gulp = require('gulp');
 var Server = require('karma').Server;
 var opn = require('opn');
@@ -9,7 +10,6 @@ var requirejs = require('requirejs');
 var bootlint = require('gulp-bootlint');
 var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
-var del = require('del');
 var eslint = require('gulp-eslint');
 var glob = require('glob');
 var gls = require('gulp-live-server');
@@ -167,7 +167,7 @@ gulp.task('build:js:data', ['lint:js'], function (done) {
 		done(err);
 	});
 });
-gulp.task('build:js', ['build:js:src', 'build:js:data'], function () {});
+gulp.task('build:js', ['build:js:src', 'build:js:data']);
 
 gulp.task('lint:html', function () {
 	return gulp.src(resources.html)
@@ -250,7 +250,7 @@ gulp.task('build:css:solarized', ['lint:css'], function () {
 			.pipe(gulp.dest(path.join(dist.root, 'themes', 'solarized-'+theme)));
 	}));
 });
-gulp.task('build:css', ['build:css:bootstrap', 'build:css:bootswatch', 'build:css:colorful', 'build:css:solarized'], function () {});
+gulp.task('build:css', ['build:css:bootstrap', 'build:css:bootswatch', 'build:css:colorful', 'build:css:solarized']);
 
 gulp.task('build:static', function () {
 	return gulp.src(resources.static)
@@ -306,16 +306,21 @@ gulp.task('test', function (done) {
 
 // clean tasks
 
-gulp.task('clean', ['clean:dist', 'clean:coverage'], function () {});
+gulp.task('clean', ['clean:coverage', 'clean:dist']);
+gulp.task('clean:all', ['clean:coverage', 'clean:dist', 'clean:package']);
+
+gulp.task('clean:coverage', function () {
+	return del('coverage');
+});
 
 gulp.task('clean:dist', function () {
 	return del(dist.root);
 });
 
-gulp.task('clean:vendor', function () {
-	return del(dist.vendor);
+gulp.task('clean:package', function () {
+	return del(dist.file.zip);
 });
 
-gulp.task('clean:coverage', function () {
-	return del('coverage');
+gulp.task('clean:vendor', function () {
+	return del(dist.vendor);
 });
