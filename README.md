@@ -4,9 +4,6 @@ Modern WebDev
 Current Goals
 -------------
 
-1. zip dist
-    1. package data/*.json into a data requirejs lib
-    1. this is meant to be unpacked and opened from the filesystem (not hosted)
 1. clean up gulp file
     1. build scripts?
     1. file paths used throughout, not defined at top
