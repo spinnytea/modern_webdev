@@ -23,6 +23,8 @@ var rename = require('gulp-rename');
 var scss2less = require('gulp-scss2less');
 var sourcemaps = require('gulp-sourcemaps');
 var templateCache = require('gulp-angular-templatecache');
+var unzip = require('gulp-unzip');
+var zip = require('gulp-zip');
 
 var argv = require('yargs')
 	.usage('Usage: npx gulp [tasks] [options]')
@@ -32,6 +34,8 @@ var argv = require('yargs')
 	.command('build', 'run all build commands')
 	.command('buildd', 'continuous full build, rebuild when files change')
 	.command('server', 'build and start dev server')
+	.command('package', 'build project into dist.zip')
+	.command('unpackage', 'unpack dist.zip into dist')
 	.example('npx gulp buildd server', 'start continuous build and dev server')
 	.example('npx gulp clean:vendor', 'just clean vendor while tinkering with deployment')
 	.option('minify', {
@@ -123,6 +127,17 @@ gulp.task('server', ['build'], function () {
 		server.notify.apply(server, [file]);
 	}).on('error', function () { gutil.log(arguments); this.emit('end'); });
 	opn('http://localhost:' + argv.port);
+});
+
+gulp.task('package', ['build', 'test'], function () {
+	gulp.src('dist/**/*')
+		.pipe(zip('dist.zip'))
+		.pipe(gulp.dest('.'));
+});
+gulp.task('unpackage', ['clean'], function () {
+	gulp.src('dist.zip')
+		.pipe(unzip())
+		.pipe(gulp.dest('./dist'));
 });
 
 
