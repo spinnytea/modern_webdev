@@ -3,7 +3,8 @@
 
 	<div class="row">
 	<div class="col-sm-6 col-md-4" ng-repeat="mon in team">
-		<div class="pokemon-card {{colorfulCards?'colorful':''}} {{mon.typeStyle}}">
+		<!-- TODO move to pokemon-card directive -->
+		<div class="pokemon-card {{settings.colorfulCards?'colorful':''}} {{mon.typeStyle}}">
 			<header><h2>
 				<span class="label label-default" ng-bind="mon.number | padNumber: 3"></span>
 				<i class="pki {{mon.iconClass}}"></i>
@@ -12,7 +13,7 @@
 				<small><i bulbapedia="mon"></i></small>
 			</h2></header>
 			<p><span ng-repeat="type in mon.types" class="type-label type-{{type}}" ng-bind="type"></span></p>
-			<button class="btn btn-sm btn-default remove-button" ng-click="removeFromTeam(mon)"><i class="fa fa-heart-o"></i></button>
+			<button type="button" class="btn btn-sm btn-default remove-button" ng-click="removeFromTeam(mon)"><i class="fa fa-heart-o"></i></button>
 		</div>
 	</div>
 	</div>
@@ -31,13 +32,13 @@
 	<form>
 		<div class="form-group">
 			<label for="filter">Filter</label>
-			<input class="form-control" id="filter" name="filter" ng-model="nested.filter" />
+			<input type="text" class="form-control" id="filter" name="filter" ng-model="nested.filter" />
 		</div>
 	</form>
 
 	<div class="row team-search-results" ng-if="showList()">
-		<p class="col-sm-6 col-md-4" ng-repeat="mon in nested.filteredDex=(dex | dexGen | filterAll: nested.filter | orderBy: '-number')">
-			<button class="pull-left btn btn-sm btn-default" ng-click="addToTeam(mon)" ng-disabled="isInTeam(mon)">
+		<p class="col-sm-6 col-md-4" ng-repeat="mon in nested.filteredDex=(dex | dexGen | filterAll: nested.filter | orderBy: settings.pokedexOrderBy)">
+			<button type="button" class="pull-left btn btn-sm btn-default" ng-click="addToTeam(mon)" ng-disabled="isInTeam(mon)">
 				<i class="fa" ng-class="isInTeam(mon)?'fa-heart-o':'fa-heart'"></i>
 			</button>
 			<i pokemon-pill="mon"></i>

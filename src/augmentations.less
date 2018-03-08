@@ -1,21 +1,7 @@
 /*
  * these are augmentations to the standard libs
- * this corrects 'standard' things that we find silly
  * it adds new styles that we believe ought to be standard
  */
-
-/* buttons have the pointer, but anything clickable should indicate that it is
- * that said, avoid black magic; clickable items should be obvious for other reasons
- * - e.g. standard placement (x in the top right), standard usage (hide/collapse icons that don't need to be a btn)
- */
-[ng-click] {
-	cursor: pointer;
-}
-
-/* I really don't know why progress bars even have a margin-bottom */
-.progress {
-	margin-bottom: 0;
-}
 
 /* new bootstrap table class */
 .table.table-minimal>tbody>tr>th,
@@ -30,11 +16,6 @@
  */
 th.min-width, td.min-width { // lesshint-disable-line
 	width: 1px;
-}
-
-/* bugfix */
-.input-group .form-control-feedback {
-	z-index: 3;
 }
 
 /* add a separator .navbar-right */

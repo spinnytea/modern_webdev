@@ -14,6 +14,31 @@ Object.keys(window.__karma__.files).forEach(function (file) {
 	}
 });
 
+// normal shims don't work, requirejs tries to fetch them anyway
+// path of empty: isn't working either, tries to fetch empty:.js
+define('jquery', function () { return $; }); // eslint-disable-line
+define('angular', ['jquery'], function () { return angular; }); // eslint-disable-line
+define('angular-mocks', ['angular'], function () { return angular.mocks; }); // eslint-disable-line
+define('Tour', ['lodash'], function (_) {
+	// one set of spies for the whole test
+	var spies = jasmine.createSpyObj('Tour', ['constructorSpy', 'ended', 'init', 'restart']);
+	spies.ended.and.returnValue(true);
+
+	_.assign(Tour, spies); // make them global to the 'class'
+	function Tour() {
+		spies.constructorSpy.apply(this, arguments);
+		_.assign(this, spies); // attach them to each object
+	}
+
+	afterEach(function () {
+		_.forEach(spies, function (s) {
+			s.calls.reset();
+		});
+	});
+
+	return Tour;
+}); // eslint-disable-line
+
 require.config({
 	// Karma serves files under /base, which is the basePath from your config file
 	baseUrl: '/base',
@@ -22,8 +47,6 @@ require.config({
 	deps: allTestFiles,
 
 	paths: {
-		'angular': 'node_modules/angular/angular',
-		'angular-mocks': 'node_modules/angular-mocks/angular-mocks',
 		'lodash': 'node_modules/lodash/lodash',
 
 		data: 'static/data',
@@ -32,8 +55,6 @@ require.config({
 	},
 
 	shim: {
-		'angular': { exports: 'angular' },
-		'angular-mocks': { deps: ['angular'], exports: 'angular.mock' },
 		'lodash': { exports: '_' },
 	},
 

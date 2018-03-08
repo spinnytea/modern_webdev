@@ -4,6 +4,25 @@ define([
 	'src/pokedex/pokedexModule',
 	'angular-mocks',
 ], function (angular, _, pokedexModule) {
+	describe('Team Factory', function () {
+		it('init from storage', function () {
+			angular.mock.module(pokedexModule.name, function ($provide) {
+				var localStorageService = jasmine.createSpyObj('localStorageService', ['get']);
+				localStorageService.get.and.returnValue([{ name: 'Mon 1' }]);
+				var pokedexFactory = {
+					list: [
+						{ name: 'Mon 1', specialname: 'Special Mon 1', extra: 'data' },
+					],
+				};
+				$provide.value('localStorageService', localStorageService);
+				$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
+			});
+			angular.mock.inject(['po_ke_type.pokedex.team.factory', '$rootScope', function (team) {
+				expect(team).toEqual([{ name: 'Mon 1', specialname: 'Special Mon 1', extra: 'data' }]);
+			}]);
+		});
+	}); // end Team Factory
+
 	return describe('Team Factory', function () {
 		var STORAGE_KEY = 'team_list';
 		var team, $rootScope;
@@ -27,8 +46,6 @@ define([
 			expect(Object.keys(team)).toEqual([]);
 			expect(localStorageService.get).toHaveBeenCalledWith(STORAGE_KEY);
 		});
-
-		it('init from storage');
 
 		it('on change', function () {
 			expect(localStorageService.set).not.toHaveBeenCalled();

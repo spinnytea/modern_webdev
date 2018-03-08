@@ -4,7 +4,9 @@
 // - shim does is a wrapper around modules
 // - exclude does not prevent require from trying to load them
 define('angular', function () { return angular; }); // eslint-disable-line
+define('jquery', function () { return $; }); // eslint-disable-line
 define('lodash', function () { return _; }); // eslint-disable-line
+define('Tour', function () { return Tour; }); // eslint-disable-line
 
 require.config({
 	paths: {
@@ -21,6 +23,7 @@ define([
 	'./site/siteModule',
 	'./types/typesModule',
 	'./utils/utilsModule',
+	'./dataModule',
 ], function (angular, pokedexModule, siteModule, typesModule, utilsModule) {
 	var module = angular.module('po_ke_type', [
 		pokedexModule.name,
@@ -52,10 +55,14 @@ define([
 			.setNotify(false, true); // setItem: false, removeItem: true
 	}]);
 
-	module.constant('po_ke_type.defaults.theme', 'spacelab');
-	module.constant('po_ke_type.defaults.preferredTypeChart', 'squares');
-	module.constant('po_ke_type.defaults.dexGen', '6');
-	module.constant('po_ke_type.defaults.colorfulCards', false);
+	module.constant('po_ke_type.site.settings.defaults', Object.freeze({
+		colorfulCards: false,
+		dexGen: 6,
+		pokedexFilter: '',
+		pokedexOrderBy: 'number',
+		preferredTypeChart: 'matrix',
+		theme: 'spacelab',
+	}));
 
 	angular.bootstrap(document, ['po_ke_type']);
 	return module;

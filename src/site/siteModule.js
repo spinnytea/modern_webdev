@@ -2,6 +2,7 @@ define([
 	'angular',
 	'./headController',
 	'./homeController',
+	'./homeToursSetup',
 	'./pageHeaderDirective',
 	'./settingsController',
 	'./settingsFactory',
@@ -9,6 +10,7 @@ define([
 	angular,
 	headController,
 	homeController,
+	homeToursSetup,
 	pageHeaderDirective,
 	settingsController,
 	settingsFactory
@@ -21,6 +23,8 @@ define([
 	siteModule.controller('po_ke_type.site.home.controller', homeController);
 	siteModule.controller('po_ke_type.site.settings.controller', settingsController);
 	siteModule.factory('po_ke_type.site.settings.factory', settingsFactory);
+
+	siteModule.run(homeToursSetup); // XXX ALL the site unit tests need to mock this dependency :/
 
 	return siteModule;
 });

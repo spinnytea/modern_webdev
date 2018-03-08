@@ -13,11 +13,11 @@ define([
 
 		describe('controller', function () {
 			var $scope = {};
-			beforeEach(angular.mock.inject(['$controller', function ($controller) {
+			beforeEach(angular.mock.inject(function ($controller) {
 				$controller('po_ke_type.site.pageHeader.directive.controller', {
 					'$scope': $scope,
 				});
-			}]));
+			}));
 
 			it('isActive', function () {
 				expect($scope.isActive('/types')).toBe(true);
@@ -25,6 +25,55 @@ define([
 			});
 		}); // end controller
 
-		it('template'); // end template
+		describe('template', function () {
+			var $scope, element;
+			beforeEach(angular.mock.inject(function ($compile, $rootScope) {
+				$scope = $rootScope.$new();
+				element = $compile('<div page-header=""></div>')($scope);
+				$scope.$digest();
+			}));
+
+			describe('active', function () {
+				it('init', function () {
+					var headerLocations = element.find('.navbar-nav li')
+						.map(function (idx, el) { return el.innerText; })
+						.toArray()
+						.sort();
+
+					// NOTE if this list changes, stub a test for the new one
+					// - you don't need to implement the test immediately, but at least stub it out
+					expect(headerLocations).toEqual([
+						'Pokédex',
+						'Settings',
+						'Type Chart',
+						'Your Team',
+					]);
+				});
+
+				it('pokedex', function () {
+					$location.path.and.returnValue('/pokedex');
+					$scope.$digest();
+					expect(element.find('.navbar-nav li:contains("Pokédex")')).toHaveClass('active');
+				});
+
+				it('settings', function () {
+					$location.path.and.returnValue('/settings');
+					$scope.$digest();
+					expect(element.find('.navbar-nav li:contains("Settings")')).toHaveClass('active');
+				});
+
+				it('types', function () {
+					$location.path.and.returnValue('/types');
+					$scope.$digest();
+					expect(element.find('.navbar-nav li:contains("Type Chart")')).toHaveClass('active');
+				});
+
+				it('team', function () {
+					$location.path.and.returnValue('/team');
+					$scope.$digest();
+					expect(element.find('.navbar-nav li:contains("Your Team")')).toHaveClass('active');
+				});
+			}); // end active
+		}); // end template
 	}); // end Page Header Directive
 });

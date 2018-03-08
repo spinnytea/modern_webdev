@@ -1,4 +1,12 @@
-define(['lodash'], function (_) {
+define([
+	'lodash',
+	'src/utils/browserVersionFactory',
+], function (
+	_,
+	browserVersionFactory
+) {
+	var browserVersion = browserVersionFactory();
+
 	// requirejs: 'test/utils/bindKeys.mock' -> bindKeys
 	// angular: $provide.value('bindKeys', bindKeys);
 	return function bindKeysMock($scope, config) {
@@ -6,7 +14,9 @@ define(['lodash'], function (_) {
 		if(!_.isObject(config)) throw new Error('bindKeys must be called with a config object');
 		_.values(config).forEach(function (cb) {
 			if(!_.isFunction(cb)) throw new Error('bindKeys config only accepts functions');
-			if(!cb.name) throw new Error('bindKeys callbacks should have names');
+			if(_.toLower(browserVersion.name) !== 'msie') {
+				if(!cb.name) throw new Error('bindKeys callbacks should have names');
+			}
 		});
 
 		// save the config for use in unit tests

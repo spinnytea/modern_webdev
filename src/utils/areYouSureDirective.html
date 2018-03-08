@@ -1,0 +1,7 @@
+<button ng-click="theCheck()" ng-mouseleave="reset()">
+	<ng-transclude ng-if="step === 1"></ng-transclude>
+	<span ng-if="step === 2"><i class="fa fa-fw fa-question-circle"></i>Are you sure</span>
+	<span ng-if="step === 3"><i class="fa fa-fw fa-refresh fa-spin"></i>Working</span>
+	<span ng-if="step === 4"><i class="fa fa-fw fa-check"></i>Done</span>
+	<span ng-if="step === 5"><i class="fa fa-fw fa-exclamation-circle"></i>Error</span>
+</button>
