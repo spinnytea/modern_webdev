@@ -26,18 +26,39 @@ var templateCache = require('gulp-angular-templatecache');
 var unzip = require('gulp-unzip');
 var zip = require('gulp-zip');
 
+// config
+
+var dist = Object.freeze({
+	root: 'dist',
+	all: 'dist/**/*',
+	vendor: 'dist/vendor',
+});
+var resources = Object.freeze({
+	js: 'src/**/*.js',
+	html: ['src/**/*.html', 'static/index.html'],
+	css: ['src/**/*.less', 'src/**/*.css'],
+	static: 'static/**/*',
+});
+
 var argv = require('yargs')
 	.usage('Usage: npx gulp [tasks] [options]')
 	.command('clean', 'remove dist')
-	.command('lint', 'run all linters')
-	.command('test', 'run karma')
-	.command('build', 'run all build commands')
+	.command('lint', 'lint src files')
+	.command('test', 'start karma')
+	.command('build', 'full build')
 	.command('buildd', 'continuous full build, rebuild when files change')
 	.command('server', 'build and start dev server')
 	.command('package', 'build project into dist.zip')
 	.command('unpackage', 'unpack dist.zip into dist')
-	.example('npx gulp buildd server', 'start continuous build and dev server')
-	.example('npx gulp clean:vendor', 'just clean vendor while tinkering with deployment')
+	.example('npx gulp buildd server --minify=false', 'start continuous build and dev server without minification')
+	.example('npx gulp test -cw', 'continuously run tests and product coverage report')
+	.option('coverage', {
+		describe: 'enable coverage report',
+		alias: 'c',
+		type: 'boolean',
+		default: false,
+		group: 'Test:',
+	})
 	.option('minify', {
 		describe: 'minify source and produce source maps',
 		alias: 'm',
@@ -50,14 +71,7 @@ var argv = require('yargs')
 		alias: 'p',
 		type: 'number',
 		default: 3000,
-		group: 'Build:',
-	})
-	.option('coverage', {
-		describe: 'enable coverage report',
-		alias: 'c',
-		type: 'boolean',
-		default: false,
-		group: 'Test:',
+		group: 'System:',
 	})
 	.option('skipped', {
 		describe: 'print out only skipped tests',
@@ -73,37 +87,15 @@ var argv = require('yargs')
 		default: false,
 		group: 'Test:',
 	})
-	.option('help', {
-		alias: 'h',
-		group: 'System:',
-	})
-	.option('version', {
-		alias: 'v',
-		group: 'System:',
-	})
+	.option('help', { alias: 'h', group: 'System:' })
+	.option('version', { alias: 'v', group: 'System:' })
 	.demandCommand(1, 'You need to specify at least one gulp task.')
 	.argv;
 
+// main build tasks
 
-// build config
-
-var dist = Object.freeze({
-	root: 'dist',
-	all: 'dist/**/*',
-	vendor: 'dist/vendor',
-});
-var resources = Object.freeze({
-	js: 'src/**/*.js',
-	html: ['src/**/*.html', 'static/index.html'],
-	css: ['src/**/*.less', 'src/**/*.css'],
-	static: 'static/**/*',
-});
-
-
-// main build targets
-
-gulp.task('build', ['build:js', 'build:html', 'build:css', 'build:static', 'build:vendor']);
 gulp.task('lint', ['lint:js', 'lint:html', 'lint:css']);
+gulp.task('build', ['build:js', 'build:html', 'build:css', 'build:static', 'build:vendor']);
 
 // continuous build
 // this doesn't have dependencies so it still runs even with lint failures at start
@@ -140,8 +132,7 @@ gulp.task('unpackage', ['clean'], function () {
 		.pipe(gulp.dest('./dist'));
 });
 
-
-// build tasks
+// build/lint tasks
 
 gulp.task('lint:js', function () {
 	return gulp.src(['**/*.js', '!node_modules/**/*', '!dist/**/*', '!coverage/**/*'])
@@ -271,8 +262,7 @@ gulp.task('build:vendor:solarized', function () {
 	}));
 });
 
-
-// test
+// test tasks
 
 gulp.task('test', function (done) {
 	var options = {
@@ -303,8 +293,7 @@ gulp.task('test', function (done) {
 	new Server(options, done).start();
 });
 
-
-// clean up workspace
+// clean tasks
 
 gulp.task('clean', ['clean:dist', 'clean:coverage'], function () {});
 
