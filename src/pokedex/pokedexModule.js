@@ -22,6 +22,7 @@ define([
 	var pokedexModule = angular.module('po_ke_type.pokedex', [
 		bulbapediaDirective.name,
 		pokemonPillDirective.name,
+		'ngAnimate',
 	]);
 
 	pokedexModule.filter('dexGen', dexGenFilter);

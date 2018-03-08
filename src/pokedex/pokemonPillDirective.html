@@ -2,6 +2,7 @@
 	<span class="label label-default" ng-bind="mon.number | padNumber: 3"></span>
 	<a ng-href="{{mon.linkLocal}}" ng-bind="mon.name"></a>
 	<small ng-if="mon.specialname">(<span ng-bind="mon.specialname"></span>)</small>
+	<i bulbapedia="mon"></i>
 
 	<span ng-repeat="type in mon.types" class="type-label type-{{type}}" ng-bind="type"></span>
 </div>

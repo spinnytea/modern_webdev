@@ -2,6 +2,7 @@
 <div ng-if="!mon" ng-include="'site/oops.html'"></div>
 
 <h1>
+	<i class="pki {{mon.iconClass}}" title="{{m.name}}"></i>
 	<span ng-bind="mon.name"></span>
 	<small ng-bind="mon.specialname"></small>
 	<small><i bulbapedia="mon"></i></small>

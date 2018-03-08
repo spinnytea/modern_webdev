@@ -7,7 +7,6 @@ Current Goals
 -------------
 
 1. iterate on ui
-    1. ngAnimate the dex two searches
     1. filter icon in search bar (show in settings)
     1. settings to show team
     1. styleguide linter?
