@@ -8,7 +8,6 @@ Current Goals
 
 1. iterate on ui
     1. filter icon in search bar (show in settings)
-    1. settings to show team
     1. styleguide linter?
 1. test in IE - doesn't support function names (need to detect user agent)
 1. review code TODOs for high priority tasks
