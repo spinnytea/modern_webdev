@@ -149,6 +149,9 @@ VSCode plugins
 <dd>This includes plugins: Debugger for Java, Java Test Runner, Maven for Java</dd>
 
 <dt>PowerShell</dt>
+
+<dt>Tomcat</dt>
+<dd>remote debugging for java/tomcat</dd>
 </dl>
 
 ### IDE Tools
