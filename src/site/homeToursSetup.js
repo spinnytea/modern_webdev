@@ -76,7 +76,7 @@ define([], function () {
 			}, {
 				path: '/pokedex',
 				element: '.input-group-addon.minimal',
-				placement: 'left',
+				placement: 'right',
 				content: "Changing the number of results isn't very useful in practice, " +
 						"it's better to search for something more specific." +
 						'This was mostly just a tech demo.',

@@ -10,6 +10,7 @@ define(['angular'], function (angular) {
 
 	return tourStartMod;
 
+	// REVIEW what if the provided name isn't a tour? ngHide?
 	function TourStartDirective() {
 		return {
 			restrict: 'A',

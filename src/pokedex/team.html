@@ -2,7 +2,7 @@
 	<header><h1>Your Team</h1></header>
 
 	<div class="row">
-	<div class="col-sm-6 col-md-4 move-down" ng-repeat="mon in team">
+	<div class="col-sm-6 col-md-4 move-down" ng-repeat="mon in team track by mon.iconClass">
 		<!-- TODO move to pokemon-card directive -->
 		<div class="pokemon-card {{settings.colorfulCards?'colorful':''}} {{mon.typeStyle}}">
 			<header><h2>
@@ -32,7 +32,10 @@
 	<form>
 		<div class="form-group">
 			<label for="filter">Filter</label>
-			<input type="text" class="form-control" id="filter" name="filter" ng-model="nested.filter" />
+			<div class="input-group">
+				<input type="text" class="form-control" id="filter" name="filter" ng-model="nested.filter" />
+				<span class="input-group-addon"><i class="fa fa-search"></i></span>
+			</div>
 		</div>
 	</form>
 
