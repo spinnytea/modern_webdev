@@ -28,11 +28,11 @@ Stretch Goals
 1. finish code TODOs
 1. lint reporters
     1. eslint
-    1. lesshint
+    1. stylelint
     1. htmlhint
 1. lint config
     1. eslint-plugin-requirejs
-    1. lesshint
+    1. stylelint
     1. bootlint
     1. eslint-plugin-angular
 
@@ -53,7 +53,7 @@ What's in the project
 <dt>eslint, eslint-plugin-angular, eslint-plugin-requirejs</dt>
 <dd>javascript linter, vscode plugin can use --fix option on save</dd>
 
-<dt>lesshint, less, cleanCSS, scss2less, sourcemaps</dt>
+<dt>stylelint, less, cleanCSS, scss2less, sourcemaps</dt>
 <dd>less/css linter</dd>
 <dd>less compiler -> css</dd>
 <dd>css minification</dd>

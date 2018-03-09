@@ -16,12 +16,12 @@ var gls = require('gulp-live-server');
 var gutil = require('gutil');
 var htmlhint = require('gulp-htmlhint');
 var less = require('gulp-less');
-var lesshint = require('gulp-lesshint');
 var merge = require('merge-stream');
 var noop = require('gulp-noop');
 var rename = require('gulp-rename');
 var scss2less = require('gulp-scss2less');
 var sourcemaps = require('gulp-sourcemaps');
+var stylelint = require('gulp-stylelint');
 var templateCache = require('gulp-angular-templatecache');
 var unzip = require('gulp-unzip');
 var zip = require('gulp-zip');
@@ -176,7 +176,7 @@ gulp.task('lint:html', function () {
 		.pipe(htmlhint.failOnError())
 		.pipe(bootlint({
 			stoponerror: true,
-			disabledIds: ['W001', 'W002', 'W003', 'W005', 'E001', 'E003'],
+			disabledIds: ['W001', 'W002', 'W003', 'W005', 'W007', 'E001', 'E003'],
 			reportFn: function (file, lint, isError, isWarning, errorLocation) {
 				var message = [colors.bold((isError) ? colors.red('[ERROR]') : colors.yellow('[WARN] '))];
 				message.push(file.path);
@@ -197,9 +197,12 @@ gulp.task('build:html', ['lint:html'], function () {
 
 gulp.task('lint:css', function () {
 	return gulp.src(resources.css)
-		.pipe(lesshint())
-		.pipe(lesshint.reporter('lesshint-reporter-stylish'))
-		.pipe(lesshint.failOnError()); // TODO doesn't actually fail on error
+		.pipe(stylelint({
+			failAfterError: true,
+			reporters: [
+				{ formatter: 'string', console: true },
+			],
+		}));
 });
 function doCssBuild(stream) {
 	return stream
