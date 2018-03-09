@@ -34,6 +34,7 @@ Stretch Goals
     1. eslint-plugin-requirejs
     1. lesshint
     1. bootlint
+    1. eslint-plugin-angular
 
 What's in the project
 ---------------------
@@ -49,7 +50,7 @@ What's in the project
 <dt>requirejd</dt>
 <dd>we are using require to package our javascript files</dd>
 
-<dt>eslint</dt>
+<dt>eslint, eslint-plugin-angular, eslint-plugin-requirejs</dt>
 <dd>javascript linter, vscode plugin can use --fix option on save</dd>
 
 <dt>lesshint, less, cleanCSS, scss2less, sourcemaps</dt>
