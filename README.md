@@ -21,7 +21,6 @@ Current Goals
 Stretch Goals
 -------------
 
-1. why can't we use `track by` in the pokedex list?
 1. build each *Module.js in it's own minified file - requirejs modules?
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
 1. finish skipped tests & 100% coverage
