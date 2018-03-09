@@ -73,6 +73,7 @@
     "gulp-unzip": "^1.0.0",
     "gulp-zip": "^4.1.0",
     "gutil": "^1.6.4",
+    "htmlhint-stylish": "^1.0.3",
     "jasmine-core": "^2.99.1",
     "jasmine-jquery": "^2.1.1",
     "karma": "^2.0.0",

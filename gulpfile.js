@@ -172,7 +172,7 @@ gulp.task('build:js', ['build:js:src', 'build:js:data']);
 gulp.task('lint:html', function () {
 	return gulp.src(resources.html)
 		.pipe(htmlhint('.htmlhintrc'))
-		.pipe(htmlhint.reporter())
+		.pipe(htmlhint.reporter('htmlhint-stylish'))
 		.pipe(htmlhint.failOnError())
 		.pipe(bootlint({
 			stoponerror: true,

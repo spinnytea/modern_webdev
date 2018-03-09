@@ -26,15 +26,12 @@ Stretch Goals
 1. finish skipped tests & 100% coverage
 1. load vendor libs with requirejs, not static on page (the hard part is angular)
 1. finish code TODOs
-1. lint reporters
-    1. eslint
-    1. stylelint
-    1. htmlhint
 1. lint config
     1. eslint-plugin-requirejs
     1. stylelint
     1. bootlint
     1. eslint-plugin-angular
+1. read up on [aria](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
 
 What's in the project
 ---------------------
