@@ -120,63 +120,67 @@ VSCode plugins
 ### Dev Tools
 
 <dl>
-<dt>Debugger for Chrome, Debugger for Edge, Debugger for Firefox</dt>
+<dt>Debugger for Chrome (by Microsoft), Debugger for Edge (by Microsoft), Debugger for Firefox (by Holgar Beni)</dt>
 <dd>VSCode integration with browsers</dd>
 <dd>PhantomJS is always a contentious point, but if we can make first-pass testing quicker, then it's worthwhile</dd>
 <dd>There isn't an debugger for</dd>
 
-<dt>ESLint</dt>
+<dt>ESLint (by Dirk Baeumer)</dt>
 <dd>always-running eslint</dd>
 <dd>it's part of the build pipeline, but it's nice to have immediate feedback in context</dd>
 
-<dt>HTMLHint</dt>
+<dt>stylelint (by Shinnosuke Watanabe)</dt>
+<dd>always-running stylelint</dd>
+<dd>it's part of the build pipeline, but it's nice to have immediate feedback in context</dd>
+
+<dt>HTMLHint (by Mike Kaufman)</dt>
 <dd>always-running htmlhint</dd>
 <dd>it's part of the build pipeline, but it's nice to have immediate feedback in context</dd>
 
-<dt>Python</td>
+<dt>Python (by Microsoft)</td>
 
-<dt>Beautify</dt>
+<dt>Beautify (by HookyQR)</dt>
 <dd>vscode uses js-beautify but doesn't honor a .jsbeautifyrc</dd>
 <dd>this plugin overrides vscode so that it <em>does</em> honor .jsbeautifyrc</dd>
 <dd>we are using eslint</dd>
 <dd>this is just a precaution in case there are issues</dd>
 
-<dt>Java Extension Pack</dt>
+<dt>Java Extension Pack (by Microsoft)</dt>
 <dd>more java lanaguage support</dd>
 <dd>This includes plugins: Debugger for Java, Java Test Runner, Maven for Java</dd>
 
-<dt>PowerShell</dt>
+<dt>PowerShell (by Microsoft)</dt>
 
-<dt>Tomcat</dt>
+<dt>Tomcat (by Wei Shen)</dt>
 <dd>remote debugging for java/tomcat</dd>
 </dl>
 
 ### IDE Tools
 
 <dl>
-<dt>fire-icons</dt>
+<dt>file-icons (by file-icons)</dt>
 <dd>more icons for more file types</dd>
 
-<dt>gitignore</dt>
+<dt>gitignore (by CodeZombie)</dt>
 <dd>we can dream</dd>
 <dd>our project may use different scm, but side projects and the like may use git</dd>
 
-<dt>Nord</dt>
+<dt>Nord (by arcticicestudio)</dt>
 <dd>another good ui theme</dd>
 
-<dt>Rainbow Brackets</dt>
+<dt>Rainbow Brackets (by 2gua)</dt>
 <dd>helps you find errors in brackets</dd>
 <dd>adds a splash of color to any theme you use</dd>
 <dd>easy to disable if not needed</dd>
 
-<dt>Rainbow CSV</dt>
+<dt>Rainbow CSV (by mechatroner)</dt>
 <dd>colors columns for csv files, makes it easier to see like-columns</dd>
 <dd>debugging csvs usually require opening in excel, this helps aleviate that need</dd>
 
-<dt>IntelliSense for CSS class names in HTML</dt>
+<dt>IntelliSense for CSS class names in HTML (by Zignd)</dt>
 <dd>intellisense is always good</dd>
 
-<dt>vscode-language-todo</dt>
+<dt>vscode-language-todo (by fireyy)</dt>
 <dd>vscode doesn't parse task tags, so we need an extension</dd>
 <dd>this is the best one i could find, the UI isn't perfect, but it has the functionality</dd>
 </dl>
