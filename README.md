@@ -6,7 +6,6 @@ This isn't a perfect example of modern web ui development, but given that there 
 Current Goals
 -------------
 
-1. iterate on ui
 1. test in IE - doesn't support function names (need to detect user agent)
 1. review code TODOs for high priority tasks
 1. review node packages
@@ -14,13 +13,14 @@ Current Goals
     1. what do we need but doesn't have a demo
     1. what do we not need
     1. what isn't included here that we need to pull in
+1. build each *Module.js in it's own minified file - requirejs modules?
 1. review documentation (again)
 1. bootstrap tour + path does NOT work from the filesystem; tours on page do work
 
 Stretch Goals
 -------------
 
-1. build each *Module.js in it's own minified file - requirejs modules?
+1. iterate on ui
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
 1. finish skipped tests & 100% coverage
 1. load vendor libs with requirejs, not static on page (the hard part is angular)
