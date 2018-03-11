@@ -7,7 +7,6 @@ Current Goals
 -------------
 
 1. iterate on ui
-    1. styleguide linter?
 1. test in IE - doesn't support function names (need to detect user agent)
 1. review code TODOs for high priority tasks
 1. review node packages
@@ -56,7 +55,7 @@ What's in the project
 <dd>css minification</dd>
 
 <dt>htmlhint, bootlint, angular-templatecache</dt>
-<dd>html linter</dd>
+<dd>html linter, support for custom rules (read: styleguide linting)</dd>
 <dd>bootstrap styleguide</dd>
 <dd>minify html into js for angular (allows loading html partials from filesystem)</dd>
 
