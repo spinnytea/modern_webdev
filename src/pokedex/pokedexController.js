@@ -7,8 +7,5 @@ define([], function () {
 	function PokedexController($scope, pokedex, settings) {
 		$scope.dex = pokedex.list;
 		$scope.settings = settings;
-		$scope.nested = {
-			limit: 18, // TODO move to settings
-		};
 	}
 });

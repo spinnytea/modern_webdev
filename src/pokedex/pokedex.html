@@ -2,9 +2,9 @@
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon minimal">
-					<label class="radio-inline"><input type="radio" name="limit" id="limit18" ng-value="18" ng-model="nested.limit"> 18</label>
-					<label class="radio-inline"><input type="radio" name="limit" id="limit60" ng-value="60" ng-model="nested.limit"> 60</label>
-					<label class="radio-inline"><input type="radio" name="limit" id="limitAll" ng-value="dex.length" ng-model="nested.limit"> All</label>
+					<label class="radio-inline"><input type="radio" name="limit" id="limit18" ng-value="18" ng-model="settings.pokedexLimit"> 18</label>
+					<label class="radio-inline"><input type="radio" name="limit" id="limit60" ng-value="60" ng-model="settings.pokedexLimit"> 60</label>
+					<label class="radio-inline"><input type="radio" name="limit" id="limitAll" ng-value="dex.length" ng-model="settings.pokedexLimit"> All</label>
 			</div>
 			<input type="text" class="form-control" id="filter" name="filter" ng-model="settings.pokedexFilter" />
 			<span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -14,7 +14,7 @@
 
 <section>
 	<div class="row">
-		<p class="col-sm-6 col-md-4 move-right" ng-repeat="mon in dex | dexGen | filterAll: settings.pokedexFilter | orderBy: settings.pokedexOrderBy | limitTo: nested.limit track by mon.iconClass">
+		<p class="col-sm-6 col-md-4 move-right" ng-repeat="mon in dex | dexGen | filterAll: settings.pokedexFilter | orderBy: settings.pokedexOrderBy | limitTo: settings.pokedexLimit track by mon.iconClass">
 				<i pokemon-pill="mon"></i>
 		</p>
 	</div>

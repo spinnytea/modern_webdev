@@ -59,6 +59,7 @@ define([
 		colorfulCards: false,
 		dexGen: 6,
 		pokedexFilter: '',
+		pokedexLimit: 18,
 		pokedexOrderBy: 'number',
 		preferredTypeChart: 'matrix',
 		theme: 'spacelab',
