@@ -4,12 +4,14 @@ define([
 	'angular-mocks',
 ], function (angular, siteModule) {
 	return describe('Settings Controller', function () {
-		var localStorageService, settingsFactory;
+		var localStorageService, settingsFactory, teamFactory;
 		beforeEach(angular.mock.module(siteModule.name, function ($provide) {
 			localStorageService = jasmine.createSpyObj('localStorageService', ['clearAll']);
 			settingsFactory = {};
+			teamFactory = [];
 			$provide.value('localStorageService', localStorageService);
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
+			$provide.value('po_ke_type.pokedex.team.factory', teamFactory);
 		}));
 
 		describe('controller', function () {
@@ -23,7 +25,7 @@ define([
 
 			it('init', function () {
 				expect($scope.settings).toBe(settingsFactory);
-				expect(Object.keys($scope)).toEqual(['settings', 'clearLocalStorage']);
+				expect(Object.keys($scope)).toEqual(['settings', 'team', 'clearLocalStorage']);
 			});
 
 			it('clearLocalStorage', function () {

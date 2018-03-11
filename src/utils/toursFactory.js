@@ -48,10 +48,10 @@ define(['jquery', 'lodash'], function ($, _) {
 					}
 					else {
 						if(!_.isString(step.element)) throw new Error('each step must have an element');
-						if(!_.isString(step.placement)) throw new Error('each step must have a placement');
-						if(!_.includes(['top', 'right', 'bottom', 'left'], step.placement)) throw new Error('incorrect placement');
+						if(!(_.isString(step.placement) || _.isFunction(step.placement))) throw new Error('each step must have a placement');
+						if(_.isString(step.placement) && !_.includes(['top', 'right', 'bottom', 'left'], step.placement)) throw new Error('incorrect placement');
 					}
-					if(!_.isString(step.content)) throw new Error('each step must have content');
+					if(!(_.isString(step.content) || _.isFunction(step.content))) throw new Error('each step must have content');
 					step.title = config.title;
 					if(stepsUsePath) step.path = '/#' + step.path;
 					return step;

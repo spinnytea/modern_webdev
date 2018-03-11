@@ -1,10 +1,11 @@
 define([], function () {
 	return [
-		'po_ke_type.utils.tours.factory',
-		HomeToursFactory,
+		'po_ke_type.utils.tours.factory', 'po_ke_type.pokedex.team.factory',
+		HomeToursSeup,
 	];
 
-	function HomeToursFactory(tours) {
+	function HomeToursSeup(tours, team) {
+		void(team);
 		tours.register({
 			name: 'homeIntro',
 			title: 'My First Tour',
@@ -20,6 +21,10 @@ define([], function () {
 				element: '[ng-bind="typeCount"]',
 				placement: 'right',
 				content: 'Check out this stat.',
+			}, {
+				element: '#teamList',
+				placement: function () { return (team.length ? 'bottom' : 'top'); },
+				content: function () { return (team.length ? 'Looks like you are <em>teaming</em> with Pokédex friends.' : 'Looks like you still need a team.'); },
 			}, {
 				element: 'h1 span:contains(Data Sources)',
 				placement: 'top',

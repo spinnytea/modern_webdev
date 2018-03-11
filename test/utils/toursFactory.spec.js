@@ -197,7 +197,7 @@ define([
 					expect(registerTour).toThrow(new Error('each step must have a placement'));
 				});
 
-				it('invalid placement', function () {
+				it('invalid placement string', function () {
 					config.steps[0].placement = 'banana';
 					expect(registerTour).toThrow(new Error('incorrect placement'));
 				});

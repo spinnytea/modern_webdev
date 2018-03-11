@@ -8,7 +8,7 @@
 <p><span class="badge" ng-bind="themeCount"></span> UI Themes <i tour-start="explainThemes"></i></p>
 <p><span class="badge" ng-bind="pokedexCount"></span> Pokémon in Pokédex <i tour-start="explainPokedex"></i></p>
 <p><span class="badge" ng-bind="typeCount"></span> Pokémon Types <i tour-start="explainTypes"></i></p>
-<p><i ng-repeat="m in team" class="pki {{m.iconClass}}" title="{{m.name}}"></i></p>
+<p id="teamList"><i ng-repeat="m in team" class="pki {{m.iconClass}}" title="{{m.name}}"></i></p>
 
 <!-- NOTE the span inside the Data Sources is to help focus the bootstrap-tour popover -->
 <h1><span>Data Sources</span></h1>
