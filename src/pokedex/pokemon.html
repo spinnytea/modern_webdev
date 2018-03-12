@@ -1,30 +1,43 @@
-<!-- TODO if ! mon, do something better than an inline oops  -->
-<div ng-if="!mon" ng-include="'site/oops.html'"></div>
+<div ng-if="mon">
+	<h1>
+		<i class="pki {{mon.iconClass}}" title="{{m.name}}"></i>
+		<span ng-bind="mon.name"></span>
+		<small ng-bind="mon.specialname"></small>
+		<small><i bulbapedia="mon"></i></small>
+	</h1>
+	<div id="typeSquares" class="row"><div class="col-sm-6" ng-repeat="type in mon.types"><span type-square="type"></span></div></div>
 
-<h1>
-	<i class="pki {{mon.iconClass}}" title="{{m.name}}"></i>
-	<span ng-bind="mon.name"></span>
-	<small ng-bind="mon.specialname"></small>
-	<small><i bulbapedia="mon"></i></small>
-</h1>
-<div id="typeSquares" class="row"><div class="col-sm-6" ng-repeat="type in mon.types"><span type-square="type"></span></div></div>
+	<section>
+		<header><h2>Defending <small>When these pokemon deal damage to <span ng-bind="mon.name"></span></small></h2></header>
+		<div class="row">
+			<p class="col-xs-4 col-sm-2" ng-repeat="m in defending | orderBy: 'rate'">
+				<span class="label rate {{m.rate | rateStyle : true}}" ng-bind="m.rate | rateDisplay"></span>
+				<i class="pki {{m.iconClass}}" title="{{m.name}}"></i>
+			</p>
+		</div>
+	</section>
 
-<section>
-	<header><h2>Defending <small>When these pokemon deal damage to <span ng-bind="mon.name"></span></small></h2></header>
-	<div class="row">
-		<p class="col-xs-4 col-sm-2" ng-repeat="m in defending | orderBy: 'rate'">
-			<span class="label rate {{m.rate | rateStyle : true}}" ng-bind="m.rate | rateDisplay"></span>
-			<i class="pki {{m.iconClass}}" title="{{m.name}}"></i>
-		</p>
+	<section>
+		<header><h2>Attacking <small>When <span ng-bind="mon.name"></span> deals damage to these pokemon</small></h2></header>
+		<div class="row">
+			<p class="col-xs-4 col-sm-2" ng-repeat="m in attacking | orderBy: '-rate'">
+				<span class="label rate {{m.rate | rateStyle}}" ng-bind="m.rate | rateDisplay"></span>
+				<i class="pki {{m.iconClass}}" title="{{m.name}}"></i>
+			</p>
+		</div>
+	</section>
+</div>
+
+<div ng-if="!mon">
+	<div class="jumbotron">
+		<h1>
+			<span class="fa-stack">
+				<i class="fa fa-stack-2x fa-certificate text-danger"></i>
+				<i class="fa fa-stack-1x fa-ambulance fa-spin"></i>
+			</span>
+			Who's that Pokémon?
+		</h1>
+		<p>We don't know. We actually don't know.</p>
+		<p>You should probably head back to the <a href="#/pokedex">Pokédex</a>.</p>
 	</div>
-</section>
-
-<section>
-	<header><h2>Attacking <small>When <span ng-bind="mon.name"></span> deals damage to these pokemon</small></h2></header>
-	<div class="row">
-		<p class="col-xs-4 col-sm-2" ng-repeat="m in attacking | orderBy: '-rate'">
-			<span class="label rate {{m.rate | rateStyle}}" ng-bind="m.rate | rateDisplay"></span>
-			<i class="pki {{m.iconClass}}" title="{{m.name}}"></i>
-		</p>
-	</div>
-</section>
+</div>

@@ -188,7 +188,7 @@ define([
 			});
 
 			it('oops', function () {
-				var oops = '[ng-include="\'site/oops.html\'"]';
+				var oops = 'h1:contains("Who\'s that Pokémon?")';
 
 				// setup scope to be valid
 				expect(element).not.toContainElement(oops);
