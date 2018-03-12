@@ -8,10 +8,10 @@ define([
 	return describe('Pokemon Controller', function () {
 		var pokedexFactory, teamFactory, settingsFactory;
 		beforeEach(function () {
-			// HACK why does this init need to be in it's own function?
-			// - why can't it be in the angular.mock.module block?
-			// - shouldn't the beforeEach's be executed in order?
-			// - does the provide section run later?
+			// these need to be initialized in their own beforeEach
+			// angular.mock.module runs late
+			// later on, some describe blocks override the default values
+			// these need to be reset before those
 			pokedexFactory = {
 				list: [],
 				calculateMaxDamageRate: jasmine.createSpy('calculateMaxDamageRate').and.returnValue(1),
