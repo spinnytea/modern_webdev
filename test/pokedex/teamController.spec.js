@@ -105,6 +105,7 @@ define([
 			}); // end getFilteredList
 		}); // end controller
 
+		// QUESTION should we be testing the template on the larger pages?
 		describe('template', function () {
 			var $scope, element;
 			beforeEach(angular.mock.inject(function ($compile, $controller, $templateCache, $rootScope) {
@@ -124,11 +125,11 @@ define([
 			});
 
 			it('pokemon-card', function () {
-				expect(element.find('.pokemon-card')).toHaveLength(1);
-				expect(element.find('.pokemon-card header')).toContainText('Bulbasaur');
-				expect(element.find('.pokemon-card')).toContainElement('.pki.n1');
-				expect(element.find('.pokemon-card')).toContainElement('.type-grass');
-				expect(element.find('.pokemon-card')).toContainElement('.type-poison');
+				expect(element.find('[pokemon-card]')).toHaveLength(1);
+				expect(element.find('[pokemon-card] header')).toContainText('Bulbasaur');
+				expect(element.find('[pokemon-card]')).toContainElement('.pki.n1');
+				expect(element.find('[pokemon-card]')).toContainElement('.type-grass');
+				expect(element.find('[pokemon-card]')).toContainElement('.type-poison');
 			});
 
 			it('filter to add to team', function () {

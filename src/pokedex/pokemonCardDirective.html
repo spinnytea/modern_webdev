@@ -1,0 +1,11 @@
+<div class="{{settings.colorfulCards?'colorful':''}} {{mon.typeStyle}}">
+	<header><h2>
+		<span class="label label-default" ng-bind="mon.number | padNumber: 3"></span>
+		<i class="pki {{mon.iconClass}}"></i>
+		<span ng-bind="mon.name"></span>
+		<small ng-bind="mon.specialname"></small>
+		<small><i bulbapedia="mon"></i></small>
+	</h2></header>
+	<p><span ng-repeat="type in mon.types" class="type-label type-{{type}}" ng-bind="type"></span></p>
+	<ng-transclude></ng-transclude>
+</div>

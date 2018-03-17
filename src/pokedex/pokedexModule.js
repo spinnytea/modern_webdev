@@ -4,6 +4,7 @@ define([
 	'./dexGenFilter',
 	'./pokedexController',
 	'./pokedexFactory',
+	'./pokemonCardDirective',
 	'./pokemonController',
 	'./pokemonPillDirective',
 	'./teamController',
@@ -14,6 +15,7 @@ define([
 	dexGenFilter,
 	pokedexController,
 	pokedexFactory,
+	pokemonCardDirective,
 	pokemonController,
 	pokemonPillDirective,
 	teamController,
@@ -21,6 +23,7 @@ define([
 ) {
 	var pokedexModule = angular.module('po_ke_type.pokedex', [
 		bulbapediaDirective.name,
+		pokemonCardDirective.name,
 		pokemonPillDirective.name,
 		'ngAnimate',
 	]);

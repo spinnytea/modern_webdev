@@ -4,16 +4,7 @@
 
 	<div class="row">
 	<div class="col-sm-6 col-md-4 move-down" ng-repeat="mon in team track by mon.iconClass">
-		<!-- TODO move to pokemon-card directive -->
-		<div class="pokemon-card {{settings.colorfulCards?'colorful':''}} {{mon.typeStyle}}">
-			<header><h2>
-				<span class="label label-default" ng-bind="mon.number | padNumber: 3"></span>
-				<i class="pki {{mon.iconClass}}"></i>
-				<span ng-bind="mon.name"></span>
-				<small ng-bind="mon.specialname"></small>
-				<small><i bulbapedia="mon"></i></small>
-			</h2></header>
-			<p><span ng-repeat="type in mon.types" class="type-label type-{{type}}" ng-bind="type"></span></p>
+		<div pokemon-card="mon">
 			<button type="button" class="btn btn-sm btn-default tr-corner-button" ng-click="removeFromTeam(mon)"><i class="fa fa-heart-o"></i></button>
 		</div>
 	</div>
