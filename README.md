@@ -18,12 +18,12 @@ Current Goals
         1. load json file with comments
 1. build each *Module.js in it's own minified file - requirejs modules?
 1. review documentation (again)
-1. bootstrap tour + path does NOT work from the filesystem; tours on page do work
 
 Stretch Goals
 -------------
 
 1. iterate on ui
+    1. import/export data, version x.x (load.save)
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
 1. finish skipped tests & 100% coverage
 1. load vendor libs with requirejs, not static on page (the hard part is angular)
@@ -34,6 +34,9 @@ Stretch Goals
     1. bootlint
     1. eslint-plugin-angular
 1. read up on [aria](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
+1. bootstrap tour + path does NOT work from the filesystem
+    * tours on page do work
+    * paths only work with `/#`, the don't work with just `#`
 
 What's in the project
 ---------------------
