@@ -224,7 +224,7 @@ define([
 		}); // end register
 
 		describe('start', function () {
-			beforeEach(function () {
+			beforeAll(function () {
 				tours.register({
 					name: 'specTourStart',
 					steps: [{

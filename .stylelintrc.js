@@ -2,6 +2,9 @@ module.exports = {
 	extends: 'stylelint-config-recommended',
 	ignoreFiles: [
 		'src/for.less',
-		'README.md', // QUESTION why is stylelint processing README.md?
+
+		// BUG i think the latest vscode update did someting funky to stylelint
+		'README.md',
+		'**/*.html',
 	],
 };

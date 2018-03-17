@@ -1,5 +1,6 @@
 <section>
-	<header><h1>Your Team</h1></header>
+	<!-- NOTE the span inside the header is to help focus the bootstrap-tour popover -->
+	<header><h1><span>Your Team</span></h1></header>
 
 	<div class="row">
 	<div class="col-sm-6 col-md-4 move-down" ng-repeat="mon in team track by mon.iconClass">
@@ -13,7 +14,7 @@
 				<small><i bulbapedia="mon"></i></small>
 			</h2></header>
 			<p><span ng-repeat="type in mon.types" class="type-label type-{{type}}" ng-bind="type"></span></p>
-			<button type="button" class="btn btn-sm btn-default remove-button" ng-click="removeFromTeam(mon)"><i class="fa fa-heart-o"></i></button>
+			<button type="button" class="btn btn-sm btn-default tr-corner-button" ng-click="removeFromTeam(mon)"><i class="fa fa-heart-o"></i></button>
 		</div>
 	</div>
 	</div>
@@ -22,7 +23,8 @@
 </section>
 
 <section>
-	<header><h1>Add to your team</h1></header>
+	<!-- NOTE the span inside the header is to help focus the bootstrap-tour popover -->
+	<header><h1><span>Add to your team</span></h1></header>
 	<p>
 		Use the <i class="fa fa-heart"></i> to add individual Pokémon to your team.
 		Use <span class="label label-default">Enter</span> to add all the matching Pokémon to your team.
@@ -41,9 +43,8 @@
 
 	<div class="row team-search-results" ng-if="showList()">
 		<p class="col-sm-6 col-md-4 move-down" ng-repeat="mon in nested.filteredDex=(dex | dexGen | filterAll: nested.filter | orderBy: settings.pokedexOrderBy) track by mon.iconClass">
-			<button type="button" class="pull-left btn btn-sm btn-default" ng-click="addToTeam(mon)" ng-disabled="isInTeam(mon)">
-				<i class="fa" ng-class="isInTeam(mon)?'fa-heart-o':'fa-heart'"></i>
-			</button>
+			<button type="button" class="pull-left btn btn-sm btn-default" ng-click="addToTeam(mon)" ng-hide="isInTeam(mon)"><i class="fa fa-heart"></i></button>
+			<button type="button" class="pull-left btn btn-sm btn-default" ng-click="removeFromTeam(mon)" ng-show="isInTeam(mon)"><i class="fa fa-heart-o"></i></button>
 			<i pokemon-pill="mon"></i>
 		</p>
 	</div>

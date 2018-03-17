@@ -48,13 +48,13 @@ define([], function () {
 				content: 'You can change your theme from the <b>Settings</b> page.',
 			}, {
 				path: '/settings',
-				element: '#theme',
-				placement: 'bottom',
+				element: '[for="theme"]',
+				placement: 'right',
 				content: 'All the available themes are listed here.',
 			}, {
 				path: '/settings',
-				element: '#colorfulCards',
-				placement: 'bottom',
+				element: '[for="colorfulCards"]',
+				placement: 'right',
 				content: 'You can also change the Pokémon cards to have a background color based on their types.',
 			}],
 		});
@@ -86,15 +86,20 @@ define([], function () {
 						"it's better to search for something more specific." +
 						'This was mostly just a tech demo.',
 			}, {
+				path: '/pokedex',
+				element: '.navbar-right li:contains("Settings")',
+				placement: 'left',
+				content: 'There are more configurations for the search results on the <b>Settings</b> page.',
+			}, {
 				path: '/settings',
-				element: '#dexGen',
-				placement: 'top',
+				element: '[for="dexGen"]',
+				placement: 'right',
 				content: 'If you are playing one of the older games, you can ' +
 					'narrow the list from the settings by picking a specific generation.',
 			}, {
 				path: '/settings',
-				element: '#pokedexOrderBy',
-				placement: 'top',
+				element: '[for="pokedexOrderBy"]',
+				placement: 'right',
 				content: "Just because each Pokémon has a number, doesn't mean the results need be in that order.",
 			}, {
 				path: '/pokedex',
@@ -135,8 +140,8 @@ define([], function () {
 				content: 'You can still see the other type charts if some things are easier to reference.',
 			}, {
 				path: '/settings',
-				element: '#preferredTypeChart',
-				placement: 'top',
+				element: '[for="preferredTypeChart"]',
+				placement: 'right',
 				content: 'You can change which type chart is displayed from the settings page.',
 			}, {
 				path: '/pokedex/Bulbasaur',
@@ -146,6 +151,46 @@ define([], function () {
 			}],
 		});
 
-		// TODO team tour
+		// TODO if team is empty, add one to show the remove button
+		tours.register({
+			name: 'explainTeam',
+			title: 'Your Team',
+			steps: [{
+				path: '/',
+				element: '#teamList',
+				placement: 'top',
+				content: function () { return (team.length ? 'Looks like you are <em>teaming</em> with Pokédex friends.' : 'Looks like you still need a team.'); },
+			}, {
+				path: '/',
+				element: '#teamList',
+				placement: 'top',
+				content: 'Your team is the set of Pokémon that you take with you on your adventure.',
+			}, {
+				path: '/',
+				element: '.navbar-nav li:contains("Your Team")',
+				placement: 'bottom',
+				content: 'You can add Pokémon to (and remove Pokémon from) your team using the <b>Your Team</b> page.',
+			}, {
+				path: '/team',
+				element: 'header span:contains("Your Team")',
+				placement: 'right',
+				content: 'In the top section, you can see your current set of Pokémon.',
+			}, {
+				path: '/team',
+				element: 'header span:contains("Add to your team")',
+				placement: 'right',
+				content: 'In the bottom section, you can search for other Pokémon to add.',
+			}, {
+				path: '/team',
+				element: '.navbar-nav li:contains("Pokédex")',
+				placement: 'bottom',
+				content: 'Once you have your team ready, you can search for contenders using the <b>Pokédex</b> page.',
+			}, {
+				path: '/pokedex/Bulbasaur',
+				element: 'header:contains(Defending)',
+				placement: 'top',
+				content: 'You can see how your team with fair against a specific Pokémon.',
+			}],
+		});
 	}
 });

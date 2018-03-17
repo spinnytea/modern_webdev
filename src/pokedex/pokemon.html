@@ -5,8 +5,12 @@
 		<small ng-bind="mon.specialname"></small>
 		<small><i bulbapedia="mon"></i></small>
 	</h1>
+	<!-- TODO add option for 'inline' -->
 	<div id="typeSquares" class="row"><div class="col-sm-6" ng-repeat="type in mon.types"><span type-square="type"></span></div></div>
 
+	<!-- REVIEW this section is always confusing -->
+	<!--        the language, number, colors, sort are ordered from Mon's perspective -->
+	<!--        why isn't it from the Team's perspective? -->
 	<section>
 		<header><h2>Defending <small>When these pokemon deal damage to <span ng-bind="mon.name"></span></small></h2></header>
 		<div class="row">

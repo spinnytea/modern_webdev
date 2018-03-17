@@ -22,6 +22,7 @@ define(['jquery', 'lodash'], function ($, _) {
 			if(!_.isObject(config)) throw new Error('config must be present');
 			if(!_.isString(config.name)) throw new Error('tours must have a name');
 			if(!/^[\w\d-]+$/.test(config.name)) throw new Error('tour names must be alphanumeric');
+			if(registeredTours[config.name]) throw new Error('tour names must be unique');
 			if(config.title !== undefined && !_.isString(config.title)) throw new Error('tour titles must be a string');
 			if(!_.isArray(config.steps)) throw new Error('tours must have steps');
 			if(!config.steps.length) throw new Error('tours must have at least one step');
