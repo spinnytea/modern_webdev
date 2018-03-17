@@ -12,8 +12,6 @@ define(['jquery', 'lodash'], function ($, _) {
 		/**
 		 *	verify and configure a bootstrap-tour
 		 *
-		 * TODO what if a tour is already registered under this name?
-		 *
 		 * @param config.name {String}: the name of the tour
 		 * @param config.title {String}: (optional) the title of the tour, will be set for all steps
 		 * @param config.steps {Array}: see bootstrap-tour docs for details, checked and tweaked for convenience
@@ -76,7 +74,7 @@ define(['jquery', 'lodash'], function ($, _) {
 			}
 		};
 
-		// HACK bootstrap-tour blows up on route change because the new element isn't on the page
+		// HACK bootstrap-tour silently fails on route change because the new element isn't on the page
 		/* istanbul ignore next */
 		$rootScope.$on('$routeChangeSuccess', function () {
 			var toursActive = _.some(registeredTours, function (tour) { return !tour.ended(); });
