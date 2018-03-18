@@ -1,17 +1,17 @@
-<h1>Pokémon Type Calculator <i tour-start="homeIntro"></i></h1>
+<h1>Pokémon Type Calculator <i tour-start="tourPageHome"></i></h1>
 <p>
 	A type chart is hard to read and it doesn't <em>do</em> anything.
 	Once you build a team of pokémon, this will help you figure out who to send into battle.
 </p>
 
 <h1>App Data</h1>
-<p><span class="badge" ng-bind="themeCount"></span> UI Themes <i tour-start="explainThemes"></i></p>
-<p><span class="badge" ng-bind="typeCount"></span> Pokémon Types <i tour-start="explainTypes"></i></p>
-<p><span class="badge" ng-bind="pokedexCount"></span> Pokémon in Pokédex <i tour-start="explainPokedex"></i></p>
+<p><span class="badge" ng-bind="themeCount"></span> UI Themes <i tour-start="introToThemes"></i></p>
+<p><span class="badge" ng-bind="typeCount"></span> Pokémon Types <i tour-start="introToTypes"></i></p>
+<p><span class="badge" ng-bind="pokedexCount"></span> Pokémon in Pokédex <i tour-start="introToPokedex"></i></p>
 <!-- the span inside the paragraph is to help focus the bootstrap-tour popover -->
 <p><span id="teamList">
 	<i ng-repeat="m in team" class="pki {{m.iconClass}}" title="{{m.name}}"></i>
-	<i tour-start="explainTeam"></i>
+	<i tour-start="introToTeam"></i>
 </span></p>
 
 <!-- the span inside the header is to help focus the bootstrap-tour popover -->

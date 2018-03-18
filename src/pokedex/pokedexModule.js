@@ -1,9 +1,11 @@
 define([
 	'angular',
+	'notDevMode',
 	'./bulbapediaDirective',
 	'./dexGenFilter',
 	'./pokedexController',
 	'./pokedexFactory',
+	'./pokedexToursSetup',
 	'./pokemonCardDirective',
 	'./pokemonController',
 	'./pokemonPillDirective',
@@ -11,10 +13,12 @@ define([
 	'./teamFactory',
 ], function (
 	angular,
+	notDevMode,
 	bulbapediaDirective,
 	dexGenFilter,
 	pokedexController,
 	pokedexFactory,
+	pokedexToursSetup,
 	pokemonCardDirective,
 	pokemonController,
 	pokemonPillDirective,
@@ -34,6 +38,8 @@ define([
 	pokedexModule.controller('po_ke_type.pokedex.pokemon.controller', pokemonController);
 	pokedexModule.controller('po_ke_type.pokedex.team.controller', teamController);
 	pokedexModule.factory('po_ke_type.pokedex.team.factory', teamFactory);
+
+	if(notDevMode) pokedexModule.run(pokedexToursSetup);
 
 	return pokedexModule;
 });
