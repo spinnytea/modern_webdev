@@ -73,6 +73,7 @@ define([], function () {
 			}],
 		});
 
+		// TODO move to pokedexModule
 		tours.register({
 			name: 'explainPokedex',
 			title: 'The Pokédex',
@@ -129,6 +130,7 @@ define([], function () {
 			}],
 		});
 
+		// TODO move to typesModule
 		tours.register({
 			name: 'explainTypes',
 			title: 'Weaknesses and Resistances',
@@ -165,6 +167,7 @@ define([], function () {
 			}],
 		});
 
+		// TODO move to pokedexModule
 		// TODO if team is empty, add one to show the remove button
 		tours.register({
 			name: 'explainTeam',

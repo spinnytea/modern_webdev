@@ -10,8 +10,8 @@ define([], function () {
 
 	function HomeController($scope, settings, team, pokedex, types) {
 		$scope.themeCount = settings.themes.length;
-		$scope.pokedexCount = pokedex.list.length;
 		$scope.typeCount = types.list.length;
+		$scope.pokedexCount = pokedex.list.length;
 		$scope.team = team;
 	}
 });

@@ -6,8 +6,8 @@
 
 <h1>App Data</h1>
 <p><span class="badge" ng-bind="themeCount"></span> UI Themes <i tour-start="explainThemes"></i></p>
-<p><span class="badge" ng-bind="pokedexCount"></span> Pokémon in Pokédex <i tour-start="explainPokedex"></i></p>
 <p><span class="badge" ng-bind="typeCount"></span> Pokémon Types <i tour-start="explainTypes"></i></p>
+<p><span class="badge" ng-bind="pokedexCount"></span> Pokémon in Pokédex <i tour-start="explainPokedex"></i></p>
 <!-- the span inside the paragraph is to help focus the bootstrap-tour popover -->
 <p><span id="teamList">
 	<i ng-repeat="m in team" class="pki {{m.iconClass}}" title="{{m.name}}"></i>

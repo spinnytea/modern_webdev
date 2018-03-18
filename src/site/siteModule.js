@@ -1,5 +1,6 @@
 define([
 	'angular',
+	'notDevMode',
 	'./headController',
 	'./homeController',
 	'./homeToursSetup',
@@ -8,6 +9,7 @@ define([
 	'./settingsFactory',
 ], function (
 	angular,
+	notDevMode,
 	headController,
 	homeController,
 	homeToursSetup,
@@ -24,13 +26,22 @@ define([
 	siteModule.controller('po_ke_type.site.settings.controller', settingsController);
 	siteModule.factory('po_ke_type.site.settings.factory', settingsFactory);
 
-	// REVIEW ALL the site unit tests need to mock this dependency :/
-	// - is there a better way that we can define them?
-	// - should the tours be specified in the controller? - that seems weird, it only starts there
-	// - should each tour be it's own directive? - that feels too disparate, or am i just being stilly
-	// - it's nice having a global register, and state needs to be maintained across pages
-	// - TODO each tour should live in it's base module (types in types, dex in dex)
-	siteModule.run(homeToursSetup);
+	// REVIEW notDevMode
+	// - module.run is really clean for production
+	// - but it makes things awful for testing
+	// - all of the dependencies of all of the tours need to be mocked before we can use this module
+	// - is there a better way that we can define the tours?
+	// - should the tours be specified in the controller?
+	//   - that seems weird, the tour only starts on the controller, it's not beholden to the controller
+	//   - it sort of makes sense for a tour that exists on one single page
+	// - should each tour be it's own directive?
+	//   - that feels too disparate, or am i just being stilly
+	//   - the tour could span multiple pages and the life of the directive
+	//   - or is it more like 'this directive starts this tour'
+	// - it's nice having a global register
+	//   - state needs to be maintained across pages
+	//   - its a single point of reference we can use for cataloging, enforcing style, standard features, etc
+	if(notDevMode) siteModule.run(homeToursSetup);
 
 	return siteModule;
 });
