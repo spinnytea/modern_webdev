@@ -12,9 +12,10 @@ define(['jquery', 'lodash'], function ($, _) {
 		/**
 		 *	verify and configure a bootstrap-tour
 		 *
-		 * @param config.name {String}: the name of the tour
-		 * @param config.title {String}: (optional) the title of the tour, will be set for all steps
-		 * @param config.steps {Array}: see bootstrap-tour docs for details, checked and tweaked for convenience
+		 * @param {Object} config - basically the same as the standard Tour config object, but we have some custom rules and helpers
+		 * @param {String} config.name - the name of the tour
+		 * @param {String} [config.title] - the title of the tour, will be set for all steps
+		 * @param {Object[]} config.steps - see bootstrap-tour docs for details, checked and tweaked for convenience
 		 */
 		tours.register = function (config) {
 			if(!_.isObject(config)) throw new Error('config must be present');
@@ -70,22 +71,33 @@ define(['jquery', 'lodash'], function ($, _) {
 		};
 
 		/**
+		 * check to see if a tour is registered
+		 *
+		 * @param {String} name - the name of the registered tour
+		 * @returns {Boolean} true if a tour is registered by that name, false if not
+		 */
+		tours.exists = function (name) {
+			return registeredTours.hasOwnProperty(name);
+		};
+
+		/**
 		 * start a tour
 		 * bootstrap-tour is a bit quirky, or at least for our needs
 		 *
-		 * @param name {String}: the name of the registered tour
+		 * @param {String} name - the name of the registered tour
 		 */
 		tours.start = function (name) {
 			var tour = registeredTours[name];
 			if(tour) {
-				/* istanbul ignore if */
+				/* istanbul ignore if: what would we be testing? this is an integration problem */
 				if(!tour.ended()) tour.end();
 				tour.restart();
 			}
 		};
 
-		// HACK bootstrap-tour silently fails on route change because the new element isn't on the page
-		/* istanbul ignore next */
+		// HACK don't use $(window).resize();
+		// - bootstrap-tour silently fails on route change because the new element isn't on the page
+		/* istanbul ignore next: tours will either work or not. this is an integration problem */
 		$rootScope.$on('$routeChangeSuccess', function () {
 			var toursActive = _.some(registeredTours, function (tour) { return !tour.ended(); });
 			if(toursActive) $(window).resize();

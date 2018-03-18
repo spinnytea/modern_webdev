@@ -4,26 +4,29 @@ define(['angular'], function (angular) {
 	tourStartMod.directive('tourStart', [TourStartDirective]);
 
 	tourStartMod.controller('po_ke_type.utils.tourStart.directive.controller', [
-		'$scope', 'po_ke_type.utils.tours.factory',
+		'$scope', 'po_ke_type.utils.tours.factory', 'po_ke_type.site.settings.factory',
 		TourStartController,
 	]);
 
 	return tourStartMod;
 
-	// REVIEW what if the provided name isn't a tour? ngHide?
 	function TourStartDirective() {
 		return {
 			restrict: 'A',
 			replace: 'true',
 			scope: { name: '@tourStart' },
-			template: '<i class="fa fa-question-circle" ng-click="start()"></i>',
+			template: '<i class="fa fa-question-circle" ng-click="start()" ng-show="show()"></i>',
 			controller: 'po_ke_type.utils.tourStart.directive.controller',
 		};
 	}
 
-	function TourStartController($scope, tours) {
+	function TourStartController($scope, tours, settings) {
 		$scope.start = function () {
 			tours.start($scope.name);
+		};
+
+		$scope.show = function () {
+			return settings.showTourStart && tours.exists($scope.name);
 		};
 	}
 });

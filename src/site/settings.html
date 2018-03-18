@@ -28,10 +28,16 @@
 	</div>
 
 	<div class="form-group">
-			<label for="preferredTypeChart">Preferred Type Chart</label>
-			<select class="form-control" id="preferredTypeChart" name="preferredTypeChart"
-					ng-model="settings.preferredTypeChart"
-					ng-options="t.id as t.display for t in settings.availableTypeCharts"></select>
+		<label for="preferredTypeChart">Preferred Type Chart</label>
+		<select class="form-control" id="preferredTypeChart" name="preferredTypeChart"
+				ng-model="settings.preferredTypeChart"
+				ng-options="t.id as t.display for t in settings.availableTypeCharts"></select>
+	</div>
+
+	<div class="form-group">
+		<label for="showTourStart">Show Tours</label>
+		<p radio-group="[{id:true,display:'Show'},{id:false,display:'Hide'}]"
+				ng-model="settings.showTourStart"></p>
 	</div>
 
 	<div class="form-group">

@@ -5,6 +5,7 @@ define([
 	'./homeController',
 	'./homeToursSetup',
 	'./pageHeaderDirective',
+	'./radioGroupDirective',
 	'./settingsController',
 	'./settingsFactory',
 ], function (
@@ -14,11 +15,13 @@ define([
 	homeController,
 	homeToursSetup,
 	pageHeaderDirective,
+	radioGroupDirective,
 	settingsController,
 	settingsFactory
 ) {
 	var siteModule = angular.module('po_ke_type.site', [
 		pageHeaderDirective.name,
+		radioGroupDirective.name,
 	]);
 
 	siteModule.controller('po_ke_type.site.head.controller', headController);
@@ -42,6 +45,17 @@ define([
 	//   - state needs to be maintained across pages
 	//   - its a single point of reference we can use for cataloging, enforcing style, standard features, etc
 	if(notDevMode) siteModule.run(homeToursSetup);
+
+	siteModule.constant('po_ke_type.site.settings.defaults', Object.freeze({
+		colorfulCards: false,
+		dexGen: 6,
+		pokedexFilter: '',
+		pokedexLimit: 18,
+		pokedexOrderBy: 'number',
+		preferredTypeChart: 'matrix',
+		showTourStart: true,
+		theme: 'spacelab',
+	}));
 
 	return siteModule;
 });

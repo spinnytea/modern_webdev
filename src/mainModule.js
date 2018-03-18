@@ -26,7 +26,7 @@ define([
 	'./utils/utilsModule',
 	'./dataModule',
 ], function (angular, pokedexModule, siteModule, typesModule, utilsModule) {
-	var module = angular.module('po_ke_type', [
+	var mainModule = angular.module('po_ke_type', [
 		pokedexModule.name,
 		siteModule.name,
 		typesModule.name,
@@ -38,7 +38,7 @@ define([
 		'ngSanitize',
 	]);
 
-	module.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+	mainModule.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 		$locationProvider.hashPrefix('');
 		$routeProvider
 			.when('/', { templateUrl: 'site/home.html', controller: 'po_ke_type.site.home.controller' })
@@ -50,22 +50,12 @@ define([
 			.otherwise({ templateUrl: 'site/oops.html' });
 	}]);
 
-	module.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+	mainModule.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
 		localStorageServiceProvider
 			.setPrefix('po_ke_type')
 			.setNotify(false, true); // setItem: false, removeItem: true
 	}]);
 
-	module.constant('po_ke_type.site.settings.defaults', Object.freeze({
-		colorfulCards: false,
-		dexGen: 6,
-		pokedexFilter: '',
-		pokedexLimit: 18,
-		pokedexOrderBy: 'number',
-		preferredTypeChart: 'matrix',
-		theme: 'spacelab',
-	}));
-
 	angular.bootstrap(document, ['po_ke_type']);
-	return module;
+	return mainModule;
 });

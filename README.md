@@ -27,6 +27,10 @@ Stretch Goals
     1. import/export data, version x.x (load.save)
     1. align pokemon imgs
     1. wobbly animation
+    1. update home page tour
+    1. settings tour
+    1. tour for each page?
+    1. keyboard shortcut to temporarily show tour-start icons
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
 1. finish skipped tests & 100% coverage
 1. load vendor libs with requirejs, not static on page (the hard part is angular)
