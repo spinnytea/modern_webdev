@@ -1,11 +1,13 @@
 define([], function () {
+	var THEME = 'flatly';
+	var THEME_ALT = 'journal';
+
 	return [
-		'po_ke_type.utils.tours.factory', 'po_ke_type.pokedex.team.factory',
+		'po_ke_type.utils.tours.factory', 'po_ke_type.pokedex.team.factory', 'po_ke_type.site.settings.factory',
 		HomeToursSeup,
 	];
 
-	function HomeToursSeup(tours, team) {
-		void(team);
+	function HomeToursSeup(tours, team, settings) {
 		tours.register({
 			name: 'homeIntro',
 			title: 'My First Tour',
@@ -32,7 +34,7 @@ define([], function () {
 			}],
 		});
 
-		// TODO change the theme, change it back
+		var userTheme = undefined; // change the theme, change it back
 		tours.register({
 			name: 'explainThemes',
 			title: 'UI Themes',
@@ -51,6 +53,18 @@ define([], function () {
 				element: '[for="theme"]',
 				placement: 'right',
 				content: 'All the available themes are listed here.',
+				onNext: function () {
+					userTheme = settings.theme;
+					if(settings.theme === THEME) settings.theme = THEME_ALT;
+					else settings.theme = THEME;
+				},
+			}, {
+				path: '/settings',
+				element: '[for="theme"]',
+				placement: 'right',
+				content: 'Just pick another one from the list to try them out.',
+				onNext: function () { if(userTheme) settings.theme = userTheme; },
+				onPrev: function () { if(userTheme) settings.theme = userTheme; },
 			}, {
 				path: '/settings',
 				element: '[for="colorfulCards"]',

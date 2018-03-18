@@ -53,6 +53,16 @@ define(['jquery', 'lodash'], function ($, _) {
 					if(!(_.isString(step.content) || _.isFunction(step.content))) throw new Error('each step must have content');
 					step.title = config.title;
 					if(stepsUsePath) step.path = '/#' + step.path;
+
+					if(_.isFunction(step.onNext)) {
+						var nextFn = step.onNext;
+						step.onNext = function () { $rootScope.$apply(nextFn); };
+					}
+					if(_.isFunction(step.onPrev)) {
+						var prevFn = step.onPrev;
+						step.onPrev = function () { $rootScope.$apply(prevFn); };
+					}
+
 					return step;
 				}),
 			});
