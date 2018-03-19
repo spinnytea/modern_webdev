@@ -5,7 +5,6 @@ define([
 	'./homeController',
 	'./homeToursSetup',
 	'./pageHeaderDirective',
-	'./radioGroupDirective',
 	'./settingsController',
 	'./settingsFactory',
 ], function (
@@ -15,13 +14,11 @@ define([
 	homeController,
 	homeToursSetup,
 	pageHeaderDirective,
-	radioGroupDirective,
 	settingsController,
 	settingsFactory
 ) {
 	var siteModule = angular.module('po_ke_type.site', [
 		pageHeaderDirective.name,
-		radioGroupDirective.name,
 	]);
 
 	siteModule.controller('po_ke_type.site.head.controller', headController);

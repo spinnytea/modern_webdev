@@ -1,9 +1,9 @@
 define(['angular'], function (angular) {
-	var radioGroupDirectiveMod = angular.module('po_ke_type.site.radioGroup.directive', []);
+	var radioGroupDirectiveMod = angular.module('po_ke_type.utils.radioGroup.directive', []);
 
 	radioGroupDirectiveMod.directive('radioGroup', [RadioGroupDirective]);
 
-	radioGroupDirectiveMod.controller('po_ke_type.site.radioGroup.directive.controller', [
+	radioGroupDirectiveMod.controller('po_ke_type.utils.radioGroup.directive.controller', [
 		'$scope',
 		RadioGroupController,
 	]);
@@ -18,8 +18,8 @@ define(['angular'], function (angular) {
 				options: '=radioGroup',
 				ngModel: '=',
 			},
-			templateUrl: 'site/radioGroupDirective.html',
-			controller: 'po_ke_type.site.radioGroup.directive.controller',
+			templateUrl: 'utils/radioGroupDirective.html',
+			controller: 'po_ke_type.utils.radioGroup.directive.controller',
 		};
 	}
 
