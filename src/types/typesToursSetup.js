@@ -5,7 +5,6 @@ define([], function () {
 	];
 
 	function TypesToursSeup(tours) {
-		// TODO move to typesModule
 		tours.register({
 			name: 'introToTypes',
 			title: 'Weaknesses and Resistances',
