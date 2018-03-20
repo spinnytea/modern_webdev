@@ -13,6 +13,9 @@ Current Goals
     1. what do we need but doesn't have a demo
     1. what do we not need
     1. what isn't included here that we need to pull in
+        1. socket.io
+        1. mkdirs
+        1. load json file with comments
 1. build each *Module.js in it's own minified file - requirejs modules?
 1. review documentation (again)
 1. bootstrap tour + path does NOT work from the filesystem; tours on page do work
