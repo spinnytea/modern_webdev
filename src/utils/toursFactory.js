@@ -2,15 +2,18 @@ define(['jquery', 'lodash'], function ($, _) {
 	var registeredTours = {};
 
 	return [
-		'$rootScope', 'Tour',
+		'$rootScope', '$timeout', 'Tour',
 		ToursFactory,
 	];
 
-	function ToursFactory($rootScope, Tour) {
+	function ToursFactory($rootScope, $timeout, Tour) {
 		var tours = {};
 
 		/**
 		 *	verify and configure a bootstrap-tour
+		 * BUG when we refresh the page, the tour moves forward two steps (it should stay on the current step)
+		 * - to reproduce: be familiar with a tour, start it, refresh the page (again if you like)
+		 * - it doesn't just move to the next step, it moves two steps forward
 		 *
 		 * @param {Object} config - basically the same as the standard Tour config object, but we have some custom rules and helpers
 		 * @param {String} config.name - the name of the tour
@@ -31,9 +34,7 @@ define(['jquery', 'lodash'], function ($, _) {
 			var allStepsUseOrDontUsePath = _.every(config.steps, function (step) { return step.hasOwnProperty('path') === stepsUsePath; });
 			if(!allStepsUseOrDontUsePath) throw new Error('either no steps can use path, or all steps use path, there isn\'t an in between');
 
-			// BUG Uncaught TypeError: Cannot read property 'backdrop' of undefined
-			// BUG Uncaught TypeError: Cannot read property 'onNext' of undefined
-			registeredTours[config.name] = new Tour({
+			var tour = new Tour({
 				name: config.name,
 				backdrop: false,
 				keyboard: true,
@@ -67,7 +68,8 @@ define(['jquery', 'lodash'], function ($, _) {
 					return step;
 				}),
 			});
-			registeredTours[config.name].init();
+			tour.init();
+			registeredTours[config.name] = tour;
 		};
 
 		/**
@@ -95,13 +97,38 @@ define(['jquery', 'lodash'], function ($, _) {
 			}
 		};
 
-		// HACK don't use $(window).resize();
-		// - bootstrap-tour silently fails on route change because the new element isn't on the page
+		// bootstrap-tour silently fails on route change because the new element isn't on the page
 		/* istanbul ignore next: tours will either work or not. this is an integration problem */
 		$rootScope.$on('$routeChangeSuccess', function () {
-			var toursActive = _.some(registeredTours, function (tour) { return !tour.ended(); });
-			if(toursActive) $(window).resize();
+			_.filter(registeredTours, isTourInProgress).forEach(forceRedraw);
 		});
+
+		/**
+		 * bootstrap-tour doesn't have a better way to get this
+		 * tour.ended only tells if you if it's finished
+		 * - like, the tour has run and is now finished
+		 * - restarting the tour also resets this
+		 * there is no way to tell if a tour has started
+		 */
+		function isTourInProgress(tour) {
+			// started, not ended
+			return tour.getCurrentStep() && !tour.ended();
+		}
+
+		/**
+		 * bootstrap-tour doesn't have a better way to get this
+		 * tour.showStep doesn't do anything
+		 * tour.redraw doesn't do the right thing
+		 * this is the best i've found so far
+		 */
+		function forceRedraw(tour) {
+			// if we do this during $routeChangeSuccess, it we get a digest in progress error
+			// we need to delay it until later
+			// which is probably the problem anyway, bootstrap tour failed to draw it, so we need to try again later
+			$timeout(function () {
+				tour.goTo(tour.getCurrentStep());
+			});
+		}
 
 		return tours;
 	}
