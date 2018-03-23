@@ -3,7 +3,6 @@ define([
 	'lodash',
 	'src/pokedex/pokedexModule',
 	'test/pokedex/pokedexFactory.mock',
-	'angular-mocks',
 ], function (angular, _, pokedexModule, podekexFactoryMock) {
 	return describe('Pokemon Pill Directive', function () {
 		var settingsFactory;

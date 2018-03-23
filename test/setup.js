@@ -17,6 +17,7 @@ angular.module('ngRoute', []);
 angular.module('cfp.hotkeys', []);
 beforeEach(angular.mock.module('setup.js'));
 beforeEach(angular.mock.module('html2js'));
+beforeEach(angular.mock.module('ngMock'));
 
 // jasmine uses wierd syntax... .skip and .only is cleaner
 it.skip = xit;

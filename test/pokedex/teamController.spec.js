@@ -4,7 +4,6 @@ define([
 	'src/pokedex/pokedexModule',
 	'test/pokedex/pokedexFactory.mock',
 	'test/utils/bindKeys.mock',
-	'angular-mocks',
 ], function (angular, _, pokedexModule, pokedexFactoryMock, bindKeys) {
 	return describe('Team Controller', function () {
 		var pokedexFactory, teamFactory, settingsFactory;

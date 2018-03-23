@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/utils/utilsModule',
-	'angular-mocks',
 ], function (angular, utilsModule) {
 	return describe('Filter All Filter', function () {
 		var filterAll;

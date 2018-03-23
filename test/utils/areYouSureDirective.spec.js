@@ -2,7 +2,6 @@ define([
 	'angular',
 	'lodash',
 	'src/utils/utilsModule',
-	'angular-mocks',
 ], function (angular, _, utilsModule) {
 	return describe('Are You Sure Directive', function () {
 		var $timeout;

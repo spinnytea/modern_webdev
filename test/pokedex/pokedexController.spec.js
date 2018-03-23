@@ -3,7 +3,6 @@ define([
 	'lodash',
 	'src/pokedex/pokedexModule',
 	'test/pokedex/pokedexFactory.mock',
-	'angular-mocks',
 ], function (angular, _, pokedexModule, pokedexFactoryMock) {
 	return describe('Pokedex Controller', function () {
 		var pokedexFactory, settingsFactory;

@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/site/siteModule',
-	'angular-mocks',
 ], function (angular, siteModule) {
 	return describe('Head Controller', function () {
 		var settingsFactory;

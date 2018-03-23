@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/utils/utilsModule',
-	'angular-mocks',
 ], function (angular, utilsModule) {
 	return describe('Tours Factory', function () {
 		var tours, Tour;

@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/site/siteModule',
-	'angular-mocks',
 ], function (angular, pokedexModule) {
 	return describe('Settings Factory', function () {
 		var settings, $rootScope;

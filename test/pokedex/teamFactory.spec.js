@@ -2,7 +2,6 @@ define([
 	'angular',
 	'lodash',
 	'src/pokedex/pokedexModule',
-	'angular-mocks',
 ], function (angular, _, pokedexModule) {
 	describe('Team Factory', function () {
 		it('init from storage', function () {

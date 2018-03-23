@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/site/siteModule',
-	'angular-mocks',
 ], function (angular, siteModule) {
 	return describe('Home Controller', function () {
 		var teamFactory, pokedexFactory, settingsFactory, typesFactory;

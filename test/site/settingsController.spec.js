@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/site/siteModule',
-	'angular-mocks',
 ], function (angular, siteModule) {
 	return describe('Settings Controller', function () {
 		var localStorageService, settingsFactory, teamFactory;
