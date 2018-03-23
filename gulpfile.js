@@ -310,8 +310,7 @@ gulp.task('test', function (done) {
 
 // clean tasks
 
-gulp.task('clean', ['clean:coverage', 'clean:dist']);
-gulp.task('clean:all', ['clean:coverage', 'clean:dist', 'clean:package']);
+gulp.task('clean', ['clean:coverage', 'clean:dist', 'clean:package']);
 
 gulp.task('clean:coverage', function () {
 	return del('coverage');
@@ -323,8 +322,4 @@ gulp.task('clean:dist', function () {
 
 gulp.task('clean:package', function () {
 	return del(dist.file.zip);
-});
-
-gulp.task('clean:vendor', function () {
-	return del(dist.vendor);
 });

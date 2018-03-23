@@ -16,12 +16,12 @@ define(['lodash'], function (_) {
 		});
 		if(!$scope.mon) return;
 
-		// when MON is attacking
+		// when mon is attacking
 		$scope.attacking = team.map(function (m) {
 			var rate = pokedex.calculateMaxDamageRate($scope.mon, m);
 			return _.assign({ rate: rate }, m);
 		});
-		// when MON is defending
+		// when mon is defending
 		$scope.defending = team.map(function (m) {
 			var rate = pokedex.calculateMaxDamageRate(m, $scope.mon);
 			return _.assign({ rate: rate }, m);

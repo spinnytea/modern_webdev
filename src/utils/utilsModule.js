@@ -8,6 +8,7 @@ define([
 	'./btnDisabledTitleDirective',
 	'./filterAllFilter',
 	'./padNumberFilter',
+	'./radioGroupDirective',
 	'./toursFactory',
 	'./tourStartDirective',
 ], function (
@@ -20,12 +21,14 @@ define([
 	btnDisabledTitleDirective,
 	filterAllFilter,
 	padNumberFilter,
+	radioGroupDirective,
 	toursFactory,
 	tourStartDirective
 ) {
 	var utilsModule = angular.module('po_ke_type.utils', [
 		areYouSureDirective.name,
 		btnDisabledTitleDirective.name,
+		radioGroupDirective.name,
 		tourStartDirective.name,
 		'ngRoute',
 		'cfp.hotkeys',

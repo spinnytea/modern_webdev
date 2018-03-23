@@ -1,6 +1,8 @@
 /* global angular: false */
 'use strict';
 
+define('notDevMode', function () { return false; });
+
 // setup a module to deal with awkward dependencies
 // tours are configure when a module is initialized
 // this needs to be available up immediately
@@ -9,7 +11,6 @@ setupModule.value('po_ke_type.utils.tours.factory', {
 	register: angular.noop,
 	start: angular.noop,
 });
-setupModule.value('po_ke_type.pokedex.team.factory', []); // HACK HomeToursSeup depends on this, but it shouldn't need to be global
 // all of our tests will need these modules available
 angular.module('ngAnimate', []);
 angular.module('ngRoute', []);

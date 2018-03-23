@@ -18,12 +18,18 @@ Current Goals
         1. load json file with comments
 1. build each *Module.js in it's own minified file - requirejs modules?
 1. review documentation (again)
-1. bootstrap tour + path does NOT work from the filesystem; tours on page do work
+    1. task tags - why do we have TEST
 
 Stretch Goals
 -------------
 
 1. iterate on ui
+    1. import/export data, version x.x (load.save)
+    1. wobbly animation
+    1. update home page tour
+    1. tour for each page?
+    1. description for each setting on the settings page
+    1. keyboard shortcut to temporarily show tour-start icons
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
 1. finish skipped tests & 100% coverage
 1. load vendor libs with requirejs, not static on page (the hard part is angular)
@@ -34,6 +40,9 @@ Stretch Goals
     1. bootlint
     1. eslint-plugin-angular
 1. read up on [aria](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)
+1. bootstrap tour + path does NOT work from the filesystem
+    * tours on page do work
+    * paths only work with `/#`, the don't work with just `#`
 
 What's in the project
 ---------------------
@@ -185,5 +194,18 @@ VSCode plugins
 
 <dt>vscode-language-todo (by fireyy)</dt>
 <dd>vscode doesn't parse task tags, so we need an extension</dd>
-<dd>this is the best one i could find, the UI isn't perfect, but it has the functionality</dd>
+<dd>this is the best one i could find, the UI isn't perfect, but it has the necessary functionality</dd>
+<dd>
+    <dl>
+        <dt>TODO</dt><dd>standard task, something left unfinished or something new</dd>
+        <dt>FIXME</dt><dd>high priority task, should be done before commiting, better to have it than to forget it</dd>
+        <dt>XXX</dt><dd>low priority task, its better to do things when you think about them, but we always have to prioritize</dd>
+        <dt>IDEA</dt><dd>new idea, start a discussion, can turn into a todo if it pans out</dd>
+        <dt>HACK</dt><dd>when you do something wrong and aren't afraid to admit your faults, this code needs to be changed... but it does the job... for now; usually it violates some kind of rule, or it wont work in all situations</dd>
+        <dt>REVIEW</dt><dd>sometimes you write something but just don't like it; it's not necessarily wrong nor needs to change, but you just want another set of eyes in case it is.</dd>
+        <dt>BUG</dt><dd>there's a problem. maybe it's only under some conditions. this probably should be in a bug tracker, if you have one of those</dd>
+        <dt>TEST</dt><dd>you found a new situation that needs to be tested, you should probably just stub out a spec instead</dd>
+        <dt>QUESTION</dt><dd>when you come across code that doesn't make sense and the comments don't explain it, write a question. hopefully someone will see it, and change the question to a proper comment.</dd>
+    </dl>
+</dd>
 </dl>

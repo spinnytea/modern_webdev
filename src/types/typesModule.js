@@ -1,19 +1,21 @@
 define([
 	'angular',
-	'lodash',
+	'notDevMode',
 	'./rateDisplayFilter',
 	'./rateStyleFilter',
 	'./squareDirective',
 	'./typeChartController',
 	'./typesFactory',
+	'./typesToursSetup',
 ], function (
 	angular,
-	_,
+	notDevMode,
 	rateDisplayFilter,
 	rateStyleFilter,
 	squareDirective,
 	typeChartController,
-	typesFactory
+	typesFactory,
+	typesToursSetup
 ) {
 	var typesModule = angular.module('po_ke_type.types', [
 		squareDirective.name,
@@ -23,6 +25,8 @@ define([
 	typesModule.filter('rateStyle', rateStyleFilter);
 	typesModule.controller('po_ke_type.types.chart.controller', typeChartController);
 	typesModule.factory('po_ke_type.types.factory', typesFactory);
+
+	if(notDevMode) typesModule.run(typesToursSetup);
 
 	return typesModule;
 });

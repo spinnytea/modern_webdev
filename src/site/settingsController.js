@@ -6,7 +6,11 @@ define([], function () {
 
 	function SettingsController($scope, localStorageService, settings, team) {
 		$scope.settings = settings;
-		$scope.team = team; // TODO button to clear team
+		$scope.team = team;
+
+		$scope.clearTeam = function () {
+			team.splice(0);
+		};
 
 		$scope.clearLocalStorage = function () {
 			return localStorageService.clearAll();

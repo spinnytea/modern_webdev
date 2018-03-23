@@ -1,13 +1,15 @@
 define([], function () {
+	var THEME = 'flatly';
+	var THEME_ALT = 'journal';
+
 	return [
-		'po_ke_type.utils.tours.factory', 'po_ke_type.pokedex.team.factory',
+		'po_ke_type.utils.tours.factory', 'po_ke_type.pokedex.team.factory', 'po_ke_type.site.settings.factory',
 		HomeToursSeup,
 	];
 
-	function HomeToursSeup(tours, team) {
-		void(team);
+	function HomeToursSeup(tours, team, settings) {
 		tours.register({
-			name: 'homeIntro',
+			name: 'tourPageHome',
 			title: 'My First Tour',
 			steps: [{
 				element: '[ng-bind="themeCount"]',
@@ -32,9 +34,9 @@ define([], function () {
 			}],
 		});
 
-		// TODO change the theme, change it back
+		var userTheme = undefined; // change the theme, change it back
 		tours.register({
-			name: 'explainThemes',
+			name: 'introToThemes',
 			title: 'UI Themes',
 			steps: [{
 				path: '/',
@@ -48,104 +50,27 @@ define([], function () {
 				content: 'You can change your theme from the <b>Settings</b> page.',
 			}, {
 				path: '/settings',
-				element: '#theme',
-				placement: 'bottom',
+				element: '[for="theme"]',
+				placement: 'right',
 				content: 'All the available themes are listed here.',
+				onNext: function () {
+					userTheme = settings.theme;
+					if(settings.theme === THEME) settings.theme = THEME_ALT;
+					else settings.theme = THEME;
+				},
 			}, {
 				path: '/settings',
-				element: '#colorfulCards',
-				placement: 'bottom',
+				element: '[for="theme"]',
+				placement: 'right',
+				content: 'Just pick another one from the list to try them out.',
+				onNext: function () { if(userTheme) settings.theme = userTheme; },
+				onPrev: function () { if(userTheme) settings.theme = userTheme; },
+			}, {
+				path: '/settings',
+				element: '[for="colorfulCards"]',
+				placement: 'right',
 				content: 'You can also change the Pokémon cards to have a background color based on their types.',
 			}],
 		});
-
-		tours.register({
-			name: 'explainPokedex',
-			title: 'The Pokédex',
-			steps: [{
-				path: '/',
-				element: '[ng-bind="pokedexCount"]',
-				placement: 'right',
-				content: 'There are sooo many pokémon.',
-			}, {
-				path: '/',
-				element: '.navbar-nav li:contains("Pokédex")',
-				placement: 'bottom',
-				content: 'You can search through the whole list from the <b>Pokédex</b> page.',
-			}, {
-				path: '/pokedex',
-				element: '#filter',
-				placement: 'bottom',
-				content: 'This part should be self explanatory. Just type in a string and it will start filter. ' +
-					'It will even filter on <b>type</b>, and <b>multiple strings</b>.',
-			}, {
-				path: '/pokedex',
-				element: '.input-group-addon.minimal',
-				placement: 'right',
-				content: "Changing the number of results isn't very useful in practice, " +
-						"it's better to search for something more specific." +
-						'This was mostly just a tech demo.',
-			}, {
-				path: '/settings',
-				element: '#dexGen',
-				placement: 'top',
-				content: 'If you are playing one of the older games, you can ' +
-					'narrow the list from the settings by picking a specific generation.',
-			}, {
-				path: '/settings',
-				element: '#pokedexOrderBy',
-				placement: 'top',
-				content: "Just because each Pokémon has a number, doesn't mean the results need be in that order.",
-			}, {
-				path: '/pokedex',
-				element: '[pokemon-pill]:nth(0) a',
-				placement: 'bottom',
-				content: 'Once you have found the specific Pokémon you are looking for, ' +
-					'you can go to the specific pokmeon with a link in the results.',
-			}, {
-				path: '/pokedex/Bulbasaur',
-				element: 'header:contains(Defending)',
-				placement: 'top',
-				content: 'You can see how a specific Pokémon with fair against your team.',
-			}],
-		});
-
-		tours.register({
-			name: 'explainTypes',
-			title: 'Weaknesses and Resistances',
-			steps: [{
-				path: '/',
-				element: '[ng-bind="typeCount"]',
-				placement: 'right',
-				content: 'The type system is central to the purpose of this tool. ' +
-					'We check your team against other Pokémon to see if they have a type advantage.',
-			}, {
-				path: '/',
-				element: '.navbar-nav li:contains("Type Chart")',
-				placement: 'bottom',
-				content: 'You can review the weaknesses and resistances for yourself from the <b>Type Chart</b> page.',
-			}, {
-				path: '/types',
-				orphan: true,
-				content: 'Your preferred type chart is always displayed first.',
-			}, {
-				path: '/types',
-				element: 'h1 small:visible:nth(0)',
-				placement: 'bottom',
-				content: 'You can still see the other type charts if some things are easier to reference.',
-			}, {
-				path: '/settings',
-				element: '#preferredTypeChart',
-				placement: 'top',
-				content: 'You can change which type chart is displayed from the settings page.',
-			}, {
-				path: '/pokedex/Bulbasaur',
-				element: '#typeSquares',
-				placement: 'bottom',
-				content: 'That said, the Pokémon page always uses type Squares.',
-			}],
-		});
-
-		// TODO team tour
 	}
 });

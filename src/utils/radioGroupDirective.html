@@ -1,0 +1,5 @@
+<label ng-repeat="option in options" ng-click="select(option.id)">
+	<i class="fa fa-2x fa-circle-o" ng-hide="isSelected(option.id)"></i>
+	<i class="fa fa-2x fa-dot-circle-o" ng-show="isSelected(option.id)"></i>
+	<span class="display-text" ng-bind="option.display"></span>
+</label>

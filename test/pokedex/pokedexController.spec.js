@@ -16,7 +16,7 @@ define([
 					_.clone(pokedexFactoryMock.list.Pikachu),
 				],
 			};
-			settingsFactory = {};
+			settingsFactory = { pokedexLimit: 18 };
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
 			$provide.value('filterAllFilter', _.identity);
@@ -36,7 +36,6 @@ define([
 			it('init', function () {
 				expect($scope.dex).toBe(pokedexFactory.list);
 				expect($scope.settings).toBe(settingsFactory);
-				expect($scope.nested.limit).toBe(18);
 			});
 		}); // end controller
 

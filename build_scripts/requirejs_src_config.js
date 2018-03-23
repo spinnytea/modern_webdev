@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @param minify {Boolean}: should we minify the result
+ * @param {Boolean} minify - should we minify the result
  *	@returns the requirejs config object that we use during build:js
  */
 module.exports = function (minify) {

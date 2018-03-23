@@ -27,8 +27,8 @@ define([
 
 			it('init', function () {
 				expect($scope.themeCount).toBe(3);
-				expect($scope.pokedexCount).toBe(2);
 				expect($scope.typeCount).toBe(4);
+				expect($scope.pokedexCount).toBe(2);
 				expect($scope.team).toBe(teamFactory);
 			});
 		}); // end controller
