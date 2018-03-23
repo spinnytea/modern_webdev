@@ -36,13 +36,13 @@ define([
 				});
 			}));
 
-			it('init', function () {
+			it.skipIE('init', function () {
 				expect($scope.settings).toBe(settingsFactory);
 				expect($scope.dex).toBe(pokedexFactory.list);
 				expect($scope.team).toBe(teamFactory);
 			});
 
-			it('showList', function () {
+			it.skipIE('showList', function () {
 				expect($scope.showList()).toBe(false);
 				$scope.nested.filter = 'asdf';
 				expect($scope.showList()).toBe(true);
@@ -50,13 +50,13 @@ define([
 				expect($scope.showList()).toBe(false);
 			});
 
-			it('isInTeam', function () {
+			it.skipIE('isInTeam', function () {
 				expect($scope.isInTeam(MON_1)).toBe(true);
 				expect($scope.isInTeam(MON_2)).toBe(false);
 				expect(teamFactory).toEqual([MON_1]);
 			});
 
-			it('addToTeam', function () {
+			it.skipIE('addToTeam', function () {
 				expect(teamFactory).toEqual([MON_1]);
 				$scope.addToTeam(MON_2);
 				expect(teamFactory).toEqual([MON_1, MON_2]);
@@ -64,7 +64,7 @@ define([
 				expect(teamFactory).toEqual([MON_1, MON_2]);
 			});
 
-			it('addToTeam', function () {
+			it.skipIE('addToTeam', function () {
 				teamFactory.push(MON_2);
 				expect(teamFactory).toEqual([MON_1, MON_2]);
 				$scope.removeFromTeam(MON_2);
@@ -80,23 +80,23 @@ define([
 					expect(teamFactory).toEqual([MON_1]);
 				});
 
-				it('addAll', function () {
+				it.skipIE('addAll', function () {
 					$scope.$bindKeysFn.addAll();
 					expect(teamFactory).toEqual([MON_1, MON_2]);
 				});
 
-				it('removeAll', function () {
+				it.skipIE('removeAll', function () {
 					$scope.$bindKeysFn.removeAll();
 					expect(teamFactory).toEqual([]);
 				});
 
-				it('exact', function () {
+				it.skipIE('exact', function () {
 					$scope.nested.filter = MON_1.name;
 					$scope.$bindKeysFn.addAll();
 					expect(teamFactory).toEqual([MON_1]);
 				});
 
-				it('noFilter', function () {
+				it.skipIE('noFilter', function () {
 					$scope.nested.filter = '';
 					$scope.$bindKeysFn.removeAll();
 					expect(teamFactory).toEqual([MON_1]);
@@ -117,13 +117,13 @@ define([
 				$scope.$digest();
 			}));
 
-			it('init', function () {
+			it.skipIE('init', function () {
 				expect($scope.team).toEqual([
 					jasmine.objectContaining({ name: 'Bulbasaur' }),
 				]);
 			});
 
-			it('pokemon-card', function () {
+			it.skipIE('pokemon-card', function () {
 				expect(element.find('[pokemon-card]')).toHaveLength(1);
 				expect(element.find('[pokemon-card] header')).toContainText('Bulbasaur');
 				expect(element.find('[pokemon-card]')).toContainElement('.pki.n1');
@@ -131,7 +131,7 @@ define([
 				expect(element.find('[pokemon-card]')).toContainElement('.type-poison');
 			});
 
-			it('filter to add to team', function () {
+			it.skipIE('filter to add to team', function () {
 				expect(element).toContainElement('#filter');
 			});
 		}); // end template

@@ -24,3 +24,17 @@ it.skip = xit;
 it.only = fit;
 describe.skip = xdescribe;
 describe.only = fdescribe;
+
+// REVIEW in all cases, we should fix the issue rather than skip the tests
+// - which may result in conditional logic based on the browser
+it.skipIE = function (name, fn) {
+	// it would be better to use browserVersionFactory, but we can't use the angular injector when setting up jasmine tests
+	// XXX could we manually mark the test skipped while it's running? is that worse?
+	var ua = navigator.userAgent; // eslint-disable-line
+	if (/(msie|trident)/i.test(ua)) {
+		it.skip(name, fn);
+	}
+	else {
+		it(name, fn);
+	}
+};

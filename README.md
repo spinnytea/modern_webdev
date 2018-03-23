@@ -6,7 +6,6 @@ This isn't a perfect example of modern web ui development, but given that there 
 Current Goals
 -------------
 
-1. test in IE - doesn't support function names (need to detect user agent)
 1. review node packages
     1. what isn't being used, make a demo
     1. what do we need but doesn't have a demo
