@@ -3,6 +3,7 @@ Modern WebDev
 
 This isn't a perfect example of modern web ui development, but given that there are so many different tools and frameworks, what is? This is one setup for developing a web ui application at the end of ES5, before HTML5 and ES6 become widespread.
 
+
 Current Goals
 -------------
 
@@ -13,14 +14,14 @@ Current Goals
         1. moment
         1. uuid
     1. what do we not need
-1. load vendor libs with requirejs, not static on page (the hard part is angular)
 1. review documentation (again)
-    1. task tags - why do we have TEST
+
 
 Stretch Goals
 -------------
 
 1. build each *Module.js in it's own minified file - requirejs modules?
+1. load vendor libs with requirejs, not static on page (the hard part is angular)
 1. iterate on ui
     1. import/export data, version x.x (load.save)
     1. wobbly animation
@@ -40,6 +41,7 @@ Stretch Goals
 1. bootstrap tour + path does NOT work from the filesystem
     * tours on page do work
     * paths only work with `/#`, the don't work with just `#`
+
 
 What's in the project
 ---------------------
@@ -233,7 +235,7 @@ VSCode plugins
         <dt>HACK</dt><dd>when you do something wrong and aren't afraid to admit your faults, this code needs to be changed... but it does the job... for now; usually it violates some kind of rule, or it wont work in all situations</dd>
         <dt>REVIEW</dt><dd>sometimes you write something but just don't like it; it's not necessarily wrong nor needs to change, but you just want another set of eyes in case it is.</dd>
         <dt>BUG</dt><dd>there's a problem. maybe it's only under some conditions. this probably should be in a bug tracker, if you have one of those</dd>
-        <dt>TEST</dt><dd>you found a new situation that needs to be tested, you should probably just stub out a spec instead</dd>
+        <dt>TEST</dt><dd>you found a new situation that needs to be tested, you should probably just stub out a spec instead; same with integration tests or use case tests. but not everyone knows everything, so at least they can write a comment that it needs to be done</dd>
         <dt>QUESTION</dt><dd>when you come across code that doesn't make sense and the comments don't explain it, write a question. hopefully someone will see it, and change the question to a proper comment.</dd>
     </dl>
 </dd>
