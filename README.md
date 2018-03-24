@@ -8,12 +8,11 @@ Current Goals
 
 1. review node packages
     1. what isn't being used, make a demo
-    1. what do we need but doesn't have a demo
+        1. angular-ui-bootstrap
+        1. fuzzysearch-js
+        1. moment
+        1. uuid
     1. what do we not need
-    1. what isn't included here that we need to pull in
-        1. socket.io
-        1. mkdirs
-        1. load json file with comments
 1. load vendor libs with requirejs, not static on page (the hard part is angular)
 1. review documentation (again)
     1. task tags - why do we have TEST
@@ -123,6 +122,38 @@ What's in the project
 <dd>requirejs by default only supports loading js, plugins allow us to load other types of data</dd>
 </dl>
 
+### Server Libraries
+
+This project is meant to be client-only, so there isn't a mechanism to demo these.
+But in the event we do write a node/server component, these are good things to have.
+Maybe this will be the next project.
+
+<dl>
+<dt>bluebird</dt>
+<dd>angular uses $q, and this simple app doesn't need much more</dd>
+<dd>we may not need it with an upgraded node</dd>
+
+<dt>cheerio</dt>
+<dd>parsing html in node</dd>
+<dd>your imagination is the limit</dd>
+
+<dt>debug</dt>
+<dd>sort of like log4j for node</dd>
+
+<dt>express</dt>
+<dd>gotta have a web server</dd>
+
+<dt>gulp-mkdirp</dt>
+<dd>this gets us mkdirp as well as gulp integration</dd>
+
+<dt>strip-json-comments</dt>
+<dd>json files are good for data</dd>
+<dd>json files that are used for config need comments</dd>
+
+<dt>socket.io</dt>
+<dd>this application does not include a server component, so there's nothing to talk to</dd>
+</dl>
+
 
 VSCode plugins
 --------------
@@ -206,4 +237,20 @@ VSCode plugins
         <dt>QUESTION</dt><dd>when you come across code that doesn't make sense and the comments don't explain it, write a question. hopefully someone will see it, and change the question to a proper comment.</dd>
     </dl>
 </dd>
+</dl>
+
+
+External Tools
+--------------
+
+<dl>
+<dt>FiraCode</dt>
+<dd>Programmer Font</dd>
+
+<dt>Node</dt>
+<dd>node, npx(, npm)</dd>
+<dd>Best not forget that</dd>
+
+<dt>VSCode</dt>
+<dd>IDE</dd>
 </dl>
