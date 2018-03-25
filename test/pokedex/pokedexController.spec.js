@@ -18,7 +18,7 @@ define([
 			settingsFactory = { pokedexLimit: 18 };
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
-			$provide.value('filterAllFilter', _.identity);
+			$provide.value('allWordsFilter', _.identity);
 			$provide.value('dexGenFilter', _.identity);
 			$provide.value('padNumberFilter', _.identity);
 		}));

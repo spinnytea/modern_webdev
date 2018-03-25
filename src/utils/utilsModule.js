@@ -6,7 +6,7 @@ define([
 	'./bindKeysFactory',
 	'./browserVersionFactory',
 	'./btnDisabledTitleDirective',
-	'./filterAllFilter',
+	'./allWordsFilter',
 	'./padNumberFilter',
 	'./radioGroupDirective',
 	'./toursFactory',
@@ -19,7 +19,7 @@ define([
 	bindKeysFactory,
 	browserVersionFactory,
 	btnDisabledTitleDirective,
-	filterAllFilter,
+	allWordsFilter,
 	padNumberFilter,
 	radioGroupDirective,
 	toursFactory,
@@ -37,7 +37,7 @@ define([
 	utilsModule.constant('Tour', Tour); // shim requirejs dep into angular dep (enables testing)
 	utilsModule.factory('bindKeys', bindKeysFactory);
 	utilsModule.factory('po_ke_type.utils.browserVersion.factory', browserVersionFactory);
-	utilsModule.filter('filterAll', filterAllFilter);
+	utilsModule.filter('allWords', allWordsFilter);
 	utilsModule.filter('padNumber', padNumberFilter);
 	utilsModule.factory('po_ke_type.utils.tours.factory', toursFactory);
 

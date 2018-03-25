@@ -3,7 +3,7 @@ define([
 	'src/utils/utilsModule',
 ], function (angular, utilsModule) {
 	return describe('Filter All Filter', function () {
-		var filterAll;
+		var allWords;
 		var array = [
 			'one',
 			'one two',
@@ -17,22 +17,22 @@ define([
 		];
 		beforeEach(angular.mock.module(utilsModule.name));
 		beforeEach(angular.mock.inject(['$filter', function ($filter) {
-			filterAll = $filter('filterAll');
+			allWords = $filter('allWords');
 		}]));
 
 		it('invalid args', function () {
-			expect(filterAll(array, {})).toEqual(array);
-			expect(filterAll(array, [])).toEqual(array);
-			expect(filterAll(array, NaN)).toEqual(array);
+			expect(allWords(array, {})).toEqual(array);
+			expect(allWords(array, [])).toEqual(array);
+			expect(allWords(array, NaN)).toEqual(array);
 		});
 
 		it('empty string', function () {
-			expect(filterAll(array, '')).toEqual(array);
-			expect(filterAll(array, ' ')).toEqual(array);
+			expect(allWords(array, '')).toEqual(array);
+			expect(allWords(array, ' ')).toEqual(array);
 		});
 
 		it('one string', function () {
-			expect(filterAll(array, 'one')).toEqual([
+			expect(allWords(array, 'one')).toEqual([
 				'one',
 				'one two',
 				'one three',
@@ -42,7 +42,7 @@ define([
 		});
 
 		it('two string', function () {
-			expect(filterAll(array, 'one three')).toEqual([
+			expect(allWords(array, 'one three')).toEqual([
 				'one three',
 				'three one',
 			]);

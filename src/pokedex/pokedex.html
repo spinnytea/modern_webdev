@@ -14,7 +14,7 @@
 
 <section>
 	<div class="row">
-		<p class="col-sm-6 col-md-4 move-right" ng-repeat="mon in dex | dexGen | filterAll: settings.pokedexFilter | orderBy: settings.pokedexOrderBy | limitTo: settings.pokedexLimit track by mon.iconClass">
+		<p class="col-sm-6 col-md-4 move-right" ng-repeat="mon in dex | dexGen | allWords: settings.pokedexFilter | orderBy: settings.pokedexOrderBy | limitTo: settings.pokedexLimit track by mon.iconClass">
 				<i pokemon-pill="mon"></i>
 		</p>
 	</div>
