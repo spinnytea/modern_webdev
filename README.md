@@ -7,12 +7,9 @@ This isn't a perfect example of modern web ui development, but given that there 
 Current Goals
 -------------
 
-1. review node packages
-    1. what isn't being used, make a demo
-        1. angular-ui-bootstrap
-        1. fuzzysearch-js
-        1. moment
-        1. uuid
+1. pokedex: fuzzysearch-js
+1. import/export data, version x.x (load.save)
+    1. save timestamp in file, momentjs "saved x days ago"
 
 
 Stretch Goals
@@ -21,7 +18,7 @@ Stretch Goals
 1. build each *Module.js in it's own minified file - requirejs modules?
 1. load vendor libs with requirejs, not static on page (the hard part is angular)
 1. iterate on ui
-    1. import/export data, version x.x (load.save)
+    1. pokedex: uib-pagination
     1. wobbly animation (e.g. when hovering over buttons)
     1. update home page tour
     1. tour for each page
@@ -154,6 +151,9 @@ Maybe this will be the next project.
 
 <dt>socket.io</dt>
 <dd>this application does not include a server component, so there's nothing to talk to</dd>
+
+<dt>uuid</dt>
+<dd>why generate you're own IDs when there's already a way to do that</dd>
 </dl>
 
 
