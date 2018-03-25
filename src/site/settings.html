@@ -28,6 +28,12 @@
 	</div>
 
 	<div class="form-group">
+		<label for="pokedexFilterType">Pokédex Order</label>
+		<p radio-group="[{id:'allWords',display:'Text Filter'},{id:'regex',display:'Regular Expression'}]"
+				ng-model="settings.pokedexFilterType"></p>
+	</div>
+
+	<div class="form-group">
 		<label for="preferredTypeChart">Preferred Type Chart</label>
 		<select class="form-control" id="preferredTypeChart" name="preferredTypeChart"
 				ng-model="settings.preferredTypeChart"

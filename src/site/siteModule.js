@@ -47,6 +47,7 @@ define([
 		colorfulCards: false,
 		dexGen: 6,
 		pokedexFilter: '',
+		pokedexFilterType: 'allWords',
 		pokedexLimit: 18,
 		pokedexOrderBy: 'number',
 		preferredTypeChart: 'matrix',

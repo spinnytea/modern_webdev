@@ -15,7 +15,7 @@ define([
 					_.clone(pokedexFactoryMock.list.Pikachu),
 				],
 			};
-			settingsFactory = { pokedexLimit: 18 };
+			settingsFactory = { pokedexLimit: 18, pokedexFilterType: 'allWords' };
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
 			$provide.value('allWordsFilter', _.identity);
@@ -29,11 +29,12 @@ define([
 			$controller('po_ke_type.pokedex.controller', {
 				'$scope': $scope,
 			});
+			$scope.$digest();
 		}));
 
 		describe('controller', function () {
 			it('init', function () {
-				expect($scope.dex).toBe(pokedexFactory.list);
+				expect($scope.filteredDex).toEqual(pokedexFactory.list);
 				expect($scope.settings).toBe(settingsFactory);
 			});
 		}); // end controller

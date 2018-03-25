@@ -8,14 +8,17 @@
 			</div>
 			<input type="text" class="form-control" id="filter" name="filter"
 					ng-model="settings.pokedexFilter" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" />
-			<span class="input-group-addon"><i class="fa fa-search"></i></span>
+			<span class="input-group-addon">
+				<i class="fa fa-filter" title="Text Filter" ng-if="settings.pokedexFilterType==='allWords'"></i>
+				<i class="fa fa-magic" title="Regular Expression" ng-if="settings.pokedexFilterType==='regex'"></i>
+			</span>
 		</div>
 	</div>
 </form>
 
 <section>
 	<div class="row">
-		<p class="col-sm-6 col-md-4 move-right" ng-repeat="mon in dex | dexGen | allWords: settings.pokedexFilter | orderBy: settings.pokedexOrderBy | limitTo: settings.pokedexLimit track by mon.iconClass">
+		<p class="col-sm-6 col-md-4 move-right" ng-repeat="mon in filteredDex track by mon.iconClass">
 			<i pokemon-pill="mon"></i>
 		</p>
 	</div>

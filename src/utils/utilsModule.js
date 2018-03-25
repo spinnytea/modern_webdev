@@ -2,26 +2,28 @@ define([
 	'angular',
 	'lodash',
 	'Tour',
+	'./allWordsFilter',
 	'./areYouSureDirective',
 	'./bindKeysFactory',
 	'./browserVersionFactory',
 	'./btnDisabledTitleDirective',
-	'./allWordsFilter',
 	'./padNumberFilter',
 	'./radioGroupDirective',
+	'./regexFilter',
 	'./toursFactory',
 	'./tourStartDirective',
 ], function (
 	angular,
 	_,
 	Tour,
+	allWordsFilter,
 	areYouSureDirective,
 	bindKeysFactory,
 	browserVersionFactory,
 	btnDisabledTitleDirective,
-	allWordsFilter,
 	padNumberFilter,
 	radioGroupDirective,
+	regexFilter,
 	toursFactory,
 	tourStartDirective
 ) {
@@ -39,6 +41,7 @@ define([
 	utilsModule.factory('po_ke_type.utils.browserVersion.factory', browserVersionFactory);
 	utilsModule.filter('allWords', allWordsFilter);
 	utilsModule.filter('padNumber', padNumberFilter);
+	utilsModule.filter('regex', regexFilter);
 	utilsModule.factory('po_ke_type.utils.tours.factory', toursFactory);
 
 	// TEST exception handler doesn't; to reproduce: import module name as controller dependency
