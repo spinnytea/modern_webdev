@@ -25,6 +25,10 @@ Stretch Goals
     1. description for each setting on the settings page
     1. sample/demo for each setting on the settings page
     1. keyboard shortcut to temporarily show tour-start icons
+    1. standard ng-model-options config
+        * maybe a module.constant path
+        * maybe a service that provides objects by name
+        * a directive that adds ng-model-options attr in pre-link
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
 1. finish skipped tests & 100% coverage
 1. finish code TODOs
