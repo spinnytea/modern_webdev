@@ -13,8 +13,6 @@ Current Goals
         1. fuzzysearch-js
         1. moment
         1. uuid
-    1. what do we not need
-1. review documentation (again)
 
 
 Stretch Goals
@@ -24,10 +22,11 @@ Stretch Goals
 1. load vendor libs with requirejs, not static on page (the hard part is angular)
 1. iterate on ui
     1. import/export data, version x.x (load.save)
-    1. wobbly animation
+    1. wobbly animation (e.g. when hovering over buttons)
     1. update home page tour
-    1. tour for each page?
+    1. tour for each page
     1. description for each setting on the settings page
+    1. sample/demo for each setting on the settings page
     1. keyboard shortcut to temporarily show tour-start icons
 1. refactor dist/themes and dist/vendor/bootstrap (themes), they really don't need to be in vendor, it's okay
 1. finish skipped tests & 100% coverage
@@ -41,6 +40,7 @@ Stretch Goals
 1. bootstrap tour + path does NOT work from the filesystem
     * tours on page do work
     * paths only work with `/#`, the don't work with just `#`
+    * for now, disable the tourStart icon based on location protocol
 
 
 What's in the project
@@ -78,12 +78,12 @@ What's in the project
 <dt>karma, karma-*</dt>
 <dd>test runner, runs js in actual browser</dd>
 <dd>plugins for coverage, multiple browsers, requirejs, jasmine</dd>
-</dl>
 
-<dt>general utils</dt>
+<dt>general</dt>
 <dd>del - cleaning temp files</dd>
 <dd>opn - open files/folders, launch browser at url</dd>
 <dd>yargs - command line option parsing and help output</dd>
+</dl>
 
 ### UI Libraries
 
