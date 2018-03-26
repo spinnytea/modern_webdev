@@ -9,6 +9,9 @@ define(['fuzzysearch'], function (fuzzysearch) {
 
 	/* istanbul ignore next: the filter either work or not. this is an integration problem */
 	function FuzzyFilter() {
+		// XXX we should make this more like $filter, we should search more places on the object
+		// - this is provided by default in the api
+		// - we may need to create multiple search objects and merge the results
 		return function fuzzy(array, query, termPath) {
 			if(!query) return array;
 

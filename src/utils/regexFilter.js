@@ -8,6 +8,7 @@ define(['lodash'], function (_) {
 
 			// only return objects that match the regex query
 			return array.filter(function (a) {
+				// XXX we should make this more like $filter, we should search more places on the object
 				var term = _.get(a, termPath);
 				return !!query.exec(term);
 			});
