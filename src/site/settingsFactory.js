@@ -35,6 +35,12 @@ define(['json!data/themes.json'], function (themes) {
 			{ id: 'inline', display: 'Inline' },
 		];
 
+		settings.availableDexFilters = [
+			{ id: 'allWords', display: 'Text Filter', icon: 'fa-filter' },
+			{ id: 'regex', display: 'Regular Expression', icon: 'fa-asterisk' },
+			{ id: 'fuzzy', display: 'Fuzzy Search', icon: 'fa-magic' },
+		];
+
 		settings.pokedexGenerations = [
 			{ id: 1, display: 'Gen I' },
 			{ id: 2, display: 'Gen II' },

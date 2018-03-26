@@ -49,6 +49,7 @@ module.exports = function (config) {
 			{ pattern: 'src/**/*.html', included: true },
 
 			// vendor dependencies we'll get through requirejs
+			{ pattern: 'dist/vendor/fuzzysearch.js', included: false }, // HACK we shouldn't rely on dist for tests
 			{ pattern: 'node_modules/lodash/lodash.js', included: false },
 			{ pattern: 'node_modules/requirejs-plugins/src/*', included: false },
 			{ pattern: 'node_modules/requirejs-text/text.js', included: false },

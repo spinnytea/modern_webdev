@@ -7,6 +7,7 @@ define([
 	'./bindKeysFactory',
 	'./browserVersionFactory',
 	'./btnDisabledTitleDirective',
+	'./fuzzyFilter',
 	'./padNumberFilter',
 	'./radioGroupDirective',
 	'./regexFilter',
@@ -21,6 +22,7 @@ define([
 	bindKeysFactory,
 	browserVersionFactory,
 	btnDisabledTitleDirective,
+	fuzzyFilter,
 	padNumberFilter,
 	radioGroupDirective,
 	regexFilter,
@@ -40,6 +42,7 @@ define([
 	utilsModule.factory('bindKeys', bindKeysFactory);
 	utilsModule.factory('po_ke_type.utils.browserVersion.factory', browserVersionFactory);
 	utilsModule.filter('allWords', allWordsFilter);
+	utilsModule.filter('fuzzy', fuzzyFilter);
 	utilsModule.filter('padNumber', padNumberFilter);
 	utilsModule.filter('regex', regexFilter);
 	utilsModule.factory('po_ke_type.utils.tours.factory', toursFactory);

@@ -19,6 +19,7 @@ module.exports = function (minify) {
 			angular: 'empty:',
 			jquery: 'empty:',
 			lodash: 'empty:',
+			fuzzysearch: 'empty:',
 
 			// requirejs needs to have the plugins at build time
 			json: '../node_modules/requirejs-plugins/src/json',

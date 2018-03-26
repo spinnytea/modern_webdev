@@ -9,6 +9,10 @@ module.exports = {
 		'array-bracket-spacing': ['error', 'never'],
 		'brace-style': ['error', 'stroustrup', { 'allowSingleLine': true }],
 		'comma-dangle': ['error', 'always-multiline', { 'functions': 'never' }],
+		'comma-spacing': ['error', {
+			'before': false,
+			'after': true,
+		}],
 		'computed-property-spacing': ['error', 'never'],
 		'eqeqeq': ['error', 'always'],
 		'indent': ['error', 'tab', {

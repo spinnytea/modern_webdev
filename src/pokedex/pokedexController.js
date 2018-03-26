@@ -21,6 +21,10 @@ define([], function () {
 		function dynamicFilter() {
 			var list = staticFilteredDex;
 			list = $filter(settings.pokedexFilterType)(list, settings.pokedexFilter, 'name');
+			if(settings.pokedexFilterType === 'fuzzy') {
+				// IDEA fuzzy has a rank option, should we use that for all the filters instead of a predefined sort order?
+				list = $filter('orderBy')(list, settings.pokedexOrderBy);
+			}
 			list = $filter('limitTo')(list, settings.pokedexLimit);
 			$scope.filteredDex = list;
 			return list;

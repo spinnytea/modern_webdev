@@ -25,6 +25,7 @@ define([
 			// if this list changes, stub a test for the new one
 			// - you don't need to implement the test immediately, but at least stub it out
 			expect(Object.keys(settings).sort()).toEqual([
+				'availableDexFilters',
 				'availableTypeCharts',
 				'colorfulCards',
 				'dexGen',
@@ -48,6 +49,7 @@ define([
 
 			expect(settings.themes.length).toBe(19);
 			expect(settings.availableTypeCharts.length).toBe(3);
+			expect(settings.availableDexFilters.length).toBe(3);
 			expect(settings.pokedexGenerations.length).toBe(6);
 		});
 

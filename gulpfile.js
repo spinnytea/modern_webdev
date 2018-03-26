@@ -1,4 +1,6 @@
 'use strict';
+var browserify = require('browserify');
+var buffer = require('vinyl-buffer');
 var colors = require('ansi-colors');
 var del = require('del');
 var gulp = require('gulp');
@@ -6,6 +8,7 @@ var Server = require('karma').Server;
 var opn = require('opn');
 var path = require('path');
 var requirejs = require('requirejs');
+var source = require('vinyl-source-stream');
 // gulp deps
 var bootlint = require('gulp-bootlint');
 var cleanCSS = require('gulp-clean-css');
@@ -23,6 +26,7 @@ var scss2less = require('gulp-scss2less');
 var sourcemaps = require('gulp-sourcemaps');
 var stylelint = require('gulp-stylelint');
 var templateCache = require('gulp-angular-templatecache');
+var uglify = require('gulp-uglify');
 var unzip = require('gulp-unzip');
 var zip = require('gulp-zip');
 
@@ -261,12 +265,21 @@ gulp.task('build:static', function () {
 		.pipe(gulp.dest(dist.root));
 });
 
-gulp.task('build:vendor', ['build:vendor:solarized'], function () {
+gulp.task('build:vendor', ['build:vendor:fuzzysearch', 'build:vendor:solarized'], function () {
 	var vendorList = require('./build_scripts/vendor_dist_list')();
 	return merge(vendorList.map(function (array) {
 		var dest = array[0], src = array[1];
 		return gulp.src(src).pipe(gulp.dest(path.join(dist.vendor, dest)));
 	}));
+});
+gulp.task('build:vendor:fuzzysearch', function () {
+	return browserify({ entries: 'build_scripts/browserify_FuzzySearch_standalone.js', standalone: 'fuzzysearch' })
+		.bundle()
+		.pipe(source('fuzzysearch.js'))
+		.pipe(buffer())
+		.pipe(uglify())
+		.on('error', gutil.log)
+		.pipe(gulp.dest(path.join(dist.vendor)));
 });
 gulp.task('build:vendor:solarized', function () {
 	var themes = ['dark', 'light'];
@@ -279,7 +292,8 @@ gulp.task('build:vendor:solarized', function () {
 
 // test tasks
 
-gulp.task('test', function (done) {
+// HACK for now, tests require fuzzysearch to be in dist, so we need to build it before we can test
+gulp.task('test', ['build:vendor:fuzzysearch'], function (done) {
 	var options = {
 		configFile: path.join(__dirname, 'test', 'karma.conf.js'),
 	};

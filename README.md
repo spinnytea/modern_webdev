@@ -7,7 +7,6 @@ This isn't a perfect example of modern web ui development, but given that there 
 Current Goals
 -------------
 
-1. pokedex: fuzzysearch-js
 1. import/export data, version x.x (load.save)
     1. save timestamp in file, momentjs "saved x days ago"
 

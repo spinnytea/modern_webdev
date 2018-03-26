@@ -48,6 +48,7 @@
     "@metahub/karma-jasmine-jquery": "^1.1.2",
     "angular-mocks": "^1.6.9",
     "ansi-colors": "^1.1.0",
+    "browserify": "^16.1.1",
     "cheerio": "^1.0.0-rc.2",
     "del": "^3.0.0",
     "eslint": "^4.16.0",
@@ -96,6 +97,8 @@
     "strip-json-comments": "^2.0.1",
     "stylelint": "^9.1.1",
     "stylelint-config-recommended": "^2.1.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
     "yargs": "^11.0.0"
   }
 }

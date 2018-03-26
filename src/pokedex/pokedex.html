@@ -9,8 +9,8 @@
 			<input type="text" class="form-control" id="filter" name="filter"
 					ng-model="settings.pokedexFilter" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" />
 			<span class="input-group-addon">
-				<i class="fa fa-filter" title="Text Filter" ng-if="settings.pokedexFilterType==='allWords'"></i>
-				<i class="fa fa-magic" title="Regular Expression" ng-if="settings.pokedexFilterType==='regex'"></i>
+				<i class="fa" ng-repeat="filter in settings.availableDexFilters"
+					ng-class="filter.icon" title="{{filter.display}}" ng-if="settings.pokedexFilterType===filter.id"></i>
 			</span>
 		</div>
 	</div>

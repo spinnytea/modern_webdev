@@ -48,6 +48,7 @@ require.config({
 
 	paths: {
 		'lodash': 'node_modules/lodash/lodash',
+		'fuzzysearch': 'dist/vendor/fuzzysearch', // HACK we shouldn't rely on dist for tests
 
 		data: 'static/data',
 		json: 'node_modules/requirejs-plugins/src/json',

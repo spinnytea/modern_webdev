@@ -1,3 +1,13 @@
+require.config({
+	paths: {
+		'fuzzysearch': 'vendor/fuzzysearch',
+
+		// create alias to requirejs plugins
+		json: 'vendor/requirejs/json',
+		text: 'vendor/requirejs/text',
+	},
+});
+
 // HACK define modules for dependencies loaded on page
 // - requirejs refuses to not load a module
 // - angular needs to be on the page before we start
@@ -8,14 +18,6 @@ define('jquery', function () { return $; }); // eslint-disable-line
 define('lodash', function () { return _; }); // eslint-disable-line
 define('Tour', function () { return Tour; }); // eslint-disable-line
 define('notDevMode', function () { return true; }); // eslint-disable-line
-
-require.config({
-	paths: {
-		// create alias to requirejs plugins
-		json: 'vendor/requirejs/json',
-		text: 'vendor/requirejs/text',
-	},
-});
 
 // eslint-disable-next-line requirejs/no-multiple-define
 define([

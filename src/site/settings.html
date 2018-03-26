@@ -29,8 +29,7 @@
 
 	<div class="form-group">
 		<label for="pokedexFilterType">Pokédex Order</label>
-		<p radio-group="[{id:'allWords',display:'Text Filter'},{id:'regex',display:'Regular Expression'}]"
-				ng-model="settings.pokedexFilterType"></p>
+		<p radio-group="settings.availableDexFilters" ng-model="settings.pokedexFilterType"></p>
 	</div>
 
 	<div class="form-group">
