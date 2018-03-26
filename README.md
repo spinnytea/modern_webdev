@@ -9,6 +9,7 @@ Current Goals
 
 1. import/export data, version x.x (load.save)
     1. save timestamp in file, momentjs "saved x days ago"
+    1. crafter_life has the save/load buttons we want
 
 
 Stretch Goals
