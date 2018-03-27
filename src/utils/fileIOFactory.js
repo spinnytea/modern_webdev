@@ -69,8 +69,6 @@ define(['angular'], function (angular) {
 			data = JSON.stringify(data, null, 2);
 			var filename = name+'.json';
 
-			console.log(filename);
-
 			var blob = new Blob([data], { type: 'text/json' }),
 				e = document.createEvent('MouseEvents'),
 				a = document.createElement('a');

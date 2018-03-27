@@ -25,10 +25,12 @@ define([], function () {
 		};
 		$scope.load = function () {
 			// TODO success/error message
+			// BUG this doesn't always work the second time, you need to reload before it will work again
 			$scope.canLoad = false;
-			siteIO.load().finally(function () {
-				$scope.canLoad = true;
-			});
+			siteIO.load()
+				.then(function (success) { console.log('success!', success); })
+				.catch(function (error) { console.log('error!', error); })
+				.finally(function () { $scope.canLoad = true; });
 		};
 	}
 });
