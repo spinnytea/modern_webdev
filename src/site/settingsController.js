@@ -18,9 +18,17 @@ define([], function () {
 			return localStorageService.clearAll();
 		};
 
+		$scope.canLoad = true;
 		$scope.save = function () {
 			// TODO success/error message
 			siteIO.save();
+		};
+		$scope.load = function () {
+			// TODO success/error message
+			$scope.canLoad = false;
+			siteIO.load().finally(function () {
+				$scope.canLoad = true;
+			});
 		};
 	}
 });

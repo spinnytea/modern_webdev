@@ -7,9 +7,12 @@ define([], function () {
 	function SiteIOFactory(fileIO) {
 		var siteIO = {};
 
-		void(load_1); // TODO remove
-		siteIO.save = function () {
+		siteIO.save = function save() {
 			return save_1_0();
+		};
+
+		siteIO.load = function load() {
+			return load_1();
 		};
 
 		return siteIO;
@@ -26,7 +29,9 @@ define([], function () {
 		}
 
 		function load_1() {
-
+			return fileIO.uploadJson().then(function (data) {
+				console.log('success', data);
+			});
 		}
 	}
 });

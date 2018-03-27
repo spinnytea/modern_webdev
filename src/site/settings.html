@@ -56,9 +56,9 @@
 </form>
 
 <p>
-	<button class="btn btn-default" title="Save settings to your device." ng-click="save()" ng-disabled="canLoad"><i class="fa fa-fw fa-download"></i></button>
-	<button class="btn btn-default" title="Load settings from your device." ng-click="load()" ng-disabled="canLoad"><i class="fa fa-fw fa-upload"></i></button>
-	<button class="btn btn-danger" title="Clear settings." are-you-sure="delete()" ng-disabled="canLoad"><i class="fa fa-fw fa-trash"></i></button>
+	<button class="btn btn-default" title="Save settings to your device." ng-click="save()" ng-disabled="!canLoad"><i class="fa fa-fw fa-download"></i></button>
+	<button class="btn btn-default" title="Load settings from your device." ng-click="load()" ng-disabled="!canLoad"><i class="fa fa-fw fa-upload"></i></button>
+	<button class="btn btn-danger" title="Clear settings." are-you-sure="delete()" ng-disabled="!canLoad"><i class="fa fa-fw fa-trash"></i></button>
 	|
 	<button type="button" class="btn btn-danger" are-you-sure="clearLocalStorage()"><i class="fa fa-fw fa-trash"></i>Clear All Site Data</button>
 </p>

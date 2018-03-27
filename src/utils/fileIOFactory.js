@@ -29,11 +29,11 @@ define(['angular'], function (angular) {
 						var contents = e.target.result;
 						try {
 							var parsed = JSON.parse(contents);
-							if(angular.isObject(parsed) && parsed.version === 'helium' && angular.isArray(parsed.goals) && angular.isObject(parsed.input)) {
+							if(angular.isObject(parsed)) {
 								deferred.resolve(parsed);
 							}
 							else {
-								deferred.reject('old data');
+								deferred.reject('nothing to load');
 							}
 						}
 						catch(e) {
@@ -47,6 +47,8 @@ define(['angular'], function (angular) {
 				}
 			}
 
+			// BUG on cancel, reject promise
+			// BUG tried uploading 16k image, didn't fail, didn't do anything
 			a.type = 'file';
 			a.addEventListener('change', readSingleFile, false);
 			e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
