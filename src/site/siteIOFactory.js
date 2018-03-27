@@ -64,7 +64,7 @@ define(['lodash'], function (_) {
 		}
 
 		function load_1(data) {
-			console.log('success', data); // TODO remove
+			// restore defaults
 			_.assign(settings, defaults);
 			team.splice(0);
 
