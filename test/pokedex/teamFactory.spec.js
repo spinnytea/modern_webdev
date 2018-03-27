@@ -23,7 +23,7 @@ define([
 	}); // end Team Factory
 
 	return describe('Team Factory', function () {
-		var STORAGE_KEY = 'team_list';
+		var STORAGE_KEY = 'team.list';
 		var team, $rootScope;
 		var localStorageService, pokedexFactory;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {

@@ -1,5 +1,5 @@
 define(['lodash'], function (_) {
-	var STORAGE_KEY = 'team_list';
+	var STORAGE_KEY = 'team.list';
 
 	return [
 		'$rootScope', 'localStorageService', 'po_ke_type.pokedex.factory',

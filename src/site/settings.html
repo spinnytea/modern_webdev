@@ -8,6 +8,7 @@
 
 	<div class="form-group">
 		<label for="colorfulCards">Colorful Cards</label>
+		<!-- TODO change to radio-group -->
 		<select class="form-control" id="colorfulCards" name="colorfulCards"
 				ng-model="settings.colorfulCards"
 				ng-options="(item?'Colorful':'Simple Colors') for item in [false, true]"></select>
@@ -47,12 +48,17 @@
 
 	<div class="form-group">
 		<label for="teamSize">Team Size</label>
-		<p class="form-control-static" id="teamSize" name="teamSize"
-				ng-bind="team.length"></p>
+		<div>
+			<span class="form-control-static" id="teamSize" name="teamSize" ng-bind="team.length"></span>
+			<button type="button" class="btn btn-warning" are-you-sure="clearTeam()"><i class="fa fa-fw fa-heart-o"></i>Clear Team</button>
+		</div>
 	</div>
 </form>
 
 <p>
-	<button type="button" class="btn btn-warning" are-you-sure="clearTeam()"><i class="fa fa-fw fa-heart-o"></i>Clear Team</button>
-	<button type="button" class="btn btn-danger" are-you-sure="clearLocalStorage()"><i class="fa fa-fw fa-trash"></i>Clear Local Storage</button>
+	<button class="btn btn-default" title="Save settings to your device." ng-click="save()" ng-disabled="canLoad"><i class="fa fa-fw fa-download"></i></button>
+	<button class="btn btn-default" title="Load settings from your device." ng-click="load()" ng-disabled="canLoad"><i class="fa fa-fw fa-upload"></i></button>
+	<button class="btn btn-danger" title="Clear settings." are-you-sure="delete()" ng-disabled="canLoad"><i class="fa fa-fw fa-trash"></i></button>
+	|
+	<button type="button" class="btn btn-danger" are-you-sure="clearLocalStorage()"><i class="fa fa-fw fa-trash"></i>Clear All Site Data</button>
 </p>

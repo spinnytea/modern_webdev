@@ -1,10 +1,12 @@
 define([], function () {
 	return [
-		'$scope', 'localStorageService', 'po_ke_type.site.settings.factory', 'po_ke_type.pokedex.team.factory',
+		'$scope', 'localStorageService', 'po_ke_type.site.siteIO.factory',
+		'po_ke_type.site.settings.factory', 'po_ke_type.pokedex.team.factory',
 		SettingsController,
 	];
 
-	function SettingsController($scope, localStorageService, settings, team) {
+	function SettingsController($scope, localStorageService, siteIO,
+			settings, team) {
 		$scope.settings = settings;
 		$scope.team = team;
 
@@ -14,6 +16,11 @@ define([], function () {
 
 		$scope.clearLocalStorage = function () {
 			return localStorageService.clearAll();
+		};
+
+		$scope.save = function () {
+			// TODO success/error message
+			siteIO.save();
 		};
 	}
 });

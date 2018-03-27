@@ -7,6 +7,7 @@ define([
 	'./bindKeysFactory',
 	'./browserVersionFactory',
 	'./btnDisabledTitleDirective',
+	'./fileIOFactory',
 	'./fuzzyFilter',
 	'./padNumberFilter',
 	'./radioGroupDirective',
@@ -22,6 +23,7 @@ define([
 	bindKeysFactory,
 	browserVersionFactory,
 	btnDisabledTitleDirective,
+	fileIOFactory,
 	fuzzyFilter,
 	padNumberFilter,
 	radioGroupDirective,
@@ -39,9 +41,10 @@ define([
 	]);
 
 	utilsModule.constant('Tour', Tour); // shim requirejs dep into angular dep (enables testing)
+	utilsModule.filter('allWords', allWordsFilter);
 	utilsModule.factory('bindKeys', bindKeysFactory);
 	utilsModule.factory('po_ke_type.utils.browserVersion.factory', browserVersionFactory);
-	utilsModule.filter('allWords', allWordsFilter);
+	utilsModule.factory('po_ke_type.utils.fileIO.factory', fileIOFactory);
 	utilsModule.filter('fuzzy', fuzzyFilter);
 	utilsModule.filter('padNumber', padNumberFilter);
 	utilsModule.filter('regex', regexFilter);
