@@ -1,12 +1,11 @@
-/* eslint-disable */
 // for now, we need to just get it working, TODO enable eslint
-define(['angular'], function (angular) {
+define(['angular', 'jquery'], function (angular, $) {
 	return [
-		'$q',
+		'$q', '$window',
 		FileIOFactory,
 	];
 
-	function FileIOFactory($q) {
+	function FileIOFactory($q, $window) {
 		var fileIO = {};
 
 		/**
@@ -15,9 +14,7 @@ define(['angular'], function (angular) {
 		 * @returns {Promise.<Object>} when complete
 		 */
 		fileIO.uploadJson = function uploadJson() {
-			var deferred = $q.defer(),
-				e = document.createEvent('MouseEvents'),
-				a = document.createElement('input');
+			var deferred = $q.defer();
 
 			function readSingleFile(evt) {
 				// Retrieve the first (and only!) File from the FileList object
@@ -25,8 +22,8 @@ define(['angular'], function (angular) {
 
 				if (f) {
 					var r = new FileReader();
-					r.onload = function (e) {
-						var contents = e.target.result;
+					r.onload = function (evt2) {
+						var contents = evt2.target.result;
 						try {
 							var parsed = JSON.parse(contents);
 							if(angular.isObject(parsed)) {
@@ -48,11 +45,9 @@ define(['angular'], function (angular) {
 			}
 
 			// BUG on cancel, reject promise
-			// BUG tried uploading 16k image, didn't fail, didn't do anything
-			a.type = 'file';
-			a.addEventListener('change', readSingleFile, false);
-			e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-			a.dispatchEvent(e);
+			$('<input type="file" />')
+				.change(readSingleFile)
+				.click();
 
 			return deferred.promise;
 		};
@@ -69,16 +64,18 @@ define(['angular'], function (angular) {
 			data = JSON.stringify(data, null, 2);
 			var filename = name+'.json';
 
-			var blob = new Blob([data], { type: 'text/json' }),
-				e = document.createEvent('MouseEvents'),
-				a = document.createElement('a');
+			var blob = new Blob([data], { type: 'text/json' });
+			var href = $window.URL.createObjectURL(blob);
 
-			a.download = filename;
-			a.href = window.URL.createObjectURL(blob);
-			a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
-			e.initMouseEvent('click', true, false, window,
-				0, 0, 0, 0, 0, false, false, false, false, 0, null);
-			a.dispatchEvent(e);
+			var a = $('<a>')
+				.attr('download', filename)
+				.attr('href', href)
+				.attr('data-downloadurl', ['text/json', filename, href].join(':'));
+
+			// don't ask me why jquery click doesn't work
+			// don't ask me why there's a click function on the raw html element
+			// but this needs to be called, while the jquery one does not work
+			a[0].click();
 		};
 
 		return fileIO;

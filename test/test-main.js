@@ -37,7 +37,7 @@ define('Tour', ['lodash'], function (_) {
 	});
 
 	return Tour;
-}); // eslint-disable-line
+});
 
 require.config({
 	// Karma serves files under /base, which is the basePath from your config file

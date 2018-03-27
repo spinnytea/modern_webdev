@@ -7,6 +7,7 @@ define([
 		var localStorageService;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			localStorageService = jasmine.createSpyObj('localStorageService', ['get', 'set', 'remove']);
+			localStorageService.get.and.returnValue(null);
 			$provide.value('localStorageService', localStorageService);
 
 			$provide.constant('po_ke_type.site.settings.defaults', {
