@@ -30,17 +30,17 @@ define(['angular', 'jquery'], function (angular, $) {
 								deferred.resolve(parsed);
 							}
 							else {
-								deferred.reject('nothing to load');
+								deferred.reject(new Error('nothing to load'));
 							}
 						}
 						catch(e) {
-							deferred.reject('not json');
+							deferred.reject(new Error('not json'));
 						}
 					};
 					r.readAsText(f);
 				}
 				else {
-					deferred.reject('could not read');
+					deferred.reject(new Error('could not read'));
 				}
 			}
 
@@ -58,8 +58,6 @@ define(['angular', 'jquery'], function (angular, $) {
 
 		/**
 		 * Save a file to disk
-		 *
-		 * TODO return a promise when complete
 		 *
 		 * @param {String} name - name of the file
 		 * @param {Object} data - data to save

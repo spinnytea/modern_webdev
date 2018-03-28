@@ -11,40 +11,57 @@ define(['lodash'], function (_) {
 			team, pokedex) {
 		var siteIO = {};
 
-		// we only need to save the latest version
-		// but we want to retain the old functions for the future
-		// REVIEW we need to test this, so hopefully we can remove the voids?
-		void(save_1_0);
+		// REVIEW is this the best way expose the methods for testing
+		Object.defineProperty(siteIO, 'units', { value: {} });
+		siteIO.units.load_1 = load_1;
+		siteIO.units.save_1_0 = save_1_0;
+		siteIO.units.save_1_1 = save_1_1;
+		// save_1_2
+		// load_2
+		// save_2_0
+
 		siteIO.save = function save() {
-			return fileIO.downloadJson('poketypeSettings', save_1_1());
+			return fileIO.downloadJson('poketypeSettings', siteIO.units.save_1_1());
 		};
 
 		siteIO.load = function load() {
 			return fileIO.uploadJson().then(function (data) {
 				if(!_.isString(data.version)) throw new Error('no version');
 				if(!_.isString(data.date)) throw new Error('no date');
-				// TODO try parsing version, then convert string starts with to load version number
+
+				var v = /(\d+)\.(\d+)/.exec(data.version);
+				if(!v) throw new Error('invalid date format');
+				if(+v[1] > 1) throw new Error('cannot load file, unknown version ' + data.version);
+
 				// TODO try parsing date, we need it anyway
 
-				if(_.startsWith(data.version, '1.')) {
-					return load_1(data);
-				}
-				else {
-					throw new Error('cannot load file, unknown version ' + data.version);
+				switch(v[1]) {
+					case '1': return siteIO.units.load_1(data);
+					// cannot get to the default
 				}
 			});
 		};
 
 		return siteIO;
 
-		// catalog of save and load functions
-		// TODO document saveIO version
-		// - save function use version <load>.<save iteration>
-		// - load function can handle any <load>.x
 
-		/**
-		 * save_1_0 is really only for testing
-		 */
+		// catalog of save and load functions
+		//
+		// save functions use version <load>.<save iteration>
+		// load functions can handle any <load>.x
+		// so load_1 should be able to handle save_1_0, save_1_1, save_1_2, save_1_3, and beyond
+		// so load_2 will be able to handle save_2_0, save_2_1, etc
+		// this way we can future proof our load functions
+		//
+		// imagine someone using a "current" dist and someone using an "outdated dist"
+		// the "current" might save a file and "outdated" may try to load it
+		// the "outdated" one may not have all the new features, but maybe it can still use most of it
+
+		// some helper methods
+		function loadPrimitive(fn, value, settingsKey) { if(fn(value)) settings[settingsKey] = value; }
+		function loadListId(list, id, settingsKey) { if(_.some(list, { id: id })) settings[settingsKey] = id; }
+
+		/** save_1_0 is really only for testing */
 		function save_1_0() {
 			return {
 				version: '1.0',
@@ -87,8 +104,5 @@ define(['lodash'], function (_) {
 					.value());
 			}
 		}
-
-		function loadPrimitive(fn, value, settingsKey) { if(fn(value)) settings[settingsKey] = value; }
-		function loadListId(list, id, settingsKey) { if(_.some(list, { id: id })) settings[settingsKey] = id; }
 	}
 });

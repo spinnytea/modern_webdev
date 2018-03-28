@@ -53,6 +53,7 @@ module.exports = function (config) {
 			{ pattern: 'node_modules/lodash/lodash.js', included: false },
 			{ pattern: 'node_modules/requirejs-plugins/src/*', included: false },
 			{ pattern: 'node_modules/requirejs-text/text.js', included: false },
+			{ pattern: 'node_modules/bluebird/js/browser/bluebird.js', included: false },
 		],
 
 		// list of files / patterns to exclude
@@ -132,7 +133,7 @@ module.exports = function (config) {
 		// start these browsers
 		// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
 		// browsers: ['Chrome', 'Firefox', 'PhantomJS', 'IE'],
-		browsers: ['Chrome', 'PhantomJS'],
+		browsers: ['PhantomJS'],
 
 
 		// enable / disable watching file and executing tests whenever any file changes
