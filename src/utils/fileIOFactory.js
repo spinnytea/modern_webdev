@@ -45,6 +45,10 @@ define(['angular', 'jquery'], function (angular, $) {
 			}
 
 			// BUG on cancel, reject promise
+			// - the internet says there's no way to do this from the input
+			// - we can ONLY detect a file change, and we can only set a file with a dialog
+			// - since we are creating the object for every click, there's no way to seed the value for change
+			// - maybe we can register a focus event on the body, and reject the promise if it hasn't resolved
 			$('<input type="file" />')
 				.change(readSingleFile)
 				.click();

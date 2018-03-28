@@ -27,7 +27,6 @@ define([
 			it('init', function () {
 				expect($scope.settings).toBe(settingsFactory);
 				expect(Object.keys($scope).sort()).toEqual([
-					'canLoad',
 					'clearLocalStorage',
 					'clearTeam',
 					'load',

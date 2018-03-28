@@ -190,7 +190,7 @@ gulp.task('lint:html', function () {
 				}
 				message.push(colors.inverse(' ' + lint.id + ' '));
 				message.push(lint.message);
-				console.log(message.join(' '));
+				gutil.log(message.join(' '));
 			},
 		}));
 });
