@@ -14,6 +14,8 @@ define([
 		var siteIO;
 		beforeEach(angular.mock.module(siteModule.name, function ($provide) {
 			fileIOFactory = jasmine.createSpyObj('fileIO', ['uploadJson', 'downloadJson']);
+			fileIOFactory.uploadJson.and.returnValue(Promise.resolve({ date: 'some date' }));
+			fileIOFactory.downloadJson.and.returnValue(Promise.resolve({ date: 'some date' }));
 			settingsFactory = {
 				colorfulCards: true,
 				someOtherSetting: 'usually ignored',
@@ -129,7 +131,7 @@ define([
 						throw new Error('should fail');
 					}, function (error) {
 						expect(fileIOFactory.uploadJson).toHaveBeenCalled();
-						expect(error).toEqual(new Error('invalid date format'));
+						expect(error).toEqual(new Error('invalid version format'));
 					});
 				});
 
@@ -157,7 +159,17 @@ define([
 					});
 				});
 
-				it('invalid date');
+				it('invalid date', function () {
+					data.date = 'banana';
+					expect(fileIOFactory.uploadJson).not.toHaveBeenCalled();
+
+					return siteIO.load().then(function () {
+						throw new Error('should fail');
+					}, function (error) {
+						expect(fileIOFactory.uploadJson).toHaveBeenCalled();
+						expect(error).toEqual(new Error('invalid date format'));
+					});
+				});
 
 				it('call load_1', function () {
 					expect(fileIOFactory.uploadJson).not.toHaveBeenCalled();

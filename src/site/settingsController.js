@@ -33,7 +33,5 @@ define(['moment'], function (moment) {
 				return 'settings from ' + moment(date).fromNow();
 			});
 		};
-
-		// TODO implement delete
 	}
 });

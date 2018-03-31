@@ -1,4 +1,3 @@
-// for now, we need to just get it working, TODO enable eslint
 define(['angular', 'jquery'], function (angular, $) {
 	return [
 		'$q', '$window',

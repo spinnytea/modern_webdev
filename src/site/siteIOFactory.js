@@ -1,4 +1,4 @@
-define(['lodash'], function (_) {
+define(['lodash', 'moment'], function (_, moment) {
 	return [
 		'po_ke_type.utils.fileIO.factory',
 		'po_ke_type.site.settings.factory', 'po_ke_type.site.settings.defaults',
@@ -32,10 +32,11 @@ define(['lodash'], function (_) {
 				if(!_.isString(data.date)) throw new Error('no date');
 
 				var v = /(\d+)\.(\d+)/.exec(data.version);
-				if(!v) throw new Error('invalid date format');
+				if(!v) throw new Error('invalid version format');
 				if(+v[1] > 1) throw new Error('cannot load file, unknown version ' + data.version);
 
-				// TODO try parsing date, we need it anyway
+				var d = moment(data.date).toISOString();
+				if(d !== data.date) throw new Error('invalid date format');
 
 				switch(v[1]) {
 					case '1': siteIO.units.load_1(data);
@@ -69,7 +70,7 @@ define(['lodash'], function (_) {
 		function save_1_0() {
 			return {
 				version: '1.0',
-				date: (new Date()).toISOString(), // TODO use momentjs
+				date: moment().toISOString(),
 				settings: null,
 				team: null,
 			};
@@ -78,7 +79,7 @@ define(['lodash'], function (_) {
 		function save_1_1() {
 			return {
 				version: '1.1',
-				date: (new Date()).toISOString(), // TODO use momentjs
+				date: moment().toISOString(),
 				settings: _.pick(settings, _.keys(defaults)),
 				team: team.map(function (mon) { return _.pick(mon, ['name', 'specialname']); }),
 			};
