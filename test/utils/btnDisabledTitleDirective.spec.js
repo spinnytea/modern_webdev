@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/utils/utilsModule',
-	'angular-mocks',
 ], function (angular, utilsModule) {
 	return describe('Btn Disabled Title Directive', function () {
 		beforeEach(angular.mock.module(utilsModule.name));

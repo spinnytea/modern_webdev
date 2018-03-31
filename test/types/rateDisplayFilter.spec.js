@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/types/typesModule',
-	'angular-mocks',
 ], function (angular, typesModule) {
 	return describe('Rate Display Filter', function () {
 		var rateDisplay;

@@ -3,7 +3,6 @@ define([
 	'lodash',
 	'src/pokedex/pokedexModule',
 	'test/pokedex/pokedexFactory.mock',
-	'angular-mocks',
 ], function (angular, _, pokedexModule, pokedexFactoryMock) {
 	return describe('Pokedex Controller', function () {
 		var pokedexFactory, settingsFactory;
@@ -16,10 +15,10 @@ define([
 					_.clone(pokedexFactoryMock.list.Pikachu),
 				],
 			};
-			settingsFactory = {};
+			settingsFactory = { pokedexLimit: 18, pokedexFilterType: 'allWords' };
 			$provide.value('po_ke_type.pokedex.factory', pokedexFactory);
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
-			$provide.value('filterAllFilter', _.identity);
+			$provide.value('allWordsFilter', _.identity);
 			$provide.value('dexGenFilter', _.identity);
 			$provide.value('padNumberFilter', _.identity);
 		}));
@@ -30,13 +29,13 @@ define([
 			$controller('po_ke_type.pokedex.controller', {
 				'$scope': $scope,
 			});
+			$scope.$digest();
 		}));
 
 		describe('controller', function () {
 			it('init', function () {
-				expect($scope.dex).toBe(pokedexFactory.list);
+				expect($scope.filteredDex).toEqual(pokedexFactory.list);
 				expect($scope.settings).toBe(settingsFactory);
-				expect($scope.nested.limit).toBe(18);
 			});
 		}); // end controller
 

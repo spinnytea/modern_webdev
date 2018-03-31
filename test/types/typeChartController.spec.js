@@ -2,7 +2,6 @@ define([
 	'angular',
 	'lodash',
 	'src/types/typesModule',
-	'angular-mocks',
 ], function (angular, _, typesModule) {
 	return describe('Type Chart Controller', function () {
 		var settingsFactory;

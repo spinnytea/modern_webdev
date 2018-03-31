@@ -1,15 +1,18 @@
 define([
 	'angular',
 	'src/site/siteModule',
-	'angular-mocks',
 ], function (angular, siteModule) {
 	return describe('Settings Controller', function () {
-		var localStorageService, settingsFactory;
+		var localStorageService, siteIOFactory, settingsFactory, teamFactory;
 		beforeEach(angular.mock.module(siteModule.name, function ($provide) {
 			localStorageService = jasmine.createSpyObj('localStorageService', ['clearAll']);
+			siteIOFactory = jasmine.createSpyObj('siteIO', ['save', 'load']);
 			settingsFactory = {};
+			teamFactory = [1, 2];
 			$provide.value('localStorageService', localStorageService);
+			$provide.value('po_ke_type.site.siteIO.factory', siteIOFactory);
 			$provide.value('po_ke_type.site.settings.factory', settingsFactory);
+			$provide.value('po_ke_type.pokedex.team.factory', teamFactory);
 		}));
 
 		describe('controller', function () {
@@ -23,7 +26,25 @@ define([
 
 			it('init', function () {
 				expect($scope.settings).toBe(settingsFactory);
-				expect(Object.keys($scope)).toEqual(['settings', 'clearLocalStorage']);
+				expect(Object.keys($scope).sort()).toEqual([
+					'clearLocalStorage',
+					'clearTeam',
+					'isFile',
+					'load',
+					'save',
+					'settings',
+					'team',
+				]);
+
+				expect($scope.isFile).toEqual(jasmine.any(Boolean));
+			});
+
+			it('clearTeam', function () {
+				expect(teamFactory.length).toBe(2);
+
+				$scope.clearTeam();
+
+				expect(teamFactory.length).toBe(0);
 			});
 
 			it('clearLocalStorage', function () {
@@ -33,6 +54,10 @@ define([
 
 				expect(localStorageService.clearAll).toHaveBeenCalled();
 			});
+
+			it('save');
+
+			it('load');
 		}); // end controller
 	}); // end Settings Controller
 });

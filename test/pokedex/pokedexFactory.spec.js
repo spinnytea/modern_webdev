@@ -2,7 +2,6 @@ define([
 	'angular',
 	'lodash',
 	'src/pokedex/pokedexModule',
-	'angular-mocks',
 ], function (angular, _, pokedexModule) {
 	return describe('Pokedex Factory', function () {
 		var pokedex, typesFactory;
@@ -15,7 +14,7 @@ define([
 		}]));
 
 		it('init', function () {
-			// NOTE if this list changes, stub a test for the new one
+			// if this list changes, stub a test for the new one
 			// - you don't need to implement the test immediately, but at least stub it out
 			expect(Object.keys(pokedex).sort()).toEqual(['calculateMaxDamageRate', 'list']);
 		});

@@ -8,7 +8,7 @@
 	}
 
 	/* foreach (th.type-normal, th.type-fire, ...) build a type-badge for the th */
-	.for(@typelist); .-each(@name) {// lesshint-disable-line
+	.for(@typelist); .-each(@name) {
 		th.type-@{name} {
 			.type-badge(@name);
 		}

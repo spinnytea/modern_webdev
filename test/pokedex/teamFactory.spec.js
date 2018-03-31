@@ -2,7 +2,6 @@ define([
 	'angular',
 	'lodash',
 	'src/pokedex/pokedexModule',
-	'angular-mocks',
 ], function (angular, _, pokedexModule) {
 	describe('Team Factory', function () {
 		it('init from storage', function () {
@@ -24,7 +23,7 @@ define([
 	}); // end Team Factory
 
 	return describe('Team Factory', function () {
-		var STORAGE_KEY = 'team_list';
+		var STORAGE_KEY = 'team.list';
 		var team, $rootScope;
 		var localStorageService, pokedexFactory;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {

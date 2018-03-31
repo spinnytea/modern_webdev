@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/utils/utilsModule',
-	'angular-mocks',
 ], function (angular, utilsModule) {
 	return describe('Tours Factory', function () {
 		var tours, Tour;
@@ -12,10 +11,12 @@ define([
 		}]));
 
 		it('init', function () {
-			// NOTE if this list changes, stub a test for the new one
+			// if this list changes, stub a test for the new one
 			// - you don't need to implement the test immediately, but at least stub it out
-			expect(Object.keys(tours).sort()).toEqual(['register', 'start']);
+			expect(Object.keys(tours).sort()).toEqual(['exists', 'register', 'start']);
 		});
+
+		it('exists');
 
 		describe('register', function () {
 			describe('valid', function () {
@@ -197,7 +198,7 @@ define([
 					expect(registerTour).toThrow(new Error('each step must have a placement'));
 				});
 
-				it('invalid placement', function () {
+				it('invalid placement string', function () {
 					config.steps[0].placement = 'banana';
 					expect(registerTour).toThrow(new Error('incorrect placement'));
 				});
@@ -224,7 +225,7 @@ define([
 		}); // end register
 
 		describe('start', function () {
-			beforeEach(function () {
+			beforeAll(function () {
 				tours.register({
 					name: 'specTourStart',
 					steps: [{

@@ -17,7 +17,7 @@ define(['lodash', 'json!data/types.json'], function (_, typesJson) {
 		types.text = types.list.reduce(function (ret, type) {
 			ret[type] = {
 				name: _.capitalize(type),
-				title: _.toUpper(type.substr(0,3)),
+				title: _.toUpper(type.substr(0, 3)),
 			};
 			return ret;
 		}, {});

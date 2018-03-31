@@ -1,8 +1,0 @@
-{
-	"spaceAroundComma": { "allowNewline": true },
-	"hexNotation": "uppercase",
-	"maxCharPerLine": 120,
-	"zeroUnit": "no_unit",
-
-	"excludedFiles": ["for.less"]
-}

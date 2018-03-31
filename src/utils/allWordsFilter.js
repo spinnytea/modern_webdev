@@ -1,9 +1,9 @@
 define(['lodash'], function (_) {
-	return ['$filter', FilterAllFilter];
+	return ['$filter', AllWordsFilter];
 
-	function FilterAllFilter($filter) {
+	function AllWordsFilter($filter) {
 		$filter = $filter('filter');
-		return function filterAll(array, query) {
+		return function allWords(array, query) {
 			if(!_.isString(query)) return array;
 			var qs = query.split(' ');
 

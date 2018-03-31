@@ -3,7 +3,6 @@ define([
 	'lodash',
 	'src/pokedex/pokedexModule',
 	'test/pokedex/pokedexFactory.mock',
-	'angular-mocks',
 ], function (angular, _, pokedexModule, podekexFactoryMock) {
 	return describe('Pokemon Pill Directive', function () {
 		var settingsFactory;
@@ -22,9 +21,9 @@ define([
 				});
 			}));
 
-			// NOTE if this list changes, stub a test for the new one
-			// - you don't need to implement the test immediately, but at least stub it out
 			it('init', function () {
+				// if this list changes, stub a test for the new one
+				// - you don't need to implement the test immediately, but at least stub it out
 				expect(Object.keys($scope).sort()).toEqual(['settings']);
 			});
 		}); // end controller

@@ -1,13 +1,13 @@
 define([
 	'angular',
 	'src/site/siteModule',
-	'angular-mocks',
 ], function (angular, pokedexModule) {
 	return describe('Settings Factory', function () {
 		var settings, $rootScope;
 		var localStorageService;
 		beforeEach(angular.mock.module(pokedexModule.name, function ($provide) {
 			localStorageService = jasmine.createSpyObj('localStorageService', ['get', 'set', 'remove']);
+			localStorageService.get.and.returnValue(null);
 			$provide.value('localStorageService', localStorageService);
 
 			$provide.constant('po_ke_type.site.settings.defaults', {
@@ -23,9 +23,10 @@ define([
 		}]));
 
 		it('init', function () {
-			// NOTE if this list changes, stub a test for the new one
+			// if this list changes, stub a test for the new one
 			// - you don't need to implement the test immediately, but at least stub it out
 			expect(Object.keys(settings).sort()).toEqual([
+				'availableDexFilters',
 				'availableTypeCharts',
 				'colorfulCards',
 				'dexGen',
@@ -49,6 +50,7 @@ define([
 
 			expect(settings.themes.length).toBe(19);
 			expect(settings.availableTypeCharts.length).toBe(3);
+			expect(settings.availableDexFilters.length).toBe(3);
 			expect(settings.pokedexGenerations.length).toBe(6);
 		});
 

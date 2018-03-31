@@ -9,7 +9,8 @@ define(['json!data/themes.json'], function (themes) {
 
 		// init values on settings
 		Object.keys(defaults).forEach(function (name) {
-			settings[name] = localStorageService.get(name) || defaults[name];
+			settings[name] = localStorageService.get(name);
+			if(settings[name] === null) settings[name] = defaults[name];
 			$rootScope.$on('$destroy', $rootScope.$watch(function () { return settings[name]; }, function () {
 				if(settings[name] === defaults[name]) {
 					localStorageService.remove(name);
@@ -33,6 +34,12 @@ define(['json!data/themes.json'], function (themes) {
 			{ id: 'squares', display: 'Squares' },
 			{ id: 'matrix', display: 'Matrix' },
 			{ id: 'inline', display: 'Inline' },
+		];
+
+		settings.availableDexFilters = [
+			{ id: 'allWords', display: 'Text Filter', icon: 'fa-filter' },
+			{ id: 'regex', display: 'Regular Expression', icon: 'fa-asterisk' },
+			{ id: 'fuzzy', display: 'Fuzzy Search', icon: 'fa-magic' },
 		];
 
 		settings.pokedexGenerations = [

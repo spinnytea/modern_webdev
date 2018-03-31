@@ -1,19 +1,25 @@
 define([
 	'angular',
+	'notDevMode',
 	'./bulbapediaDirective',
 	'./dexGenFilter',
 	'./pokedexController',
 	'./pokedexFactory',
+	'./pokedexToursSetup',
+	'./pokemonCardDirective',
 	'./pokemonController',
 	'./pokemonPillDirective',
 	'./teamController',
 	'./teamFactory',
 ], function (
 	angular,
+	notDevMode,
 	bulbapediaDirective,
 	dexGenFilter,
 	pokedexController,
 	pokedexFactory,
+	pokedexToursSetup,
+	pokemonCardDirective,
 	pokemonController,
 	pokemonPillDirective,
 	teamController,
@@ -21,7 +27,9 @@ define([
 ) {
 	var pokedexModule = angular.module('po_ke_type.pokedex', [
 		bulbapediaDirective.name,
+		pokemonCardDirective.name,
 		pokemonPillDirective.name,
+		'ngAnimate',
 	]);
 
 	pokedexModule.filter('dexGen', dexGenFilter);
@@ -30,6 +38,8 @@ define([
 	pokedexModule.controller('po_ke_type.pokedex.pokemon.controller', pokemonController);
 	pokedexModule.controller('po_ke_type.pokedex.team.controller', teamController);
 	pokedexModule.factory('po_ke_type.pokedex.team.factory', teamFactory);
+
+	if(notDevMode) pokedexModule.run(pokedexToursSetup);
 
 	return pokedexModule;
 });

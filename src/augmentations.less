@@ -14,7 +14,7 @@
  * this is usually for columns with a single icon
  * more generally it's for columns meant as controls (as opposed to informative display)
  */
-th.min-width, td.min-width { // lesshint-disable-line
+th.min-width, td.min-width {
 	width: 1px;
 }
 
@@ -44,4 +44,14 @@ th.min-width, td.min-width { // lesshint-disable-line
 	.navbar-right {
 		border-top: 1px solid lighten(@navbar-inverse-bg, 10%);
 	}
+}
+
+/*
+ * the standard position for the pokemon icons is awkward
+ * most mons are small and they end up looking like subscripts
+ * wouldn't it be better for tall/flying mons to tower over the text?
+ */
+.pki {
+	position: relative;
+	top: -6px;
 }

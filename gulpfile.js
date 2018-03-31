@@ -1,4 +1,6 @@
 'use strict';
+var browserify = require('browserify');
+var buffer = require('vinyl-buffer');
 var colors = require('ansi-colors');
 var del = require('del');
 var gulp = require('gulp');
@@ -6,6 +8,7 @@ var Server = require('karma').Server;
 var opn = require('opn');
 var path = require('path');
 var requirejs = require('requirejs');
+var source = require('vinyl-source-stream');
 // gulp deps
 var bootlint = require('gulp-bootlint');
 var cleanCSS = require('gulp-clean-css');
@@ -16,13 +19,14 @@ var gls = require('gulp-live-server');
 var gutil = require('gutil');
 var htmlhint = require('gulp-htmlhint');
 var less = require('gulp-less');
-var lesshint = require('gulp-lesshint');
 var merge = require('merge-stream');
 var noop = require('gulp-noop');
 var rename = require('gulp-rename');
 var scss2less = require('gulp-scss2less');
 var sourcemaps = require('gulp-sourcemaps');
+var stylelint = require('gulp-stylelint');
 var templateCache = require('gulp-angular-templatecache');
+var uglify = require('gulp-uglify');
 var unzip = require('gulp-unzip');
 var zip = require('gulp-zip');
 
@@ -170,13 +174,14 @@ gulp.task('build:js:data', ['lint:js'], function (done) {
 gulp.task('build:js', ['build:js:src', 'build:js:data']);
 
 gulp.task('lint:html', function () {
+	var customHtmlHintRules = require('./build_scripts/htmlhint_custom_rules');
 	return gulp.src(resources.html)
-		.pipe(htmlhint('.htmlhintrc'))
-		.pipe(htmlhint.reporter())
-		.pipe(htmlhint.failOnError())
+		.pipe(htmlhint('.htmlhintrc', customHtmlHintRules))
+		.pipe(htmlhint.reporter('htmlhint-stylish'))
+		// .pipe(htmlhint.failOnError()) // TODO htmlhint.failOnError is being weird
 		.pipe(bootlint({
 			stoponerror: true,
-			disabledIds: ['W001', 'W002', 'W003', 'W005', 'E001', 'E003'],
+			disabledIds: ['W001', 'W002', 'W003', 'W005', 'W007', 'E001', 'E003'],
 			reportFn: function (file, lint, isError, isWarning, errorLocation) {
 				var message = [colors.bold((isError) ? colors.red('[ERROR]') : colors.yellow('[WARN] '))];
 				message.push(file.path);
@@ -185,7 +190,7 @@ gulp.task('lint:html', function () {
 				}
 				message.push(colors.inverse(' ' + lint.id + ' '));
 				message.push(lint.message);
-				console.log(message.join(' '));
+				gutil.log(message.join(' '));
 			},
 		}));
 });
@@ -197,9 +202,12 @@ gulp.task('build:html', ['lint:html'], function () {
 
 gulp.task('lint:css', function () {
 	return gulp.src(resources.css)
-		.pipe(lesshint())
-		.pipe(lesshint.reporter('lesshint-reporter-stylish'))
-		.pipe(lesshint.failOnError()); // TODO doesn't actually fail on error
+		.pipe(stylelint({
+			failAfterError: true,
+			reporters: [
+				{ formatter: 'string', console: true },
+			],
+		}));
 });
 function doCssBuild(stream) {
 	return stream
@@ -257,12 +265,21 @@ gulp.task('build:static', function () {
 		.pipe(gulp.dest(dist.root));
 });
 
-gulp.task('build:vendor', ['build:vendor:solarized'], function () {
+gulp.task('build:vendor', ['build:vendor:fuzzysearch', 'build:vendor:solarized'], function () {
 	var vendorList = require('./build_scripts/vendor_dist_list')();
 	return merge(vendorList.map(function (array) {
 		var dest = array[0], src = array[1];
 		return gulp.src(src).pipe(gulp.dest(path.join(dist.vendor, dest)));
 	}));
+});
+gulp.task('build:vendor:fuzzysearch', function () {
+	return browserify({ entries: 'build_scripts/browserify_FuzzySearch_standalone.js', standalone: 'fuzzysearch' })
+		.bundle()
+		.pipe(source('fuzzysearch.js'))
+		.pipe(buffer())
+		.pipe(uglify())
+		.on('error', gutil.log)
+		.pipe(gulp.dest(path.join(dist.vendor)));
 });
 gulp.task('build:vendor:solarized', function () {
 	var themes = ['dark', 'light'];
@@ -275,7 +292,8 @@ gulp.task('build:vendor:solarized', function () {
 
 // test tasks
 
-gulp.task('test', function (done) {
+// HACK for now, tests require fuzzysearch to be in dist, so we need to build it before we can test
+gulp.task('test', ['build:vendor:fuzzysearch'], function (done) {
 	var options = {
 		configFile: path.join(__dirname, 'test', 'karma.conf.js'),
 	};
@@ -306,8 +324,7 @@ gulp.task('test', function (done) {
 
 // clean tasks
 
-gulp.task('clean', ['clean:coverage', 'clean:dist']);
-gulp.task('clean:all', ['clean:coverage', 'clean:dist', 'clean:package']);
+gulp.task('clean', ['clean:coverage', 'clean:dist', 'clean:package']);
 
 gulp.task('clean:coverage', function () {
 	return del('coverage');
@@ -319,8 +336,4 @@ gulp.task('clean:dist', function () {
 
 gulp.task('clean:package', function () {
 	return del(dist.file.zip);
-});
-
-gulp.task('clean:vendor', function () {
-	return del(dist.vendor);
 });

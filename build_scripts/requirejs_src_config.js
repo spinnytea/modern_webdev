@@ -1,7 +1,10 @@
 'use strict';
 
 /**
- * @param minify {Boolean}: should we minify the result
+ * This is the build-time config.
+ * External libraries should be excluded so we can load them at runtime.
+ *
+ * @param {Boolean} minify - should we minify the result
  *	@returns the requirejs config object that we use during build:js
  */
 module.exports = function (minify) {
@@ -17,8 +20,11 @@ module.exports = function (minify) {
 
 			// we can ignore vendor deps during build
 			angular: 'empty:',
+			bluebird: 'empty:',
+			fuzzysearch: 'empty:',
 			jquery: 'empty:',
 			lodash: 'empty:',
+			moment: 'empty:',
 
 			// requirejs needs to have the plugins at build time
 			json: '../node_modules/requirejs-plugins/src/json',

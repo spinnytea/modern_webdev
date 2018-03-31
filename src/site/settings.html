@@ -8,9 +8,8 @@
 
 	<div class="form-group">
 		<label for="colorfulCards">Colorful Cards</label>
-		<select class="form-control" id="colorfulCards" name="colorfulCards"
-				ng-model="settings.colorfulCards"
-				ng-options="(item?'Colorful':'Simple Colors') for item in [false, true]"></select>
+		<p radio-group="[{id:false,display:'Simple Colors'},{id:true,display:'Colorful'}]"
+				ng-model="settings.colorfulCards"></p>
 	</div>
 
 	<div class="form-group">
@@ -28,11 +27,38 @@
 	</div>
 
 	<div class="form-group">
+		<label for="pokedexFilterType">Pokédex Order</label>
+		<p radio-group="settings.availableDexFilters" ng-model="settings.pokedexFilterType"></p>
+	</div>
+
+	<div class="form-group">
 		<label for="preferredTypeChart">Preferred Type Chart</label>
 		<select class="form-control" id="preferredTypeChart" name="preferredTypeChart"
 				ng-model="settings.preferredTypeChart"
 				ng-options="t.id as t.display for t in settings.availableTypeCharts"></select>
 	</div>
+
+	<div class="form-group" ng-if="!isFile">
+		<label for="showTourStart">Show Tours</label>
+		<p radio-group="[{id:true,display:'Show'},{id:false,display:'Hide'}]"
+				ng-model="settings.showTourStart"></p>
+	</div>
+
+	<div class="form-group">
+		<label for="teamSize">Team Size</label>
+		<div>
+			<span class="form-control-static" id="teamSize" name="teamSize" ng-bind="team.length"></span>
+			<!-- REVIEW this is a bad placement for this button -->
+			<!-- - should it go below next to reset settings? -->
+			<!-- - should we redesign this "settings" form-group? (it's not input, it only displays a number) -->
+			<button type="button" class="btn btn-warning" are-you-sure="clearTeam()"><i class="fa fa-heart-o"></i> Clear Team</button>
+		</div>
+	</div>
 </form>
 
-<button type="button" class="btn btn-danger" are-you-sure="clearLocalStorage()"><i class="fa fa-fw fa-trash"></i>Clear Local Storage</button>
+<p>
+	<button class="btn btn-default" title="Save settings to your device." btn-state-message="save()"><i class="fa fa-fw fa-download"></i></button>
+	<button class="btn btn-default" title="Load settings from your device." btn-state-message="load()"><i class="fa fa-fw fa-upload"></i></button>
+	|
+	<button type="button" class="btn btn-danger" are-you-sure="clearLocalStorage()"><i class="fa fa-trash"></i> Clear All Site Data</button>
+</p>

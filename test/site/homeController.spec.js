@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/site/siteModule',
-	'angular-mocks',
 ], function (angular, siteModule) {
 	return describe('Home Controller', function () {
 		var teamFactory, pokedexFactory, settingsFactory, typesFactory;
@@ -27,8 +26,8 @@ define([
 
 			it('init', function () {
 				expect($scope.themeCount).toBe(3);
-				expect($scope.pokedexCount).toBe(2);
 				expect($scope.typeCount).toBe(4);
+				expect($scope.pokedexCount).toBe(2);
 				expect($scope.team).toBe(teamFactory);
 			});
 		}); // end controller

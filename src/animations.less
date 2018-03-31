@@ -1,0 +1,67 @@
+.move-right {
+	&.ng-enter,
+	&.ng-move {
+		animation: 0.5s move_right reverse;
+		height: 0;
+		opacity: 0;
+	 }
+
+	 &.ng-enter.ng-enter-active,
+	 &.ng-move.ng-move-active {
+		 opacity: 1;
+	 }
+
+	 &.ng-leave {
+		animation: 0.5s move_right;
+	 }
+
+	 @keyframes move_right {
+		 from {
+			 height: 40px; // HACK how can we avoid using this property
+			 margin-bottom: 10.5px; // HACK how can we avoid using this property
+			 opacity: 1;
+			 right: 0;
+		 }
+
+		 to {
+			 height: 0; // HACK how can we avoid using this property
+			 margin-bottom: 0; // HACK how can we avoid using this property
+			 opacity: 0;
+			 right: -200px;
+		 }
+	 }
+}
+
+.move-down {
+	&.ng-enter,
+	&.ng-move {
+		animation: 0.5s move_down reverse;
+		height: 0;
+		opacity: 0;
+	 }
+
+	 &.ng-enter.ng-enter-active,
+	 &.ng-move.ng-move-active {
+		 opacity: 1;
+	 }
+
+	 &.ng-leave {
+		animation: 0.5s move_down;
+	 }
+
+	 @keyframes move_down {
+		 from {
+			 bottom: 0;
+			 height: 40px; // HACK how can we avoid using this property
+			 margin-bottom: 10.5px; // HACK how can we avoid using this property
+			 opacity: 1;
+		 }
+
+		 to {
+			 bottom: -200px;
+			 height: 0; // HACK how can we avoid using this property
+			 margin-bottom: 0; // HACK how can we avoid using this property
+			 opacity: 0;
+		 }
+	 }
+}

@@ -1,5 +1,6 @@
 @import 'pokedex/pokemon';
 @import 'types/types';
+@import 'animations';
 @import 'augmentations';
 @import 'overrides';
 
@@ -11,4 +12,19 @@
 .input-group-addon.minimal {
   background: none;
   border: 0;
+}
+
+[radio-group] {
+	label {
+		margin: 2px 0;
+	}
+
+	label + label {
+		margin-left: 1.5em;
+	}
+
+	.display-text {
+		position: relative;
+		top: -0.25em;
+	}
 }

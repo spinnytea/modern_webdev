@@ -1,7 +1,6 @@
 define([
 	'angular',
 	'src/site/siteModule',
-	'angular-mocks',
 ], function (angular, siteModule) {
 	return describe('Page Header Directive', function () {
 		var $location;
@@ -40,7 +39,7 @@ define([
 						.toArray()
 						.sort();
 
-					// NOTE if this list changes, stub a test for the new one
+					// if this list changes, stub a test for the new one
 					// - you don't need to implement the test immediately, but at least stub it out
 					expect(headerLocations).toEqual([
 						'Pokédex',

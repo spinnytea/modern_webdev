@@ -1,0 +1,6 @@
+<button ng-click="theCheck()" ng-mouseleave="reset()">
+	<ng-transclude ng-if="step === 1"></ng-transclude>
+	<span ng-if="step === 2"><i class="fa fa-refresh fa-spin"></i> Working</span>
+	<span ng-if="step === 3"><i class="fa fa-check"></i> <span ng-bind="msg"></span></span>
+	<span ng-if="step === 4"><i class="fa fa-exclamation-circle"></i> <span ng-bind="msg"></span></span>
+</button>

@@ -2,7 +2,6 @@ define([
 	'angular',
 	'lodash',
 	'src/utils/utilsModule',
-	'angular-mocks',
 ], function (angular, _, utilsModule) {
 	return describe('Are You Sure Directive', function () {
 		var $timeout;
@@ -20,14 +19,15 @@ define([
 				});
 			}));
 
-			// NOTE if this list changes, stub a test for the new one
-			// - you don't need to implement the test immediately, but at least stub it out
 			it('init', function () {
 				var keys = _.chain($scope)
 					.keys()
 					.filter(function (k) { return !_.startsWith(k, '$'); })
 					.sort()
 					.value();
+
+				// if this list changes, stub a test for the new one
+				// - you don't need to implement the test immediately, but at least stub it out
 				expect(keys).toEqual([
 					'reset',
 					'step',

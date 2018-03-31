@@ -51,8 +51,10 @@ define(['angular'], function (angular) {
 					}
 				}).then(function () {
 					$scope.step = 4;
+					// REVIEW if String, if short, use as message
 				}).catch(function () {
 					$scope.step = 5;
+					// REVIEW if Error, if short, use as message
 				});
 			}
 		};
