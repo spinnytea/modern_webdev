@@ -48,7 +48,10 @@
 		<label for="teamSize">Team Size</label>
 		<div>
 			<span class="form-control-static" id="teamSize" name="teamSize" ng-bind="team.length"></span>
-			<button type="button" class="btn btn-warning" are-you-sure="clearTeam()"><i class="fa fa-fw fa-heart-o"></i>Clear Team</button>
+			<!-- REVIEW this is a bad placement for this button -->
+			<!-- - should it go below next to reset settings? -->
+			<!-- - should we redesign this "settings" form-group? (it's not input, it only displays a number) -->
+			<button type="button" class="btn btn-warning" are-you-sure="clearTeam()"><i class="fa fa-heart-o"></i> Clear Team</button>
 		</div>
 	</div>
 </form>
@@ -56,7 +59,7 @@
 <p>
 	<button class="btn btn-default" title="Save settings to your device." ng-click="save()"><i class="fa fa-fw fa-download"></i></button>
 	<button class="btn btn-default" title="Load settings from your device." ng-click="load()"><i class="fa fa-fw fa-upload"></i></button>
-	<button class="btn btn-danger" title="Clear settings." are-you-sure="delete()"><i class="fa fa-fw fa-trash"></i></button>
+	<button class="btn btn-warning" title="Clear settings." are-you-sure="delete()"><i class="fa fa-fw fa-undo"></i></button>
 	|
-	<button type="button" class="btn btn-danger" are-you-sure="clearLocalStorage()"><i class="fa fa-fw fa-trash"></i>Clear All Site Data</button>
+	<button type="button" class="btn btn-danger" are-you-sure="clearLocalStorage()"><i class="fa fa-trash"></i> Clear All Site Data</button>
 </p>

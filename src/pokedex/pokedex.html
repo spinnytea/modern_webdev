@@ -9,7 +9,7 @@
 			<input type="text" class="form-control" id="filter" name="filter"
 					ng-model="settings.pokedexFilter" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" />
 			<span class="input-group-addon">
-				<i class="fa" ng-repeat="filter in settings.availableDexFilters"
+				<i class="fa fa-fw" ng-repeat="filter in settings.availableDexFilters"
 					ng-class="filter.icon" title="{{filter.display}}" ng-if="settings.pokedexFilterType===filter.id"></i>
 			</span>
 		</div>

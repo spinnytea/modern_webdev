@@ -25,6 +25,7 @@ define(['angular'], function (angular) {
 			tours.start($scope.name);
 		};
 
+		// TODO disable tour when offline (protocol === file)
 		$scope.show = function () {
 			return settings.showTourStart && tours.exists($scope.name);
 		};
