@@ -22,17 +22,15 @@ define(['moment'], function (moment) {
 			// no need for any messages
 			// the browser will initiate the download and that will be our feedback
 			// there's no way to listen for failures anyway, it sort of just happens
-			return siteIO.save();
+			return siteIO.save().then(function (date) {
+				return 'saved on ' + moment(date).format('MMMM Do, h:mm a');
+			});
 		};
 
 		$scope.load = function () {
-			// TODO success/error message
 			// BUG this doesn't always work the second time, you need to reload before it will work again
 			return siteIO.load().then(function (date) {
-				moment.locale('en');
-				console.log('saved', moment(date).fromNow());
-			}) .catch(function (error) {
-				console.log('error!', error);
+				return 'settings from ' + moment(date).fromNow();
 			});
 		};
 

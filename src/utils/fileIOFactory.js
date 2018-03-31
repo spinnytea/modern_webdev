@@ -78,6 +78,8 @@ define(['angular', 'jquery'], function (angular, $) {
 			// don't ask me why there's a click function on the raw html element
 			// but this needs to be called, while the jquery one does not work
 			a[0].click();
+
+			return $q.resolve(data);
 		};
 
 		return fileIO;

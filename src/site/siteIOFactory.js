@@ -21,7 +21,9 @@ define(['lodash'], function (_) {
 		// save_2_0
 
 		siteIO.save = function save() {
-			return fileIO.downloadJson('poketypeSettings', siteIO.units.save_1_1());
+			return fileIO.downloadJson('poketypeSettings', siteIO.units.save_1_1()).then(function (data) {
+				return data.date;
+			});
 		};
 
 		siteIO.load = function load() {

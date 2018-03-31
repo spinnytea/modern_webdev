@@ -7,6 +7,7 @@ define([
 	'./bindKeysFactory',
 	'./browserVersionFactory',
 	'./btnDisabledTitleDirective',
+	'./btnStateMessageDirective',
 	'./fileIOFactory',
 	'./fuzzyFilter',
 	'./padNumberFilter',
@@ -23,6 +24,7 @@ define([
 	bindKeysFactory,
 	browserVersionFactory,
 	btnDisabledTitleDirective,
+	btnStateMessageDirective,
 	fileIOFactory,
 	fuzzyFilter,
 	padNumberFilter,
@@ -34,6 +36,7 @@ define([
 	var utilsModule = angular.module('po_ke_type.utils', [
 		areYouSureDirective.name,
 		btnDisabledTitleDirective.name,
+		btnStateMessageDirective.name,
 		radioGroupDirective.name,
 		tourStartDirective.name,
 		'ngRoute',
