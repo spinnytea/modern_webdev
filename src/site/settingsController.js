@@ -1,14 +1,16 @@
 define(['moment'], function (moment) {
 	return [
-		'$scope', 'localStorageService', 'po_ke_type.site.siteIO.factory',
+		'$scope', '$location', 'localStorageService', 'po_ke_type.site.siteIO.factory',
 		'po_ke_type.site.settings.factory', 'po_ke_type.pokedex.team.factory',
 		SettingsController,
 	];
 
-	function SettingsController($scope, localStorageService, siteIO,
+	function SettingsController($scope, $location, localStorageService, siteIO,
 			settings, team) {
 		$scope.settings = settings;
 		$scope.team = team;
+
+		$scope.isFile = ($location.protocol() === 'file');
 
 		$scope.clearTeam = function () {
 			team.splice(0);

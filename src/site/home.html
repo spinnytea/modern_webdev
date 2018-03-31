@@ -11,6 +11,7 @@
 <!-- the span inside the paragraph is to help focus the bootstrap-tour popover -->
 <p><span id="teamList">
 	<span class="badge" ng-bind="team.length"></span>
+	Team
 	<i ng-repeat="m in team" class="pki {{m.iconClass}}" title="{{m.name}}"></i>
 	<i tour-start="introToTeam"></i>
 </span></p>

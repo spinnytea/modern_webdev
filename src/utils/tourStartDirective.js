@@ -4,7 +4,7 @@ define(['angular'], function (angular) {
 	tourStartMod.directive('tourStart', [TourStartDirective]);
 
 	tourStartMod.controller('po_ke_type.utils.tourStart.directive.controller', [
-		'$scope', 'po_ke_type.utils.tours.factory', 'po_ke_type.site.settings.factory',
+		'$scope', '$location', 'po_ke_type.utils.tours.factory', 'po_ke_type.site.settings.factory',
 		TourStartController,
 	]);
 
@@ -20,14 +20,13 @@ define(['angular'], function (angular) {
 		};
 	}
 
-	function TourStartController($scope, tours, settings) {
+	function TourStartController($scope, $location, tours, settings) {
 		$scope.start = function () {
 			tours.start($scope.name);
 		};
 
-		// TODO disable tour when offline (protocol === file)
 		$scope.show = function () {
-			return settings.showTourStart && tours.exists($scope.name);
+			return settings.showTourStart && $location.protocol() !== 'file' && tours.exists($scope.name);
 		};
 	}
 });

@@ -33,7 +33,7 @@ Stretch Goals
 1. bootstrap tour + path does NOT work from the filesystem
     * tours on page do work
     * paths only work with `/#`, the don't work with just `#`
-    * for now, disable the tourStart icon based on location protocol
+    * for now, the tourStart icon is disabled based on location protocol
 
 
 What's in the project

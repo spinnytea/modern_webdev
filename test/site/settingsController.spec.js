@@ -29,11 +29,14 @@ define([
 				expect(Object.keys($scope).sort()).toEqual([
 					'clearLocalStorage',
 					'clearTeam',
+					'isFile',
 					'load',
 					'save',
 					'settings',
 					'team',
 				]);
+
+				expect($scope.isFile).toEqual(jasmine.any(Boolean));
 			});
 
 			it('clearTeam', function () {
@@ -51,6 +54,10 @@ define([
 
 				expect(localStorageService.clearAll).toHaveBeenCalled();
 			});
+
+			it('save');
+
+			it('load');
 		}); // end controller
 	}); // end Settings Controller
 });

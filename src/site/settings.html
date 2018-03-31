@@ -38,7 +38,7 @@
 				ng-options="t.id as t.display for t in settings.availableTypeCharts"></select>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group" ng-if="!isFile">
 		<label for="showTourStart">Show Tours</label>
 		<p radio-group="[{id:true,display:'Show'},{id:false,display:'Hide'}]"
 				ng-model="settings.showTourStart"></p>
