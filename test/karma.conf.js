@@ -45,6 +45,7 @@ module.exports = function (config) {
 			{ pattern: 'src/**/*.js', included: false },
 			{ pattern: 'static/**/*', included: false },
 			{ pattern: 'test/**/*.js', included: false },
+			{ pattern: 'test/test resources/**/*', included: false },
 			// html files will run through html2js and are needed up front
 			{ pattern: 'src/**/*.html', included: true },
 

@@ -4,7 +4,11 @@ define([
 	'bluebird',
 	'src/site/siteModule',
 	'test/pokedex/pokedexFactory.mock',
-], function (angular, _, Promise, siteModule, pokedexFactoryMock) {
+
+	'json!test/test resources/save_1_0.json',
+	'json!test/test resources/save_1_1.json',
+], function (angular, _, Promise, siteModule, pokedexFactoryMock,
+	json_save_1_0, json_save_1_1) {
 	return describe('Site IO Factory', function () {
 		var fileIOFactory, settingsFactory, teamFactory, pokedexFactory;
 		var siteIO;
@@ -168,9 +172,15 @@ define([
 
 			describe('all', function () {
 				describe('load_1', function () {
-					it('save_1_0');
+					it('save_1_0', function () {
+						siteIO.units.load_1(json_save_1_0);
+						// TEST check something
+					});
 
-					it('save_1_1');
+					it('save_1_1', function () {
+						siteIO.units.load_1(json_save_1_1);
+						// TEST check something
+					});
 				}); // end load_1
 			}); // end all
 		}); // end load
