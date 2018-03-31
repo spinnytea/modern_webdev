@@ -36,9 +36,11 @@ define(['lodash'], function (_) {
 				// TODO try parsing date, we need it anyway
 
 				switch(v[1]) {
-					case '1': return siteIO.units.load_1(data);
+					case '1': siteIO.units.load_1(data);
 					// cannot get to the default
 				}
+
+				return data.date;
 			});
 		};
 

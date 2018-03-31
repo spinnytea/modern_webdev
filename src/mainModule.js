@@ -16,8 +16,9 @@ require.config({
 define('angular', function () { return angular; }); // eslint-disable-line
 define('jquery', function () { return $; }); // eslint-disable-line
 define('lodash', function () { return _; }); // eslint-disable-line
-define('Tour', function () { return Tour; }); // eslint-disable-line
+define('moment', function () { return moment; }); // eslint-disable-line
 define('notDevMode', function () { return true; }); // eslint-disable-line
+define('Tour', function () { return Tour; }); // eslint-disable-line
 
 // eslint-disable-next-line requirejs/no-multiple-define
 define([

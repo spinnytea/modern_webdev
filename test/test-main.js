@@ -1,4 +1,6 @@
-/* eslint-env browser */
+/**
+ * This is the requirejs config used when we start our unit tests with karma.
+ */
 
 var allTestFiles = [];
 var TEST_REGEXP = /(spec|test)\.js$/i;
@@ -47,9 +49,10 @@ require.config({
 	deps: allTestFiles,
 
 	paths: {
-		'lodash': 'node_modules/lodash/lodash',
-		'fuzzysearch': 'dist/vendor/fuzzysearch', // HACK we shouldn't rely on dist for tests
 		'bluebird': 'node_modules/bluebird/js/browser/bluebird',
+		'fuzzysearch': 'dist/vendor/fuzzysearch', // HACK we shouldn't rely on dist for tests
+		'lodash': 'node_modules/lodash/lodash',
+		'moment': 'node_modules/moment/moment',
 
 		data: 'static/data',
 		json: 'node_modules/requirejs-plugins/src/json',

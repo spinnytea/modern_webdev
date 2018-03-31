@@ -44,6 +44,7 @@ define([
 	// - it's nice having a global register
 	//   - state needs to be maintained across pages
 	//   - its a single point of reference we can use for cataloging, enforcing style, standard features, etc
+	// - what about module.config() ?
 	if(notDevMode) siteModule.run(homeToursSetup);
 
 	siteModule.constant('po_ke_type.site.settings.defaults', Object.freeze({

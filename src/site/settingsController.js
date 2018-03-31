@@ -1,4 +1,4 @@
-define([], function () {
+define(['moment'], function (moment) {
 	return [
 		'$scope', 'localStorageService', 'po_ke_type.site.siteIO.factory',
 		'po_ke_type.site.settings.factory', 'po_ke_type.pokedex.team.factory',
@@ -28,8 +28,13 @@ define([], function () {
 			// TODO success/error message
 			// BUG this doesn't always work the second time, you need to reload before it will work again
 			siteIO.load()
-				.then(function (success) { console.log('success!', success); })
+				.then(toastLoadTime)
 				.catch(function (error) { console.log('error!', error); });
 		};
+
+		function toastLoadTime(date) {
+			moment.locale('en');
+			console.log('saved', moment(date).fromNow());
+		}
 	}
 });

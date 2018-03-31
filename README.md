@@ -46,6 +46,22 @@ Stretch Goals
 What's in the project
 ---------------------
 
+### RequireJS Config
+
+When you add new libraries, you need to update the requirejs definition in these locations.
+The specifics are documented in each file, this is just a starting point.
+
+* `build_scripts/requirejs_data_config.js`
+* `build_scripts/requirejs_src_config.js`
+* `src/mainModule.js`
+* `static/index.html`
+* `test/karma.conf.js`
+* `test/test-main.js`
+
+
+Node Library Documentation
+--------------------------
+
 ### Build Pipeline
 
 <dl>
