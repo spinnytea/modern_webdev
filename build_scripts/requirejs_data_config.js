@@ -1,6 +1,8 @@
 'use strict';
 
 /**
+ * This is a small module that loads the json data dependencies for the project.
+ *
  *	@returns the requirejs config object that we use during build:js
  */
 module.exports = function () {

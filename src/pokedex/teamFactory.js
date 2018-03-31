@@ -1,5 +1,5 @@
 define(['lodash'], function (_) {
-	var STORAGE_KEY = 'team_list';
+	var STORAGE_KEY = 'team.list';
 
 	return [
 		'$rootScope', 'localStorageService', 'po_ke_type.pokedex.factory',
@@ -21,6 +21,7 @@ define(['lodash'], function (_) {
 		}
 
 		// watch for changes in the list
+		// BUG watch for changes in team, not just the length - or allow siteIO.load to trigger localstorage save
 		$rootScope.$watch(function () { return team.length; }, function () {
 			if(team.length) {
 				localStorageService.set(STORAGE_KEY, team.map(function (mon) {

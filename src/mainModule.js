@@ -16,18 +16,20 @@ require.config({
 define('angular', function () { return angular; }); // eslint-disable-line
 define('jquery', function () { return $; }); // eslint-disable-line
 define('lodash', function () { return _; }); // eslint-disable-line
-define('Tour', function () { return Tour; }); // eslint-disable-line
+define('moment', function () { return moment; }); // eslint-disable-line
 define('notDevMode', function () { return true; }); // eslint-disable-line
+define('Tour', function () { return Tour; }); // eslint-disable-line
 
 // eslint-disable-next-line requirejs/no-multiple-define
 define([
 	'angular',
+	'moment',
 	'./pokedex/pokedexModule',
 	'./site/siteModule',
 	'./types/typesModule',
 	'./utils/utilsModule',
 	'./dataModule',
-], function (angular, pokedexModule, siteModule, typesModule, utilsModule) {
+], function (angular, moment, pokedexModule, siteModule, typesModule, utilsModule) {
 	var mainModule = angular.module('po_ke_type', [
 		pokedexModule.name,
 		siteModule.name,
@@ -39,6 +41,8 @@ define([
 		'ngRoute',
 		'ngSanitize',
 	]);
+
+	moment.locale('en');
 
 	mainModule.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 		$locationProvider.hashPrefix('');

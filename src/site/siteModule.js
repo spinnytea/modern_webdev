@@ -7,6 +7,7 @@ define([
 	'./pageHeaderDirective',
 	'./settingsController',
 	'./settingsFactory',
+	'./siteIOFactory',
 ], function (
 	angular,
 	notDevMode,
@@ -15,7 +16,8 @@ define([
 	homeToursSetup,
 	pageHeaderDirective,
 	settingsController,
-	settingsFactory
+	settingsFactory,
+	siteIOFactory
 ) {
 	var siteModule = angular.module('po_ke_type.site', [
 		pageHeaderDirective.name,
@@ -25,6 +27,7 @@ define([
 	siteModule.controller('po_ke_type.site.home.controller', homeController);
 	siteModule.controller('po_ke_type.site.settings.controller', settingsController);
 	siteModule.factory('po_ke_type.site.settings.factory', settingsFactory);
+	siteModule.factory('po_ke_type.site.siteIO.factory', siteIOFactory);
 
 	// REVIEW notDevMode
 	// - module.run is really clean for production
@@ -41,6 +44,7 @@ define([
 	// - it's nice having a global register
 	//   - state needs to be maintained across pages
 	//   - its a single point of reference we can use for cataloging, enforcing style, standard features, etc
+	// - what about module.config() ?
 	if(notDevMode) siteModule.run(homeToursSetup);
 
 	siteModule.constant('po_ke_type.site.settings.defaults', Object.freeze({

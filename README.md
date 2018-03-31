@@ -4,14 +4,6 @@ Modern WebDev
 This isn't a perfect example of modern web ui development, but given that there are so many different tools and frameworks, what is? This is one setup for developing a web ui application at the end of ES5, before HTML5 and ES6 become widespread.
 
 
-Current Goals
--------------
-
-1. import/export data, version x.x (load.save)
-    1. save timestamp in file, momentjs "saved x days ago"
-    1. crafter_life has the save/load buttons we want
-
-
 Stretch Goals
 -------------
 
@@ -46,6 +38,22 @@ Stretch Goals
 
 What's in the project
 ---------------------
+
+### RequireJS Config
+
+When you add new libraries, you need to update the requirejs definition in these locations.
+The specifics are documented in each file, this is just a starting point.
+
+* `build_scripts/requirejs_data_config.js`
+* `build_scripts/requirejs_src_config.js`
+* `src/mainModule.js`
+* `static/index.html`
+* `test/karma.conf.js`
+* `test/test-main.js`
+
+
+Node Library Documentation
+--------------------------
 
 ### Build Pipeline
 
